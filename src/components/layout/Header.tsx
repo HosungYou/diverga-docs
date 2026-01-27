@@ -6,6 +6,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { Menu, X } from 'lucide-react';
 import { LanguageToggle } from './LanguageToggle';
 import { SearchBar } from '@/components/common/SearchBar';
+import { ThemeToggleSimple } from '@/components/common/ThemeToggle';
 import { cn } from '@/lib/utils/cn';
 
 export function Header() {
@@ -60,6 +61,7 @@ export function Header() {
 
         <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-x-4">
           <SearchBar className="w-64" />
+          <ThemeToggleSimple />
           <LanguageToggle />
           <Link
             href={`/${locale}/getting-started`}
@@ -109,7 +111,10 @@ export function Header() {
                 ))}
               </div>
               <div className="py-6 space-y-4">
-                <LanguageToggle />
+                <div className="flex items-center gap-3">
+                  <ThemeToggleSimple />
+                  <LanguageToggle />
+                </div>
                 <Link
                   href={`/${locale}/getting-started`}
                   className="block rounded-lg bg-diverga-500 px-4 py-2.5 text-center text-base font-semibold text-white shadow-sm hover:bg-diverga-600"
