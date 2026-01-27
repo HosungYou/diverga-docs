@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
 import { Menu, X } from 'lucide-react';
 import { LanguageToggle } from './LanguageToggle';
+import { SearchBar } from '@/components/common/SearchBar';
 import { cn } from '@/lib/utils/cn';
 
 export function Header() {
@@ -57,7 +58,8 @@ export function Header() {
           ))}
         </div>
 
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-4">
+        <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-x-4">
+          <SearchBar className="w-64" />
           <LanguageToggle />
           <Link
             href={`/${locale}/getting-started`}
@@ -90,6 +92,10 @@ export function Header() {
           </div>
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-[var(--border)]">
+              {/* Mobile Search */}
+              <div className="py-4">
+                <SearchBar className="w-full" />
+              </div>
               <div className="space-y-2 py-6">
                 {navigation.map((item) => (
                   <Link
