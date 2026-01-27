@@ -107,7 +107,21 @@
     },
     "triggers": "Triggers",
     "relatedAgents": "Related Agents",
-    "checkpoint": "Checkpoint"
+    "checkpoint": "Checkpoint",
+    "checkpoints": {
+      "required": {
+        "label": "Requires Your Approval",
+        "description": "System STOPS and waits for your explicit approval"
+      },
+      "recommended": {
+        "label": "Review Suggested",
+        "description": "System PAUSES and strongly suggests review"
+      },
+      "optional": {
+        "label": "Your Choice",
+        "description": "System ASKS but can be skipped"
+      }
+    }
   },
   "gettingStarted": {
     "title": "Getting Started",
@@ -127,6 +141,23 @@
     "step4": {
       "title": "Start Researching",
       "description": "Just describe what you want to do"
+    },
+    "checkpoint": {
+      "title": "Experience Your First Checkpoint",
+      "subtitle": "Every critical decision is yours",
+      "description": "Unlike other AI tools that make decisions for you, Diverga pauses at critical moments and asks for your approval. You stay in control.",
+      "exampleTitle": "Here's what a checkpoint looks like:",
+      "prompt": "🔴 CP_THEORY_SELECTION",
+      "promptSubtitle": "Choose your theoretical framework",
+      "promptOptions": {
+        "0": "Technology Acceptance Model (T=0.92) - Modal",
+        "1": "Self-Determination Theory + TAM (T=0.6) - Emerging",
+        "2": "Activity Theory + Communities (T=0.4) - Novel"
+      },
+      "promptQuestion": "Which framework fits your research context?",
+      "responseExample": "approve option 2",
+      "trustMessage": "You decide the direction. AI waits for your command.",
+      "learnMore": "Learn About Checkpoints"
     }
   },
   "footer": {

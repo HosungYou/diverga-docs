@@ -6,6 +6,7 @@ import { ArrowLeft, ArrowRight, Zap, GitBranch } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Agent, Category } from '@/lib/data/types';
 import { TScoreBadge } from './TScoreBadge';
+import { CheckpointBadge } from './CheckpointBadge';
 import { cn } from '@/lib/utils/cn';
 
 interface AgentDetailProps {
@@ -64,7 +65,7 @@ export function AgentDetail({ agent, category, relatedAgents }: AgentDetailProps
           <div className="flex items-start gap-4">
             <span className="text-5xl">{agent.icon}</span>
             <div className="flex-1">
-              <div className="flex items-center gap-3 mb-2">
+              <div className="flex items-center gap-3 mb-2 flex-wrap">
                 <span className="font-mono text-lg text-[var(--muted-foreground)]">
                   {agent.id}
                 </span>
@@ -75,6 +76,14 @@ export function AgentDetail({ agent, category, relatedAgents }: AgentDetailProps
                   {tierLabels[agent.tier]}
                 </span>
                 <TScoreBadge vsLevel={agent.vsLevel} />
+                {agent.checkpoint && agent.checkpoint.level && (
+                  <CheckpointBadge
+                    checkpointId={agent.checkpoint.id}
+                    level={agent.checkpoint.level}
+                    locale={locale}
+                    variant="compact"
+                  />
+                )}
               </div>
               <h1 className="text-h1 font-bold text-[var(--foreground)]">
                 {agent.name[locale]}
@@ -159,32 +168,62 @@ export function AgentDetail({ agent, category, relatedAgents }: AgentDetailProps
           </div>
         </motion.div>
 
-        {/* Checkpoint */}
-        {agent.checkpoint && (
+        {/* Checkpoint Section - Enhanced */}
+        {agent.checkpoint && agent.checkpoint.level && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
-            className="rounded-xl border-2 border-red-200 bg-red-50 p-5 mb-8"
+            className={cn(
+              "rounded-xl border-2 p-6 mb-8 relative overflow-hidden",
+              agent.checkpoint.level === 'REQUIRED' && "border-rose-300 bg-gradient-to-br from-rose-50 to-rose-100/50",
+              agent.checkpoint.level === 'RECOMMENDED' && "border-amber-300 bg-gradient-to-br from-amber-50 to-amber-100/50",
+              agent.checkpoint.level === 'OPTIONAL' && "border-yellow-300 bg-gradient-to-br from-yellow-50 to-yellow-100/50"
+            )}
           >
-            <h2 className="flex items-center gap-2 font-semibold text-red-700 mb-2">
-              {agent.checkpoint.level === 'REQUIRED' ? '🔴' :
-               agent.checkpoint.level === 'RECOMMENDED' ? '🟠' : '🟡'}
-              {t('checkpoint')}: {agent.checkpoint.id}
-            </h2>
-            <p className="text-sm text-red-600">
-              {agent.checkpoint.level === 'REQUIRED'
-                ? (locale === 'ko'
-                    ? '이 체크포인트에서 시스템이 멈추고 명시적 승인을 기다립니다.'
-                    : 'System STOPS at this checkpoint and waits for explicit approval.')
-                : agent.checkpoint.level === 'RECOMMENDED'
-                ? (locale === 'ko'
-                    ? '시스템이 일시 정지하고 승인을 권장합니다.'
-                    : 'System PAUSES and strongly suggests approval.')
-                : (locale === 'ko'
-                    ? '시스템이 묻지만 건너뛸 수 있습니다.'
-                    : 'System ASKS but can be skipped.')}
-            </p>
+            {/* Decorative background pattern */}
+            <div className="absolute inset-0 opacity-5">
+              <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <pattern id="checkpoint-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                    <circle cx="10" cy="10" r="1" fill="currentColor" />
+                  </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#checkpoint-grid)" />
+              </svg>
+            </div>
+
+            <div className="relative z-10">
+              <div className="flex items-start gap-4 mb-4">
+                {agent.checkpoint.level && (
+                  <CheckpointBadge
+                    checkpointId={agent.checkpoint.id}
+                    level={agent.checkpoint.level}
+                    locale={locale}
+                    variant="full"
+                  />
+                )}
+              </div>
+
+              <div className={cn(
+                "text-sm leading-relaxed",
+                agent.checkpoint.level === 'REQUIRED' && "text-rose-700",
+                agent.checkpoint.level === 'RECOMMENDED' && "text-amber-700",
+                agent.checkpoint.level === 'OPTIONAL' && "text-yellow-700"
+              )}>
+                {agent.checkpoint.level === 'REQUIRED'
+                  ? (locale === 'ko'
+                      ? '이 에이전트는 중요한 연구 결정에서 실행을 중지하고 명시적 승인을 기다립니다. 이는 AI가 자동으로 진행하기 전에 인간의 판단이 필요한 중요한 선택임을 의미합니다.'
+                      : 'This agent STOPS execution at critical research decisions and waits for explicit approval. This ensures human judgment is applied before AI proceeds with important choices.')
+                  : agent.checkpoint.level === 'RECOMMENDED'
+                  ? (locale === 'ko'
+                      ? '이 에이전트는 중요한 지점에서 일시 정지하고 검토를 강력히 권장합니다. 승인 없이 계속할 수 있지만, 검토가 연구 품질을 향상시킵니다.'
+                      : 'This agent PAUSES at important points and strongly recommends review. You can proceed without approval, but review improves research quality.')
+                  : (locale === 'ko'
+                      ? '이 에이전트는 선택사항을 제시하지만 승인 없이 계속할 수 있습니다. 검토는 선택사항이지만 권장됩니다.'
+                      : 'This agent presents options but can proceed without approval. Review is optional but recommended.')}
+              </div>
+            </div>
           </motion.div>
         )}
 

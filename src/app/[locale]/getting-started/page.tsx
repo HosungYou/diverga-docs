@@ -14,6 +14,9 @@ import {
   Apple,
   MonitorIcon as Windows,
   Monitor as Linux,
+  Hand,
+  Sparkles,
+  ArrowRight,
 } from 'lucide-react';
 import { cn } from '@/lib/utils/cn';
 
@@ -242,11 +245,210 @@ export default function GettingStartedPage() {
           ))}
         </div>
 
-        {/* What's Next */}
+        {/* Checkpoint Preview Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
+          className="mt-16"
+        >
+          <div className="rounded-3xl border-2 border-diverga-200 bg-gradient-to-br from-diverga-50 via-white to-teal-50 p-8 sm:p-12 overflow-hidden relative">
+            {/* Decorative elements */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-diverga-100 rounded-full blur-3xl opacity-30 -translate-y-1/2 translate-x-1/2" />
+            <div className="absolute bottom-0 left-0 w-48 h-48 bg-teal-100 rounded-full blur-3xl opacity-30 translate-y-1/2 -translate-x-1/2" />
+
+            <div className="relative z-10">
+              {/* Header */}
+              <div className="text-center mb-8">
+                <motion.div
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.7, type: "spring", stiffness: 200 }}
+                  className="inline-flex items-center gap-2 mb-4"
+                >
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-diverga-500 to-teal-500 shadow-lg">
+                    <Hand className="h-7 w-7 text-white" />
+                  </div>
+                </motion.div>
+                <motion.h2
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.75 }}
+                  className="text-2xl sm:text-3xl font-bold text-[var(--foreground)] mb-2"
+                >
+                  {t('checkpoint.title')}
+                </motion.h2>
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8 }}
+                  className="text-xl font-medium text-diverga-600 mb-3"
+                >
+                  {t('checkpoint.subtitle')}
+                </motion.p>
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.85 }}
+                  className="text-[var(--muted-foreground)] max-w-2xl mx-auto"
+                >
+                  {t('checkpoint.description')}
+                </motion.p>
+              </div>
+
+              {/* Checkpoint Demo */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.9 }}
+                className="mb-6"
+              >
+                <p className="text-sm font-medium text-[var(--foreground)] mb-4 text-center">
+                  {t('checkpoint.exampleTitle')}
+                </p>
+
+                {/* Animated checkpoint card */}
+                <motion.div
+                  initial={{ scale: 0.95 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 1, type: "spring", stiffness: 150 }}
+                  className="rounded-2xl border-2 border-red-300 bg-white shadow-xl overflow-hidden max-w-2xl mx-auto"
+                >
+                  {/* Traffic light header */}
+                  <div className="bg-gradient-to-r from-red-500 to-red-600 px-6 py-4 flex items-center gap-3">
+                    <motion.div
+                      animate={{
+                        scale: [1, 1.2, 1],
+                        opacity: [1, 0.7, 1]
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                      className="text-2xl"
+                    >
+                      🔴
+                    </motion.div>
+                    <div>
+                      <div className="font-mono text-sm font-bold text-white">
+                        {t('checkpoint.prompt')}
+                      </div>
+                      <div className="text-xs text-red-100 mt-0.5">
+                        {t('checkpoint.promptSubtitle')}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Options */}
+                  <div className="p-6 space-y-3">
+                    {[0, 1, 2].map((index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 1.1 + index * 0.15 }}
+                        className="group relative rounded-xl border-2 border-gray-200 bg-gray-50 p-4 transition-all hover:border-diverga-400 hover:bg-diverga-50 hover:shadow-md cursor-pointer"
+                      >
+                        <div className="flex items-start gap-3">
+                          <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white border-2 border-gray-300 text-xs font-bold text-gray-600 group-hover:border-diverga-500 group-hover:text-diverga-600 transition-colors">
+                            {index + 1}
+                          </div>
+                          <p className="text-sm text-[var(--foreground)] font-medium">
+                            {t(`checkpoint.promptOptions.${index}`)}
+                          </p>
+                        </div>
+                      </motion.div>
+                    ))}
+
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 1.6 }}
+                      className="pt-4 border-t border-gray-200"
+                    >
+                      <p className="text-sm text-[var(--muted-foreground)] mb-3 text-center">
+                        {t('checkpoint.promptQuestion')}
+                      </p>
+
+                      {/* Response animation */}
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 1.8, type: "spring" }}
+                        className="relative rounded-lg bg-gray-900 p-4"
+                      >
+                        <div className="flex items-center gap-2 mb-2">
+                          <div className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                          <span className="text-xs text-gray-400 font-mono">
+                            {locale === 'ko' ? '당신의 응답:' : 'Your response:'}
+                          </span>
+                        </div>
+                        <pre className="font-mono text-sm text-emerald-400">
+                          <motion.span
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 2, duration: 0.5 }}
+                          >
+                            {t('checkpoint.responseExample')}
+                          </motion.span>
+                        </pre>
+                        <motion.div
+                          initial={{ opacity: 0, y: 5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 2.3 }}
+                          className="mt-3 flex items-center gap-2 text-emerald-400"
+                        >
+                          <Check className="h-4 w-4" />
+                          <span className="text-xs font-medium">
+                            {locale === 'ko' ? '승인됨 - 계속 진행 중...' : 'Approved - continuing...'}
+                          </span>
+                        </motion.div>
+                      </motion.div>
+                    </motion.div>
+                  </div>
+                </motion.div>
+              </motion.div>
+
+              {/* Trust message */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 2.5 }}
+                className="text-center mb-8"
+              >
+                <div className="inline-flex items-center gap-2 rounded-full bg-emerald-100 border border-emerald-300 px-6 py-3">
+                  <Sparkles className="h-5 w-5 text-emerald-600" />
+                  <p className="text-sm font-semibold text-emerald-700">
+                    {t('checkpoint.trustMessage')}
+                  </p>
+                </div>
+              </motion.div>
+
+              {/* CTA */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 2.7 }}
+                className="text-center"
+              >
+                <a
+                  href={`/${locale}/docs/checkpoints`}
+                  className="inline-flex items-center gap-2 rounded-xl bg-diverga-500 px-6 py-3 text-base font-semibold text-white hover:bg-diverga-600 transition-all hover:shadow-lg hover:scale-105"
+                >
+                  {t('checkpoint.learnMore')}
+                  <ArrowRight className="h-5 w-5" />
+                </a>
+              </motion.div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* What's Next */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8 }}
           className="mt-12 text-center"
         >
           <h2 className="text-xl font-semibold text-[var(--foreground)] mb-4">

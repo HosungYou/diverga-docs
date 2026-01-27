@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown, Zap, Hand } from 'lucide-react';
 import { LanguageToggle } from './LanguageToggle';
 import { SearchBar } from '@/components/common/SearchBar';
 import { ThemeToggleSimple } from '@/components/common/ThemeToggle';
@@ -13,12 +13,28 @@ export function Header() {
   const t = useTranslations('nav');
   const locale = useLocale();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [docsDropdownOpen, setDocsDropdownOpen] = useState(false);
 
   const navigation = [
     { name: t('agents'), href: `/${locale}/agents` },
     { name: t('gettingStarted'), href: `/${locale}/getting-started` },
     { name: t('workflows'), href: `/${locale}/workflows` },
-    { name: t('docs'), href: `/${locale}/docs` },
+    { name: t('docs'), href: `/${locale}/docs`, hasDropdown: true },
+  ];
+
+  const docsDropdownItems = [
+    {
+      name: locale === 'ko' ? 'VS 방법론' : 'VS Methodology',
+      href: `/${locale}/docs/vs-methodology`,
+      icon: Zap,
+      badge: locale === 'ko' ? '핵심' : 'Core',
+    },
+    {
+      name: locale === 'ko' ? '인간 체크포인트' : 'Human Checkpoints',
+      href: `/${locale}/docs/checkpoints`,
+      icon: Hand,
+      badge: 'v6.0',
+    },
   ];
 
   return (
@@ -49,13 +65,64 @@ export function Header() {
 
         <div className="hidden lg:flex lg:gap-x-8">
           {navigation.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className="text-sm font-medium text-[var(--foreground)]/80 hover:text-[var(--foreground)] transition-colors"
-            >
-              {item.name}
-            </Link>
+            item.hasDropdown ? (
+              <div
+                key={item.name}
+                className="relative"
+                onMouseEnter={() => setDocsDropdownOpen(true)}
+                onMouseLeave={() => setDocsDropdownOpen(false)}
+              >
+                <button
+                  className="flex items-center gap-1 text-sm font-medium text-[var(--foreground)]/80 hover:text-[var(--foreground)] transition-colors"
+                  onClick={() => setDocsDropdownOpen(!docsDropdownOpen)}
+                >
+                  {item.name}
+                  <ChevronDown className={cn("h-4 w-4 transition-transform", docsDropdownOpen && "rotate-180")} />
+                </button>
+
+                {docsDropdownOpen && (
+                  <div className="absolute left-0 top-full mt-2 w-72 rounded-lg border border-[var(--border)] bg-[var(--background)] shadow-lg py-2 z-50">
+                    <div className="px-3 py-2 border-b border-[var(--border)]">
+                      <Link
+                        href={item.href}
+                        className="text-xs font-semibold text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors"
+                      >
+                        {locale === 'ko' ? '전체 문서 보기' : 'View All Documentation'}
+                      </Link>
+                    </div>
+                    {docsDropdownItems.map((dropdownItem) => (
+                      <Link
+                        key={dropdownItem.href}
+                        href={dropdownItem.href}
+                        className="flex items-start gap-3 px-3 py-2.5 hover:bg-[var(--muted)] transition-colors group"
+                      >
+                        <div className="mt-0.5">
+                          <dropdownItem.icon className="h-4 w-4 text-diverga-500" />
+                        </div>
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2">
+                            <span className="text-sm font-medium text-[var(--foreground)] group-hover:text-diverga-600 transition-colors">
+                              {dropdownItem.name}
+                            </span>
+                            <span className="inline-flex items-center rounded-full bg-diverga-100 px-2 py-0.5 text-xs font-medium text-diverga-700">
+                              {dropdownItem.badge}
+                            </span>
+                          </div>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link
+                key={item.name}
+                href={item.href}
+                className="text-sm font-medium text-[var(--foreground)]/80 hover:text-[var(--foreground)] transition-colors"
+              >
+                {item.name}
+              </Link>
+            )
           ))}
         </div>
 
@@ -100,14 +167,42 @@ export function Header() {
               </div>
               <div className="space-y-2 py-6">
                 {navigation.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-[var(--foreground)] hover:bg-[var(--muted)]"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
+                  item.hasDropdown ? (
+                    <div key={item.name} className="space-y-1">
+                      <Link
+                        href={item.href}
+                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-[var(--foreground)] hover:bg-[var(--muted)]"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {item.name}
+                      </Link>
+                      <div className="ml-3 space-y-1 border-l-2 border-[var(--border)] pl-3">
+                        {docsDropdownItems.map((dropdownItem) => (
+                          <Link
+                            key={dropdownItem.href}
+                            href={dropdownItem.href}
+                            className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--muted)]"
+                            onClick={() => setMobileMenuOpen(false)}
+                          >
+                            <dropdownItem.icon className="h-4 w-4 text-diverga-500" />
+                            <span>{dropdownItem.name}</span>
+                            <span className="ml-auto inline-flex items-center rounded-full bg-diverga-100 px-2 py-0.5 text-xs font-medium text-diverga-700">
+                              {dropdownItem.badge}
+                            </span>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-[var(--foreground)] hover:bg-[var(--muted)]"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  )
                 ))}
               </div>
               <div className="py-6 space-y-4">
