@@ -37,21 +37,22 @@
 
 ---
 
-## 🔄 In Progress (v1.1)
+## ✅ Completed (v1.1)
 
 ### P1 Features
-- [ ] VS 방법론 상세 설명 페이지 (`/docs/vs-methodology`)
+- [x] VS 방법론 상세 설명 페이지 (`/docs/vs-methodology`)
   - T-Score 시각화
   - Mode Collapse 예시
   - VS 5단계 프로세스 설명
 
-- [ ] 문서 검색 API (`/api/search`)
+- [x] 문서 검색 API (`/api/search`)
   - Fuse.js 기반 전체 검색
-  - 에이전트 + 문서 통합 검색
+  - 에이전트 + 문서 + 워크플로우 통합 검색
+  - SearchBar 컴포넌트 (키보드 내비게이션, 자동완성)
 
-- [ ] 다크 모드
-  - 시스템 설정 감지
-  - 수동 토글 옵션
+- [x] 다크 모드
+  - next-themes 기반 테마 관리
+  - 시스템 설정 감지 + 수동 토글
   - CSS 변수 기반 테마
 
 ---
@@ -94,6 +95,7 @@
 
 | Version | Date | Changes |
 |---------|------|---------|
+| v1.1.0 | 2025-01-27 | VS Methodology page, Search API, Dark mode |
 | v1.0.0 | 2025-01-27 | Initial release - 40 agents, bilingual, Vercel deployment |
 
 ---
