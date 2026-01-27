@@ -161,6 +161,49 @@ export interface Category {
 | Install Diverga | Single npm command |
 | First Call | Example agent invocation |
 
+### Human Checkpoints (`/docs/checkpoints`)
+
+Comprehensive documentation page for the v6.0 Human Checkpoint system.
+
+| Section | Content |
+|---------|---------|
+| Hero | Title, subtitle, philosophy statement |
+| Why Checkpoints | Trust building - AI doesn't decide for you |
+| Checkpoint Levels | Visual traffic light (🔴 REQUIRED, 🟠 RECOMMENDED, 🟡 OPTIONAL) |
+| When Checkpoints Appear | Research journey map with stage → checkpoint → decision |
+| How to Respond | Commands: approve, reject, explain, alternatives |
+| Real-World Scenarios | 3 practical examples (Theory, Ethics, Low T-Score) |
+| Key Checkpoints Reference | Full table of all checkpoint IDs |
+| Decision Audit Trail | Documentation for methodology section |
+| VS Methodology Connection | Phase 5 is Human Checkpoint |
+| CTA | Links to agents, workflows, getting started |
+
+**CheckpointLevel Type**:
+```typescript
+export type CheckpointLevel = "REQUIRED" | "RECOMMENDED" | "OPTIONAL" | null;
+```
+
+**Agent Checkpoint Interface**:
+```typescript
+checkpoint?: {
+  id: string;          // e.g., "CP_THEORY_SELECTION"
+  level: CheckpointLevel;
+};
+```
+
+**Key Checkpoints**:
+| ID | Level | Trigger |
+|----|-------|---------|
+| CP_RESEARCH_DIRECTION | REQUIRED | Finalizing research question |
+| CP_PARADIGM_SELECTION | REQUIRED | Choosing methodology paradigm |
+| CP_THEORY_SELECTION | REQUIRED | Selecting theoretical framework |
+| CP_METHODOLOGY_APPROVAL | REQUIRED | Approving research design |
+| CP_META_GATE | REQUIRED | Starting meta-analysis |
+| CP_ANALYSIS_PLAN | RECOMMENDED | Before analysis execution |
+| CP_INTEGRATION_STRATEGY | RECOMMENDED | Mixed methods integration |
+| CP_RESPONSE_APPROVAL | RECOMMENDED | Peer review response |
+| CP_VISUALIZATION_PREFERENCE | OPTIONAL | Creating diagrams |
+
 ---
 
 ## 5. i18n Strategy

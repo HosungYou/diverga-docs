@@ -56,9 +56,37 @@ Diverga는 Claude Code를 위한 40개 연구 방법론 에이전트 플러그�
 ### P1 (Should Have) 🔄 In Progress
 
 - [ ] 워크플로우 가이드 - 연구 유형별 에이전트 조합 상세화
-- [ ] VS 방법론 설명 페이지 - T-Score 시각화
+- [x] VS 방법론 설명 페이지 - T-Score 시각화
+- [x] Human Checkpoints 문서 페이지 - 체크포인트 시스템 설명
 - [ ] 문서 검색 기능 (API endpoint)
 - [ ] 다크 모드
+
+### Human Checkpoints Feature (v6.0)
+
+Diverga v6.0 "Human-Centered Edition"의 핵심 기능:
+
+**핵심 철학**:
+> "인간이 할 일은 인간이, AI는 인간의 범주를 벗어난 것을 수행"
+> "Human decisions remain with humans. AI handles what's beyond human scope."
+
+**체크포인트 3단계**:
+
+| Level | Icon | Behavior | Skip? |
+|-------|------|----------|-------|
+| **REQUIRED** | 🔴 | System STOPS. Cannot proceed without approval | No |
+| **RECOMMENDED** | 🟠 | System PAUSES. Strongly suggests review | No |
+| **OPTIONAL** | 🟡 | System ASKS. Defaults available | Yes |
+
+**주요 체크포인트**:
+- `CP_RESEARCH_DIRECTION` - 연구 질문 승인
+- `CP_PARADIGM_SELECTION` - 패러다임 선택
+- `CP_THEORY_SELECTION` - 이론적 프레임워크 선택
+- `CP_METHODOLOGY_APPROVAL` - 연구 설계 승인
+- `CP_META_GATE` - 메타분석 전략 확인
+
+**v6.0에서 제거된 autonomous modes**:
+- ❌ `ralph`, `ultrawork`, `autopilot`, `ecomode`
+- ❌ Sisyphus Protocol
 
 ### P2 (Nice to Have) 📋 Planned
 
