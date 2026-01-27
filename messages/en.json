@@ -1,0 +1,148 @@
+{
+  "metadata": {
+    "title": "Diverga - Beyond Modal Research AI",
+    "description": "40 specialized AI agents for the complete research lifecycle. Break free from mode collapse with VS methodology."
+  },
+  "nav": {
+    "home": "Home",
+    "agents": "Agents",
+    "gettingStarted": "Getting Started",
+    "workflows": "Workflows",
+    "docs": "Docs",
+    "playground": "Playground"
+  },
+  "hero": {
+    "badge": "40 Research Agents",
+    "title": "Beyond Modal Answers",
+    "titleHighlight": "Creative Research AI",
+    "description": "Diverga breaks free from AI mode collapse. Get creative, defensible research choices—not the same predictable recommendations every time.",
+    "cta": "Start Your Research Journey",
+    "ctaSecondary": "Explore Agents"
+  },
+  "problem": {
+    "title": "The Mode Collapse Problem",
+    "description": "Traditional AI always recommends the same thing",
+    "example": {
+      "question": "Help me choose a theoretical framework for AI adoption study",
+      "answer": "I recommend Technology Acceptance Model (TAM).",
+      "note": "Same answer every time. T-Score = 0.92 (highly predictable)"
+    }
+  },
+  "solution": {
+    "title": "The Diverga Solution",
+    "description": "VS Methodology presents creative alternatives",
+    "stage1": {
+      "title": "Modal Awareness",
+      "description": "Identify the \"obvious\" recommendations"
+    },
+    "stage2": {
+      "title": "Divergent Exploration",
+      "description": "Generate alternatives across the typicality spectrum"
+    },
+    "stage3": {
+      "title": "Human Selection",
+      "description": "You choose the direction—AI waits for your decision"
+    }
+  },
+  "categories": {
+    "title": "8 Categories, 40 Agents",
+    "description": "Specialized support for every stage of your research",
+    "a": {
+      "name": "Foundation",
+      "description": "Research questions, theoretical frameworks, ethics"
+    },
+    "b": {
+      "name": "Evidence",
+      "description": "Literature review, quality appraisal, effect sizes"
+    },
+    "c": {
+      "name": "Design & Meta-Analysis",
+      "description": "Quantitative, qualitative, mixed methods, meta-analysis"
+    },
+    "d": {
+      "name": "Data Collection",
+      "description": "Sampling, interviews, observations, instruments"
+    },
+    "e": {
+      "name": "Analysis",
+      "description": "Statistical analysis, qualitative coding, integration"
+    },
+    "f": {
+      "name": "Quality",
+      "description": "Consistency, checklists, reproducibility, bias"
+    },
+    "g": {
+      "name": "Communication",
+      "description": "Journal selection, writing, peer review, preregistration"
+    },
+    "h": {
+      "name": "Specialized",
+      "description": "Ethnography, action research"
+    }
+  },
+  "cta": {
+    "title": "Ready to Transform Your Research?",
+    "description": "Install Diverga in under 2 minutes and get started with your first agent.",
+    "button": "Get Started Now"
+  },
+  "agents": {
+    "title": "Agent Catalog",
+    "description": "40 specialized agents organized by research phase",
+    "search": "Search agents...",
+    "filter": {
+      "all": "All",
+      "category": "Category",
+      "paradigm": "Paradigm",
+      "tier": "Model Tier"
+    },
+    "paradigms": {
+      "quantitative": "Quantitative",
+      "qualitative": "Qualitative",
+      "mixed": "Mixed Methods"
+    },
+    "tiers": {
+      "high": "High (Opus)",
+      "medium": "Medium (Sonnet)",
+      "low": "Low (Haiku)"
+    },
+    "triggers": "Triggers",
+    "relatedAgents": "Related Agents",
+    "checkpoint": "Checkpoint"
+  },
+  "gettingStarted": {
+    "title": "Getting Started",
+    "description": "Install Diverga and run your first agent in under 5 minutes",
+    "step1": {
+      "title": "Install Claude Code",
+      "description": "Diverga runs inside Claude Code CLI"
+    },
+    "step2": {
+      "title": "Add Diverga Plugin",
+      "description": "Install from the marketplace"
+    },
+    "step3": {
+      "title": "Configure (Optional)",
+      "description": "Set your preferences"
+    },
+    "step4": {
+      "title": "Start Researching",
+      "description": "Just describe what you want to do"
+    }
+  },
+  "footer": {
+    "tagline": "Beyond Modal Answers",
+    "links": {
+      "github": "GitHub",
+      "docs": "Documentation",
+      "agents": "Agents"
+    },
+    "copyright": "© 2025 Diverga. Open source under MIT license."
+  },
+  "common": {
+    "viewAll": "View All",
+    "learnMore": "Learn More",
+    "tryIt": "Try It",
+    "copy": "Copy",
+    "copied": "Copied!"
+  }
+}

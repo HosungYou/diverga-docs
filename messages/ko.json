@@ -1,0 +1,148 @@
+{
+  "metadata": {
+    "title": "Diverga - 모달을 넘어선 연구 AI",
+    "description": "연구 전 과정을 지원하는 40개 전문 AI 에이전트. VS 방법론으로 모드 붕괴에서 벗어나세요."
+  },
+  "nav": {
+    "home": "홈",
+    "agents": "에이전트",
+    "gettingStarted": "시작하기",
+    "workflows": "워크플로우",
+    "docs": "문서",
+    "playground": "체험하기"
+  },
+  "hero": {
+    "badge": "40개 연구 에이전트",
+    "title": "뻔한 답을 넘어서",
+    "titleHighlight": "창의적인 연구 AI",
+    "description": "Diverga는 AI 모드 붕괴에서 벗어납니다. 매번 같은 뻔한 추천이 아닌, 창의적이고 방어 가능한 연구 선택을 제공합니다.",
+    "cta": "연구 여정 시작하기",
+    "ctaSecondary": "에이전트 탐색"
+  },
+  "problem": {
+    "title": "모드 붕괴 문제",
+    "description": "기존 AI는 항상 같은 것만 추천합니다",
+    "example": {
+      "question": "AI 채택 연구를 위한 이론적 프레임워크를 추천해주세요",
+      "answer": "기술수용모델(TAM)을 추천합니다.",
+      "note": "매번 같은 답변. T-Score = 0.92 (매우 예측 가능)"
+    }
+  },
+  "solution": {
+    "title": "Diverga 솔루션",
+    "description": "VS 방법론이 창의적 대안을 제시합니다",
+    "stage1": {
+      "title": "모달 인식",
+      "description": "\"뻔한\" 추천을 식별합니다"
+    },
+    "stage2": {
+      "title": "발산적 탐색",
+      "description": "전형성 스펙트럼을 가로지르는 대안을 생성합니다"
+    },
+    "stage3": {
+      "title": "인간 선택",
+      "description": "당신이 방향을 선택합니다—AI는 결정을 기다립니다"
+    }
+  },
+  "categories": {
+    "title": "8개 카테고리, 40개 에이전트",
+    "description": "연구의 모든 단계에 전문적인 지원",
+    "a": {
+      "name": "기초",
+      "description": "연구 질문, 이론적 프레임워크, 윤리"
+    },
+    "b": {
+      "name": "근거",
+      "description": "문헌 검토, 품질 평가, 효과크기"
+    },
+    "c": {
+      "name": "설계 및 메타분석",
+      "description": "양적, 질적, 혼합방법, 메타분석"
+    },
+    "d": {
+      "name": "데이터 수집",
+      "description": "표집, 인터뷰, 관찰, 측정 도구"
+    },
+    "e": {
+      "name": "분석",
+      "description": "통계 분석, 질적 코딩, 통합"
+    },
+    "f": {
+      "name": "품질",
+      "description": "일관성, 체크리스트, 재현성, 편향"
+    },
+    "g": {
+      "name": "커뮤니케이션",
+      "description": "저널 선택, 작성, 동료 심사, 사전등록"
+    },
+    "h": {
+      "name": "전문",
+      "description": "민족지학, 실행연구"
+    }
+  },
+  "cta": {
+    "title": "연구를 혁신할 준비가 되셨나요?",
+    "description": "2분 안에 Diverga를 설치하고 첫 번째 에이전트를 시작하세요.",
+    "button": "지금 시작하기"
+  },
+  "agents": {
+    "title": "에이전트 카탈로그",
+    "description": "연구 단계별로 구성된 40개 전문 에이전트",
+    "search": "에이전트 검색...",
+    "filter": {
+      "all": "전체",
+      "category": "카테고리",
+      "paradigm": "패러다임",
+      "tier": "모델 티어"
+    },
+    "paradigms": {
+      "quantitative": "양적 연구",
+      "qualitative": "질적 연구",
+      "mixed": "혼합 방법"
+    },
+    "tiers": {
+      "high": "High (Opus)",
+      "medium": "Medium (Sonnet)",
+      "low": "Low (Haiku)"
+    },
+    "triggers": "트리거",
+    "relatedAgents": "관련 에이전트",
+    "checkpoint": "체크포인트"
+  },
+  "gettingStarted": {
+    "title": "시작하기",
+    "description": "5분 안에 Diverga를 설치하고 첫 번째 에이전트를 실행하세요",
+    "step1": {
+      "title": "Claude Code 설치",
+      "description": "Diverga는 Claude Code CLI 안에서 실행됩니다"
+    },
+    "step2": {
+      "title": "Diverga 플러그인 추가",
+      "description": "마켓플레이스에서 설치"
+    },
+    "step3": {
+      "title": "설정 (선택사항)",
+      "description": "선호 설정 지정"
+    },
+    "step4": {
+      "title": "연구 시작",
+      "description": "하고 싶은 것을 설명하기만 하면 됩니다"
+    }
+  },
+  "footer": {
+    "tagline": "뻔한 답을 넘어서",
+    "links": {
+      "github": "GitHub",
+      "docs": "문서",
+      "agents": "에이전트"
+    },
+    "copyright": "© 2025 Diverga. MIT 라이선스 오픈소스."
+  },
+  "common": {
+    "viewAll": "모두 보기",
+    "learnMore": "더 알아보기",
+    "tryIt": "체험하기",
+    "copy": "복사",
+    "copied": "복사됨!"
+  }
+}
