@@ -1,8 +1,10 @@
 # Diverga Docs - Roadmap
 
-## Current Status: v1.0 Released 🎉
+## Current Status: v1.2 Released 🎉
 
 배포 URL: https://diverga-docs.vercel.app
+
+**New in v1.2**: Cross-Platform Support (Claude Code · Codex CLI · OpenCode)
 
 ---
 
@@ -57,7 +59,28 @@
 
 ---
 
-## 📋 Planned (v1.2+)
+## ✅ Completed (v1.2)
+
+### Cross-Platform Support
+- [x] 3개 플랫폼 지원: Claude Code, Codex CLI, OpenCode
+- [x] PlatformTabs 컴포넌트 (플랫폼별 설치 가이드)
+- [x] Model Mapping 표 (플랫폼별 티어-모델 매핑)
+- [x] Cross-Platform 배지 (Hero 섹션)
+
+### Bug Fixes
+- [x] VoidHero 렌더링 문제 수정
+  - SSR fallback 추가 (정적 그라데이션 + 파티클 도트)
+  - 캔버스 초기화 완료 전 페이드인 트랜지션
+  - 페이지 로드 시 scroll-to-top 강제
+
+### Documentation Updates
+- [x] CHANGELOG.md 생성
+- [x] README.md 업데이트 (Cross-Platform 정보)
+- [x] 번역 파일 업데이트 (en.json, ko.json)
+
+---
+
+## 📋 Planned (v1.3+)
 
 ### P1 Features
 - [ ] Category 페이지 (`/agents/category/[slug]`)
@@ -95,6 +118,7 @@
 
 | Version | Date | Changes |
 |---------|------|---------|
+| v1.2.0 | 2025-01-28 | Cross-platform support (Claude Code, Codex CLI, OpenCode), VoidHero fix |
 | v1.1.0 | 2025-01-27 | VS Methodology page, Search API, Dark mode |
 | v1.0.0 | 2025-01-27 | Initial release - 40 agents, bilingual, Vercel deployment |
 

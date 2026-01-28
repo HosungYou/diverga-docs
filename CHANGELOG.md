@@ -2,7 +2,7 @@
 
 All notable changes to Diverga Docs will be documented in this file.
 
-## [1.1.0] - 2025-01-28
+## [1.2.0] - 2025-01-28
 
 ### Added
 - **Cross-Platform Support**: Diverga now officially supports 3 coding platforms:

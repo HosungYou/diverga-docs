@@ -4,7 +4,9 @@
 
 **"Beyond Modal Answers"** | **"뻔한 답을 넘어서"**
 
-Documentation website for [Diverga](https://github.com/HosungYou/Diverga) - 40 specialized research methodology agents for Claude Code.
+Documentation website for [Diverga](https://github.com/HosungYou/Diverga) - 40 specialized research methodology agents.
+
+**Cross-Platform Support**: Claude Code · Codex CLI · OpenCode
 
 [Live Site](https://diverga-docs.vercel.app) · [한국어](https://diverga-docs.vercel.app/ko)
 
@@ -14,16 +16,37 @@ Documentation website for [Diverga](https://github.com/HosungYou/Diverga) - 40 s
 
 ## Overview
 
-Diverga는 Claude Code를 위한 40개 연구 방법론 에이전트 플러그인입니다. 이 웹사이트는 연구자들이 Claude Code와 Diverga를 쉽게 시작할 수 있도록 안내합니다.
+Diverga는 연구자를 위한 40개 전문 에이전트 플러그인입니다. Claude Code, Codex CLI, OpenCode 등 다양한 AI 코딩 어시스턴트에서 사용할 수 있습니다.
 
 ### Features
 
 - **40 Research Agents** - 8개 카테고리, 양적/질적/혼합 연구 지원
+- **Cross-Platform** - Claude Code, Codex CLI, OpenCode 지원
 - **Bilingual** - 영어/한국어 완벽 지원
 - **Interactive Catalog** - 검색, 필터링, 상세 정보
 - **Getting Started Guide** - 플랫폼별 설치 가이드
 - **Research Workflows** - 연구 패러다임별 에이전트 조합
 - **Demo Playground** - 실제 에이전트 출력 예시
+
+---
+
+## Supported Platforms
+
+| Platform | Provider | Install Guide |
+|----------|----------|---------------|
+| **Claude Code** | Anthropic | `/plugin install diverga` |
+| **Codex CLI** | OpenAI | `git clone` + setup script |
+| **OpenCode** | Community | Plugin directory copy |
+
+### Model Mapping
+
+Diverga automatically maps agent tiers to the best available models:
+
+| Tier | Claude Code | Codex CLI | OpenCode |
+|------|-------------|-----------|----------|
+| HIGH | claude-opus-4-5 | gpt-5.2-codex | o4-max |
+| MEDIUM | claude-sonnet-4 | gpt-4.5-turbo | o4-mini |
+| LOW | claude-haiku-3 | gpt-4o-mini | o3-mini |
 
 ---
 
