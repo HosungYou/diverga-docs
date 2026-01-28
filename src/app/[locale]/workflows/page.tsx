@@ -25,20 +25,14 @@ export default function WorkflowsPage() {
   const locale = useLocale() as 'en' | 'ko';
 
   return (
-    <div className="relative overflow-hidden">
-      {/* Dark gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-gray-800 to-[var(--background)]">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(20,184,166,0.15),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_60%,rgba(139,92,246,0.1),transparent_50%)]" />
-      </div>
-
+    <div className="relative overflow-hidden bg-white">
       <div className="relative py-20 sm:py-32">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
           <div className="text-center mb-16">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-5xl sm:text-6xl font-bold bg-gradient-to-r from-white via-teal-100 to-purple-100 bg-clip-text text-transparent"
+              className="text-5xl sm:text-6xl font-bold text-gray-900"
             >
               {locale === 'ko' ? '연구 워크플로우' : 'Research Workflows'}
             </motion.h1>
@@ -46,7 +40,7 @@ export default function WorkflowsPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="mt-6 text-lg text-gray-300"
+              className="mt-6 text-lg text-gray-600"
             >
               {locale === 'ko'
                 ? '연구 패러다임별로 에이전트를 조합하는 가이드'
@@ -67,25 +61,22 @@ export default function WorkflowsPage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 * (index + 1) }}
-                  whileHover={{ y: -6 }}
+                  whileHover={{ y: -2 }}
                 >
                   <Link
                     href={`/${locale}/workflows/${workflow.slug}`}
-                    className="group block relative overflow-hidden bg-gradient-to-br from-white to-gray-50
-                      rounded-[20px] p-8 border border-gray-100
-                      shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_10px_15px_-3px_rgba(0,0,0,0.1)]
-                      hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.2)]
-                      transition-all duration-300"
+                    className="group block relative overflow-hidden bg-white
+                      rounded-xl p-8 border border-gray-100
+                      shadow-[0_1px_3px_rgba(0,0,0,0.1),0_1px_2px_rgba(0,0,0,0.06)]
+                      hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1)]
+                      transition-all duration-200"
                   >
-                    {/* Floating gradient orb */}
-                    <div className="absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-teal-400/20 to-purple-400/20 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
                     <div className="relative">
-                      <div className={`inline-flex p-4 rounded-2xl border-2 ${colorClass}
-                        shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                      <div className={`inline-flex p-4 rounded-xl border ${colorClass}
+                        transition-transform duration-200`}>
                         <Icon className="h-7 w-7" />
                       </div>
-                      <h2 className="mt-6 text-2xl font-bold text-gray-900 group-hover:text-teal-600 transition-colors">
+                      <h2 className="mt-6 text-2xl font-bold text-gray-900 transition-colors">
                         {workflow.name[locale]}
                       </h2>
                       <p className="mt-3 text-gray-600 leading-relaxed">
@@ -94,13 +85,13 @@ export default function WorkflowsPage() {
 
                       {/* Workflow metadata */}
                       <div className="mt-6 flex items-center gap-4 text-sm text-gray-600">
-                        <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gray-100">
+                        <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gray-50 border border-gray-200">
                           <CheckCircle2 className="w-4 h-4 text-teal-600" />
                           <span className="font-medium">{workflow.stages.length} {locale === 'ko' ? '단계' : 'stages'}</span>
                         </div>
                         {checkpointCount > 0 && (
-                          <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-red-50">
-                            <div className="w-3 h-3 rounded-full bg-red-500 shadow-lg shadow-red-500/50 animate-pulse" />
+                          <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-red-50 border border-red-200">
+                            <div className="w-3 h-3 rounded-full bg-red-500" />
                             <span className="font-medium text-red-700">{checkpointCount} {locale === 'ko' ? '체크포인트' : 'checkpoints'}</span>
                           </div>
                         )}
@@ -111,20 +102,20 @@ export default function WorkflowsPage() {
                         {workflow.stages.slice(0, 6).map((stage) => (
                           <span
                             key={stage.agent}
-                            className="rounded-lg bg-gradient-to-r from-gray-100 to-gray-50 border border-gray-200 px-3 py-1.5 text-xs font-mono font-semibold text-gray-700
-                              hover:border-teal-300 hover:shadow-sm transition-all"
+                            className="rounded-lg bg-gray-50 border border-gray-200 px-3 py-1.5 text-xs font-mono font-semibold text-gray-700
+                              hover:border-gray-300 transition-all"
                           >
                             {stage.agent}
                           </span>
                         ))}
                         {workflow.stages.length > 6 && (
-                          <span className="rounded-lg bg-gradient-to-r from-teal-100 to-teal-50 border border-teal-200 px-3 py-1.5 text-xs font-mono font-bold text-teal-700">
+                          <span className="rounded-lg bg-teal-50 border border-teal-200 px-3 py-1.5 text-xs font-mono font-bold text-teal-700">
                             +{workflow.stages.length - 6}
                           </span>
                         )}
                       </div>
 
-                      <div className="mt-6 flex items-center text-base font-semibold text-teal-600 group-hover:text-teal-700 transition-colors">
+                      <div className="mt-6 flex items-center text-base font-semibold text-teal-600 transition-colors">
                         {locale === 'ko' ? '타임라인 보기' : 'View Timeline'}
                         <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-2" />
                       </div>

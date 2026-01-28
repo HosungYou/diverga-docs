@@ -390,88 +390,47 @@ export default function CheckpointsPage() {
           {t.back}
         </Link>
 
-        {/* Section 1: Hero - Dark with traffic light */}
+        {/* Section 1: Hero - Light aurora gradient */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-16 -mx-6 lg:-mx-8 px-6 lg:px-8 py-16 rounded-[32px]
-            bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900
-            shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)]
-            border border-gray-700"
+          className="text-center mb-16 -mx-6 lg:-mx-8 px-6 lg:px-8 py-16 rounded-2xl
+            bg-gradient-to-br from-indigo-50 via-white to-purple-50
+            shadow-[0_1px_3px_rgba(0,0,0,0.1)]
+            border border-gray-200"
         >
-          {/* Traffic light visualization */}
+          {/* Traffic light visualization - clean colors */}
           <div className="flex justify-center mb-8 gap-6">
-            <motion.div
-              className="flex flex-col items-center gap-3"
-              animate={{
-                opacity: [0.5, 1, 0.5],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 0,
-              }}
-            >
-              <div className="w-16 h-16 rounded-full bg-red-500 shadow-[0_0_30px_rgba(239,68,68,0.6)]
-                flex items-center justify-center text-white font-bold text-2xl">
+            <div className="flex flex-col items-center gap-3">
+              <div className="w-16 h-16 rounded-full bg-red-500 flex items-center justify-center text-white font-bold text-2xl">
                 🔴
               </div>
-              <span className="text-xs font-bold text-red-300 uppercase tracking-wider">Required</span>
-            </motion.div>
+              <span className="text-xs font-bold text-red-700 uppercase tracking-wider">Required</span>
+            </div>
 
-            <motion.div
-              className="flex flex-col items-center gap-3"
-              animate={{
-                opacity: [0.5, 1, 0.5],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 1,
-              }}
-            >
-              <div className="w-16 h-16 rounded-full bg-amber-500 shadow-[0_0_30px_rgba(245,158,11,0.6)]
-                flex items-center justify-center text-white font-bold text-2xl">
+            <div className="flex flex-col items-center gap-3">
+              <div className="w-16 h-16 rounded-full bg-amber-500 flex items-center justify-center text-white font-bold text-2xl">
                 🟠
               </div>
-              <span className="text-xs font-bold text-amber-300 uppercase tracking-wider">Recommended</span>
-            </motion.div>
+              <span className="text-xs font-bold text-amber-700 uppercase tracking-wider">Recommended</span>
+            </div>
 
-            <motion.div
-              className="flex flex-col items-center gap-3"
-              animate={{
-                opacity: [0.5, 1, 0.5],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 2,
-              }}
-            >
-              <div className="w-16 h-16 rounded-full bg-yellow-400 shadow-[0_0_30px_rgba(250,204,21,0.6)]
-                flex items-center justify-center text-white font-bold text-2xl">
+            <div className="flex flex-col items-center gap-3">
+              <div className="w-16 h-16 rounded-full bg-yellow-400 flex items-center justify-center text-white font-bold text-2xl">
                 🟡
               </div>
-              <span className="text-xs font-bold text-yellow-300 uppercase tracking-wider">Optional</span>
-            </motion.div>
+              <span className="text-xs font-bold text-yellow-700 uppercase tracking-wider">Optional</span>
+            </div>
           </div>
 
           <div className="flex justify-center mb-6">
-            <motion.div
-              className="flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-gold-400 to-gold-600
-                shadow-[0_8px_24px_rgba(217,119,6,0.4)]"
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              transition={{ type: "spring", stiffness: 400 }}
-            >
+            <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-indigo-600">
               <Hand className="h-10 w-10 text-white" />
-            </motion.div>
+            </div>
           </div>
-          <h1 className="text-h1 font-bold text-white mb-4">{t.title}</h1>
-          <p className="text-2xl text-gold-400 font-bold mb-4">{t.subtitle}</p>
-          <p className="text-lg text-gray-300 italic max-w-2xl mx-auto">{t.philosophy}</p>
+          <h1 className="text-h1 font-bold text-gray-900 mb-4">{t.title}</h1>
+          <p className="text-2xl text-indigo-700 font-bold mb-4">{t.subtitle}</p>
+          <p className="text-lg text-gray-700 italic max-w-2xl mx-auto">{t.philosophy}</p>
         </motion.div>
 
         {/* Section 2: Why Checkpoints Exist */}
@@ -529,52 +488,21 @@ export default function CheckpointsPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.25 + index * 0.1 }}
-                whileHover={{ y: -4, scale: 1.02 }}
-                className={`rounded-[20px] p-6 relative overflow-hidden
-                  ${level.color === 'red' ? 'bg-gradient-to-br from-red-50 to-red-100' : ''}
-                  ${level.color === 'amber' ? 'bg-gradient-to-br from-amber-50 to-amber-100' : ''}
-                  ${level.color === 'yellow' ? 'bg-gradient-to-br from-yellow-50 to-yellow-100' : ''}
-                  shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_10px_15px_-3px_rgba(0,0,0,0.1)]
-                  hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.2)]
+                whileHover={{ y: -4 }}
+                className={`rounded-xl p-6 bg-white
+                  shadow-[0_1px_3px_rgba(0,0,0,0.1)]
+                  hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1)]
                   border-2
-                  ${level.color === 'red' ? 'border-red-200 hover:border-red-300' : ''}
-                  ${level.color === 'amber' ? 'border-amber-200 hover:border-amber-300' : ''}
-                  ${level.color === 'yellow' ? 'border-yellow-200 hover:border-yellow-300' : ''}
-                  transition-all duration-300`}
+                  ${level.color === 'red' ? 'border-red-300' : ''}
+                  ${level.color === 'amber' ? 'border-amber-300' : ''}
+                  ${level.color === 'yellow' ? 'border-yellow-300' : ''}
+                  transition-all duration-200`}
               >
-                {/* Glowing icon */}
-                <motion.div
-                  className="text-5xl mb-4 relative inline-block"
-                  animate={{
-                    scale: [1, 1.1, 1],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: index * 0.3,
-                  }}
-                >
+                <div className="text-4xl mb-4">
                   {level.icon}
-                  <motion.div
-                    className={`absolute inset-0 blur-xl -z-10
-                      ${level.color === 'red' ? 'bg-red-400' : ''}
-                      ${level.color === 'amber' ? 'bg-amber-400' : ''}
-                      ${level.color === 'yellow' ? 'bg-yellow-400' : ''}`}
-                    animate={{
-                      opacity: [0, 0.5, 0],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: index * 0.3,
-                    }}
-                  />
-                </motion.div>
+                </div>
 
                 <div className={`inline-flex px-4 py-1.5 rounded-full text-sm font-bold mb-4
-                  shadow-[0_2px_8px_rgba(0,0,0,0.1)]
                   ${level.color === 'red' ? 'bg-red-500 text-white' : ''}
                   ${level.color === 'amber' ? 'bg-amber-500 text-white' : ''}
                   ${level.color === 'yellow' ? 'bg-yellow-500 text-white' : ''}`}>
@@ -608,20 +536,20 @@ export default function CheckpointsPage() {
           </div>
           <p className="text-lg text-[var(--muted-foreground)] mb-6">{t.whenDescription}</p>
 
-          <div className="overflow-x-auto rounded-[20px] shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_10px_15px_-3px_rgba(0,0,0,0.1)] border border-gray-100">
+          <div className="overflow-x-auto rounded-xl shadow-[0_1px_3px_rgba(0,0,0,0.1)] border border-gray-200">
             <table className="w-full border-collapse bg-white">
               <thead>
-                <tr className="border-b-2 border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100">
-                  <th className="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">
+                <tr className="border-b border-gray-200 bg-gray-50">
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">
                     {locale === 'ko' ? '단계' : 'Stage'}
                   </th>
-                  <th className="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">
                     {locale === 'ko' ? '체크포인트' : 'Checkpoint'}
                   </th>
-                  <th className="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">
                     {locale === 'ko' ? '수준' : 'Level'}
                   </th>
-                  <th className="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">
                     {locale === 'ko' ? '결정' : 'Decision'}
                   </th>
                 </tr>
@@ -633,14 +561,12 @@ export default function CheckpointsPage() {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.3 + index * 0.1 }}
-                    className="border-b border-gray-100 last:border-b-0 hover:bg-gradient-to-r hover:from-gray-50 hover:to-transparent transition-all duration-200 cursor-default"
-                    whileHover={{ x: 4 }}
+                    className="border-b border-gray-100 last:border-b-0 hover:bg-gray-50 transition-colors cursor-default"
                   >
-                    <td className="px-6 py-4 font-bold text-gray-900">{stage.stage}</td>
-                    <td className="px-6 py-4 font-mono text-sm text-diverga-600 font-semibold">{stage.checkpoint}</td>
+                    <td className="px-6 py-4 font-semibold text-gray-900">{stage.stage}</td>
+                    <td className="px-6 py-4 font-mono text-sm text-diverga-600 font-medium">{stage.checkpoint}</td>
                     <td className="px-6 py-4">
                       <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold
-                        shadow-[0_2px_8px_rgba(0,0,0,0.1)]
                         ${stage.level === 'REQUIRED' ? 'bg-red-500 text-white' : 'bg-amber-500 text-white'}`}>
                         <span className="text-base">{stage.level === 'REQUIRED' ? '🔴' : '🟠'}</span>
                         {stage.level}

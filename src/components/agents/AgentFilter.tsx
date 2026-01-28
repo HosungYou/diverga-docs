@@ -55,18 +55,18 @@ export function AgentFilter({
     <div className="flex flex-wrap items-center justify-center gap-6">
       {/* Category Filter */}
       <div className="flex flex-wrap items-center gap-3">
-        <span className="text-sm font-semibold text-gray-700">
+        <span className="text-sm font-medium text-gray-600">
           {t('category')}
         </span>
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => onCategoryChange('all')}
             className={cn(
-              "rounded-full px-4 py-2 text-sm font-semibold transition-all duration-300",
-              "border-2",
+              "rounded-lg px-3 py-1.5 text-sm font-medium transition-all",
+              "border",
               selectedCategory === 'all'
-                ? "bg-gradient-to-r from-diverga-500 to-diverga-600 text-white border-diverga-600 shadow-lg shadow-diverga-200"
-                : "bg-white text-gray-700 border-gray-200 hover:border-diverga-300 hover:shadow-md"
+                ? "bg-indigo-600 text-white border-indigo-600"
+                : "bg-white text-gray-700 border-gray-200 hover:border-gray-300"
             )}
           >
             {t('all')}
@@ -76,14 +76,11 @@ export function AgentFilter({
               key={cat.id}
               onClick={() => onCategoryChange(cat.id)}
               className={cn(
-                "rounded-full px-4 py-2 text-sm font-semibold transition-all duration-300",
-                "border-2",
+                "rounded-lg px-3 py-1.5 text-sm font-medium transition-all",
+                "border",
                 selectedCategory === cat.id
-                  ? cn(
-                      "bg-gradient-to-r text-white shadow-lg",
-                      `bg-gradient-to-r ${categoryColors[cat.id]}`
-                    )
-                  : "bg-white text-gray-700 border-gray-200 hover:border-diverga-300 hover:shadow-md"
+                  ? "bg-indigo-600 text-white border-indigo-600"
+                  : "bg-white text-gray-700 border-gray-200 hover:border-gray-300"
               )}
             >
               {cat.id}: {cat.name[locale]}
@@ -94,13 +91,13 @@ export function AgentFilter({
 
       {/* Paradigm Filter */}
       <div className="flex items-center gap-3">
-        <span className="text-sm font-semibold text-gray-700">
+        <span className="text-sm font-medium text-gray-600">
           {t('paradigm')}
         </span>
         <select
           value={selectedParadigm}
           onChange={(e) => onParadigmChange(e.target.value)}
-          className="rounded-full border-2 border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 focus:border-diverga-500 focus:outline-none focus:ring-4 focus:ring-diverga-100 transition-all hover:shadow-md"
+          className="rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200 transition-all"
         >
           {paradigms.map((p) => (
             <option key={p.value} value={p.value}>
@@ -112,13 +109,13 @@ export function AgentFilter({
 
       {/* Tier Filter */}
       <div className="flex items-center gap-3">
-        <span className="text-sm font-semibold text-gray-700">
+        <span className="text-sm font-medium text-gray-600">
           {t('tier')}
         </span>
         <select
           value={selectedTier}
           onChange={(e) => onTierChange(e.target.value)}
-          className="rounded-full border-2 border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 focus:border-diverga-500 focus:outline-none focus:ring-4 focus:ring-diverga-100 transition-all hover:shadow-md"
+          className="rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200 transition-all"
         >
           {tiers.map((tier) => (
             <option key={tier.value} value={tier.value}>

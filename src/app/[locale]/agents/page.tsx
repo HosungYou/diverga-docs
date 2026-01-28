@@ -79,13 +79,13 @@ function AgentsCatalog() {
       <div className="mb-12 space-y-6">
         {/* Search */}
         <div className="relative max-w-2xl mx-auto">
-          <Search className="absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
+          <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
           <input
             type="text"
             placeholder={t('search')}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full rounded-full border-2 border-gray-200 bg-white py-4 pl-14 pr-6 text-gray-900 placeholder:text-gray-400 focus:border-diverga-500 focus:outline-none focus:ring-4 focus:ring-diverga-100 transition-all shadow-sm hover:shadow-md"
+            className="w-full rounded-lg border border-gray-200 bg-white py-3 pl-12 pr-4 text-gray-900 placeholder:text-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200 transition-all"
           />
         </div>
 
@@ -103,7 +103,7 @@ function AgentsCatalog() {
 
       {/* Results count */}
       <div className="mb-8 flex items-center justify-between">
-        <div className="text-sm font-semibold text-gray-700 bg-gray-100 px-4 py-2 rounded-full">
+        <div className="text-sm font-medium text-gray-600 bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-200">
           {filteredAgents.length} {locale === 'ko' ? '개 에이전트' : 'agents'}
         </div>
       </div>
@@ -157,7 +157,7 @@ function AgentsCatalogFallback() {
 
 export default function AgentsPage() {
   return (
-    <div className="py-12 sm:py-16 bg-gradient-to-b from-gray-50 via-white to-gray-50 min-h-screen">
+    <div className="py-12 sm:py-16 bg-white min-h-screen">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <Suspense fallback={<AgentsCatalogFallback />}>
           <AgentsCatalog />

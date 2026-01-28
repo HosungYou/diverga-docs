@@ -10,7 +10,7 @@ export default function HomePage() {
   const t = useTranslations();
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col bg-white">
       <HeroSection />
       <ProblemSolution />
       <AgentCategoryGrid />

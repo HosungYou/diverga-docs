@@ -24,37 +24,37 @@ export default function CheckpointTimeline({ stages, locale }: CheckpointTimelin
     switch (level) {
       case 'REQUIRED':
         return {
-          bg: 'bg-gradient-to-br from-red-50 to-red-100/50',
-          border: 'border-red-300',
+          bg: 'bg-red-50',
+          border: 'border-red-200',
           text: 'text-red-700',
           badgeBg: 'bg-red-500',
-          badgeGlow: 'shadow-lg shadow-red-500/50',
-          glow: 'shadow-[0_0_30px_rgba(239,68,68,0.4)]',
-          indicator: 'bg-red-500 shadow-lg shadow-red-500/50 animate-pulse'
+          badgeGlow: '',
+          glow: '',
+          indicator: 'bg-red-500'
         };
       case 'RECOMMENDED':
         return {
-          bg: 'bg-gradient-to-br from-amber-50 to-amber-100/50',
-          border: 'border-amber-300',
+          bg: 'bg-amber-50',
+          border: 'border-amber-200',
           text: 'text-amber-700',
           badgeBg: 'bg-amber-500',
-          badgeGlow: 'shadow-lg shadow-amber-500/30',
-          glow: 'shadow-[0_0_30px_rgba(245,158,11,0.3)]',
-          indicator: 'bg-amber-500 shadow-lg shadow-amber-500/30'
+          badgeGlow: '',
+          glow: '',
+          indicator: 'bg-amber-500'
         };
       case 'OPTIONAL':
         return {
-          bg: 'bg-gradient-to-br from-teal-50 to-teal-100/50',
-          border: 'border-teal-300',
+          bg: 'bg-teal-50',
+          border: 'border-teal-200',
           text: 'text-teal-700',
           badgeBg: 'bg-teal-500',
-          badgeGlow: 'shadow-lg shadow-teal-500/30',
-          glow: 'shadow-[0_0_30px_rgba(20,184,166,0.3)]',
-          indicator: 'bg-teal-500 shadow-lg shadow-teal-500/30'
+          badgeGlow: '',
+          glow: '',
+          indicator: 'bg-teal-500'
         };
       default:
         return {
-          bg: 'bg-gradient-to-br from-white to-gray-50',
+          bg: 'bg-white',
           border: 'border-gray-200',
           text: 'text-gray-700',
           badgeBg: 'bg-gray-500',
@@ -102,19 +102,19 @@ export default function CheckpointTimeline({ stages, locale }: CheckpointTimelin
         className="flex items-center justify-center gap-8 mb-12 flex-wrap"
       >
         <div className="flex items-center gap-2.5">
-          <div className="w-4 h-4 rounded-full bg-red-500 shadow-lg shadow-red-500/50 animate-pulse"></div>
+          <div className="w-4 h-4 rounded-full bg-red-500"></div>
           <span className="text-sm font-semibold text-gray-700">
             {locale === 'ko' ? '필수' : 'Required'}
           </span>
         </div>
         <div className="flex items-center gap-2.5">
-          <div className="w-4 h-4 rounded-full bg-amber-500 shadow-lg shadow-amber-500/30"></div>
+          <div className="w-4 h-4 rounded-full bg-amber-500"></div>
           <span className="text-sm font-semibold text-gray-700">
             {locale === 'ko' ? '권장' : 'Recommended'}
           </span>
         </div>
         <div className="flex items-center gap-2.5">
-          <div className="w-4 h-4 rounded-full bg-teal-500 shadow-lg shadow-teal-500/30"></div>
+          <div className="w-4 h-4 rounded-full bg-teal-500"></div>
           <span className="text-sm font-semibold text-gray-700">
             {locale === 'ko' ? '선택사항' : 'Optional'}
           </span>
@@ -123,8 +123,8 @@ export default function CheckpointTimeline({ stages, locale }: CheckpointTimelin
 
       {/* Timeline */}
       <div className="relative space-y-6">
-        {/* Dark gradient timeline connector */}
-        <div className="absolute left-[27px] top-8 bottom-8 w-1 bg-gradient-to-b from-gray-900 via-teal-600 to-purple-600 rounded-full shadow-lg"></div>
+        {/* Clean timeline connector */}
+        <div className="absolute left-[27px] top-8 bottom-8 w-0.5 bg-gray-200"></div>
 
         {stages.map((stage, index) => {
           const agent = getAgentById(stage.agent);
@@ -147,35 +147,31 @@ export default function CheckpointTimeline({ stages, locale }: CheckpointTimelin
               <motion.button
                 onClick={() => setExpandedIndex(isExpanded ? null : index)}
                 className={`
-                  w-full text-left relative rounded-3xl border-2 overflow-hidden
-                  transition-all duration-500
+                  w-full text-left relative rounded-xl border overflow-hidden
+                  transition-all duration-200
                   ${hasCheckpoint ? colors.border : 'border-gray-200'}
-                  ${hasCheckpoint ? colors.bg : 'bg-gradient-to-br from-white to-gray-50'}
-                  ${isExpanded && hasCheckpoint ? colors.glow : 'shadow-md'}
-                  hover:shadow-xl hover:scale-[1.02]
-                  group backdrop-blur-sm
+                  ${hasCheckpoint ? colors.bg : 'bg-white'}
+                  shadow-sm hover:shadow-md
+                  group
                 `}
-                whileHover={{ y: -4 }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.99 }}
               >
-                {/* Glass effect overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
                 {/* Stage Header */}
-                <div className="relative p-7 flex items-start gap-5">
+                <div className="relative p-6 flex items-start gap-5">
                   {/* Stage number with checkpoint indicator */}
                   <div className="flex-shrink-0">
                     <div className={`
-                      relative w-14 h-14 rounded-2xl flex items-center justify-center
-                      font-mono font-bold text-xl
+                      relative w-12 h-12 rounded-lg flex items-center justify-center
+                      font-mono font-bold text-lg
                       ${hasCheckpoint
-                        ? `${colors.bg} ${colors.text} ${colors.border} border-2 ${colors.badgeGlow}`
-                        : 'bg-gradient-to-br from-teal-100 to-teal-50 text-teal-700 border-2 border-teal-200'}
-                      transition-all duration-300 group-hover:scale-110 group-hover:rotate-3
+                        ? `${colors.bg} ${colors.text} ${colors.border} border`
+                        : 'bg-gray-50 text-gray-700 border border-gray-200'}
+                      transition-all duration-200
                     `}>
                       {index + 1}
                       {hasCheckpoint && (
-                        <div className={`absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full ${colors.indicator}`} />
+                        <div className={`absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full ${colors.indicator}`} />
                       )}
                     </div>
                   </div>
@@ -183,16 +179,16 @@ export default function CheckpointTimeline({ stages, locale }: CheckpointTimelin
                   {/* Stage content */}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between gap-3 mb-2">
-                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-teal-100 border border-teal-200">
-                        <span className="font-mono text-sm font-bold text-teal-700">
+                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-gray-50 border border-gray-200">
+                        <span className="font-mono text-sm font-bold text-gray-700">
                           {agent?.id || stage.agent}
                         </span>
                       </div>
                       <ChevronRight
                         className={`
-                          w-6 h-6 text-gray-400
-                          transition-all duration-300 flex-shrink-0
-                          ${isExpanded ? 'rotate-90 text-teal-600' : 'group-hover:translate-x-1'}
+                          w-5 h-5 text-gray-400
+                          transition-all duration-200 flex-shrink-0
+                          ${isExpanded ? 'rotate-90 text-gray-600' : 'group-hover:translate-x-1'}
                         `}
                       />
                     </div>
@@ -211,17 +207,14 @@ export default function CheckpointTimeline({ stages, locale }: CheckpointTimelin
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-                    className="relative border-t-2 border-gray-200"
+                    transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                    className="relative border-t border-gray-200 bg-gray-50"
                   >
-                    {/* Glass morphism background */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-white/90 to-white/50 backdrop-blur-sm" />
-
-                    <div className="relative p-7 pt-6 space-y-4">
+                    <div className="relative p-6 pt-5 space-y-4">
                       {/* Checkpoint header */}
                       <div className={`
-                        inline-flex items-center gap-3 px-4 py-2.5 rounded-xl
-                        ${colors.bg} ${colors.border} border-2 ${colors.badgeGlow}
+                        inline-flex items-center gap-3 px-4 py-2 rounded-lg
+                        ${colors.bg} ${colors.border} border
                       `}>
                         <div className={`w-2 h-2 rounded-full ${colors.indicator}`} />
                         <span className={`text-sm font-bold font-mono uppercase ${colors.text} tracking-wide`}>
@@ -235,13 +228,13 @@ export default function CheckpointTimeline({ stages, locale }: CheckpointTimelin
                       </h4>
 
                       {/* Checkpoint description */}
-                      <p className="text-base text-gray-700 leading-relaxed pl-4 border-l-4 border-teal-300">
+                      <p className="text-base text-gray-700 leading-relaxed pl-4 border-l-4 border-gray-300">
                         {cpInfo.description[locale]}
                       </p>
 
                       {/* Checkpoint ID (for technical reference) */}
                       <div className="pt-3 border-t border-gray-200">
-                        <code className="text-xs font-mono text-gray-500 bg-gray-100 px-2 py-1 rounded">
+                        <code className="text-xs font-mono text-gray-500 bg-white px-2 py-1 rounded border border-gray-200">
                           {stage.checkpoint}
                         </code>
                       </div>
@@ -261,8 +254,8 @@ export default function CheckpointTimeline({ stages, locale }: CheckpointTimelin
         transition={{ delay: 0.05 * stages.length }}
         className="mt-12 text-center"
       >
-        <div className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl bg-gradient-to-r from-teal-50 to-purple-50 border-2 border-teal-200
-          shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+        <div className="inline-flex items-center gap-3 px-6 py-3 rounded-xl bg-white border border-gray-200
+          shadow-sm transition-all duration-200">
           <CheckCircle2 className="w-5 h-5 text-teal-600" />
           <span className="text-base font-bold text-gray-800">
             {locale === 'ko'

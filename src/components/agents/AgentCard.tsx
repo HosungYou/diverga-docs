@@ -41,72 +41,58 @@ export function AgentCard({ agent }: AgentCardProps) {
   return (
     <Link href={`/${locale}/agents/${agent.slug}`}>
       <motion.div
-        whileHover={{ y: -8, scale: 1.02 }}
-        transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+        whileHover={{ y: -2 }}
+        transition={{ duration: 0.2 }}
         className={cn(
-          "group relative bg-white rounded-[20px] p-6",
-          "shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_10px_15px_-3px_rgba(0,0,0,0.1)]",
-          "hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.15)]",
-          "transition-all duration-300 border border-gray-100",
-          "overflow-hidden"
+          "group relative bg-white rounded-xl p-6",
+          "shadow-[0_1px_3px_rgba(0,0,0,0.1),0_1px_2px_rgba(0,0,0,0.06)]",
+          "hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1),0_4px_6px_-2px_rgba(0,0,0,0.05)]",
+          "transition-all duration-200 border border-gray-100"
         )}
       >
-        {/* Category accent bar */}
+        {/* Category accent dot */}
         <div className={cn(
-          "absolute top-0 left-0 right-0 h-1 bg-gradient-to-r",
+          "absolute top-4 right-4 w-2 h-2 rounded-full bg-gradient-to-r",
           categoryGradients[agent.category]
         )} />
 
-        <div className="flex items-start justify-between mt-2">
-          <div className="flex items-center gap-3">
-            <motion.span
-              className="text-3xl"
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              transition={{ duration: 0.2 }}
-            >
-              {agent.icon}
-            </motion.span>
-            <div>
-              <span className="text-xs font-mono text-gray-500">
-                {agent.id}
-              </span>
-              <h3 className="font-bold text-gray-900 group-hover:text-diverga-600 transition-colors text-lg">
-                {agent.name[locale]}
-              </h3>
-            </div>
-          </div>
-          <span className={cn(
-            "rounded-lg border px-2.5 py-1 text-xs font-semibold shrink-0",
-            tierColors[agent.tier]
-          )}>
-            {tierLabels[agent.tier]}
+        <div className="flex items-start gap-3 mb-4">
+          <span className="text-3xl">
+            {agent.icon}
           </span>
+          <div className="flex-1">
+            <span className="text-xs font-mono text-gray-500">
+              {agent.id}
+            </span>
+            <h3 className="font-semibold text-gray-900 group-hover:text-indigo-600 transition-colors text-base mt-0.5">
+              {agent.name[locale]}
+            </h3>
+          </div>
         </div>
 
-        <p className="mt-4 text-sm text-gray-600 line-clamp-2 leading-relaxed">
+        <p className="text-sm text-gray-600 line-clamp-2 leading-relaxed mb-4">
           {agent.description[locale]}
         </p>
 
-        <div className="mt-5 flex items-center justify-between">
+        <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <TScoreBadge vsLevel={agent.vsLevel} />
+            <span className={cn(
+              "rounded border px-2 py-0.5 text-xs font-medium",
+              tierColors[agent.tier]
+            )}>
+              {tierLabels[agent.tier]}
+            </span>
             {agent.checkpoint && agent.checkpoint.level && (
-              <motion.span
-                whileHover={{ scale: 1.15 }}
-                className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-rose-100 to-rose-200 text-xs shadow-sm"
-              >
+              <span className="text-xs">
                 {agent.checkpoint.level === 'REQUIRED' ? '🔴' :
                  agent.checkpoint.level === 'RECOMMENDED' ? '🟠' : '🟡'}
-              </motion.span>
+              </span>
             )}
           </div>
-          <motion.span
-            className="text-sm font-semibold text-diverga-500 group-hover:text-diverga-600 flex items-center gap-1.5"
-            whileHover={{ x: 4 }}
-          >
+          <span className="text-sm font-medium text-gray-400 group-hover:text-indigo-600 flex items-center gap-1 transition-colors">
             {locale === 'ko' ? '상세보기' : 'Details'}
-            <ArrowRight className="h-4 w-4" />
-          </motion.span>
+            <ArrowRight className="h-3.5 w-3.5" />
+          </span>
         </div>
       </motion.div>
     </Link>
