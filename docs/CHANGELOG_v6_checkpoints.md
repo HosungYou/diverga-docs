@@ -2,8 +2,8 @@
 
 **Version**: v6.0 Human-Centered Edition
 **Date**: 2025-01-27
-**Commits**: `f05e9ab`, `1bf1921`
-**Total Changes**: +3,595 lines across 16 files
+**Commits**: `f05e9ab`, `1bf1921`, `355dac3`, `535b26e`, `fda4c86`, `cdb66b3`
+**Total Changes**: +3,600 lines across 17 files
 
 ---
 
@@ -59,6 +59,13 @@ Diverga v6.0 "Human-Centered Edition"의 핵심 기능인 **Human Checkpoints** 
 | `messages/ko.json` | Korean translations |
 | `docs/PRD.md` | Feature documentation |
 | `docs/SPEC.md` | Technical specifications |
+
+### Files Migrated (Next.js 16)
+
+| File | Change |
+|------|--------|
+| `src/middleware.ts` | ❌ Deleted (deprecated in Next.js 16) |
+| `src/proxy.ts` | ✅ Created (replaces middleware.ts) |
 
 ---
 
@@ -325,6 +332,92 @@ npm run build
 | Region | US East (iad1) |
 | Git Branch | main |
 | Auto-Deploy | Yes (on push) |
+
+---
+
+## Next.js 16 Middleware Migration
+
+### Issue
+
+After initial deployment, all sub-routes returned 404 errors while the root page loaded successfully. Vercel build logs showed:
+
+```
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead.
+```
+
+### Root Cause
+
+Next.js 16 deprecated `middleware.ts` in favor of `proxy.ts`. The migration requires:
+1. Rename file: `middleware.ts` → `proxy.ts`
+2. Change export: Use `export default` instead of named `middleware` export
+3. Delete old file: Both files cannot coexist
+
+### Solution
+
+**Before** (`src/middleware.ts`):
+```typescript
+import createMiddleware from 'next-intl/middleware';
+import { locales, defaultLocale } from './i18n/config';
+
+export const middleware = createMiddleware({
+  locales,
+  defaultLocale,
+  localePrefix: 'as-needed'
+});
+
+export const config = {
+  matcher: ['/', '/(en|ko)/:path*']
+};
+```
+
+**After** (`src/proxy.ts`):
+```typescript
+import createMiddleware from 'next-intl/middleware';
+import { locales, defaultLocale } from './i18n/config';
+
+// Next.js 16: proxy.ts replaces middleware.ts
+// Using default export as recommended by next-intl
+export default createMiddleware({
+  locales,
+  defaultLocale,
+  localePrefix: 'as-needed'
+});
+
+export const config = {
+  // Match all paths except _next, api, _vercel, and static files
+  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)']
+};
+```
+
+### Migration Commits
+
+| Commit | Description |
+|--------|-------------|
+| `535b26e` | Initial proxy.ts with NextRequest type |
+| `fda4c86` | Changed to default export for next-intl compatibility |
+| `cdb66b3` | Deleted middleware.ts, updated matcher pattern |
+
+### Key Changes
+
+1. **File Rename**: `src/middleware.ts` → `src/proxy.ts`
+2. **Export Style**: Named export → Default export
+3. **Type**: `NextRequest` from `next/server`
+4. **Matcher**: Updated to next-intl recommended pattern `/((?!api|_next|_vercel|.*\\..*).*)`
+
+### Verification
+
+After deployment:
+- ✅ Root page (`/`) loads correctly
+- ✅ All locale routes (`/en/*`, `/ko/*`) work
+- ✅ Checkpoint docs page accessible
+- ✅ Agent pages render properly
+- ✅ Workflow pages with timeline load
+
+### References
+
+- [Next.js 16 Middleware to Proxy Migration](https://nextjs.org/docs/messages/middleware-to-proxy)
+- [next-intl Proxy Documentation](https://next-intl.dev/docs/routing/middleware)
+- [Next.js 16 Upgrade Guide](https://nextjs.org/docs/app/guides/upgrading/version-16)
 
 ---
 
