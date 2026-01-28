@@ -3,7 +3,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { locales, type Locale } from '@/i18n/config';
-import { Header } from '@/components/layout/Header';
+import { VoidNav } from '@/components/layout/VoidNav';
 import { Footer } from '@/components/layout/Footer';
 import { ThemeProvider } from '@/components/common/ThemeProvider';
 import "@/styles/globals.css";
@@ -49,7 +49,7 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className="min-h-screen bg-[var(--background)] font-sans antialiased">
+      <body className="min-h-screen bg-void-deep font-sans antialiased">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -58,7 +58,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         >
           <NextIntlClientProvider messages={messages}>
             <div className="relative flex min-h-screen flex-col">
-              <Header />
+              <VoidNav />
               <main className="flex-1">{children}</main>
               <Footer />
             </div>

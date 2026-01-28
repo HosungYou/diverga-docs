@@ -9,118 +9,80 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Diverga Primary: Intellectual Indigo (kept as brand accent)
-        diverga: {
-          50: "#eef2ff",
-          100: "#e0e7ff",
-          200: "#c7d2fe",
-          300: "#a5b4fc",
-          400: "#818cf8",
-          500: "#6366f1",
-          600: "#4f46e5",
-          700: "#4338ca",
-          800: "#3730a3",
-          900: "#312e81",
-          950: "#1e1b4b",
+        // Void Core - Deep Space Background
+        void: {
+          absolute: "#000000",
+          deep: "#050508",
+          surface: "#0a0a0f",
+          elevated: "#12121a",
+          hover: "#1a1a24",
         },
-        // Exploration Teal (kept as accent)
-        teal: {
-          50: "#f0fdfa",
-          100: "#ccfbf1",
-          200: "#99f6e4",
-          300: "#5eead4",
-          400: "#2dd4bf",
-          500: "#14b8a6",
-          600: "#0d9488",
-          700: "#0f766e",
-          800: "#115e59",
-          900: "#134e4a",
+        // Stellar Accents - Light on Dark
+        stellar: {
+          core: "#ffffff",
+          bright: "#f0f0f5",
+          dim: "#8888aa",
+          faint: "#44445a",
+          muted: "#2a2a3a",
         },
-        // Insight Gold (kept as accent)
-        gold: {
-          50: "#fffbeb",
-          100: "#fef3c7",
-          200: "#fde68a",
-          300: "#fcd34d",
-          400: "#fbbf24",
-          500: "#f59e0b",
-          600: "#d97706",
-          700: "#b45309",
-        },
-        // Aurora Palette (pastel gradients)
-        aurora: {
-          purple: "#c4b5fd",
-          pink: "#f9a8d4",
-          blue: "#93c5fd",
-          teal: "#99f6e4",
-        },
-        // Category Colors (kept for agents)
-        category: {
-          a: "#6366f1", // Foundation - Indigo
-          b: "#8b5cf6", // Evidence - Violet
-          c: "#14b8a6", // Design - Teal
-          d: "#f59e0b", // Data - Amber
-          e: "#ef4444", // Analysis - Red
-          f: "#06b6d4", // Quality - Cyan
-          g: "#ec4899", // Publication - Magenta
-          h: "#22c55e", // Specialized - Green
-        },
-        // Checkpoint Colors (kept for status)
-        checkpoint: {
-          red: "#ef4444",
-          amber: "#f59e0b",
-          yellow: "#eab308",
-          green: "#22c55e",
-        },
-        // T-Score Visual Encoding (kept)
+        // T-Score Spectrum (Modal → Divergent)
         tscore: {
-          modal: "#ef4444",
-          established: "#3b82f6",
-          emerging: "#22c55e",
-          experimental: "#8b5cf6",
+          modal: "#ff3366",
+          typical: "#ff8844",
+          balanced: "#ffcc22",
+          creative: "#44ffaa",
+          divergent: "#22ccff",
         },
-        // VS Level Badges (kept)
-        vs: {
-          full: "#22c55e",
-          enhanced: "#06b6d4",
-          light: "#9ca3af",
+        // Category Colors (Agents A-H)
+        category: {
+          a: "#ff6b6b",
+          b: "#ffd93d",
+          c: "#6bcb77",
+          d: "#4d96ff",
+          e: "#9b59b6",
+          f: "#e17055",
+          g: "#00cec9",
+          h: "#fd79a8",
         },
-        // Reform Light Theme
-        reform: {
-          bg: "#ffffff",
-          "bg-subtle": "#fafafa",
-          "bg-muted": "#f5f5f5",
-          foreground: "#111111",
-          "foreground-muted": "#6b7280",
-          border: "#e5e7eb",
-          "border-light": "#f3f4f6",
+        // Checkpoint Status
+        checkpoint: {
+          required: "#ff3366",
+          recommended: "#ff8844",
+          optional: "#ffcc22",
+          complete: "#44ffaa",
+        },
+        // Tier Badges
+        tier: {
+          opus: "#9b59b6",
+          sonnet: "#4d96ff",
+          haiku: "#8888aa",
         },
       },
       fontFamily: {
-        sans: ['"Inter Tight"', 'Inter', 'var(--font-pretendard)', 'system-ui', 'sans-serif'],
-        display: ['"Inter Tight"', 'Inter', 'var(--font-pretendard)', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+        sans: ['"IBM Plex Sans"', 'var(--font-pretendard)', 'system-ui', 'sans-serif'],
+        display: ['"Space Mono"', '"JetBrains Mono"', 'monospace'],
+        mono: ['"JetBrains Mono"', '"Fira Code"', 'monospace'],
       },
       fontSize: {
-        'hero': 'clamp(2.5rem, 6vw, 4.5rem)',
-        'h1': 'clamp(2rem, 4vw, 3rem)',
-        'h2': 'clamp(1.5rem, 3vw, 2rem)',
-        'h3': 'clamp(1.25rem, 2vw, 1.5rem)',
+        'display-xl': ['clamp(3rem, 8vw, 7rem)', { lineHeight: '0.95', letterSpacing: '-0.03em' }],
+        'display': ['clamp(2.5rem, 6vw, 5rem)', { lineHeight: '1.0', letterSpacing: '-0.02em' }],
+        'heading-1': ['clamp(2rem, 4vw, 3.5rem)', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
+        'heading-2': ['clamp(1.5rem, 3vw, 2.5rem)', { lineHeight: '1.2', letterSpacing: '-0.01em' }],
+        'heading-3': ['clamp(1.25rem, 2vw, 1.75rem)', { lineHeight: '1.3' }],
+        'body-lg': ['1.125rem', { lineHeight: '1.7' }],
+        'body': ['1rem', { lineHeight: '1.7' }],
+        'caption': ['0.875rem', { lineHeight: '1.5' }],
+        'micro': ['0.75rem', { lineHeight: '1.4', letterSpacing: '0.05em' }],
       },
       letterSpacing: {
-        'tighter-hero': '-0.04em',
-        'tight-heading': '-0.02em',
-        'tight-body': '-0.01em',
+        'widest': '0.1em',
+        'wider': '0.05em',
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-out',
-        'slide-up': 'slideUp 0.5s ease-out',
-        'slide-down': 'slideDown 0.3s ease-out',
-        'scale-in': 'scaleIn 0.3s ease-out',
-        'float': 'float 6s ease-in-out infinite',
-        'float-slow': 'float 8s ease-in-out infinite',
-        'pulse-subtle': 'pulseSubtle 3s ease-in-out infinite',
-        'gradient-shift': 'gradientShift 15s ease infinite',
+        'slide-up': 'slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+        'glow-pulse': 'glowPulse 3s ease-in-out infinite',
+        'cursor-blink': 'cursorBlink 1s step-end infinite',
       },
       keyframes: {
         fadeIn: {
@@ -128,56 +90,32 @@ export default {
           '100%': { opacity: '1' },
         },
         slideUp: {
-          '0%': { opacity: '0', transform: 'translateY(20px)' },
+          '0%': { opacity: '0', transform: 'translateY(40px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
-        slideDown: {
-          '0%': { opacity: '0', transform: 'translateY(-10px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
+        glowPulse: {
+          '0%, 100%': { opacity: '1', filter: 'brightness(1)' },
+          '50%': { opacity: '0.8', filter: 'brightness(1.2)' },
         },
-        scaleIn: {
-          '0%': { opacity: '0', transform: 'scale(0.95)' },
-          '100%': { opacity: '1', transform: 'scale(1)' },
-        },
-        float: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-8px)' },
-        },
-        pulseSubtle: {
-          '0%, 100%': { opacity: '1' },
-          '50%': { opacity: '0.8' },
-        },
-        gradientShift: {
-          '0%': { backgroundPosition: '0% 50%' },
-          '50%': { backgroundPosition: '100% 50%' },
-          '100%': { backgroundPosition: '0% 50%' },
+        cursorBlink: {
+          '0%, 50%': { opacity: '1' },
+          '51%, 100%': { opacity: '0' },
         },
       },
       borderRadius: {
-        'reform': '12px',
-        'reform-sm': '8px',
-        'reform-lg': '16px',
-        'reform-xl': '24px',
+        'none': '0px',
+        'sm': '2px',
+        'DEFAULT': '0px',
       },
       boxShadow: {
-        'reform-sm': '0 1px 2px rgba(0, 0, 0, 0.05)',
-        'reform': '0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06)',
-        'reform-md': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-        'reform-lg': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
-        'reform-xl': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
-        'reform-hover': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
-        'reform-card': '0 1px 3px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04)',
-        'reform-card-hover': '0 4px 12px rgba(0, 0, 0, 0.1), 0 8px 24px rgba(0, 0, 0, 0.06)',
+        'glow-sm': '0 0 10px rgba(68, 255, 170, 0.1)',
+        'glow': '0 0 20px rgba(68, 255, 170, 0.15)',
+        'glow-lg': '0 0 40px rgba(68, 255, 170, 0.2)',
+        'glow-xl': '0 0 60px rgba(68, 255, 170, 0.25)',
       },
       backgroundImage: {
-        // Aurora gradient for hero sections
-        'aurora': 'linear-gradient(135deg, rgba(196, 181, 253, 0.4) 0%, rgba(249, 168, 212, 0.3) 25%, rgba(147, 197, 253, 0.4) 50%, rgba(153, 246, 228, 0.3) 75%, rgba(255, 255, 255, 1) 100%)',
-        'aurora-subtle': 'linear-gradient(135deg, rgba(196, 181, 253, 0.2) 0%, rgba(249, 168, 212, 0.15) 25%, rgba(147, 197, 253, 0.2) 50%, rgba(153, 246, 228, 0.15) 75%, rgba(255, 255, 255, 1) 100%)',
-        'aurora-radial': 'radial-gradient(ellipse at top, rgba(196, 181, 253, 0.3) 0%, rgba(147, 197, 253, 0.2) 40%, rgba(255, 255, 255, 1) 70%)',
-        // Accent gradients
-        'gradient-diverga': 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
-        'gradient-teal': 'linear-gradient(135deg, #14b8a6 0%, #06b6d4 100%)',
-        'gradient-warm': 'linear-gradient(135deg, #f59e0b 0%, #ef4444 100%)',
+        'tscore-gradient': 'linear-gradient(90deg, #22ccff 0%, #44ffaa 25%, #ffcc22 50%, #ff8844 75%, #ff3366 100%)',
+        'void-radial': 'radial-gradient(ellipse at center, #12121a 0%, #050508 70%)',
       },
     },
   },
