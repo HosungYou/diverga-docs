@@ -308,15 +308,15 @@ export const workflows: Workflow[] = [
 
 // A6 Example Workflow: AI in Education Conceptual Framework
 export const a6ExampleWorkflow: Workflow = {
-  id: 'a6-ai-education',
-  slug: 'a6-ai-education',
+  id: 'a6-conceptual-framework',
+  slug: 'a6-conceptual-framework',
   name: {
-    en: 'A6 Example: AI in Education',
-    ko: 'A6 예시: 교육에서의 AI'
+    en: 'A6: Conceptual Framework Visualization',
+    ko: 'A6: 개념적 프레임워크 시각화'
   },
   description: {
-    en: 'Conceptual framework visualization for AI-enhanced learning research',
-    ko: 'AI 강화 학습 연구를 위한 개념적 프레임워크 시각화'
+    en: 'Generate academic conceptual framework diagrams using Nanobanana (Gemini Image)',
+    ko: 'Nanobanana(Gemini 이미지)를 사용한 학술 개념적 프레임워크 다이어그램 생성'
   },
   paradigm: 'mixed',
   estimatedTime: '30 min demo',

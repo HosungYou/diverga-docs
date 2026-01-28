@@ -4,15 +4,17 @@ import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 import { ArrowLeft, ArrowRight, Zap, GitBranch } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { Agent, Category } from '@/lib/data/types';
+import { Agent, Category, ExtendedAgentContent } from '@/lib/data/types';
 import { TScoreBadge } from './TScoreBadge';
 import { CheckpointBadge } from './CheckpointBadge';
+import { AgentDetailSections } from './AgentDetailSections';
 import { cn } from '@/lib/utils/cn';
 
 interface AgentDetailProps {
   agent: Agent;
   category: Category;
   relatedAgents: Agent[];
+  extendedContent?: ExtendedAgentContent;
 }
 
 const tierColors = {
@@ -33,7 +35,7 @@ const paradigmLabels = {
   mixed: { en: 'Mixed Methods', ko: '혼합 방법' },
 };
 
-export function AgentDetail({ agent, category, relatedAgents }: AgentDetailProps) {
+export function AgentDetail({ agent, category, relatedAgents, extendedContent }: AgentDetailProps) {
   const locale = useLocale() as 'en' | 'ko';
   const t = useTranslations('agents');
 
@@ -260,6 +262,18 @@ export function AgentDetail({ agent, category, relatedAgents }: AgentDetailProps
                     ? '이 에이전트는 선택사항을 제시하지만 승인 없이 계속할 수 있습니다. 검토는 선택사항이지만 권장됩니다.'
                     : 'This agent presents options but can proceed without approval. Review is optional but recommended.')}
             </p>
+          </motion.div>
+        )}
+
+        {/* Extended Content Sections */}
+        {extendedContent && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="mb-8"
+          >
+            <AgentDetailSections content={extendedContent} locale={locale} />
           </motion.div>
         )}
 

@@ -6,12 +6,24 @@ import Link from 'next/link';
 import { ArrowLeft, Clock, Target, ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { getWorkflowBySlug } from '@/lib/data/workflows';
+import { getAgentById } from '@/lib/data/agents';
 import CheckpointTimeline from '@/components/CheckpointTimeline';
-import { ConceptualFramework } from '@/components/visualization';
+import { ConceptualFramework, NanobananaDemoBlock } from '@/components/visualization';
 import { notFound } from 'next/navigation';
 
 type Props = {
   params: Promise<{ slug: string }>;
+};
+
+const categoryNames: Record<string, { en: string; ko: string }> = {
+  a: { en: 'Foundation', ko: '기초' },
+  b: { en: 'Evidence', ko: '근거' },
+  c: { en: 'Design & Meta', ko: '설계 및 메타' },
+  d: { en: 'Data Collection', ko: '데이터 수집' },
+  e: { en: 'Analysis', ko: '분석' },
+  f: { en: 'Quality', ko: '품질' },
+  g: { en: 'Communication', ko: '커뮤니케이션' },
+  h: { en: 'Specialized', ko: '전문화' },
 };
 
 // Progress step indicator with T-Score colors
@@ -19,7 +31,7 @@ function ProgressIndicator({
   stages,
   locale
 }: {
-  stages: { agent: string; checkpoint?: string }[];
+  stages: { agent: string; checkpoint?: string; description: { en: string; ko: string } }[];
   locale: 'en' | 'ko';
 }) {
   const totalSteps = stages.length;
@@ -51,6 +63,7 @@ function ProgressIndicator({
             else if (progressPercent >= 40) colorClass = 'bg-tscore-balanced';
             else if (progressPercent >= 20) colorClass = 'bg-tscore-creative';
 
+            const agent = getAgentById(stage.agent);
             return (
               <motion.div
                 key={index}
@@ -67,6 +80,20 @@ function ProgressIndicator({
                     <div className="w-1.5 h-1.5 rounded-full bg-void-deep" />
                   </div>
                 )}
+                {/* Hover tooltip */}
+                <div className="absolute -top-16 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-20">
+                  <div className="bg-void-surface border border-stellar-faint/20 p-3 rounded-lg shadow-glow-sm whitespace-nowrap">
+                    <span className="font-mono text-micro text-stellar-faint">Step {index + 1}</span>
+                    <p className="font-bold text-sm text-stellar-core">{agent?.name[locale] || stage.agent}</p>
+                    <p className="text-micro text-stellar-dim mt-0.5">{stage.description[locale]}</p>
+                    {stage.checkpoint && (
+                      <div className="mt-1.5 flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-checkpoint-required" />
+                        <span className="text-micro text-checkpoint-required font-mono">CHECKPOINT</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
               </motion.div>
             );
           })}
@@ -194,16 +221,25 @@ export default function WorkflowDetailPage({ params }: Props) {
                     const agentCategory = stage.agent.charAt(0).toLowerCase();
                     return (
                       <div key={i} className="flex items-center gap-2">
-                        <motion.div
-                          initial={{ scale: 0 }}
-                          animate={{ scale: 1 }}
-                          transition={{ delay: 0.4 + i * 0.05 }}
-                          className={`w-8 h-8 flex items-center justify-center category-bg-${agentCategory} border border-stellar-faint/20 font-mono text-micro ${stage.checkpoint ? 'ring-2 ring-checkpoint-required' : ''}`}
-                        >
-                          <span className={`category-text-${agentCategory}`}>
-                            {agentCategory.toUpperCase()}
-                          </span>
-                        </motion.div>
+                        <div className="relative group">
+                          <motion.div
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            transition={{ delay: 0.4 + i * 0.05 }}
+                            className={`w-8 h-8 flex items-center justify-center category-bg-${agentCategory} border border-stellar-faint/20 font-mono text-micro ${stage.checkpoint ? 'ring-2 ring-checkpoint-required' : ''} cursor-pointer`}
+                          >
+                            <span className={`category-text-${agentCategory}`}>
+                              {agentCategory.toUpperCase()}
+                            </span>
+                          </motion.div>
+                          {/* Category tooltip */}
+                          <div className="absolute -top-12 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-20">
+                            <div className="bg-void-deep border border-stellar-faint/20 px-3 py-1.5 rounded whitespace-nowrap">
+                              <span className="font-bold text-micro text-stellar-core">{categoryNames[agentCategory]?.[locale] || agentCategory.toUpperCase()}</span>
+                              <span className="text-stellar-faint text-micro ml-2">{stage.agent}</span>
+                            </div>
+                          </div>
+                        </div>
                         {i < Math.min(workflow.stages.length - 1, 7) && (
                           <ChevronRight className="w-3 h-3 text-stellar-faint" />
                         )}
@@ -285,6 +321,18 @@ export default function WorkflowDetailPage({ params }: Props) {
             >
               <ConceptualFramework locale={locale} example={workflow.example} />
             </motion.div>
+
+            {workflow.slug === 'a6-conceptual-framework' && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                className="mt-8"
+              >
+                <NanobananaDemoBlock locale={locale} example={workflow.example} />
+              </motion.div>
+            )}
           </section>
         </>
       )}

@@ -214,9 +214,9 @@ export function VoidHero() {
         >
           <TScoreIndicator
             score={0.42}
-            label="Void Cartography"
-            description="Anti-modal yet feasible"
-            descriptionKo="뻔하지 않으면서도 실현 가능한 영역"
+            label="Anti-modal yet feasible"
+            description="Where creative research escapes mode collapse"
+            descriptionKo="창의적 연구가 모드 붕괴를 탈출하는 지점"
             locale={locale}
           />
         </motion.div>
@@ -239,8 +239,8 @@ export function VoidHero() {
           className="mt-6 max-w-2xl text-center text-body-lg text-stellar-dim"
         >
           {locale === 'ko'
-            ? '40개의 전문 에이전트가 체계적 문헌 고찰을 오케스트레이션합니다.'
-            : '40 specialized agents orchestrating systematic literature review.'
+            ? '뻔한 AI 추천을 넘어서. 명백한 것에서 벗어나세요.'
+            : 'Beyond predictable AI recommendations. Diverge from the obvious.'
           }
         </motion.p>
 
@@ -251,8 +251,8 @@ export function VoidHero() {
           className="mt-2 text-center text-body text-stellar-faint"
         >
           {locale === 'ko'
-            ? 'Mode Collapse를 탈출하고, Long-tail을 탐험하세요.'
-            : 'Escape mode collapse. Explore the long tail.'
+            ? '40개의 연구 에이전트가 VS 방법론으로 모드 붕괴를 방지합니다.'
+            : '40 research agents preventing mode collapse through VS methodology.'
           }
         </motion.p>
 

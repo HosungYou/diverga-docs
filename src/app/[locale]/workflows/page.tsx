@@ -22,6 +22,34 @@ const workflowCategoryMap = {
   'meta-analysis': 'g', // Publication - Teal
 } as const;
 
+const categoryInfo: Record<string, { name: { en: string; ko: string }; description: { en: string; ko: string }; agents: string[] }> = {
+  A: {
+    name: { en: 'Foundation', ko: '기초' },
+    description: { en: 'Research design & theoretical foundations', ko: '연구 설계 및 이론적 기초' },
+    agents: ['A1', 'A2', 'A3', 'A4', 'A5', 'A6']
+  },
+  B: {
+    name: { en: 'Evidence', ko: '근거' },
+    description: { en: 'Literature review & evidence synthesis', ko: '문헌 고찰 및 근거 종합' },
+    agents: ['B1', 'B2', 'B3', 'B4', 'B5']
+  },
+  C: {
+    name: { en: 'Design & Meta', ko: '설계 및 메타' },
+    description: { en: 'Research design & meta-analysis', ko: '연구 설계 및 메타분석' },
+    agents: ['C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7']
+  },
+  D: {
+    name: { en: 'Data Collection', ko: '데이터 수집' },
+    description: { en: 'Sampling, instruments & protocols', ko: '표집, 도구 및 프로토콜' },
+    agents: ['D1', 'D2', 'D3', 'D4']
+  },
+  E: {
+    name: { en: 'Analysis', ko: '분석' },
+    description: { en: 'Statistical & qualitative analysis', ko: '통계 및 질적 분석' },
+    agents: ['E1', 'E2', 'E3', 'E4', 'E5']
+  },
+};
+
 // Animation variants
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -81,26 +109,44 @@ export default function WorkflowsPage() {
           >
             <div className="void-card p-8">
               <div className="flex items-center justify-between gap-4 overflow-x-auto pb-4">
-                {['A', 'B', 'C', 'D', 'E'].map((category, index) => (
-                  <div key={category} className="flex items-center gap-4 flex-shrink-0">
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ delay: 0.3 + index * 0.1 }}
-                      className={`w-12 h-12 rounded-full flex items-center justify-center font-mono text-sm font-bold category-bg-${category.toLowerCase()} category-text-${category.toLowerCase()} border border-stellar-faint/20`}
-                    >
-                      {category}
-                    </motion.div>
-                    {index < 4 && (
-                      <motion.div
-                        initial={{ scaleX: 0 }}
-                        animate={{ scaleX: 1 }}
-                        transition={{ delay: 0.4 + index * 0.1 }}
-                        className="w-12 h-0.5 bg-gradient-to-r from-stellar-faint to-stellar-muted origin-left"
-                      />
-                    )}
-                  </div>
-                ))}
+                {['A', 'B', 'C', 'D', 'E'].map((category, index) => {
+                  const info = categoryInfo[category];
+                  return (
+                    <div key={category} className="flex items-center gap-4 flex-shrink-0">
+                      <div className="relative group">
+                        <motion.div
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ delay: 0.3 + index * 0.1 }}
+                          className={`w-12 h-12 rounded-full flex items-center justify-center font-mono text-sm font-bold category-bg-${category.toLowerCase()} category-text-${category.toLowerCase()} border border-stellar-faint/20 cursor-pointer transition-transform group-hover:scale-110`}
+                        >
+                          {category}
+                        </motion.div>
+                        {/* Tooltip */}
+                        <div className="absolute -top-2 left-1/2 -translate-x-1/2 -translate-y-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-20">
+                          <div className="bg-void-surface border border-stellar-faint/20 p-3 rounded-lg shadow-glow-sm whitespace-nowrap">
+                            <p className="font-mono text-sm font-bold text-stellar-core">{info.name[locale]}</p>
+                            <p className="text-micro text-stellar-dim mt-1">{info.description[locale]}</p>
+                            <div className="flex flex-wrap gap-1 mt-2">
+                              {info.agents.map(a => (
+                                <span key={a} className={`px-1.5 py-0.5 text-micro font-mono category-text-${category.toLowerCase()} bg-void-deep rounded`}>{a}</span>
+                              ))}
+                            </div>
+                          </div>
+                          <div className="w-2 h-2 bg-void-surface border-b border-r border-stellar-faint/20 rotate-45 mx-auto -mt-1" />
+                        </div>
+                      </div>
+                      {index < 4 && (
+                        <motion.div
+                          initial={{ scaleX: 0 }}
+                          animate={{ scaleX: 1 }}
+                          transition={{ delay: 0.4 + index * 0.1 }}
+                          className="w-12 h-0.5 bg-gradient-to-r from-stellar-faint to-stellar-muted origin-left"
+                        />
+                      )}
+                    </div>
+                  );
+                })}
               </div>
               <p className="text-center text-stellar-faint text-micro uppercase tracking-widest mt-4">
                 {locale === 'ko' ? '에이전트 카테고리 진행 흐름' : 'Agent Category Progression Flow'}

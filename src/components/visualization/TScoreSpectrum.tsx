@@ -182,13 +182,17 @@ export function TScoreSpectrum({
 
               {/* Point */}
               <motion.div
-                whileHover={{ scale: 1.5 }}
-                className="mx-auto h-3 w-3 transition-shadow"
+                whileHover={{ scale: 1.3 }}
+                className="mx-auto h-10 w-10 rounded-full flex items-center justify-center transition-shadow"
                 style={{
                   backgroundColor: getColor(point.score),
-                  boxShadow: activePoint === point ? `0 0 15px ${getColor(point.score)}` : 'none'
+                  boxShadow: activePoint === point ? `0 0 20px ${getColor(point.score)}` : 'none'
                 }}
-              />
+              >
+                <span className="font-mono text-[10px] font-bold text-void-deep">
+                  {point.score.toFixed(2)}
+                </span>
+              </motion.div>
 
               {/* Label */}
               <p className="mt-2 whitespace-nowrap text-center font-mono text-micro text-stellar-dim">

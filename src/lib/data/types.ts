@@ -66,3 +66,59 @@ export interface WorkflowStage {
   description: LocalizedString;
   checkpoint?: string;
 }
+
+export interface BilingualText {
+  en: string;
+  ko: string;
+}
+
+export interface VSPhase {
+  number: number;
+  title: BilingualText;
+  purpose: BilingualText;
+  example?: string;
+}
+
+export interface TScoreRange {
+  range: string;
+  label: BilingualText;
+  examples: string[];
+}
+
+export interface ExtendedAgentContent {
+  agentId: string;
+  vsProcess?: {
+    type: 'FULL_5_PHASE' | 'ENHANCED_3_PHASE' | 'LIGHT';
+    phases: VSPhase[];
+  };
+  tScoreReference?: {
+    ranges: TScoreRange[];
+  };
+  inputRequirements?: {
+    required: { name: string; description: BilingualText }[];
+    optional?: { name: string; description: BilingualText }[];
+  };
+  outputFormat?: {
+    sections: { title: string; content: BilingualText }[];
+    example?: string;
+  };
+  creativityMechanisms?: {
+    name: string;
+    applicationTiming: BilingualText;
+    usageExample: BilingualText;
+  }[];
+  checkpoints?: {
+    id: string;
+    description: BilingualText;
+  }[];
+  codeTemplates?: {
+    language: string;
+    title: BilingualText;
+    code: string;
+  }[];
+  references?: string[];
+  exampleWorkflow?: {
+    before: BilingualText;
+    after: BilingualText;
+  };
+}
