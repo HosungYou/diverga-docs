@@ -16,9 +16,9 @@ interface AgentDetailProps {
 }
 
 const tierColors = {
-  HIGH: 'bg-purple-100 text-purple-700 border-purple-200',
-  MEDIUM: 'bg-blue-100 text-blue-700 border-blue-200',
-  LOW: 'bg-gray-100 text-gray-700 border-gray-200',
+  HIGH: 'bg-void-surface text-[#9b59b6] border-[#9b59b6]/30',
+  MEDIUM: 'bg-void-surface text-[#4d96ff] border-[#4d96ff]/30',
+  LOW: 'bg-void-surface text-[#8888aa] border-[#8888aa]/30',
 };
 
 const tierLabels = {
@@ -37,47 +37,50 @@ export function AgentDetail({ agent, category, relatedAgents }: AgentDetailProps
   const locale = useLocale() as 'en' | 'ko';
   const t = useTranslations('agents');
 
-  const categoryGradients: Record<string, string> = {
-    A: 'from-indigo-50 via-purple-50 to-blue-50',
-    B: 'from-purple-50 via-pink-50 to-purple-50',
-    C: 'from-emerald-50 via-teal-50 to-cyan-50',
-    D: 'from-amber-50 via-orange-50 to-yellow-50',
-    E: 'from-rose-50 via-pink-50 to-red-50',
-    F: 'from-cyan-50 via-sky-50 to-blue-50',
-    G: 'from-fuchsia-50 via-purple-50 to-pink-50',
-    H: 'from-lime-50 via-green-50 to-emerald-50',
+  const categoryColors: Record<string, string> = {
+    A: '#ff6b6b',
+    B: '#ffd93d',
+    C: '#6bcb77',
+    D: '#4d96ff',
+    E: '#9b59b6',
+    F: '#e17055',
+    G: '#00cec9',
+    H: '#fd79a8',
   };
 
   return (
-    <div>
-      {/* Light Hero Section */}
-      <div className={cn(
-        "relative py-16 sm:py-20 bg-gradient-to-br overflow-hidden",
-        categoryGradients[agent.category]
-      )}>
-        {/* Subtle pattern */}
-        <div className="absolute inset-0 opacity-30">
+    <div className="bg-void-deep min-h-screen">
+      {/* Void Hero Section */}
+      <div className="relative py-16 sm:py-20 bg-void-surface overflow-hidden border-b border-stellar-faint/10">
+        {/* Subtle grid pattern */}
+        <div className="absolute inset-0 opacity-20">
           <div className="absolute inset-0" style={{
-            backgroundImage: 'radial-gradient(circle at 1px 1px, rgb(0 0 0 / 0.05) 1px, transparent 0)',
+            backgroundImage: 'radial-gradient(circle at 1px 1px, rgb(136 136 170 / 0.15) 1px, transparent 0)',
             backgroundSize: '32px 32px'
           }} />
         </div>
 
+        {/* Category glow accent */}
+        <div
+          className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl opacity-10"
+          style={{ backgroundColor: categoryColors[agent.category] }}
+        />
+
         <div className="relative mx-auto max-w-4xl px-6 lg:px-8">
           {/* Breadcrumb */}
-          <nav className="mb-8 flex items-center gap-2 text-sm text-gray-600">
-            <Link href={`/${locale}/agents`} className="hover:text-gray-900 transition-colors">
+          <nav className="mb-8 flex items-center gap-2 text-sm text-stellar-dim font-mono">
+            <Link href={`/${locale}/agents`} className="hover:text-stellar-bright transition-colors">
               {t('title')}
             </Link>
             <span>/</span>
             <Link
               href={`/${locale}/agents?category=${category.id}`}
-              className="hover:text-gray-900 transition-colors"
+              className="hover:text-stellar-bright transition-colors"
             >
               {category.name[locale]}
             </Link>
             <span>/</span>
-            <span className="text-gray-900 font-medium">{agent.id}</span>
+            <span className="text-stellar-core font-medium">{agent.id}</span>
           </nav>
 
           {/* Header */}
@@ -91,20 +94,27 @@ export function AgentDetail({ agent, category, relatedAgents }: AgentDetailProps
             </span>
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-3 flex-wrap">
-                <span className="font-mono text-sm text-gray-600 bg-white/80 px-3 py-1 rounded-lg border border-gray-200">
+                <span
+                  className="font-mono text-sm px-3 py-1 rounded-lg border"
+                  style={{
+                    backgroundColor: 'rgba(10, 10, 15, 0.8)',
+                    color: categoryColors[agent.category],
+                    borderColor: `${categoryColors[agent.category]}40`
+                  }}
+                >
                   {agent.id}
                 </span>
                 <span className={cn(
-                  "rounded-lg border px-2.5 py-1 text-xs font-medium bg-white/80",
+                  "rounded-lg border px-2.5 py-1 text-xs font-medium font-mono",
                   tierColors[agent.tier]
                 )}>
                   {tierLabels[agent.tier]}
                 </span>
-                <div className="bg-white/80 rounded-lg px-2.5 py-1 border border-gray-200">
+                <div className="bg-void-elevated/80 rounded-lg px-2.5 py-1 border border-stellar-faint/20">
                   <TScoreBadge vsLevel={agent.vsLevel} />
                 </div>
                 {agent.checkpoint && agent.checkpoint.level && (
-                  <div className="bg-white/80 rounded-lg px-2.5 py-1 border border-gray-200">
+                  <div className="bg-void-elevated/80 rounded-lg px-2.5 py-1 border border-stellar-faint/20">
                     <CheckpointBadge
                       checkpointId={agent.checkpoint.id}
                       level={agent.checkpoint.level}
@@ -114,10 +124,10 @@ export function AgentDetail({ agent, category, relatedAgents }: AgentDetailProps
                   </div>
                 )}
               </div>
-              <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
+              <h1 className="text-4xl sm:text-5xl font-bold text-stellar-core mb-4 font-display">
                 {agent.name[locale]}
               </h1>
-              <p className="text-lg text-gray-600 leading-relaxed max-w-2xl">
+              <p className="text-lg text-stellar-dim leading-relaxed max-w-2xl">
                 {agent.description[locale]}
               </p>
             </div>
@@ -126,25 +136,26 @@ export function AgentDetail({ agent, category, relatedAgents }: AgentDetailProps
       </div>
 
       {/* Content Section */}
-      <div className="py-12 sm:py-16 bg-white">
+      <div className="py-12 sm:py-16 bg-void-deep">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
 
-        {/* Clean Info Cards */}
+        {/* Void Cards */}
         <div className="grid gap-6 sm:grid-cols-2 mb-8">
           {/* Purpose */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="rounded-xl bg-white p-6 shadow-[0_1px_3px_rgba(0,0,0,0.1),0_1px_2px_rgba(0,0,0,0.06)] border border-gray-100"
+            whileHover={{ boxShadow: '0 0 20px rgba(68, 255, 170, 0.15)' }}
+            className="rounded-xl bg-void-elevated p-6 border border-stellar-faint/20 shadow-[0_0_10px_rgba(68,255,170,0.05)]"
           >
-            <h2 className="flex items-center gap-2 font-semibold text-gray-900 mb-3 text-base">
-              <div className="p-1.5 rounded-lg bg-indigo-100">
-                <Zap className="h-4 w-4 text-indigo-600" />
+            <h2 className="flex items-center gap-2 font-semibold text-stellar-core mb-3 text-base font-mono">
+              <div className="p-1.5 rounded-lg bg-void-surface">
+                <Zap className="h-4 w-4 text-tscore-creative" />
               </div>
               {locale === 'ko' ? '목적' : 'Purpose'}
             </h2>
-            <p className="text-sm text-gray-600 leading-relaxed">
+            <p className="text-sm text-stellar-dim leading-relaxed">
               {agent.purpose[locale]}
             </p>
           </motion.div>
@@ -154,11 +165,12 @@ export function AgentDetail({ agent, category, relatedAgents }: AgentDetailProps
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="rounded-xl bg-white p-6 shadow-[0_1px_3px_rgba(0,0,0,0.1),0_1px_2px_rgba(0,0,0,0.06)] border border-gray-100"
+            whileHover={{ boxShadow: '0 0 20px rgba(68, 255, 170, 0.15)' }}
+            className="rounded-xl bg-void-elevated p-6 border border-stellar-faint/20 shadow-[0_0_10px_rgba(68,255,170,0.05)]"
           >
-            <h2 className="flex items-center gap-2 font-semibold text-gray-900 mb-3 text-base">
-              <div className="p-1.5 rounded-lg bg-teal-100">
-                <GitBranch className="h-4 w-4 text-teal-600" />
+            <h2 className="flex items-center gap-2 font-semibold text-stellar-core mb-3 text-base font-mono">
+              <div className="p-1.5 rounded-lg bg-void-surface">
+                <GitBranch className="h-4 w-4 text-tscore-divergent" />
               </div>
               {locale === 'ko' ? '지원 패러다임' : 'Supported Paradigms'}
             </h2>
@@ -166,7 +178,7 @@ export function AgentDetail({ agent, category, relatedAgents }: AgentDetailProps
               {agent.paradigms.map((p) => (
                 <span
                   key={p}
-                  className="rounded-lg bg-gray-50 px-3 py-1.5 text-sm font-medium text-gray-700 border border-gray-200"
+                  className="rounded-lg bg-void-surface px-3 py-1.5 text-sm font-medium text-stellar-bright border border-stellar-faint/20 font-mono"
                 >
                   {paradigmLabels[p][locale]}
                 </span>
@@ -180,16 +192,17 @@ export function AgentDetail({ agent, category, relatedAgents }: AgentDetailProps
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="rounded-xl bg-white p-6 shadow-[0_1px_3px_rgba(0,0,0,0.1),0_1px_2px_rgba(0,0,0,0.06)] border border-gray-100 mb-8"
+          whileHover={{ boxShadow: '0 0 20px rgba(68, 255, 170, 0.15)' }}
+          className="rounded-xl bg-void-elevated p-6 border border-stellar-faint/20 shadow-[0_0_10px_rgba(68,255,170,0.05)] mb-8"
         >
-          <h2 className="font-semibold text-gray-900 mb-4 text-base">
+          <h2 className="font-semibold text-stellar-core mb-4 text-base font-mono">
             {t('triggers')}
           </h2>
           <div className="flex flex-wrap gap-2">
             {agent.triggers[locale].split(', ').map((trigger, i) => (
               <span
                 key={i}
-                className="rounded-lg bg-indigo-50 px-3 py-1.5 text-sm font-medium text-indigo-700 border border-indigo-100"
+                className="rounded-lg bg-void-surface px-3 py-1.5 text-sm font-medium text-tscore-creative border border-tscore-creative/30 font-mono"
               >
                 {trigger}
               </span>
@@ -203,19 +216,20 @@ export function AgentDetail({ agent, category, relatedAgents }: AgentDetailProps
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
+            whileHover={{ boxShadow: '0 0 30px rgba(255, 51, 102, 0.2)' }}
             className={cn(
-              "rounded-xl p-6 mb-8 border-2",
-              agent.checkpoint.level === 'REQUIRED' && "bg-rose-50 border-rose-200",
-              agent.checkpoint.level === 'RECOMMENDED' && "bg-amber-50 border-amber-200",
-              agent.checkpoint.level === 'OPTIONAL' && "bg-yellow-50 border-yellow-200"
+              "rounded-xl p-6 mb-8 border-2 bg-void-elevated",
+              agent.checkpoint.level === 'REQUIRED' && "border-tscore-modal/50",
+              agent.checkpoint.level === 'RECOMMENDED' && "border-tscore-typical/50",
+              agent.checkpoint.level === 'OPTIONAL' && "border-tscore-balanced/50"
             )}
           >
             <div className="flex items-start gap-3 mb-4">
               <div className={cn(
                 "rounded-lg p-2",
-                agent.checkpoint.level === 'REQUIRED' && "bg-rose-100",
-                agent.checkpoint.level === 'RECOMMENDED' && "bg-amber-100",
-                agent.checkpoint.level === 'OPTIONAL' && "bg-yellow-100"
+                agent.checkpoint.level === 'REQUIRED' && "bg-void-surface",
+                agent.checkpoint.level === 'RECOMMENDED' && "bg-void-surface",
+                agent.checkpoint.level === 'OPTIONAL' && "bg-void-surface"
               )}>
                 {agent.checkpoint.level && (
                   <CheckpointBadge
@@ -230,9 +244,9 @@ export function AgentDetail({ agent, category, relatedAgents }: AgentDetailProps
 
             <p className={cn(
               "text-sm leading-relaxed",
-              agent.checkpoint.level === 'REQUIRED' && "text-rose-800",
-              agent.checkpoint.level === 'RECOMMENDED' && "text-amber-800",
-              agent.checkpoint.level === 'OPTIONAL' && "text-yellow-800"
+              agent.checkpoint.level === 'REQUIRED' && "text-tscore-modal",
+              agent.checkpoint.level === 'RECOMMENDED' && "text-tscore-typical",
+              agent.checkpoint.level === 'OPTIONAL' && "text-tscore-balanced"
             )}>
               {agent.checkpoint.level === 'REQUIRED'
                 ? (locale === 'ko'
@@ -256,38 +270,47 @@ export function AgentDetail({ agent, category, relatedAgents }: AgentDetailProps
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
           >
-            <h2 className="font-semibold text-gray-900 mb-6 text-xl">
+            <h2 className="font-semibold text-stellar-core mb-6 text-xl font-display">
               {t('relatedAgents')}
             </h2>
             <div className="grid gap-4 sm:grid-cols-2">
-              {relatedAgents.map((related) => (
-                <div key={related.id}>
-                  <Link href={`/${locale}/agents/${related.slug}`}>
-                    <div className="flex items-center gap-4 rounded-xl bg-white p-4 shadow-[0_1px_3px_rgba(0,0,0,0.1),0_1px_2px_rgba(0,0,0,0.06)] border border-gray-100 group hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1),0_4px_6px_-2px_rgba(0,0,0,0.05)] transition-all">
-                      <span className="text-2xl">
-                        {related.icon}
-                      </span>
-                      <div className="flex-1">
-                        <span className="text-xs font-mono text-gray-500">
-                          {related.id}
+              {relatedAgents.map((related) => {
+                const relatedCategoryColor = categoryColors[related.category];
+                return (
+                  <div key={related.id}>
+                    <Link href={`/${locale}/agents/${related.slug}`}>
+                      <motion.div
+                        whileHover={{ boxShadow: '0 0 20px rgba(68, 255, 170, 0.2)' }}
+                        className="flex items-center gap-4 rounded-xl bg-void-elevated p-4 border border-stellar-faint/20 group transition-all"
+                      >
+                        <span className="text-2xl">
+                          {related.icon}
                         </span>
-                        <h3 className="font-medium text-gray-900 group-hover:text-indigo-600 transition-colors mt-0.5">
-                          {related.name[locale]}
-                        </h3>
-                      </div>
-                      <ArrowRight className="h-4 w-4 text-gray-400 group-hover:text-indigo-600 transition-colors" />
-                    </div>
-                  </Link>
-                </div>
-              ))}
+                        <div className="flex-1">
+                          <span
+                            className="text-xs font-mono"
+                            style={{ color: relatedCategoryColor }}
+                          >
+                            {related.id}
+                          </span>
+                          <h3 className="font-medium text-stellar-bright group-hover:text-tscore-creative transition-colors mt-0.5">
+                            {related.name[locale]}
+                          </h3>
+                        </div>
+                        <ArrowRight className="h-4 w-4 text-stellar-faint group-hover:text-tscore-creative transition-colors" />
+                      </motion.div>
+                    </Link>
+                  </div>
+                );
+              })}
             </div>
           </motion.div>
         )}
 
         {/* Back link */}
-        <div className="mt-12 pt-8 border-t border-gray-200">
+        <div className="mt-12 pt-8 border-t border-stellar-faint/20">
           <Link href={`/${locale}/agents`}>
-            <div className="inline-flex items-center gap-2 text-indigo-600 hover:text-indigo-700 font-medium group">
+            <div className="inline-flex items-center gap-2 text-tscore-creative hover:text-tscore-creative/80 font-medium group font-mono">
               <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
               {locale === 'ko' ? '모든 에이전트 보기' : 'View all agents'}
             </div>

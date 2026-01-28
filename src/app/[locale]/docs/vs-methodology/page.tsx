@@ -22,10 +22,10 @@ const content = {
     tscoreTitle: 'Understanding T-Score (Typicality)',
     tscoreDescription: 'T-Score measures how "typical" or predictable a response is. Higher scores indicate more common, expected answers.',
     tscoreRanges: [
-      { range: 'T > 0.7', label: 'Modal', description: 'Highly predictable, overused options', color: 'tscore-modal' },
-      { range: 'T 0.4-0.7', label: 'Established', description: 'Well-validated, commonly accepted', color: 'tscore-established' },
-      { range: 'T 0.2-0.4', label: 'Emerging', description: 'Innovative but grounded in literature', color: 'tscore-emerging' },
-      { range: 'T < 0.2', label: 'Experimental', description: 'Novel approaches requiring justification', color: 'tscore-experimental' },
+      { range: 'T > 0.7', label: 'Modal', description: 'Highly predictable, overused options', color: 'modal' },
+      { range: 'T 0.4-0.7', label: 'Established', description: 'Well-validated, commonly accepted', color: 'typical' },
+      { range: 'T 0.2-0.4', label: 'Emerging', description: 'Innovative but grounded in literature', color: 'creative' },
+      { range: 'T < 0.2', label: 'Experimental', description: 'Novel approaches requiring justification', color: 'divergent' },
     ],
 
     // Solution Section
@@ -69,38 +69,41 @@ const content = {
         level: 'FULL',
         description: 'Complete 5-phase process for critical decisions',
         agents: 'A1, A2, A3, B1',
+        tScore: 0.25,
       },
       {
         level: 'ENHANCED',
         description: '3-phase process (awareness, sampling, presentation)',
         agents: 'A4, A6, B2, B3, C1, C2',
+        tScore: 0.45,
       },
       {
         level: 'LIGHT',
         description: 'Basic modal awareness without full sampling',
         agents: 'D1-D4, E1-E5, F1-F5',
+        tScore: 0.65,
       },
     ],
 
     // Example
     exampleTitle: 'VS in Action',
     exampleInput: 'Help me choose a theoretical framework for AI adoption in education',
-    exampleOutput: `🔴 CHECKPOINT: CP_THEORY_SELECTION
+    exampleOutput: `CHECKPOINT: CP_THEORY_SELECTION
 
 [Modal Awareness]
 TAM (T=0.92) and UTAUT (T=0.85) are predictable choices.
 
 Recommended Alternatives:
 
-• Direction A (T≈0.6): Self-Determination Theory × TAM
+  Direction A (T=0.6): Self-Determination Theory x TAM
   - Adds intrinsic motivation dimensions
   - Addresses "why" not just "will they"
 
-• Direction B (T≈0.4): Cognitive Load Theory + Adaptive Ecosystem ⭐
+  Direction B (T=0.4): Cognitive Load Theory + Adaptive Ecosystem
   - Novel for AI adoption context
   - Explains learning-adoption interaction
 
-• Direction C (T≈0.2): Neuroplasticity-Based Technology Learning
+  Direction C (T=0.2): Neuroplasticity-Based Technology Learning
   - Highly innovative, requires strong justification
 
 Which direction would you like to proceed?`,
@@ -136,10 +139,10 @@ Which direction would you like to proceed?`,
     tscoreTitle: 'T-Score (전형성) 이해하기',
     tscoreDescription: 'T-Score는 응답이 얼마나 "전형적"이거나 예측 가능한지를 측정합니다. 높은 점수는 더 흔하고 예상되는 답변을 나타냅니다.',
     tscoreRanges: [
-      { range: 'T > 0.7', label: '모달', description: '매우 예측 가능, 과다 사용된 옵션', color: 'tscore-modal' },
-      { range: 'T 0.4-0.7', label: '확립됨', description: '잘 검증되고 일반적으로 수용됨', color: 'tscore-established' },
-      { range: 'T 0.2-0.4', label: '부상중', description: '혁신적이지만 문헌에 기반', color: 'tscore-emerging' },
-      { range: 'T < 0.2', label: '실험적', description: '정당화가 필요한 새로운 접근법', color: 'tscore-experimental' },
+      { range: 'T > 0.7', label: '모달', description: '매우 예측 가능, 과다 사용된 옵션', color: 'modal' },
+      { range: 'T 0.4-0.7', label: '확립됨', description: '잘 검증되고 일반적으로 수용됨', color: 'typical' },
+      { range: 'T 0.2-0.4', label: '부상중', description: '혁신적이지만 문헌에 기반', color: 'creative' },
+      { range: 'T < 0.2', label: '실험적', description: '정당화가 필요한 새로운 접근법', color: 'divergent' },
     ],
 
     // Solution Section
@@ -183,38 +186,41 @@ Which direction would you like to proceed?`,
         level: 'FULL',
         description: '중요한 결정을 위한 완전한 5단계 프로세스',
         agents: 'A1, A2, A3, B1',
+        tScore: 0.25,
       },
       {
         level: 'ENHANCED',
         description: '3단계 프로세스 (인식, 샘플링, 제시)',
         agents: 'A4, A6, B2, B3, C1, C2',
+        tScore: 0.45,
       },
       {
         level: 'LIGHT',
         description: '전체 샘플링 없이 기본 모달 인식',
         agents: 'D1-D4, E1-E5, F1-F5',
+        tScore: 0.65,
       },
     ],
 
     // Example
     exampleTitle: 'VS 실제 작동',
     exampleInput: 'AI 교육 채택을 위한 이론적 프레임워크를 선택해주세요',
-    exampleOutput: `🔴 체크포인트: CP_THEORY_SELECTION
+    exampleOutput: `체크포인트: CP_THEORY_SELECTION
 
 [모달 인식]
 TAM (T=0.92)과 UTAUT (T=0.85)는 예측 가능한 선택입니다.
 
 권장 대안:
 
-• 방향 A (T≈0.6): 자기결정이론 × TAM
+  방향 A (T=0.6): 자기결정이론 x TAM
   - 내재적 동기 차원 추가
   - "할 것인가" 뿐만 아니라 "왜"를 다룸
 
-• 방향 B (T≈0.4): 인지부하이론 + 적응적 생태계 ⭐
+  방향 B (T=0.4): 인지부하이론 + 적응적 생태계
   - AI 채택 맥락에서 새로움
   - 학습-채택 상호작용 설명
 
-• 방향 C (T≈0.2): 신경가소성 기반 기술 학습
+  방향 C (T=0.2): 신경가소성 기반 기술 학습
   - 매우 혁신적, 강력한 정당화 필요
 
 어떤 방향으로 진행하시겠습니까?`,
@@ -236,18 +242,35 @@ TAM (T=0.92)과 UTAUT (T=0.85)는 예측 가능한 선택입니다.
   },
 };
 
-const tscoreColors: Record<string, string> = {
-  'tscore-modal': 'bg-red-100 text-red-700 border-red-300',
-  'tscore-established': 'bg-blue-100 text-blue-700 border-blue-300',
-  'tscore-emerging': 'bg-emerald-100 text-emerald-700 border-emerald-300',
-  'tscore-experimental': 'bg-purple-100 text-purple-700 border-purple-300',
+// T-Score colors from design system
+const tscoreColors: Record<string, { text: string; bg: string; bar: string }> = {
+  modal: { text: '#ff3366', bg: 'rgba(255, 51, 102, 0.1)', bar: '#ff3366' },
+  typical: { text: '#ff8844', bg: 'rgba(255, 136, 68, 0.1)', bar: '#ff8844' },
+  creative: { text: '#44ffaa', bg: 'rgba(68, 255, 170, 0.1)', bar: '#44ffaa' },
+  divergent: { text: '#22ccff', bg: 'rgba(34, 204, 255, 0.1)', bar: '#22ccff' },
 };
 
-const tscoreBarColors: Record<string, string> = {
-  'tscore-modal': 'bg-red-500',
-  'tscore-established': 'bg-blue-500',
-  'tscore-emerging': 'bg-emerald-500',
-  'tscore-experimental': 'bg-purple-500',
+// Helper to get T-Score color
+function getTScoreColor(score: number): string {
+  if (score >= 0.8) return '#ff3366';
+  if (score >= 0.6) return '#ff8844';
+  if (score >= 0.4) return '#ffcc22';
+  if (score >= 0.2) return '#44ffaa';
+  return '#22ccff';
+}
+
+// Animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
 };
 
 export default function VSMethodologyPage() {
@@ -255,12 +278,12 @@ export default function VSMethodologyPage() {
   const t = content[locale];
 
   return (
-    <div className="py-12 sm:py-16">
+    <div className="min-h-screen bg-void-deep py-16 sm:py-24">
       <div className="mx-auto max-w-4xl px-6 lg:px-8">
         {/* Back link */}
         <Link
           href={`/${locale}/docs`}
-          className="inline-flex items-center gap-2 text-diverga-600 hover:text-diverga-700 mb-8"
+          className="void-nav-link inline-flex items-center gap-2 mb-8"
         >
           <ArrowLeft className="h-4 w-4" />
           {t.back}
@@ -270,79 +293,120 @@ export default function VSMethodologyPage() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="text-center mb-16"
         >
-          <h1 className="text-h1 font-bold text-[var(--foreground)]">{t.title}</h1>
-          <p className="mt-4 text-xl text-[var(--muted-foreground)]">{t.subtitle}</p>
+          {/* T-Score Badge */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2 }}
+            className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-stellar-faint/20 bg-void-surface/50 backdrop-blur-sm"
+          >
+            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#44ffaa' }} />
+            <span className="font-mono text-xs uppercase tracking-widest text-stellar-faint">
+              Creative Range
+            </span>
+            <span className="font-mono text-sm text-stellar-dim">T-0.42</span>
+          </motion.div>
+
+          <h1 className="void-heading-1 text-stellar-core mb-4">{t.title}</h1>
+          <p className="text-body-lg text-stellar-dim max-w-2xl mx-auto">{t.subtitle}</p>
         </motion.div>
+
+        {/* Section Divider */}
+        <div className="void-divider-glow mb-16" />
 
         {/* Problem Section */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           className="mb-16"
         >
           <div className="flex items-center gap-3 mb-4">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-red-100">
-              <AlertTriangle className="h-5 w-5 text-red-600" />
+            <div
+              className="flex h-10 w-10 items-center justify-center border border-stellar-faint/20"
+              style={{ backgroundColor: 'rgba(255, 51, 102, 0.15)' }}
+            >
+              <AlertTriangle className="h-5 w-5" style={{ color: '#ff3366' }} />
             </div>
-            <h2 className="text-h2 font-bold text-[var(--foreground)]">{t.problemTitle}</h2>
+            <h2 className="void-heading-2 text-stellar-core">{t.problemTitle}</h2>
           </div>
-          <p className="text-lg text-[var(--muted-foreground)] mb-6">{t.problemDescription}</p>
+          <p className="text-body-lg text-stellar-dim mb-6">{t.problemDescription}</p>
 
-          <div className="rounded-xl border border-red-200 bg-red-50 p-6">
-            <p className="text-sm text-red-600 mb-2">{t.problemExample}</p>
+          <div
+            className="p-6 border"
+            style={{
+              backgroundColor: 'rgba(255, 51, 102, 0.05)',
+              borderColor: 'rgba(255, 51, 102, 0.2)',
+            }}
+          >
+            <p className="font-mono text-sm mb-2" style={{ color: '#ff3366' }}>{t.problemExample}</p>
             <div className="flex items-center gap-3 mb-4">
-              <ArrowRight className="h-5 w-5 text-red-500" />
-              <span className="text-xl font-bold text-red-700">{t.problemResponse}</span>
+              <ArrowRight className="h-5 w-5" style={{ color: '#ff3366' }} />
+              <span className="void-heading-3" style={{ color: '#ff3366' }}>{t.problemResponse}</span>
             </div>
-            <p className="text-sm text-red-700">{t.problemExplanation}</p>
+            <p className="text-body text-stellar-dim">{t.problemExplanation}</p>
           </div>
         </motion.section>
+
+        {/* Section Divider */}
+        <div className="border-b border-stellar-faint/10 mb-16" />
 
         {/* T-Score Section */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           className="mb-16"
         >
           <div className="flex items-center gap-3 mb-4">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-diverga-100">
-              <TrendingUp className="h-5 w-5 text-diverga-600" />
+            <div
+              className="flex h-10 w-10 items-center justify-center border border-stellar-faint/20"
+              style={{ backgroundColor: 'rgba(68, 255, 170, 0.15)' }}
+            >
+              <TrendingUp className="h-5 w-5" style={{ color: '#44ffaa' }} />
             </div>
-            <h2 className="text-h2 font-bold text-[var(--foreground)]">{t.tscoreTitle}</h2>
+            <h2 className="void-heading-2 text-stellar-core">{t.tscoreTitle}</h2>
           </div>
-          <p className="text-lg text-[var(--muted-foreground)] mb-6">{t.tscoreDescription}</p>
+          <p className="text-body-lg text-stellar-dim mb-8">{t.tscoreDescription}</p>
 
-          {/* T-Score Visualization with clean gradient bars */}
-          <div className="rounded-xl bg-white p-8 mb-8
-            shadow-[0_1px_3px_rgba(0,0,0,0.1)]
-            border border-gray-100">
+          {/* T-Score Visualization */}
+          <div className="bg-void-elevated border border-stellar-faint/10 p-8 mb-8">
             <div className="space-y-6">
               {t.tscoreRanges.map((item, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.25 + index * 0.1 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
                   className="flex items-center gap-6"
                 >
-                  <div className="w-28 text-sm font-mono font-bold text-gray-700">
+                  <div className="w-24 font-mono text-sm font-bold text-stellar-dim">
                     {item.range}
                   </div>
                   <div className="flex-1">
-                    <div className="h-10 rounded-lg overflow-hidden bg-gray-100">
+                    <div className="h-8 bg-void-surface border border-stellar-faint/10 overflow-hidden">
                       <motion.div
-                        className={`h-full ${tscoreBarColors[item.color]}`}
+                        className="h-full"
+                        style={{ backgroundColor: tscoreColors[item.color].bar }}
                         initial={{ width: 0 }}
-                        animate={{ width: `${100 - index * 25}%` }}
+                        whileInView={{ width: `${100 - index * 25}%` }}
+                        viewport={{ once: true }}
                         transition={{ duration: 0.8, delay: 0.3 + index * 0.1, ease: "easeOut" }}
                       />
                     </div>
                   </div>
-                  <div className={`px-4 py-2 rounded-lg text-sm font-bold ${tscoreColors[item.color]}`}>
+                  <div
+                    className="px-3 py-1.5 font-mono text-xs uppercase tracking-wider border"
+                    style={{
+                      color: tscoreColors[item.color].text,
+                      backgroundColor: tscoreColors[item.color].bg,
+                      borderColor: `${tscoreColors[item.color].text}30`,
+                    }}
+                  >
                     {item.label}
                   </div>
                 </motion.div>
@@ -350,95 +414,139 @@ export default function VSMethodologyPage() {
             </div>
           </div>
 
-          {/* T-Score Legend */}
+          {/* T-Score Legend Cards */}
           <div className="grid gap-4 sm:grid-cols-2">
             {t.tscoreRanges.map((item, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 + index * 0.1 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
                 whileHover={{ y: -4 }}
-                className={`rounded-xl p-5 ${tscoreColors[item.color]} border-2 cursor-default
-                  shadow-[0_1px_3px_rgba(0,0,0,0.1)]
-                  hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1)]
-                  transition-all duration-200`}
+                className="p-5 border transition-all duration-300"
+                style={{
+                  backgroundColor: tscoreColors[item.color].bg,
+                  borderColor: `${tscoreColors[item.color].text}30`,
+                }}
               >
                 <div className="flex items-center justify-between mb-2">
-                  <span className="font-bold text-base">{item.label}</span>
-                  <span className="text-sm font-mono font-bold px-2 py-1 rounded-lg bg-white/60">{item.range}</span>
+                  <span
+                    className="font-mono font-bold"
+                    style={{ color: tscoreColors[item.color].text }}
+                  >
+                    {item.label}
+                  </span>
+                  <span
+                    className="font-mono text-sm px-2 py-1 bg-void-deep/50"
+                    style={{ color: tscoreColors[item.color].text }}
+                  >
+                    {item.range}
+                  </span>
                 </div>
-                <p className="text-sm leading-relaxed font-medium">{item.description}</p>
+                <p className="text-body text-stellar-dim leading-relaxed">{item.description}</p>
               </motion.div>
             ))}
           </div>
         </motion.section>
 
+        {/* Section Divider */}
+        <div className="border-b border-stellar-faint/10 mb-16" />
+
         {/* Solution Section */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           className="mb-16"
         >
           <div className="flex items-center gap-3 mb-4">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-100">
-              <Lightbulb className="h-5 w-5 text-emerald-600" />
+            <div
+              className="flex h-10 w-10 items-center justify-center border border-stellar-faint/20"
+              style={{ backgroundColor: 'rgba(68, 255, 170, 0.15)' }}
+            >
+              <Lightbulb className="h-5 w-5" style={{ color: '#44ffaa' }} />
             </div>
-            <h2 className="text-h2 font-bold text-[var(--foreground)]">{t.solutionTitle}</h2>
+            <h2 className="void-heading-2 text-stellar-core">{t.solutionTitle}</h2>
           </div>
-          <p className="text-lg text-[var(--muted-foreground)]">{t.solutionDescription}</p>
+          <p className="text-body-lg text-stellar-dim">{t.solutionDescription}</p>
         </motion.section>
+
+        {/* Section Divider */}
+        <div className="border-b border-stellar-faint/10 mb-16" />
 
         {/* VS Process Section - 5-Phase Timeline */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           className="mb-16"
         >
-          <h2 className="text-h2 font-bold text-gray-900 mb-12 text-center">{t.processTitle}</h2>
+          <h2 className="void-heading-2 text-stellar-core mb-12 text-center">{t.processTitle}</h2>
 
           <div className="relative">
             {/* Connector line */}
-            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-diverga-200 via-diverga-300 to-diverga-400" />
+            <div
+              className="absolute left-8 top-0 bottom-0 w-px"
+              style={{
+                background: 'linear-gradient(180deg, rgba(68, 255, 170, 0.2) 0%, rgba(34, 204, 255, 0.2) 100%)',
+              }}
+            />
 
-            <div className="space-y-8">
+            <div className="space-y-6">
               {t.phases.map((phase, index) => (
                 <motion.div
                   key={phase.number}
                   initial={{ opacity: 0, x: -40 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.5 + index * 0.15 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.15 }}
                   whileHover={{ x: 4 }}
                   className="flex gap-6 relative"
                 >
                   {/* Phase number */}
                   <div className="flex-shrink-0 relative z-10">
-                    <div className={`flex h-16 w-16 items-center justify-center rounded-xl font-bold text-xl
-                      ${phase.number === 5
-                        ? 'bg-indigo-600 text-white border-2 border-indigo-400'
-                        : 'bg-diverga-500 text-white'}`}>
+                    <div
+                      className="flex h-16 w-16 items-center justify-center font-mono text-xl font-bold"
+                      style={{
+                        backgroundColor: phase.number === 5 ? '#9b59b6' : '#44ffaa',
+                        color: '#050508',
+                        boxShadow: `0 0 20px ${phase.number === 5 ? 'rgba(155, 89, 182, 0.3)' : 'rgba(68, 255, 170, 0.3)'}`,
+                      }}
+                    >
                       {phase.number}
                     </div>
                   </div>
 
                   {/* Phase card */}
-                  <div className={`flex-1 rounded-xl p-6
-                    shadow-[0_1px_3px_rgba(0,0,0,0.1)]
-                    hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1)]
-                    border-2 transition-all duration-200
-                    ${phase.number === 5
-                      ? 'bg-white border-indigo-300'
-                      : 'bg-white border-gray-200'}`}>
+                  <div
+                    className="flex-1 p-6 border transition-all duration-300"
+                    style={{
+                      backgroundColor: phase.number === 5 ? 'rgba(155, 89, 182, 0.05)' : 'rgba(18, 18, 26, 1)',
+                      borderColor: phase.number === 5 ? 'rgba(155, 89, 182, 0.3)' : 'rgba(68, 68, 90, 0.3)',
+                    }}
+                  >
                     <div className="flex items-center gap-3 mb-3">
-                      <h3 className={`font-bold text-lg
-                        ${phase.number === 5 ? 'text-indigo-700' : 'text-gray-900'}`}>
+                      <h3
+                        className="void-heading-3"
+                        style={{ color: phase.number === 5 ? '#9b59b6' : '#f0f0f5' }}
+                      >
                         {phase.title}
                       </h3>
-                      {phase.number === 5 && <span className="text-indigo-500">⭐</span>}
+                      {phase.number === 5 && (
+                        <span
+                          className="px-2 py-0.5 font-mono text-xs uppercase"
+                          style={{
+                            color: '#9b59b6',
+                            backgroundColor: 'rgba(155, 89, 182, 0.1)',
+                            border: '1px solid rgba(155, 89, 182, 0.3)',
+                          }}
+                        >
+                          Human Decision
+                        </span>
+                      )}
                     </div>
-                    <p className={`leading-relaxed ${phase.number === 5 ? 'text-gray-800' : 'text-gray-600'}`}>
+                    <p className="text-body text-stellar-dim leading-relaxed">
                       {phase.description}
                     </p>
                   </div>
@@ -448,111 +556,164 @@ export default function VSMethodologyPage() {
           </div>
         </motion.section>
 
+        {/* Section Divider */}
+        <div className="border-b border-stellar-faint/10 mb-16" />
+
         {/* VS Levels Section */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           className="mb-16"
         >
-          <h2 className="text-h2 font-bold text-[var(--foreground)] mb-6">{t.levelsTitle}</h2>
+          <h2 className="void-heading-2 text-stellar-core mb-6">{t.levelsTitle}</h2>
 
           <div className="grid gap-4 sm:grid-cols-3">
-            {t.levels.map((level) => (
-              <div
+            {t.levels.map((level, index) => (
+              <motion.div
                 key={level.level}
-                className={`rounded-xl border p-5 ${
-                  level.level === 'FULL'
-                    ? 'border-emerald-300 bg-emerald-50'
-                    : level.level === 'ENHANCED'
-                    ? 'border-cyan-300 bg-cyan-50'
-                    : 'border-[var(--border)] bg-[var(--card)]'
-                }`}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -4 }}
+                className="p-5 bg-void-elevated border border-stellar-faint/10 transition-all duration-300"
               >
-                <div className={`inline-flex px-3 py-1 rounded-full text-sm font-semibold mb-3 ${
-                  level.level === 'FULL'
-                    ? 'bg-emerald-200 text-emerald-800'
-                    : level.level === 'ENHANCED'
-                    ? 'bg-cyan-200 text-cyan-800'
-                    : 'bg-[var(--muted)] text-[var(--muted-foreground)]'
-                }`}>
-                  {level.level}
+                <div className="flex items-center justify-between mb-3">
+                  <div
+                    className="px-3 py-1 font-mono text-xs uppercase tracking-wider"
+                    style={{
+                      color: level.level === 'FULL' ? '#44ffaa' : level.level === 'ENHANCED' ? '#22ccff' : '#8888aa',
+                      backgroundColor: level.level === 'FULL' ? 'rgba(68, 255, 170, 0.1)' : level.level === 'ENHANCED' ? 'rgba(34, 204, 255, 0.1)' : 'rgba(136, 136, 170, 0.1)',
+                      border: `1px solid ${level.level === 'FULL' ? 'rgba(68, 255, 170, 0.3)' : level.level === 'ENHANCED' ? 'rgba(34, 204, 255, 0.3)' : 'rgba(136, 136, 170, 0.3)'}`,
+                    }}
+                  >
+                    {level.level}
+                  </div>
+                  {/* T-Score indicator */}
+                  <div className="flex items-center gap-1.5">
+                    <div
+                      className="w-1.5 h-1.5 rounded-full"
+                      style={{ backgroundColor: getTScoreColor(level.tScore) }}
+                    />
+                    <span className="font-mono text-xs text-stellar-faint">
+                      T-{level.tScore.toFixed(2)}
+                    </span>
+                  </div>
                 </div>
-                <p className="text-sm text-[var(--foreground)] mb-2">{level.description}</p>
-                <p className="text-xs font-mono text-[var(--muted-foreground)]">{level.agents}</p>
-              </div>
+                <p className="text-body text-stellar-dim mb-3">{level.description}</p>
+                <p className="font-mono text-xs text-stellar-faint">{level.agents}</p>
+              </motion.div>
             ))}
           </div>
         </motion.section>
 
-        {/* Example Section */}
+        {/* Section Divider */}
+        <div className="border-b border-stellar-faint/10 mb-16" />
+
+        {/* Example Section - Terminal Style */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           className="mb-16"
         >
-          <h2 className="text-h2 font-bold text-[var(--foreground)] mb-6">{t.exampleTitle}</h2>
+          <h2 className="void-heading-2 text-stellar-core mb-6">{t.exampleTitle}</h2>
 
           <div className="space-y-4">
             {/* Input */}
-            <div className="rounded-xl border border-[var(--border)] bg-[var(--card)] p-4">
-              <div className="text-sm font-medium text-[var(--muted-foreground)] mb-2">Input</div>
-              <p className="text-[var(--foreground)]">{t.exampleInput}</p>
+            <div className="bg-void-elevated border border-stellar-faint/10 p-4">
+              <div className="font-mono text-xs uppercase tracking-wider text-stellar-faint mb-2">Input</div>
+              <p className="text-stellar-bright">{t.exampleInput}</p>
             </div>
 
-            {/* Output */}
-            <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-4">
-              <div className="flex items-center gap-2 mb-3">
-                <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-sm font-medium text-emerald-700">A2 Response</span>
+            {/* Output - Terminal style */}
+            <div className="void-terminal overflow-hidden">
+              <div className="void-terminal-header">
+                <div className="void-terminal-dot" style={{ backgroundColor: '#ff5f56' }} />
+                <div className="void-terminal-dot" style={{ backgroundColor: '#ffbd2e' }} />
+                <div className="void-terminal-dot" style={{ backgroundColor: '#27c93f' }} />
+                <span className="ml-3 font-mono text-xs text-stellar-faint uppercase tracking-wider">
+                  A2 Response
+                </span>
+                <div className="ml-auto flex items-center gap-1.5">
+                  <div className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ backgroundColor: '#44ffaa' }} />
+                  <span className="font-mono text-xs" style={{ color: '#44ffaa' }}>Active</span>
+                </div>
               </div>
-              <pre className="whitespace-pre-wrap text-sm text-emerald-800 font-mono">
-                {t.exampleOutput}
-              </pre>
+              <div className="p-4 void-terminal-content">
+                <pre className="whitespace-pre-wrap font-mono text-sm text-stellar-bright">
+                  {t.exampleOutput}
+                </pre>
+              </div>
             </div>
           </div>
         </motion.section>
+
+        {/* Section Divider */}
+        <div className="border-b border-stellar-faint/10 mb-16" />
 
         {/* Benefits Section */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           className="mb-16"
         >
           <div className="flex items-center gap-3 mb-6">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gold-100">
-              <Sparkles className="h-5 w-5 text-gold-600" />
+            <div
+              className="flex h-10 w-10 items-center justify-center border border-stellar-faint/20"
+              style={{ backgroundColor: 'rgba(255, 204, 34, 0.15)' }}
+            >
+              <Sparkles className="h-5 w-5" style={{ color: '#ffcc22' }} />
             </div>
-            <h2 className="text-h2 font-bold text-[var(--foreground)]">{t.benefitsTitle}</h2>
+            <h2 className="void-heading-2 text-stellar-core">{t.benefitsTitle}</h2>
           </div>
 
-          <div className="rounded-xl border border-[var(--border)] bg-[var(--card)] p-6">
-            <ul className="space-y-3">
+          <div className="bg-void-elevated border border-stellar-faint/10 p-6">
+            <motion.ul
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="space-y-3"
+            >
               {t.benefits.map((benefit, index) => (
-                <li key={index} className="flex items-start gap-3">
-                  <CheckCircle2 className="h-5 w-5 text-emerald-500 flex-shrink-0 mt-0.5" />
-                  <span className="text-[var(--foreground)]">{benefit}</span>
-                </li>
+                <motion.li
+                  key={index}
+                  variants={itemVariants}
+                  className="flex items-start gap-3"
+                >
+                  <CheckCircle2 className="h-5 w-5 flex-shrink-0 mt-0.5" style={{ color: '#44ffaa' }} />
+                  <span className="text-stellar-bright">{benefit}</span>
+                </motion.li>
               ))}
-            </ul>
+            </motion.ul>
           </div>
         </motion.section>
+
+        {/* Section Divider */}
+        <div className="void-divider-glow mb-16" />
 
         {/* CTA Section */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           className="text-center"
         >
-          <div className="rounded-2xl bg-gradient-to-br from-diverga-500 to-teal-500 p-8 text-white">
-            <h2 className="text-h2 font-bold mb-2">{t.ctaTitle}</h2>
-            <p className="text-diverga-100 mb-6">{t.ctaDescription}</p>
+          <div
+            className="p-8 border"
+            style={{
+              background: 'linear-gradient(135deg, rgba(68, 255, 170, 0.1) 0%, rgba(34, 204, 255, 0.1) 100%)',
+              borderColor: 'rgba(68, 255, 170, 0.2)',
+            }}
+          >
+            <h2 className="void-heading-2 text-stellar-core mb-2">{t.ctaTitle}</h2>
+            <p className="text-body text-stellar-dim mb-6">{t.ctaDescription}</p>
             <Link
               href={`/${locale}/agents?tier=all&paradigm=all&category=A`}
-              className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 font-semibold text-diverga-600 hover:bg-diverga-50 transition-colors"
+              className="void-btn void-btn-accent inline-flex items-center gap-2"
             >
               {t.ctaButton}
               <ArrowRight className="h-5 w-5" />

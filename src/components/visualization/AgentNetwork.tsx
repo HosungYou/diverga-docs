@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { agents } from '@/lib/data/agents';
 
 interface NetworkNode {
   id: string;
@@ -12,7 +13,8 @@ interface NetworkNode {
   category: string;
   color: string;
   connections: string[];
-  label?: string;
+  name: { en: string; ko: string };
+  icon: string;
 }
 
 const CATEGORY_COLORS: Record<string, string> = {
@@ -28,13 +30,18 @@ const CATEGORY_COLORS: Record<string, string> = {
 
 const CATEGORY_LABELS: Record<string, { en: string; ko: string }> = {
   A: { en: 'Foundation', ko: '기초 설계' },
-  B: { en: 'Literature', ko: '문헌 검토' },
-  C: { en: 'Methodology', ko: '방법론' },
-  D: { en: 'Data', ko: '데이터' },
+  B: { en: 'Evidence', ko: '문헌·근거' },
+  C: { en: 'Design & Meta', ko: '설계·메타' },
+  D: { en: 'Data Collection', ko: '자료 수집' },
   E: { en: 'Analysis', ko: '분석' },
   F: { en: 'Quality', ko: '품질 관리' },
-  G: { en: 'Publication', ko: '출판' },
+  G: { en: 'Communication', ko: '커뮤니케이션' },
   H: { en: 'Specialized', ko: '특수' },
+};
+
+// Agent counts per category (from actual agents.ts data)
+const AGENT_COUNTS: Record<string, number> = {
+  A: 6, B: 5, C: 7, D: 4, E: 5, F: 5, G: 6, H: 2
 };
 
 interface AgentNetworkProps {
@@ -56,7 +63,7 @@ export function AgentNetwork({
   const animationRef = useRef<number>(0);
   const mouseRef = useRef({ x: -1000, y: -1000 });
 
-  // Generate initial node positions
+  // Generate initial node positions from real agents data
   const generateNodes = useCallback((width: number, height: number): NetworkNode[] => {
     const categories = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
     const nodes: NetworkNode[] = [];
@@ -64,62 +71,39 @@ export function AgentNetwork({
     const centerY = height / 2;
     const radius = Math.min(width, height) * 0.35;
 
-    // Agent counts per category (approximate real counts)
-    const agentCounts: Record<string, number> = {
-      A: 6, B: 5, C: 7, D: 4, E: 5, F: 5, G: 6, H: 2
-    };
+    // Group agents by category
+    const agentsByCategory: Record<string, typeof agents> = {};
+    agents.forEach(agent => {
+      if (!agentsByCategory[agent.category]) {
+        agentsByCategory[agent.category] = [];
+      }
+      agentsByCategory[agent.category].push(agent);
+    });
 
     categories.forEach((cat, catIndex) => {
-      const count = agentCounts[cat];
+      const categoryAgents = agentsByCategory[cat] || [];
+      const count = categoryAgents.length;
       const categoryAngle = (catIndex / categories.length) * Math.PI * 2 - Math.PI / 2;
 
-      for (let i = 0; i < count; i++) {
-        const spreadAngle = categoryAngle + (i - count / 2) * 0.12;
-        const spreadRadius = radius + (Math.random() - 0.5) * 60;
+      categoryAgents.forEach((agent, i) => {
+        const spreadAngle = categoryAngle + (i - count / 2) * 0.15;
+        const spreadRadius = radius + (Math.random() - 0.5) * 50;
+
+        // Use relatedAgents from actual data for connections
+        const connections = agent.relatedAgents || [];
 
         nodes.push({
-          id: `${cat}${i + 1}`,
+          id: agent.id,
           x: centerX + Math.cos(spreadAngle) * spreadRadius,
           y: centerY + Math.sin(spreadAngle) * spreadRadius,
           vx: 0,
           vy: 0,
           category: cat,
           color: CATEGORY_COLORS[cat],
-          connections: [],
-          label: `${cat}${i + 1}`,
+          connections,
+          name: agent.name,
+          icon: agent.icon,
         });
-      }
-    });
-
-    // Generate connections (within category and some cross-category)
-    nodes.forEach((node) => {
-      const sameCategory = nodes.filter((n) => n.category === node.category && n.id !== node.id);
-      const otherNodes = nodes.filter((n) => n.category !== node.category);
-
-      // Connect to nodes in same category
-      sameCategory.forEach((n) => {
-        if (!node.connections.includes(n.id)) {
-          node.connections.push(n.id);
-        }
-      });
-
-      // Connect to 1-2 random nodes from adjacent categories
-      const adjacentCategories = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
-      const catIndex = adjacentCategories.indexOf(node.category);
-      const adjacentCats = [
-        adjacentCategories[(catIndex + 1) % 8],
-        adjacentCategories[(catIndex + 7) % 8],
-      ];
-
-      const crossConnections = otherNodes
-        .filter((n) => adjacentCats.includes(n.category))
-        .sort(() => Math.random() - 0.5)
-        .slice(0, 2);
-
-      crossConnections.forEach((n) => {
-        if (!node.connections.includes(n.id)) {
-          node.connections.push(n.id);
-        }
       });
     });
 
@@ -307,24 +291,24 @@ export function AgentNetwork({
             exit={{ opacity: 0, scale: 0.95 }}
             className="pointer-events-none absolute z-10 border border-stellar-faint/20 bg-void-surface/95 p-3 backdrop-blur-sm"
             style={{
-              left: hoveredNode.x + 20,
-              top: hoveredNode.y - 40,
+              left: Math.min(hoveredNode.x + 20, dimensions.width - 220),
+              top: Math.max(hoveredNode.y - 60, 10),
             }}
           >
             <div className="flex items-center gap-2">
-              <div
-                className="h-3 w-3"
-                style={{ backgroundColor: hoveredNode.color }}
-              />
+              <span className="text-lg">{hoveredNode.icon}</span>
               <span className="font-display text-sm font-semibold text-stellar-core">
-                Agent {hoveredNode.id}
+                {hoveredNode.id}
               </span>
             </div>
+            <p className="mt-1 max-w-[180px] text-caption text-stellar-bright">
+              {hoveredNode.name[locale as 'en' | 'ko']}
+            </p>
             <p className="mt-1 font-mono text-micro text-stellar-faint">
               {CATEGORY_LABELS[hoveredNode.category][locale as 'en' | 'ko']}
             </p>
             <p className="mt-1 font-mono text-micro text-stellar-dim">
-              {hoveredNode.connections.length} connections
+              {hoveredNode.connections.length} {locale === 'ko' ? '연결' : 'connections'}
             </p>
           </motion.div>
         )}
@@ -348,7 +332,7 @@ export function AgentNetwork({
       {/* Title */}
       <div className="absolute left-4 top-4">
         <span className="font-mono text-micro uppercase tracking-widest text-stellar-faint">
-          {locale === 'ko' ? '27 에이전트 네트워크' : '27 Agent Network'}
+          {locale === 'ko' ? '40 에이전트 네트워크' : '40 Agent Network'}
         </span>
       </div>
     </div>

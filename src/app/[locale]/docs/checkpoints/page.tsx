@@ -340,24 +340,34 @@ const content = {
   },
 };
 
-const levelColors: Record<string, { bg: string; border: string; text: string; badge: string }> = {
+// T-Score color utility
+function getTScoreColor(score: number): string {
+  if (score >= 0.8) return '#ff3366';
+  if (score >= 0.6) return '#ff8844';
+  if (score >= 0.4) return '#ffcc22';
+  if (score >= 0.2) return '#44ffaa';
+  return '#22ccff';
+}
+
+// Checkpoint level colors - void style
+const levelColors: Record<string, { bg: string; border: string; text: string; glow: string }> = {
   red: {
-    bg: 'bg-red-50',
-    border: 'border-red-200',
-    text: 'text-red-700',
-    badge: 'bg-red-100 text-red-800 border-red-300',
+    bg: 'rgba(255, 51, 102, 0.1)',
+    border: 'rgba(255, 51, 102, 0.3)',
+    text: '#ff3366',
+    glow: 'rgba(255, 51, 102, 0.2)',
   },
   amber: {
-    bg: 'bg-amber-50',
-    border: 'border-amber-200',
-    text: 'text-amber-700',
-    badge: 'bg-amber-100 text-amber-800 border-amber-300',
+    bg: 'rgba(255, 136, 68, 0.1)',
+    border: 'rgba(255, 136, 68, 0.3)',
+    text: '#ff8844',
+    glow: 'rgba(255, 136, 68, 0.2)',
   },
   yellow: {
-    bg: 'bg-yellow-50',
-    border: 'border-yellow-200',
-    text: 'text-yellow-700',
-    badge: 'bg-yellow-100 text-yellow-800 border-yellow-300',
+    bg: 'rgba(255, 204, 34, 0.1)',
+    border: 'rgba(255, 204, 34, 0.3)',
+    text: '#ffcc22',
+    glow: 'rgba(255, 204, 34, 0.2)',
   },
 };
 
@@ -368,10 +378,24 @@ const whyIcons: Record<string, React.ReactNode> = {
 };
 
 const responseIcons: Record<string, React.ReactNode> = {
-  check: <CheckCircle2 className="h-5 w-5 text-emerald-500" />,
-  x: <AlertTriangle className="h-5 w-5 text-amber-500" />,
-  help: <HelpCircle className="h-5 w-5 text-blue-500" />,
-  list: <Sparkles className="h-5 w-5 text-purple-500" />,
+  check: <CheckCircle2 className="h-5 w-5" style={{ color: '#44ffaa' }} />,
+  x: <AlertTriangle className="h-5 w-5" style={{ color: '#ff8844' }} />,
+  help: <HelpCircle className="h-5 w-5" style={{ color: '#22ccff' }} />,
+  list: <Sparkles className="h-5 w-5" style={{ color: '#9b59b6' }} />,
+};
+
+// Animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
 };
 
 export default function CheckpointsPage() {
@@ -379,140 +403,200 @@ export default function CheckpointsPage() {
   const t = content[locale];
 
   return (
-    <div className="py-12 sm:py-16">
+    <div className="min-h-screen bg-void-deep py-16 sm:py-24">
       <div className="mx-auto max-w-4xl px-6 lg:px-8">
         {/* Back link */}
         <Link
           href={`/${locale}/docs`}
-          className="inline-flex items-center gap-2 text-diverga-600 hover:text-diverga-700 mb-8"
+          className="void-nav-link inline-flex items-center gap-2 mb-8"
         >
           <ArrowLeft className="h-4 w-4" />
           {t.back}
         </Link>
 
-        {/* Section 1: Hero - Light aurora gradient */}
+        {/* Section 1: Hero */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-16 -mx-6 lg:-mx-8 px-6 lg:px-8 py-16 rounded-2xl
-            bg-gradient-to-br from-indigo-50 via-white to-purple-50
-            shadow-[0_1px_3px_rgba(0,0,0,0.1)]
-            border border-gray-200"
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center mb-16 px-8 py-16 bg-void-elevated border border-stellar-faint/10 relative overflow-hidden"
         >
-          {/* Traffic light visualization - clean colors */}
-          <div className="flex justify-center mb-8 gap-6">
-            <div className="flex flex-col items-center gap-3">
-              <div className="w-16 h-16 rounded-full bg-red-500 flex items-center justify-center text-white font-bold text-2xl">
-                🔴
-              </div>
-              <span className="text-xs font-bold text-red-700 uppercase tracking-wider">Required</span>
-            </div>
+          {/* Subtle glow background */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: 'radial-gradient(ellipse at center top, rgba(155, 89, 182, 0.1) 0%, transparent 50%)',
+            }}
+          />
 
-            <div className="flex flex-col items-center gap-3">
-              <div className="w-16 h-16 rounded-full bg-amber-500 flex items-center justify-center text-white font-bold text-2xl">
-                🟠
-              </div>
-              <span className="text-xs font-bold text-amber-700 uppercase tracking-wider">Recommended</span>
-            </div>
-
-            <div className="flex flex-col items-center gap-3">
-              <div className="w-16 h-16 rounded-full bg-yellow-400 flex items-center justify-center text-white font-bold text-2xl">
-                🟡
-              </div>
-              <span className="text-xs font-bold text-yellow-700 uppercase tracking-wider">Optional</span>
-            </div>
+          {/* Traffic light visualization */}
+          <div className="flex justify-center mb-8 gap-6 relative z-10">
+            {[
+              { color: '#ff3366', label: 'Required' },
+              { color: '#ff8844', label: 'Recommended' },
+              { color: '#ffcc22', label: 'Optional' },
+            ].map((item, i) => (
+              <motion.div
+                key={item.label}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2 + i * 0.1 }}
+                className="flex flex-col items-center gap-3"
+              >
+                <div
+                  className="w-14 h-14 rounded-full flex items-center justify-center"
+                  style={{
+                    backgroundColor: item.color,
+                    boxShadow: `0 0 20px ${item.color}40`,
+                  }}
+                />
+                <span
+                  className="font-mono text-xs uppercase tracking-wider"
+                  style={{ color: item.color }}
+                >
+                  {item.label}
+                </span>
+              </motion.div>
+            ))}
           </div>
 
-          <div className="flex justify-center mb-6">
-            <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-indigo-600">
-              <Hand className="h-10 w-10 text-white" />
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3 }}
+            className="flex justify-center mb-6"
+          >
+            <div
+              className="flex h-20 w-20 items-center justify-center border border-stellar-faint/20"
+              style={{ backgroundColor: 'rgba(155, 89, 182, 0.15)' }}
+            >
+              <Hand className="h-10 w-10" style={{ color: '#9b59b6' }} />
             </div>
-          </div>
-          <h1 className="text-h1 font-bold text-gray-900 mb-4">{t.title}</h1>
-          <p className="text-2xl text-indigo-700 font-bold mb-4">{t.subtitle}</p>
-          <p className="text-lg text-gray-700 italic max-w-2xl mx-auto">{t.philosophy}</p>
+          </motion.div>
+
+          <h1 className="void-heading-1 text-stellar-core mb-4">{t.title}</h1>
+          <p className="void-heading-3 mb-4" style={{ color: '#9b59b6' }}>{t.subtitle}</p>
+          <p className="text-body-lg text-stellar-dim italic max-w-2xl mx-auto">{t.philosophy}</p>
         </motion.div>
+
+        {/* Section Divider */}
+        <div className="void-divider-glow mb-16" />
 
         {/* Section 2: Why Checkpoints Exist */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           className="mb-16"
         >
           <div className="flex items-center gap-3 mb-4">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-diverga-100">
-              <Shield className="h-5 w-5 text-diverga-600" />
+            <div
+              className="flex h-10 w-10 items-center justify-center border border-stellar-faint/20"
+              style={{ backgroundColor: 'rgba(68, 255, 170, 0.15)' }}
+            >
+              <Shield className="h-5 w-5" style={{ color: '#44ffaa' }} />
             </div>
-            <h2 className="text-h2 font-bold text-[var(--foreground)]">{t.whyTitle}</h2>
+            <h2 className="void-heading-2 text-stellar-core">{t.whyTitle}</h2>
           </div>
-          <p className="text-lg text-[var(--muted-foreground)] mb-6">{t.whyDescription}</p>
+          <p className="text-body-lg text-stellar-dim mb-6">{t.whyDescription}</p>
 
-          <div className="space-y-4">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="space-y-4"
+          >
             {t.whyPoints.map((point, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.15 + index * 0.1 }}
-                className="flex items-start gap-4 rounded-xl border border-[var(--border)] bg-[var(--card)] p-4"
+                variants={itemVariants}
+                className="flex items-start gap-4 p-4 bg-void-elevated border border-stellar-faint/10"
               >
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-100 text-emerald-600">
+                <div
+                  className="flex h-10 w-10 shrink-0 items-center justify-center border border-stellar-faint/20"
+                  style={{ backgroundColor: 'rgba(68, 255, 170, 0.15)', color: '#44ffaa' }}
+                >
                   {whyIcons[point.icon]}
                 </div>
-                <p className="text-[var(--foreground)] pt-2">{point.text}</p>
+                <p className="text-stellar-bright pt-2">{point.text}</p>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </motion.section>
 
-        {/* Section 3: Checkpoint Levels (Traffic Light) */}
+        {/* Section Divider */}
+        <div className="border-b border-stellar-faint/10 mb-16" />
+
+        {/* Section 3: Checkpoint Levels */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           className="mb-16"
         >
           <div className="flex items-center gap-3 mb-4">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-100">
-              <Pause className="h-5 w-5 text-amber-600" />
+            <div
+              className="flex h-10 w-10 items-center justify-center border border-stellar-faint/20"
+              style={{ backgroundColor: 'rgba(255, 136, 68, 0.15)' }}
+            >
+              <Pause className="h-5 w-5" style={{ color: '#ff8844' }} />
             </div>
-            <h2 className="text-h2 font-bold text-[var(--foreground)]">{t.levelsTitle}</h2>
+            <h2 className="void-heading-2 text-stellar-core">{t.levelsTitle}</h2>
           </div>
-          <p className="text-lg text-[var(--muted-foreground)] mb-6">{t.levelsDescription}</p>
+          <p className="text-body-lg text-stellar-dim mb-6">{t.levelsDescription}</p>
 
           <div className="grid gap-6 sm:grid-cols-3">
             {t.levels.map((level, index) => (
               <motion.div
                 key={level.level}
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.25 + index * 0.1 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
                 whileHover={{ y: -4 }}
-                className={`rounded-xl p-6 bg-white
-                  shadow-[0_1px_3px_rgba(0,0,0,0.1)]
-                  hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1)]
-                  border-2
-                  ${level.color === 'red' ? 'border-red-300' : ''}
-                  ${level.color === 'amber' ? 'border-amber-300' : ''}
-                  ${level.color === 'yellow' ? 'border-yellow-300' : ''}
-                  transition-all duration-200`}
+                className="p-6 bg-void-elevated border transition-all duration-300"
+                style={{
+                  borderColor: levelColors[level.color].border,
+                  boxShadow: `inset 0 1px 0 0 rgba(240, 240, 245, 0.05)`,
+                }}
               >
-                <div className="text-4xl mb-4">
-                  {level.icon}
-                </div>
+                {/* Glow on hover */}
+                <div
+                  className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity pointer-events-none"
+                  style={{
+                    background: `radial-gradient(ellipse at center, ${levelColors[level.color].glow} 0%, transparent 70%)`,
+                  }}
+                />
 
-                <div className={`inline-flex px-4 py-1.5 rounded-full text-sm font-bold mb-4
-                  ${level.color === 'red' ? 'bg-red-500 text-white' : ''}
-                  ${level.color === 'amber' ? 'bg-amber-500 text-white' : ''}
-                  ${level.color === 'yellow' ? 'bg-yellow-500 text-white' : ''}`}>
+                <div className="text-3xl mb-4">{level.icon}</div>
+
+                <div
+                  className="inline-flex px-4 py-1.5 font-mono text-xs uppercase tracking-wider mb-4 border"
+                  style={{
+                    color: levelColors[level.color].text,
+                    borderColor: levelColors[level.color].border,
+                    backgroundColor: levelColors[level.color].bg,
+                  }}
+                >
                   {level.level}
                 </div>
 
-                <p className={`font-bold mb-3 text-lg ${levelColors[level.color].text}`}>{level.behavior}</p>
-                <p className="text-sm text-gray-700 mb-4 leading-relaxed">{level.description}</p>
-                <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold
-                  ${level.canSkip === 'Yes' || level.canSkip === '가능' ? 'bg-emerald-100 text-emerald-700' : 'bg-gray-100 text-gray-700'}`}>
+                <p
+                  className="font-mono text-sm mb-3"
+                  style={{ color: levelColors[level.color].text }}
+                >
+                  {level.behavior}
+                </p>
+                <p className="text-body text-stellar-dim mb-4 leading-relaxed">{level.description}</p>
+                <div
+                  className="inline-flex items-center gap-2 px-3 py-1.5 font-mono text-xs border"
+                  style={{
+                    color: level.canSkip === 'Yes' || level.canSkip === '가능' ? '#44ffaa' : '#8888aa',
+                    borderColor: level.canSkip === 'Yes' || level.canSkip === '가능' ? 'rgba(68, 255, 170, 0.3)' : 'rgba(136, 136, 170, 0.3)',
+                    backgroundColor: level.canSkip === 'Yes' || level.canSkip === '가능' ? 'rgba(68, 255, 170, 0.1)' : 'rgba(136, 136, 170, 0.1)',
+                  }}
+                >
                   {level.canSkip === 'Yes' || level.canSkip === '가능' ? '✓' : '✕'}
                   <span>{locale === 'ko' ? '건너뛰기: ' : 'Skip: '}{level.canSkip}</span>
                 </div>
@@ -521,161 +605,210 @@ export default function CheckpointsPage() {
           </div>
         </motion.section>
 
+        {/* Section Divider */}
+        <div className="border-b border-stellar-faint/10 mb-16" />
+
         {/* Section 4: When You Will See Checkpoints */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           className="mb-16"
         >
           <div className="flex items-center gap-3 mb-4">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-teal-100">
-              <BookOpen className="h-5 w-5 text-teal-600" />
+            <div
+              className="flex h-10 w-10 items-center justify-center border border-stellar-faint/20"
+              style={{ backgroundColor: 'rgba(0, 206, 201, 0.15)' }}
+            >
+              <BookOpen className="h-5 w-5" style={{ color: '#00cec9' }} />
             </div>
-            <h2 className="text-h2 font-bold text-[var(--foreground)]">{t.whenTitle}</h2>
+            <h2 className="void-heading-2 text-stellar-core">{t.whenTitle}</h2>
           </div>
-          <p className="text-lg text-[var(--muted-foreground)] mb-6">{t.whenDescription}</p>
+          <p className="text-body-lg text-stellar-dim mb-6">{t.whenDescription}</p>
 
-          <div className="overflow-x-auto rounded-xl shadow-[0_1px_3px_rgba(0,0,0,0.1)] border border-gray-200">
-            <table className="w-full border-collapse bg-white">
-              <thead>
-                <tr className="border-b border-gray-200 bg-gray-50">
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">
-                    {locale === 'ko' ? '단계' : 'Stage'}
-                  </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">
-                    {locale === 'ko' ? '체크포인트' : 'Checkpoint'}
-                  </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">
-                    {locale === 'ko' ? '수준' : 'Level'}
-                  </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">
-                    {locale === 'ko' ? '결정' : 'Decision'}
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {t.journeyStages.map((stage, index) => (
-                  <motion.tr
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.3 + index * 0.1 }}
-                    className="border-b border-gray-100 last:border-b-0 hover:bg-gray-50 transition-colors cursor-default"
-                  >
-                    <td className="px-6 py-4 font-semibold text-gray-900">{stage.stage}</td>
-                    <td className="px-6 py-4 font-mono text-sm text-diverga-600 font-medium">{stage.checkpoint}</td>
-                    <td className="px-6 py-4">
-                      <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold
-                        ${stage.level === 'REQUIRED' ? 'bg-red-500 text-white' : 'bg-amber-500 text-white'}`}>
-                        <span className="text-base">{stage.level === 'REQUIRED' ? '🔴' : '🟠'}</span>
-                        {stage.level}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 text-sm text-gray-700">{stage.decision}</td>
-                  </motion.tr>
-                ))}
-              </tbody>
-            </table>
+          {/* Table - void terminal style */}
+          <div className="void-terminal overflow-hidden">
+            <div className="void-terminal-header">
+              <div className="void-terminal-dot" style={{ backgroundColor: '#ff5f56' }} />
+              <div className="void-terminal-dot" style={{ backgroundColor: '#ffbd2e' }} />
+              <div className="void-terminal-dot" style={{ backgroundColor: '#27c93f' }} />
+              <span className="ml-3 font-mono text-xs text-stellar-faint uppercase tracking-wider">
+                Checkpoint Timeline
+              </span>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse">
+                <thead>
+                  <tr className="border-b border-stellar-faint/10 bg-void-surface">
+                    <th className="px-4 py-3 text-left font-mono text-xs uppercase tracking-wider text-stellar-dim">
+                      {locale === 'ko' ? '단계' : 'Stage'}
+                    </th>
+                    <th className="px-4 py-3 text-left font-mono text-xs uppercase tracking-wider text-stellar-dim">
+                      {locale === 'ko' ? '체크포인트' : 'Checkpoint'}
+                    </th>
+                    <th className="px-4 py-3 text-left font-mono text-xs uppercase tracking-wider text-stellar-dim">
+                      {locale === 'ko' ? '수준' : 'Level'}
+                    </th>
+                    <th className="px-4 py-3 text-left font-mono text-xs uppercase tracking-wider text-stellar-dim">
+                      {locale === 'ko' ? '결정' : 'Decision'}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {t.journeyStages.map((stage, index) => (
+                    <motion.tr
+                      key={index}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.05 }}
+                      className="border-b border-stellar-faint/5 hover:bg-void-hover transition-colors"
+                    >
+                      <td className="px-4 py-3 font-mono text-sm text-stellar-bright">{stage.stage}</td>
+                      <td className="px-4 py-3 font-mono text-sm" style={{ color: '#44ffaa' }}>{stage.checkpoint}</td>
+                      <td className="px-4 py-3">
+                        <span
+                          className="inline-flex items-center gap-1.5 px-2 py-1 font-mono text-xs"
+                          style={{
+                            color: stage.level === 'REQUIRED' ? '#ff3366' : '#ff8844',
+                            backgroundColor: stage.level === 'REQUIRED' ? 'rgba(255, 51, 102, 0.1)' : 'rgba(255, 136, 68, 0.1)',
+                            border: `1px solid ${stage.level === 'REQUIRED' ? 'rgba(255, 51, 102, 0.3)' : 'rgba(255, 136, 68, 0.3)'}`,
+                          }}
+                        >
+                          <span>{stage.level === 'REQUIRED' ? '🔴' : '🟠'}</span>
+                          {stage.level}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3 text-sm text-stellar-dim">{stage.decision}</td>
+                    </motion.tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </motion.section>
+
+        {/* Section Divider */}
+        <div className="border-b border-stellar-faint/10 mb-16" />
 
         {/* Section 5: How to Respond */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           className="mb-16"
         >
           <div className="flex items-center gap-3 mb-4">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-100">
-              <HelpCircle className="h-5 w-5 text-blue-600" />
+            <div
+              className="flex h-10 w-10 items-center justify-center border border-stellar-faint/20"
+              style={{ backgroundColor: 'rgba(34, 204, 255, 0.15)' }}
+            >
+              <HelpCircle className="h-5 w-5" style={{ color: '#22ccff' }} />
             </div>
-            <h2 className="text-h2 font-bold text-[var(--foreground)]">{t.respondTitle}</h2>
+            <h2 className="void-heading-2 text-stellar-core">{t.respondTitle}</h2>
           </div>
-          <p className="text-lg text-[var(--muted-foreground)] mb-6">{t.respondDescription}</p>
+          <p className="text-body-lg text-stellar-dim mb-6">{t.respondDescription}</p>
 
           <div className="grid gap-4 sm:grid-cols-2">
             {t.responses.map((response, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.45 + index * 0.1 }}
-                className="flex items-center gap-4 rounded-xl border border-[var(--border)] bg-[var(--card)] p-4"
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="flex items-center gap-4 p-4 bg-void-elevated border border-stellar-faint/10"
               >
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[var(--muted)]">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center bg-void-surface border border-stellar-faint/20">
                   {responseIcons[response.icon]}
                 </div>
                 <div>
-                  <p className="font-mono text-sm font-semibold text-diverga-600">{response.command}</p>
-                  <p className="text-sm text-[var(--muted-foreground)]">{response.description}</p>
+                  <p className="font-mono text-sm" style={{ color: '#44ffaa' }}>{response.command}</p>
+                  <p className="text-sm text-stellar-dim">{response.description}</p>
                 </div>
               </motion.div>
             ))}
           </div>
         </motion.section>
 
+        {/* Section Divider */}
+        <div className="border-b border-stellar-faint/10 mb-16" />
+
         {/* Section 6: Real-World Scenarios */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           className="mb-16"
         >
           <div className="flex items-center gap-3 mb-4">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-100">
-              <Lightbulb className="h-5 w-5 text-purple-600" />
+            <div
+              className="flex h-10 w-10 items-center justify-center border border-stellar-faint/20"
+              style={{ backgroundColor: 'rgba(155, 89, 182, 0.15)' }}
+            >
+              <Lightbulb className="h-5 w-5" style={{ color: '#9b59b6' }} />
             </div>
-            <h2 className="text-h2 font-bold text-[var(--foreground)]">{t.scenariosTitle}</h2>
+            <h2 className="void-heading-2 text-stellar-core">{t.scenariosTitle}</h2>
           </div>
-          <p className="text-lg text-[var(--muted-foreground)] mb-6">{t.scenariosDescription}</p>
+          <p className="text-body-lg text-stellar-dim mb-6">{t.scenariosDescription}</p>
 
           <div className="space-y-6">
             {t.scenarios.map((scenario, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.55 + index * 0.1 }}
-                className="rounded-xl border border-[var(--border)] bg-[var(--card)] overflow-hidden"
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-void-elevated border border-stellar-faint/10 overflow-hidden"
               >
-                <div className="bg-[var(--muted)] px-5 py-3 border-b border-[var(--border)]">
+                <div className="bg-void-surface px-5 py-3 border-b border-stellar-faint/10">
                   <div className="flex items-center justify-between flex-wrap gap-2">
-                    <h3 className="font-semibold text-[var(--foreground)]">{scenario.title}</h3>
-                    <span className={`inline-flex px-2 py-0.5 rounded text-xs font-medium ${
-                      scenario.level === 'REQUIRED' ? 'bg-red-100 text-red-700' : 'bg-amber-100 text-amber-700'
-                    }`}>
+                    <h3 className="void-heading-3 text-stellar-core">{scenario.title}</h3>
+                    <span
+                      className="inline-flex px-2 py-0.5 font-mono text-xs"
+                      style={{
+                        color: scenario.level === 'REQUIRED' ? '#ff3366' : '#ff8844',
+                        backgroundColor: scenario.level === 'REQUIRED' ? 'rgba(255, 51, 102, 0.1)' : 'rgba(255, 136, 68, 0.1)',
+                        border: `1px solid ${scenario.level === 'REQUIRED' ? 'rgba(255, 51, 102, 0.3)' : 'rgba(255, 136, 68, 0.3)'}`,
+                      }}
+                    >
                       {scenario.level === 'REQUIRED' ? '🔴' : '🟠'} {scenario.checkpoint}
                     </span>
                   </div>
-                  <p className="text-sm text-[var(--muted-foreground)] mt-1">{scenario.context}</p>
+                  <p className="text-sm text-stellar-dim mt-1">{scenario.context}</p>
                 </div>
                 <div className="p-5 space-y-4">
                   <div>
-                    <p className="text-sm font-medium text-[var(--foreground)] mb-2">
+                    <p className="text-sm font-mono text-stellar-bright mb-2 uppercase tracking-wider">
                       {locale === 'ko' ? '상황:' : 'Situation:'}
                     </p>
-                    <p className="text-sm text-[var(--muted-foreground)]">{scenario.situation}</p>
+                    <p className="text-sm text-stellar-dim">{scenario.situation}</p>
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-[var(--foreground)] mb-2">
+                    <p className="text-sm font-mono text-stellar-bright mb-2 uppercase tracking-wider">
                       {locale === 'ko' ? '옵션:' : 'Options:'}
                     </p>
                     <ul className="space-y-1">
                       {scenario.options.map((option, optIndex) => (
-                        <li key={optIndex} className="flex items-start gap-2 text-sm text-[var(--muted-foreground)]">
-                          <span className="text-diverga-500">•</span>
+                        <li key={optIndex} className="flex items-start gap-2 text-sm text-stellar-dim">
+                          <span style={{ color: '#44ffaa' }}>◆</span>
                           {option}
                         </li>
                       ))}
                     </ul>
                   </div>
-                  <div className="rounded-lg bg-emerald-50 border border-emerald-200 p-4">
-                    <p className="text-sm font-medium text-emerald-800">
-                      {locale === 'ko' ? '🎯 당신의 역할:' : '🎯 Your Role:'}
+                  <div
+                    className="p-4 border"
+                    style={{
+                      backgroundColor: 'rgba(68, 255, 170, 0.05)',
+                      borderColor: 'rgba(68, 255, 170, 0.2)',
+                    }}
+                  >
+                    <p className="text-sm font-mono uppercase tracking-wider" style={{ color: '#44ffaa' }}>
+                      {locale === 'ko' ? '당신의 역할:' : 'Your Role:'}
                     </p>
-                    <p className="text-sm text-emerald-700 mt-1">{scenario.yourRole}</p>
+                    <p className="text-sm text-stellar-bright mt-1">{scenario.yourRole}</p>
                   </div>
                 </div>
               </motion.div>
@@ -683,135 +816,183 @@ export default function CheckpointsPage() {
           </div>
         </motion.section>
 
+        {/* Section Divider */}
+        <div className="border-b border-stellar-faint/10 mb-16" />
+
         {/* Section 7: Key Checkpoints Reference */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           className="mb-16"
         >
           <div className="flex items-center gap-3 mb-4">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-100">
-              <FileText className="h-5 w-5 text-gray-600" />
+            <div className="flex h-10 w-10 items-center justify-center bg-void-surface border border-stellar-faint/20">
+              <FileText className="h-5 w-5 text-stellar-dim" />
             </div>
-            <h2 className="text-h2 font-bold text-[var(--foreground)]">{t.referenceTitle}</h2>
+            <h2 className="void-heading-2 text-stellar-core">{t.referenceTitle}</h2>
           </div>
-          <p className="text-lg text-[var(--muted-foreground)] mb-6">{t.referenceDescription}</p>
+          <p className="text-body-lg text-stellar-dim mb-6">{t.referenceDescription}</p>
 
-          <div className="overflow-x-auto rounded-xl border border-[var(--border)]">
-            <table className="w-full border-collapse bg-[var(--card)]">
-              <thead>
-                <tr className="border-b border-[var(--border)] bg-[var(--muted)]">
-                  <th className="px-4 py-3 text-left text-sm font-semibold text-[var(--foreground)]">
-                    {locale === 'ko' ? '체크포인트 ID' : 'Checkpoint ID'}
-                  </th>
-                  <th className="px-4 py-3 text-left text-sm font-semibold text-[var(--foreground)]">
-                    {locale === 'ko' ? '수준' : 'Level'}
-                  </th>
-                  <th className="px-4 py-3 text-left text-sm font-semibold text-[var(--foreground)]">
-                    {locale === 'ko' ? '언제' : 'When'}
-                  </th>
-                  <th className="px-4 py-3 text-left text-sm font-semibold text-[var(--foreground)]">
-                    {locale === 'ko' ? '결정 내용' : 'Decision'}
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {t.referenceTable.map((row, index) => (
-                  <tr key={index} className="border-b border-[var(--border)] last:border-b-0 hover:bg-[var(--muted)]/50 transition-colors">
-                    <td className="px-4 py-3 font-mono text-sm text-diverga-600">{row.id}</td>
-                    <td className="px-4 py-3">
-                      <span className={`inline-flex px-2 py-0.5 rounded text-xs font-medium ${
-                        row.level === 'REQUIRED'
-                          ? 'bg-red-100 text-red-700'
-                          : row.level === 'RECOMMENDED'
-                          ? 'bg-amber-100 text-amber-700'
-                          : 'bg-yellow-100 text-yellow-700'
-                      }`}>
-                        {row.level === 'REQUIRED' ? '🔴' : row.level === 'RECOMMENDED' ? '🟠' : '🟡'} {row.level}
-                      </span>
-                    </td>
-                    <td className="px-4 py-3 text-sm text-[var(--muted-foreground)]">{row.when}</td>
-                    <td className="px-4 py-3 text-sm text-[var(--foreground)]">{row.decision}</td>
+          <div className="void-terminal overflow-hidden">
+            <div className="void-terminal-header">
+              <div className="void-terminal-dot" style={{ backgroundColor: '#ff5f56' }} />
+              <div className="void-terminal-dot" style={{ backgroundColor: '#ffbd2e' }} />
+              <div className="void-terminal-dot" style={{ backgroundColor: '#27c93f' }} />
+              <span className="ml-3 font-mono text-xs text-stellar-faint uppercase tracking-wider">
+                Checkpoint Reference
+              </span>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse">
+                <thead>
+                  <tr className="border-b border-stellar-faint/10 bg-void-surface">
+                    <th className="px-4 py-3 text-left font-mono text-xs uppercase tracking-wider text-stellar-dim">
+                      {locale === 'ko' ? '체크포인트 ID' : 'Checkpoint ID'}
+                    </th>
+                    <th className="px-4 py-3 text-left font-mono text-xs uppercase tracking-wider text-stellar-dim">
+                      {locale === 'ko' ? '수준' : 'Level'}
+                    </th>
+                    <th className="px-4 py-3 text-left font-mono text-xs uppercase tracking-wider text-stellar-dim">
+                      {locale === 'ko' ? '언제' : 'When'}
+                    </th>
+                    <th className="px-4 py-3 text-left font-mono text-xs uppercase tracking-wider text-stellar-dim">
+                      {locale === 'ko' ? '결정 내용' : 'Decision'}
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {t.referenceTable.map((row, index) => (
+                    <tr
+                      key={index}
+                      className="border-b border-stellar-faint/5 hover:bg-void-hover transition-colors"
+                    >
+                      <td className="px-4 py-3 font-mono text-sm" style={{ color: '#44ffaa' }}>{row.id}</td>
+                      <td className="px-4 py-3">
+                        <span
+                          className="inline-flex px-2 py-0.5 font-mono text-xs"
+                          style={{
+                            color: row.level === 'REQUIRED' ? '#ff3366' : row.level === 'RECOMMENDED' ? '#ff8844' : '#ffcc22',
+                            backgroundColor: row.level === 'REQUIRED' ? 'rgba(255, 51, 102, 0.1)' : row.level === 'RECOMMENDED' ? 'rgba(255, 136, 68, 0.1)' : 'rgba(255, 204, 34, 0.1)',
+                            border: `1px solid ${row.level === 'REQUIRED' ? 'rgba(255, 51, 102, 0.3)' : row.level === 'RECOMMENDED' ? 'rgba(255, 136, 68, 0.3)' : 'rgba(255, 204, 34, 0.3)'}`,
+                          }}
+                        >
+                          {row.level === 'REQUIRED' ? '🔴' : row.level === 'RECOMMENDED' ? '🟠' : '🟡'} {row.level}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3 text-sm text-stellar-dim">{row.when}</td>
+                      <td className="px-4 py-3 text-sm text-stellar-bright">{row.decision}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </motion.section>
+
+        {/* Section Divider */}
+        <div className="border-b border-stellar-faint/10 mb-16" />
 
         {/* Section 8: Decision Audit Trail */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           className="mb-16"
         >
           <div className="flex items-center gap-3 mb-4">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-100">
-              <FileText className="h-5 w-5 text-cyan-600" />
+            <div
+              className="flex h-10 w-10 items-center justify-center border border-stellar-faint/20"
+              style={{ backgroundColor: 'rgba(34, 204, 255, 0.15)' }}
+            >
+              <FileText className="h-5 w-5" style={{ color: '#22ccff' }} />
             </div>
-            <h2 className="text-h2 font-bold text-[var(--foreground)]">{t.auditTitle}</h2>
+            <h2 className="void-heading-2 text-stellar-core">{t.auditTitle}</h2>
           </div>
-          <p className="text-lg text-[var(--muted-foreground)] mb-6">{t.auditDescription}</p>
+          <p className="text-body-lg text-stellar-dim mb-6">{t.auditDescription}</p>
 
-          <div className="rounded-xl border border-[var(--border)] bg-[var(--card)] p-6">
+          <div className="bg-void-elevated border border-stellar-faint/10 p-6">
             <ul className="space-y-3 mb-6">
               {t.auditFeatures.map((feature, index) => (
                 <li key={index} className="flex items-start gap-3">
-                  <CheckCircle2 className="h-5 w-5 text-cyan-500 flex-shrink-0 mt-0.5" />
-                  <span className="text-[var(--foreground)]">{feature}</span>
+                  <CheckCircle2 className="h-5 w-5 flex-shrink-0 mt-0.5" style={{ color: '#22ccff' }} />
+                  <span className="text-stellar-bright">{feature}</span>
                 </li>
               ))}
             </ul>
-            <div className="rounded-lg bg-cyan-50 border border-cyan-200 p-4">
-              <p className="text-sm text-cyan-800">{t.auditBenefit}</p>
+            <div
+              className="p-4 border"
+              style={{
+                backgroundColor: 'rgba(34, 204, 255, 0.05)',
+                borderColor: 'rgba(34, 204, 255, 0.2)',
+              }}
+            >
+              <p className="text-sm" style={{ color: '#22ccff' }}>{t.auditBenefit}</p>
             </div>
           </div>
         </motion.section>
 
+        {/* Section Divider */}
+        <div className="border-b border-stellar-faint/10 mb-16" />
+
         {/* Section 9: Connection to VS Methodology */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           className="mb-16"
         >
           <div className="flex items-center gap-3 mb-4">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-100">
-              <Users className="h-5 w-5 text-emerald-600" />
+            <div
+              className="flex h-10 w-10 items-center justify-center border border-stellar-faint/20"
+              style={{ backgroundColor: 'rgba(68, 255, 170, 0.15)' }}
+            >
+              <Users className="h-5 w-5" style={{ color: '#44ffaa' }} />
             </div>
-            <h2 className="text-h2 font-bold text-[var(--foreground)]">{t.vsTitle}</h2>
+            <h2 className="void-heading-2 text-stellar-core">{t.vsTitle}</h2>
           </div>
-          <p className="text-lg text-[var(--muted-foreground)] mb-6">{t.vsDescription}</p>
+          <p className="text-body-lg text-stellar-dim mb-6">{t.vsDescription}</p>
 
           <div className="space-y-3">
             {t.vsPhases.map((phase, index) => (
               <motion.div
                 key={phase.phase}
                 initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.85 + index * 0.1 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
                 className={`flex gap-4 ${phase.highlight ? 'scale-105 origin-left' : ''}`}
               >
                 <div className="flex-shrink-0">
-                  <div className={`flex h-10 w-10 items-center justify-center rounded-full font-bold ${
-                    phase.highlight
-                      ? 'bg-diverga-500 text-white ring-4 ring-diverga-200'
-                      : 'bg-[var(--muted)] text-[var(--muted-foreground)]'
-                  }`}>
+                  <div
+                    className="flex h-10 w-10 items-center justify-center font-mono font-bold"
+                    style={{
+                      backgroundColor: phase.highlight ? '#44ffaa' : 'rgba(136, 136, 170, 0.1)',
+                      color: phase.highlight ? '#050508' : '#8888aa',
+                      border: phase.highlight ? 'none' : '1px solid rgba(136, 136, 170, 0.2)',
+                      boxShadow: phase.highlight ? '0 0 20px rgba(68, 255, 170, 0.3)' : 'none',
+                    }}
+                  >
                     {phase.phase}
                   </div>
                 </div>
-                <div className={`flex-1 rounded-xl border p-4 ${
-                  phase.highlight
-                    ? 'border-diverga-300 bg-diverga-50'
-                    : 'border-[var(--border)] bg-[var(--card)]'
-                }`}>
-                  <h3 className={`font-semibold mb-1 ${phase.highlight ? 'text-diverga-700' : 'text-[var(--foreground)]'}`}>
+                <div
+                  className="flex-1 p-4 border"
+                  style={{
+                    backgroundColor: phase.highlight ? 'rgba(68, 255, 170, 0.05)' : 'rgba(18, 18, 26, 1)',
+                    borderColor: phase.highlight ? 'rgba(68, 255, 170, 0.3)' : 'rgba(68, 68, 90, 0.3)',
+                  }}
+                >
+                  <h3
+                    className="font-mono font-bold mb-1"
+                    style={{ color: phase.highlight ? '#44ffaa' : '#f0f0f5' }}
+                  >
                     {phase.name}
                   </h3>
-                  <p className={`text-sm ${phase.highlight ? 'text-diverga-600' : 'text-[var(--muted-foreground)]'}`}>
+                  <p
+                    className="text-sm"
+                    style={{ color: phase.highlight ? '#f0f0f5' : '#8888aa' }}
+                  >
                     {phase.description}
                   </p>
                 </div>
@@ -822,7 +1003,7 @@ export default function CheckpointsPage() {
           <div className="mt-6">
             <Link
               href={`/${locale}/docs/vs-methodology`}
-              className="inline-flex items-center gap-2 text-diverga-600 hover:text-diverga-700 font-medium"
+              className="void-nav-link inline-flex items-center gap-2"
             >
               {t.vsLink}
               <ArrowRight className="h-4 w-4" />
@@ -830,33 +1011,42 @@ export default function CheckpointsPage() {
           </div>
         </motion.section>
 
+        {/* Section Divider */}
+        <div className="void-divider-glow mb-16" />
+
         {/* Section 10: CTA */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           className="text-center"
         >
-          <div className="rounded-2xl bg-gradient-to-br from-diverga-500 to-teal-500 p-8 text-white">
-            <h2 className="text-h2 font-bold mb-2">{t.ctaTitle}</h2>
-            <p className="text-diverga-100 mb-6">{t.ctaDescription}</p>
+          <div
+            className="p-8 border"
+            style={{
+              background: 'linear-gradient(135deg, rgba(68, 255, 170, 0.1) 0%, rgba(34, 204, 255, 0.1) 100%)',
+              borderColor: 'rgba(68, 255, 170, 0.2)',
+            }}
+          >
+            <h2 className="void-heading-2 text-stellar-core mb-2">{t.ctaTitle}</h2>
+            <p className="text-body text-stellar-dim mb-6">{t.ctaDescription}</p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href={`/${locale}/agents`}
-                className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 font-semibold text-diverga-600 hover:bg-diverga-50 transition-colors"
+                className="void-btn void-btn-accent inline-flex items-center gap-2"
               >
                 {t.ctaButtons.agents}
                 <ArrowRight className="h-5 w-5" />
               </Link>
               <Link
                 href={`/${locale}/workflows`}
-                className="inline-flex items-center gap-2 rounded-xl border-2 border-white/30 px-6 py-3 font-semibold text-white hover:bg-white/10 transition-colors"
+                className="void-btn void-btn-primary inline-flex items-center gap-2"
               >
                 {t.ctaButtons.workflows}
               </Link>
               <Link
                 href={`/${locale}/getting-started`}
-                className="inline-flex items-center gap-2 rounded-xl border-2 border-white/30 px-6 py-3 font-semibold text-white hover:bg-white/10 transition-colors"
+                className="void-btn void-btn-ghost inline-flex items-center gap-2"
               >
                 {t.ctaButtons.start}
               </Link>

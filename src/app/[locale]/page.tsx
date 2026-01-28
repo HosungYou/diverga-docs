@@ -22,7 +22,7 @@ export default function HomePage() {
       },
       network: {
         title: 'Agent Collaboration Network',
-        subtitle: '27 specialized agents work together across 8 research lifecycle stages.',
+        subtitle: '40 specialized agents work together across 8 research lifecycle stages.',
       },
       cli: {
         title: 'Interactive Terminal',
@@ -46,7 +46,7 @@ export default function HomePage() {
       },
       network: {
         title: '에이전트 협업 네트워크',
-        subtitle: '27개의 전문 에이전트가 8개의 연구 생애주기 단계에서 함께 작동합니다.',
+        subtitle: '40개의 전문 에이전트가 8개의 연구 생애주기 단계에서 함께 작동합니다.',
       },
       cli: {
         title: '인터랙티브 터미널',
@@ -145,7 +145,7 @@ export default function HomePage() {
             className="text-center"
           >
             <span className="font-mono text-micro uppercase tracking-widest text-category-c">
-              27 Agents
+              40 Agents
             </span>
             <h2 className="mt-4 font-display void-heading-1 text-stellar-core">
               {t.network.title}

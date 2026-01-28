@@ -39,6 +39,17 @@ export interface Category {
   agents: string[];
 }
 
+export interface WorkflowExample {
+  researchQuestion: string;
+  variables: {
+    independent: string[];
+    mediators: string[];
+    dependent: string[];
+  };
+  theoreticalFramework: string;
+  tScore: number;
+}
+
 export interface Workflow {
   id: string;
   slug: string;
@@ -47,6 +58,7 @@ export interface Workflow {
   paradigm: Paradigm;
   stages: WorkflowStage[];
   estimatedTime: string;
+  example?: WorkflowExample;
 }
 
 export interface WorkflowStage {

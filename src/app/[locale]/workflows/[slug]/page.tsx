@@ -3,15 +3,90 @@
 import { use } from 'react';
 import { useLocale } from 'next-intl';
 import Link from 'next/link';
-import { ArrowLeft, Clock, Target } from 'lucide-react';
+import { ArrowLeft, Clock, Target, ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { getWorkflowBySlug } from '@/lib/data/workflows';
 import CheckpointTimeline from '@/components/CheckpointTimeline';
+import { ConceptualFramework } from '@/components/visualization';
 import { notFound } from 'next/navigation';
 
 type Props = {
   params: Promise<{ slug: string }>;
 };
+
+// Progress step indicator with T-Score colors
+function ProgressIndicator({
+  stages,
+  locale
+}: {
+  stages: { agent: string; checkpoint?: string }[];
+  locale: 'en' | 'ko';
+}) {
+  const totalSteps = stages.length;
+  const checkpointCount = stages.filter(s => s.checkpoint).length;
+
+  return (
+    <div className="void-card p-6">
+      <div className="flex items-center justify-between mb-4">
+        <span className="void-label text-stellar-dim">
+          {locale === 'ko' ? '워크플로우 진행도' : 'Workflow Progress'}
+        </span>
+        <span className="font-mono text-micro text-stellar-faint">
+          {totalSteps} {locale === 'ko' ? '단계' : 'steps'} / {checkpointCount} {locale === 'ko' ? '체크포인트' : 'checkpoints'}
+        </span>
+      </div>
+
+      {/* Progress bar with step indicators */}
+      <div className="relative">
+        <div className="flex items-center gap-1">
+          {stages.map((stage, index) => {
+            // Determine color based on checkpoint status
+            const isCheckpoint = stage.checkpoint;
+            const progressPercent = (index / (totalSteps - 1)) * 100;
+
+            // T-Score color based on position in workflow
+            let colorClass = 'bg-tscore-divergent';
+            if (progressPercent >= 80) colorClass = 'bg-tscore-modal';
+            else if (progressPercent >= 60) colorClass = 'bg-tscore-typical';
+            else if (progressPercent >= 40) colorClass = 'bg-tscore-balanced';
+            else if (progressPercent >= 20) colorClass = 'bg-tscore-creative';
+
+            return (
+              <motion.div
+                key={index}
+                initial={{ scaleY: 0 }}
+                animate={{ scaleY: 1 }}
+                transition={{ delay: index * 0.05 }}
+                className="flex-1 relative group"
+              >
+                <div
+                  className={`h-2 ${isCheckpoint ? 'bg-checkpoint-required' : colorClass} transition-all duration-200 group-hover:h-3`}
+                />
+                {isCheckpoint && (
+                  <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-checkpoint-required border-2 border-void-deep flex items-center justify-center">
+                    <div className="w-1.5 h-1.5 rounded-full bg-void-deep" />
+                  </div>
+                )}
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Legend */}
+      <div className="flex items-center gap-6 mt-4 text-micro">
+        <div className="flex items-center gap-2">
+          <div className="w-3 h-3 rounded-full bg-checkpoint-required" />
+          <span className="text-stellar-dim">{locale === 'ko' ? '필수 체크포인트' : 'Required Checkpoint'}</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <div className="w-6 h-2 bg-tscore-gradient rounded-sm" />
+          <span className="text-stellar-dim">{locale === 'ko' ? 'T-Score 진행' : 'T-Score Progress'}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function WorkflowDetailPage({ params }: Props) {
   const { slug } = use(params);
@@ -26,89 +101,228 @@ export default function WorkflowDetailPage({ params }: Props) {
   const checkpointCount = workflow.stages.filter(s => s.checkpoint).length;
 
   return (
-    <div className="relative bg-white">
-      {/* Light hero section */}
-      <div className="relative overflow-hidden bg-gradient-to-b from-gray-50 to-white pb-20">
-        <div className="relative mx-auto max-w-4xl px-6 lg:px-8 pt-12 sm:pt-16">
-          <Link
-            href={`/${locale}/workflows`}
-            className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-12 transition-colors group"
+    <div className="min-h-screen bg-void-deep">
+      {/* Hero section with gradient */}
+      <section className="relative overflow-hidden pb-20">
+        {/* Background gradient */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-void-surface via-void-deep to-void-deep" />
+
+        <div className="relative mx-auto max-w-6xl px-6 lg:px-8 pt-12 sm:pt-16">
+          {/* Back navigation */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
           >
-            <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
-            {locale === 'ko' ? '워크플로우로 돌아가기' : 'Back to Workflows'}
-          </Link>
+            <Link
+              href={`/${locale}/workflows`}
+              className="inline-flex items-center gap-2 text-stellar-dim hover:text-stellar-core mb-12 transition-colors group font-mono text-caption uppercase tracking-wider"
+            >
+              <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+              {locale === 'ko' ? '워크플로우로 돌아가기' : 'Back to Workflows'}
+            </Link>
+          </motion.div>
 
           {/* Workflow Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-16"
+            className="mb-12"
           >
-            <h1 className="text-5xl sm:text-6xl font-bold text-gray-900 mb-6">
+            {/* Badge */}
+            <div className="mb-6">
+              <span className="void-badge void-badge-tscore">
+                <span className="inline-block w-1.5 h-1.5 rounded-full bg-tscore-creative" />
+                {locale === 'ko' ? '연구 워크플로우' : 'Research Workflow'}
+              </span>
+            </div>
+
+            <h1 className="void-display text-stellar-core mb-6">
               {workflow.name[locale]}
             </h1>
-            <p className="text-xl text-gray-600 leading-relaxed mb-8 max-w-3xl">
+            <p className="text-body-lg text-stellar-dim leading-relaxed mb-8 max-w-3xl">
               {workflow.description[locale]}
             </p>
 
             {/* Workflow Metadata */}
             <div className="flex flex-wrap gap-4">
-              <div className="flex items-center gap-3 px-5 py-3 rounded-xl bg-white border border-gray-200">
-                <Clock className="w-5 h-5 text-gray-600" />
-                <span className="text-base font-semibold text-gray-900">
+              <div className="flex items-center gap-3 px-5 py-3 void-card">
+                <Clock className="w-5 h-5 text-stellar-dim" />
+                <span className="font-mono text-caption text-stellar-bright uppercase">
                   {workflow.estimatedTime}
                 </span>
               </div>
-              <div className="flex items-center gap-3 px-5 py-3 rounded-xl bg-white border border-red-200">
-                <Target className="w-5 h-5 text-red-500" />
-                <span className="text-base font-semibold text-red-700">
+              <div className="flex items-center gap-3 px-5 py-3 void-card border-checkpoint-required/30">
+                <Target className="w-5 h-5 text-checkpoint-required" />
+                <span className="font-mono text-caption text-checkpoint-required uppercase">
                   {checkpointCount} {locale === 'ko' ? '체크포인트' : 'checkpoints'}
                 </span>
               </div>
             </div>
           </motion.div>
 
-          {/* Clean workflow preview */}
+          {/* Progress Indicator */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            <ProgressIndicator stages={workflow.stages} locale={locale} />
+          </motion.div>
+
+          {/* Terminal-style preview card */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="relative"
+            transition={{ delay: 0.3 }}
+            className="mt-8"
           >
-            <div className="relative rounded-2xl border border-gray-200 bg-white p-8 overflow-hidden shadow-sm">
-              <div className="flex items-center gap-3 mb-6">
+            <div className="void-terminal overflow-hidden">
+              {/* Terminal header */}
+              <div className="void-terminal-header">
                 <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-red-500" />
-                  <div className="w-3 h-3 rounded-full bg-amber-500" />
-                  <div className="w-3 h-3 rounded-full bg-teal-500" />
+                  <div className="void-terminal-dot void-terminal-dot-red" />
+                  <div className="void-terminal-dot void-terminal-dot-yellow" />
+                  <div className="void-terminal-dot void-terminal-dot-green" />
                 </div>
-                <span className="text-sm font-mono text-gray-500">workflow_timeline.tsx</span>
+                <span className="text-micro text-stellar-faint ml-4">workflow_timeline.tsx</span>
               </div>
 
-              {/* Mini timeline preview */}
-              <div className="flex items-center justify-between gap-2">
-                {workflow.stages.slice(0, 5).map((stage, i) => (
-                  <div key={i} className="flex-1">
-                    <div className={`h-2 rounded-full ${stage.checkpoint ? 'bg-red-500' : 'bg-gray-200'}`} />
-                  </div>
-                ))}
+              {/* Terminal content - mini timeline preview */}
+              <div className="p-6">
+                <div className="flex items-center gap-2">
+                  {workflow.stages.slice(0, 8).map((stage, i) => {
+                    const agentCategory = stage.agent.charAt(0).toLowerCase();
+                    return (
+                      <div key={i} className="flex items-center gap-2">
+                        <motion.div
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ delay: 0.4 + i * 0.05 }}
+                          className={`w-8 h-8 flex items-center justify-center category-bg-${agentCategory} border border-stellar-faint/20 font-mono text-micro ${stage.checkpoint ? 'ring-2 ring-checkpoint-required' : ''}`}
+                        >
+                          <span className={`category-text-${agentCategory}`}>
+                            {agentCategory.toUpperCase()}
+                          </span>
+                        </motion.div>
+                        {i < Math.min(workflow.stages.length - 1, 7) && (
+                          <ChevronRight className="w-3 h-3 text-stellar-faint" />
+                        )}
+                      </div>
+                    );
+                  })}
+                  {workflow.stages.length > 8 && (
+                    <span className="text-stellar-dim font-mono text-micro">+{workflow.stages.length - 8}</span>
+                  )}
+                </div>
               </div>
             </div>
           </motion.div>
         </div>
-      </div>
+      </section>
+
+      {/* Divider */}
+      <div className="void-divider-glow" />
 
       {/* Timeline content section */}
-      <div className="relative mx-auto max-w-4xl px-6 lg:px-8 pb-20">
+      <section className="relative mx-auto max-w-6xl px-6 lg:px-8 py-20">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+          className="mb-8"
+        >
+          <h2 className="void-heading-2 text-stellar-core mb-2">
+            {locale === 'ko' ? '상세 타임라인' : 'Detailed Timeline'}
+          </h2>
+          <p className="text-body text-stellar-dim">
+            {locale === 'ko'
+              ? '각 단계를 클릭하여 에이전트 세부 정보를 확인하세요'
+              : 'Click each stage to view agent details'}
+          </p>
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="relative"
+          transition={{ delay: 0.5 }}
         >
           <CheckpointTimeline stages={workflow.stages} locale={locale} />
         </motion.div>
-      </div>
+      </section>
+
+      {/* A6 Conceptual Framework Example Section (only for a6-ai-education workflow) */}
+      {workflow.example && (
+        <>
+          <div className="void-divider-glow" />
+          <section className="relative mx-auto max-w-6xl px-6 lg:px-8 py-20">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="mb-8"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <span className="void-badge void-badge-tscore">
+                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-tscore-creative" />
+                  {locale === 'ko' ? 'A6 시각화 예시' : 'A6 Visualization Example'}
+                </span>
+              </div>
+              <h2 className="void-heading-2 text-stellar-core mb-2">
+                {locale === 'ko' ? '개념적 프레임워크 시각화' : 'Conceptual Framework Visualization'}
+              </h2>
+              <p className="text-body text-stellar-dim">
+                {locale === 'ko'
+                  ? 'A6 에이전트가 Nano Banana 이미지 합성을 사용하여 생성한 개념적 프레임워크입니다'
+                  : 'Conceptual framework generated by A6 agent using Nano Banana image synthesis'}
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+            >
+              <ConceptualFramework locale={locale} example={workflow.example} />
+            </motion.div>
+          </section>
+        </>
+      )}
+
+      {/* CTA Section */}
+      <motion.section
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="py-20 px-6"
+      >
+        <div className="mx-auto max-w-4xl text-center">
+          <div className="void-card p-12">
+            <h2 className="void-heading-2 text-stellar-core mb-4">
+              {locale === 'ko' ? '시작할 준비가 되셨나요?' : 'Ready to Start?'}
+            </h2>
+            <p className="text-body text-stellar-dim mb-8 max-w-xl mx-auto">
+              {locale === 'ko'
+                ? '이 워크플로우의 에이전트들을 탐색하고 연구를 시작하세요'
+                : 'Explore the agents in this workflow and begin your research'}
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                href={`/${locale}/agents`}
+                className="void-btn void-btn-accent"
+              >
+                {locale === 'ko' ? '에이전트 탐색' : 'Explore Agents'}
+              </Link>
+              <Link
+                href={`/${locale}/getting-started`}
+                className="void-btn void-btn-primary"
+              >
+                {locale === 'ko' ? '시작 가이드' : 'Getting Started'}
+              </Link>
+            </div>
+          </div>
+        </div>
+      </motion.section>
     </div>
   );
 }

@@ -480,26 +480,31 @@ function CheckpointDemo({ locale }: { locale: 'en' | 'ko' }) {
   };
 
   const getTScoreColor = (tscore: number) => {
-    if (tscore >= 0.7) return 'text-orange-600 bg-orange-50 border border-orange-200';
-    if (tscore >= 0.4) return 'text-teal-600 bg-teal-50 border border-teal-200';
-    if (tscore >= 0.2) return 'text-emerald-600 bg-emerald-50 border border-emerald-200';
-    return 'text-purple-600 bg-purple-50 border border-purple-200';
+    if (tscore >= 0.7) return 'text-tscore-typical bg-void-surface border border-tscore-typical/30';
+    if (tscore >= 0.4) return 'text-tscore-balanced bg-void-surface border border-tscore-balanced/30';
+    if (tscore >= 0.2) return 'text-tscore-creative bg-void-surface border border-tscore-creative/30';
+    return 'text-tscore-divergent bg-void-surface border border-tscore-divergent/30';
   };
 
   return (
     <div className="relative">
       <Confetti show={showConfetti} />
 
-      {/* Main Demo Container */}
+      {/* Main Demo Container - Terminal Style */}
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        className="rounded-xl border border-gray-200 bg-white overflow-hidden shadow-[0_1px_3px_rgba(0,0,0,0.1)]"
+        className="rounded-lg border border-stellar-faint/20 bg-void-absolute overflow-hidden shadow-[0_0_20px_rgba(68,255,170,0.1)]"
       >
         {/* Terminal Header */}
-        <div className="flex items-center gap-2 px-5 py-3 bg-gray-50 border-b border-gray-200">
-          <span className="text-xs font-mono text-gray-600">
+        <div className="flex items-center gap-2 px-5 py-3 bg-void-surface border-b border-stellar-faint/20">
+          <div className="flex gap-1.5">
+            <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
+            <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
+            <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
+          </div>
+          <span className="text-xs font-mono text-stellar-dim ml-2">
             diverga-research-assistant
           </span>
           {state !== 'intro' && (
@@ -507,7 +512,7 @@ function CheckpointDemo({ locale }: { locale: 'en' | 'ko' }) {
               onClick={resetDemo}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="ml-auto flex items-center gap-1.5 text-xs text-gray-600 hover:text-gray-900 transition-colors bg-white hover:bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-200"
+              className="ml-auto flex items-center gap-1.5 text-xs text-stellar-dim hover:text-stellar-bright transition-colors bg-void-elevated hover:bg-void-hover px-3 py-1.5 rounded-lg border border-stellar-faint/20"
               aria-label={locale === 'ko' ? '재시작' : 'Restart'}
             >
               <RotateCcw className="h-3 w-3" />
@@ -517,7 +522,7 @@ function CheckpointDemo({ locale }: { locale: 'en' | 'ko' }) {
         </div>
 
         {/* Content Area */}
-        <div className="p-8 min-h-[480px] bg-gray-50">
+        <div className="p-8 min-h-[480px] bg-void-deep">
           <AnimatePresence mode="wait">
             {/* INTRO STATE */}
             {state === 'intro' && (
@@ -533,15 +538,15 @@ function CheckpointDemo({ locale }: { locale: 'en' | 'ko' }) {
                     scale: [1, 1.05, 1],
                   }}
                   transition={{ duration: 3, repeat: Infinity }}
-                  className="mb-8 p-6 rounded-full bg-indigo-50"
+                  className="mb-8 p-6 rounded-full bg-void-surface"
                 >
-                  <Sparkles className="h-16 w-16 text-indigo-600" />
+                  <Sparkles className="h-16 w-16 text-tscore-creative" />
                 </motion.div>
                 <motion.h3
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
-                  className="text-3xl font-bold text-gray-900 mb-4"
+                  className="text-3xl font-bold text-stellar-core mb-4 font-display"
                 >
                   {content.intro[locale].title}
                 </motion.h3>
@@ -549,7 +554,7 @@ function CheckpointDemo({ locale }: { locale: 'en' | 'ko' }) {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
-                  className="text-gray-600 max-w-md mb-10 leading-relaxed"
+                  className="text-stellar-dim max-w-md mb-10 leading-relaxed"
                 >
                   {content.intro[locale].description}
                 </motion.p>
@@ -558,9 +563,9 @@ function CheckpointDemo({ locale }: { locale: 'en' | 'ko' }) {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.4, type: "spring", stiffness: 200 }}
-                  whileHover={{ scale: 1.02 }}
+                  whileHover={{ scale: 1.02, boxShadow: '0 0 20px rgba(68, 255, 170, 0.4)' }}
                   whileTap={{ scale: 0.98 }}
-                  className="inline-flex items-center gap-3 rounded-lg bg-gray-900 px-8 py-4 font-semibold text-white transition-all hover:bg-gray-800"
+                  className="inline-flex items-center gap-3 rounded-lg bg-tscore-creative text-void-deep px-8 py-4 font-semibold font-mono transition-all hover:bg-tscore-creative/90"
                 >
                   <Play className="h-5 w-5" />
                   {content.intro[locale].buttonText}
@@ -585,7 +590,7 @@ function CheckpointDemo({ locale }: { locale: 'en' | 'ko' }) {
                 >
                   <motion.div
                     whileHover={{ scale: 1.05 }}
-                    className="flex-shrink-0 h-10 w-10 rounded-full bg-blue-500 flex items-center justify-center text-white text-sm font-bold"
+                    className="flex-shrink-0 h-10 w-10 rounded-full bg-tscore-creative flex items-center justify-center text-void-deep text-sm font-bold font-mono"
                   >
                     U
                   </motion.div>
@@ -593,9 +598,9 @@ function CheckpointDemo({ locale }: { locale: 'en' | 'ko' }) {
                     initial={{ scale: 0.98 }}
                     animate={{ scale: 1 }}
                     transition={{ delay: 0.1 }}
-                    className="bg-white rounded-lg px-5 py-4 max-w-lg border border-gray-200 shadow-[0_1px_3px_rgba(0,0,0,0.1)]"
+                    className="bg-void-elevated rounded-lg px-5 py-4 max-w-lg border border-stellar-faint/20 shadow-[0_0_10px_rgba(68,255,170,0.1)]"
                   >
-                    <p className="text-gray-900 leading-relaxed">{content.context[locale].userMessage}</p>
+                    <p className="text-stellar-bright leading-relaxed">{content.context[locale].userMessage}</p>
                   </motion.div>
                 </motion.div>
 
@@ -604,7 +609,7 @@ function CheckpointDemo({ locale }: { locale: 'en' | 'ko' }) {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
-                  className="flex items-center gap-3 text-gray-600"
+                  className="flex items-center gap-3 text-stellar-dim"
                 >
                   <motion.div
                     animate={{
@@ -612,7 +617,7 @@ function CheckpointDemo({ locale }: { locale: 'en' | 'ko' }) {
                       opacity: [0.6, 1, 0.6]
                     }}
                     transition={{ duration: 1.5, repeat: Infinity }}
-                    className="h-2.5 w-2.5 rounded-full bg-indigo-600"
+                    className="h-2.5 w-2.5 rounded-full bg-tscore-creative"
                   />
                   <span className="text-sm font-mono">{content.context[locale].systemNote}</span>
                 </motion.div>
@@ -632,7 +637,7 @@ function CheckpointDemo({ locale }: { locale: 'en' | 'ko' }) {
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="inline-flex items-center gap-3 bg-indigo-50 border border-indigo-200 text-indigo-700 px-4 py-2 rounded-lg"
+                  className="inline-flex items-center gap-3 bg-void-surface border border-tscore-creative/30 text-tscore-creative px-4 py-2 rounded-lg"
                 >
                   <motion.div
                     animate={{
@@ -640,7 +645,7 @@ function CheckpointDemo({ locale }: { locale: 'en' | 'ko' }) {
                       opacity: [0.6, 1, 0.6]
                     }}
                     transition={{ duration: 1.2, repeat: Infinity }}
-                    className="h-2.5 w-2.5 rounded-full bg-indigo-600"
+                    className="h-2.5 w-2.5 rounded-full bg-tscore-creative"
                   />
                   <span className="text-sm font-mono font-semibold">{content.analysis[locale].agentId}</span>
                 </motion.div>
@@ -653,9 +658,9 @@ function CheckpointDemo({ locale }: { locale: 'en' | 'ko' }) {
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: i * 0.1 }}
-                      className="text-gray-700 flex items-center gap-2"
+                      className="text-stellar-bright flex items-center gap-2"
                     >
-                      <span className="text-indigo-600">›</span>
+                      <span className="text-tscore-creative">›</span>
                       {line}
                     </motion.div>
                   ))}
@@ -665,7 +670,7 @@ function CheckpointDemo({ locale }: { locale: 'en' | 'ko' }) {
                         opacity: [1, 0.3, 1]
                       }}
                       transition={{ duration: 0.8, repeat: Infinity }}
-                      className="inline-block w-2 h-4 bg-indigo-600"
+                      className="inline-block w-2 h-4 bg-tscore-creative"
                     />
                   )}
                 </div>
@@ -688,29 +693,29 @@ function CheckpointDemo({ locale }: { locale: 'en' | 'ko' }) {
                   className="text-center"
                 >
                   <motion.div
-                    className="inline-flex items-center gap-3 bg-white border-2 border-red-500 px-6 py-3 rounded-lg mb-4"
+                    className="inline-flex items-center gap-3 bg-void-surface border-2 border-tscore-modal px-6 py-3 rounded-lg mb-4"
                   >
                     <motion.div
                       animate={{
                         scale: [1, 1.1, 1],
                       }}
                       transition={{ duration: 1.5, repeat: Infinity }}
-                      className="h-3 w-3 rounded-full bg-red-500"
+                      className="h-3 w-3 rounded-full bg-tscore-modal"
                     />
-                    <span className="font-mono font-bold text-red-600 text-sm">
+                    <span className="font-mono font-bold text-tscore-modal text-sm">
                       {content.checkpoint[locale].title}
                     </span>
                   </motion.div>
-                  <p className="text-gray-600 text-sm font-medium">{content.checkpoint[locale].subtitle}</p>
+                  <p className="text-stellar-dim text-sm font-medium">{content.checkpoint[locale].subtitle}</p>
                 </motion.div>
 
                 {/* Modal Warning */}
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="bg-orange-50 border border-orange-200 rounded-lg p-4"
+                  className="bg-void-surface border border-tscore-typical/30 rounded-lg p-4"
                 >
-                  <p className="text-orange-700 text-sm font-mono leading-relaxed">
+                  <p className="text-tscore-typical text-sm font-mono leading-relaxed">
                     {content.checkpoint[locale].modalWarning}
                   </p>
                 </motion.div>
@@ -723,12 +728,12 @@ function CheckpointDemo({ locale }: { locale: 'en' | 'ko' }) {
                       initial={{ opacity: 0, x: -20, y: 10 }}
                       animate={{ opacity: 1, x: 0, y: 0 }}
                       transition={{ delay: i * 0.15, type: "spring", stiffness: 100 }}
-                      whileHover={{ scale: 1.01 }}
+                      whileHover={{ scale: 1.01, boxShadow: '0 0 20px rgba(68, 255, 170, 0.15)' }}
                       className={cn(
                         "relative p-5 rounded-xl border transition-all duration-200",
                         option.recommended
-                          ? "border-indigo-300 bg-indigo-50 shadow-[0_1px_3px_rgba(0,0,0,0.1)]"
-                          : "border-gray-200 bg-white hover:border-gray-300 shadow-[0_1px_3px_rgba(0,0,0,0.1)]"
+                          ? "border-tscore-creative/50 bg-void-elevated shadow-[0_0_10px_rgba(68,255,170,0.1)]"
+                          : "border-stellar-faint/20 bg-void-surface hover:border-stellar-dim/30 shadow-[0_1px_3px_rgba(0,0,0,0.1)]"
                       )}
                     >
                       {option.recommended && (
@@ -736,7 +741,7 @@ function CheckpointDemo({ locale }: { locale: 'en' | 'ko' }) {
                           initial={{ scale: 0 }}
                           animate={{ scale: 1 }}
                           transition={{ delay: 0.5 + i * 0.15, type: "spring" }}
-                          className="absolute -top-2 right-4 bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full"
+                          className="absolute -top-2 right-4 bg-tscore-creative text-void-deep text-xs font-bold font-mono px-3 py-1 rounded-full"
                         >
                           {locale === 'ko' ? '추천' : 'Recommended'}
                         </motion.span>
@@ -744,12 +749,12 @@ function CheckpointDemo({ locale }: { locale: 'en' | 'ko' }) {
                       <div className="flex items-start justify-between gap-4">
                         <div>
                           <div className="flex items-center gap-2 mb-2">
-                            <span className="text-lg font-bold text-gray-900">
+                            <span className="text-lg font-bold text-stellar-core font-mono">
                               {locale === 'ko' ? '방향' : 'Direction'} {option.id}:
                             </span>
-                            <span className="text-gray-700 font-medium">{option.name}</span>
+                            <span className="text-stellar-bright font-medium">{option.name}</span>
                           </div>
-                          <p className="text-gray-600 text-sm leading-relaxed">{option.description}</p>
+                          <p className="text-stellar-dim text-sm leading-relaxed">{option.description}</p>
                         </div>
                         <motion.div
                           whileHover={{ scale: 1.05 }}
@@ -770,7 +775,7 @@ function CheckpointDemo({ locale }: { locale: 'en' | 'ko' }) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.8 }}
-                  className="text-gray-900 text-center font-medium text-base"
+                  className="text-stellar-bright text-center font-medium text-base"
                 >
                   {content.checkpoint[locale].question}
                 </motion.p>
@@ -783,10 +788,10 @@ function CheckpointDemo({ locale }: { locale: 'en' | 'ko' }) {
                   className="flex flex-wrap gap-3 justify-center"
                 >
                   <motion.button
-                    whileHover={{ scale: 1.02 }}
+                    whileHover={{ scale: 1.02, boxShadow: '0 0 20px rgba(68, 255, 170, 0.4)' }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => handleDecision('approve')}
-                    className="inline-flex items-center gap-2 rounded-lg bg-gray-900 px-6 py-3 font-semibold text-white transition-all hover:bg-gray-800"
+                    className="inline-flex items-center gap-2 rounded-lg bg-tscore-creative text-void-deep px-6 py-3 font-semibold font-mono transition-all hover:bg-tscore-creative/90"
                   >
                     <CheckCircle2 className="h-5 w-5" />
                     {content.checkpoint[locale].approveText}
@@ -795,7 +800,7 @@ function CheckpointDemo({ locale }: { locale: 'en' | 'ko' }) {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => handleDecision('reject')}
-                    className="inline-flex items-center gap-2 rounded-lg bg-white border-2 border-gray-300 px-6 py-3 font-semibold text-gray-700 hover:border-gray-400 transition-all"
+                    className="inline-flex items-center gap-2 rounded-lg bg-void-surface border-2 border-stellar-faint/30 px-6 py-3 font-semibold font-mono text-stellar-bright hover:border-stellar-dim/50 transition-all"
                   >
                     <XCircle className="h-5 w-5" />
                     {content.checkpoint[locale].rejectText}
@@ -804,7 +809,7 @@ function CheckpointDemo({ locale }: { locale: 'en' | 'ko' }) {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => handleDecision('explain')}
-                    className="inline-flex items-center gap-2 rounded-lg bg-white border-2 border-gray-300 px-6 py-3 font-semibold text-gray-700 hover:border-gray-400 transition-all"
+                    className="inline-flex items-center gap-2 rounded-lg bg-void-surface border-2 border-stellar-faint/30 px-6 py-3 font-semibold font-mono text-stellar-bright hover:border-stellar-dim/50 transition-all"
                   >
                     <HelpCircle className="h-5 w-5" />
                     {content.checkpoint[locale].explainText}
@@ -816,9 +821,9 @@ function CheckpointDemo({ locale }: { locale: 'en' | 'ko' }) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1.2 }}
-                  className="rounded-lg bg-blue-50 border border-blue-200 p-4 text-center"
+                  className="rounded-lg bg-void-surface border border-tscore-creative/30 p-4 text-center"
                 >
-                  <p className="text-blue-700 text-sm font-medium leading-relaxed">
+                  <p className="text-tscore-creative text-sm font-medium leading-relaxed">
                     {content.educational[locale].checkpointExplainer}
                   </p>
                 </motion.div>
@@ -841,19 +846,19 @@ function CheckpointDemo({ locale }: { locale: 'en' | 'ko' }) {
                   className={cn(
                     "inline-flex items-center gap-3 px-5 py-3 rounded-lg border-2",
                     decision === 'approve'
-                      ? "bg-emerald-50 border-emerald-500"
+                      ? "bg-void-surface border-tscore-creative"
                       : decision === 'reject'
-                      ? "bg-red-50 border-red-500"
-                      : "bg-blue-50 border-blue-500"
+                      ? "bg-void-surface border-tscore-modal"
+                      : "bg-void-surface border-tscore-divergent"
                   )}
                 >
-                  {decision === 'approve' && <CheckCircle2 className="h-6 w-6 text-emerald-600" />}
-                  {decision === 'reject' && <XCircle className="h-6 w-6 text-red-600" />}
-                  {decision === 'explain' && <HelpCircle className="h-6 w-6 text-blue-600" />}
+                  {decision === 'approve' && <CheckCircle2 className="h-6 w-6 text-tscore-creative" />}
+                  {decision === 'reject' && <XCircle className="h-6 w-6 text-tscore-modal" />}
+                  {decision === 'explain' && <HelpCircle className="h-6 w-6 text-tscore-divergent" />}
                   <span className={cn(
-                    "font-bold text-base",
-                    decision === 'approve' ? "text-emerald-700" :
-                    decision === 'reject' ? "text-red-700" : "text-blue-700"
+                    "font-bold text-base font-mono",
+                    decision === 'approve' ? "text-tscore-creative" :
+                    decision === 'reject' ? "text-tscore-modal" : "text-tscore-divergent"
                   )}>
                     {content.responses[decision][locale].title}
                   </span>
@@ -866,16 +871,16 @@ function CheckpointDemo({ locale }: { locale: 'en' | 'ko' }) {
                   transition={{ delay: 0.2 }}
                   className="space-y-5"
                 >
-                  <p className="text-gray-900 text-lg leading-relaxed">
+                  <p className="text-stellar-bright text-lg leading-relaxed">
                     {content.responses[decision][locale].message}
                   </p>
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 }}
-                    className="bg-white rounded-lg p-5 border border-gray-200 shadow-[0_1px_3px_rgba(0,0,0,0.1)]"
+                    className="bg-void-elevated rounded-lg p-5 border border-stellar-faint/20 shadow-[0_0_10px_rgba(68,255,170,0.1)]"
                   >
-                    <pre className="whitespace-pre-wrap text-gray-700 text-sm font-sans leading-relaxed">
+                    <pre className="whitespace-pre-wrap text-stellar-dim text-sm font-mono leading-relaxed">
                       {content.responses[decision][locale].detail}
                     </pre>
                   </motion.div>
@@ -883,7 +888,7 @@ function CheckpointDemo({ locale }: { locale: 'en' | 'ko' }) {
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.4 }}
-                    className="flex items-center gap-2 text-indigo-700 text-sm font-medium bg-indigo-50 border border-indigo-200 rounded-lg px-4 py-3"
+                    className="flex items-center gap-2 text-tscore-creative text-sm font-medium bg-void-surface border border-tscore-creative/30 rounded-lg px-4 py-3 font-mono"
                   >
                     <ArrowRight className="h-4 w-4" />
                     {content.responses[decision][locale].nextStep}
@@ -902,7 +907,7 @@ function CheckpointDemo({ locale }: { locale: 'en' | 'ko' }) {
                     }}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="inline-flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-all bg-white hover:bg-gray-50 px-4 py-2 rounded-lg border border-gray-200"
+                    className="inline-flex items-center gap-2 text-stellar-bright hover:text-stellar-core transition-all bg-void-surface hover:bg-void-hover px-4 py-2 rounded-lg border border-stellar-faint/20 font-mono"
                   >
                     <ArrowRight className="h-4 w-4 rotate-180" />
                     {locale === 'ko' ? '체크포인트로 돌아가기' : 'Back to checkpoint'}
@@ -914,9 +919,9 @@ function CheckpointDemo({ locale }: { locale: 'en' | 'ko' }) {
                   initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.6 }}
-                  className="rounded-lg bg-indigo-50 border border-indigo-200 p-5"
+                  className="rounded-lg bg-void-surface border border-tscore-divergent/30 p-5"
                 >
-                  <p className="text-indigo-700 text-sm text-center font-medium leading-relaxed">
+                  <p className="text-tscore-divergent text-sm text-center font-medium leading-relaxed">
                     {content.educational[locale].humanCentered}
                   </p>
                 </motion.div>
@@ -932,7 +937,7 @@ function CheckpointDemo({ locale }: { locale: 'en' | 'ko' }) {
                     onClick={resetDemo}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="inline-flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-all bg-white hover:bg-gray-50 px-4 py-2 rounded-lg border border-gray-200"
+                    className="inline-flex items-center gap-2 text-stellar-bright hover:text-stellar-core transition-all bg-void-surface hover:bg-void-hover px-4 py-2 rounded-lg border border-stellar-faint/20 font-mono"
                   >
                     <RotateCcw className="h-4 w-4" />
                     {locale === 'ko' ? '다시 체험하기' : 'Try Again'}
@@ -974,14 +979,14 @@ export default function PlaygroundPage() {
   ];
 
   return (
-    <div className="relative min-h-screen bg-white py-12 sm:py-16">
+    <div className="relative min-h-screen bg-void-deep py-12 sm:py-16">
       <div className="relative mx-auto max-w-6xl px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-5xl sm:text-6xl font-bold text-gray-900"
+            className="text-5xl sm:text-6xl font-bold text-stellar-core font-display"
           >
             {locale === 'ko' ? '체험하기' : 'Playground'}
           </motion.h1>
@@ -989,7 +994,7 @@ export default function PlaygroundPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="mt-4 text-lg text-gray-600"
+            className="mt-4 text-lg text-stellar-dim"
           >
             {locale === 'ko'
               ? 'Diverga의 인간 중심 AI 연구 지원을 직접 체험해보세요'
@@ -1003,7 +1008,7 @@ export default function PlaygroundPage() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2 }}
-            className="inline-flex rounded-lg bg-gray-100 p-1 border border-gray-200"
+            className="inline-flex rounded-lg bg-void-surface p-1 border border-stellar-faint/20"
           >
             {tabs.map((tab) => (
               <motion.button
@@ -1012,10 +1017,10 @@ export default function PlaygroundPage() {
                 whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.99 }}
                 className={cn(
-                  "relative px-8 py-3 rounded-lg font-medium transition-all duration-200",
+                  "relative px-8 py-3 rounded-lg font-mono font-medium transition-all duration-200",
                   activeTab === tab.id
-                    ? "bg-white text-gray-900 shadow-sm"
-                    : "text-gray-600 hover:text-gray-900"
+                    ? "bg-void-elevated text-stellar-core shadow-sm"
+                    : "text-stellar-dim hover:text-stellar-bright"
                 )}
               >
                 <span className="block text-sm font-semibold">{tab.label[locale]}</span>
@@ -1023,7 +1028,7 @@ export default function PlaygroundPage() {
                 {activeTab === tab.id && (
                   <motion.div
                     layoutId="activeTab"
-                    className="absolute inset-0 rounded-lg bg-white -z-10 shadow-sm"
+                    className="absolute inset-0 rounded-lg bg-void-elevated -z-10 shadow-sm"
                     transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                   />
                 )}
@@ -1057,7 +1062,7 @@ export default function PlaygroundPage() {
             >
               {/* Demo selector */}
               <div className="lg:col-span-1">
-                <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">
+                <h2 className="text-sm font-semibold text-stellar-dim uppercase tracking-wider mb-4 font-mono">
                   {locale === 'ko' ? '예시 선택' : 'Select Demo'}
                 </h2>
                 <motion.div
@@ -1076,20 +1081,20 @@ export default function PlaygroundPage() {
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: i * 0.1 }}
-                      whileHover={{ scale: 1.01 }}
+                      whileHover={{ scale: 1.01, boxShadow: '0 0 15px rgba(68, 255, 170, 0.2)' }}
                       whileTap={{ scale: 0.99 }}
                       className={cn(
                         "w-full text-left rounded-xl p-4 transition-all duration-200 border",
                         selectedDemo.id === demo.id
-                          ? "bg-indigo-50 border-indigo-300 shadow-sm"
-                          : "bg-white border-gray-200 hover:border-gray-300 shadow-[0_1px_3px_rgba(0,0,0,0.1)]"
+                          ? "bg-void-elevated border-tscore-creative/50 shadow-[0_0_10px_rgba(68,255,170,0.1)]"
+                          : "bg-void-surface border-stellar-faint/20 hover:border-stellar-dim/30"
                       )}
                     >
                       <div className="flex items-center justify-between">
-                        <span className="font-semibold text-gray-900 text-sm">
+                        <span className="font-semibold text-stellar-bright text-sm">
                           {demo.title[locale]}
                         </span>
-                        <span className="text-xs font-mono text-indigo-600 bg-indigo-100 px-2.5 py-1 rounded">
+                        <span className="text-xs font-mono text-tscore-creative bg-void-surface px-2.5 py-1 rounded border border-tscore-creative/30">
                           {demo.agent}
                         </span>
                       </div>
@@ -1104,21 +1109,21 @@ export default function PlaygroundPage() {
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="rounded-xl bg-gray-50 border border-gray-200 overflow-hidden"
+                  className="rounded-xl bg-void-surface border border-stellar-faint/20 overflow-hidden"
                 >
                   {/* Header */}
-                  <div className="flex items-center gap-2 px-4 py-3 bg-white border-b border-gray-200">
-                    <span className="text-xs font-mono text-gray-600">
+                  <div className="flex items-center gap-2 px-4 py-3 bg-void-elevated border-b border-stellar-faint/20">
+                    <span className="text-xs font-mono text-stellar-dim">
                       {locale === 'ko' ? '입력' : 'Input'}
                     </span>
-                    <span className="ml-auto text-xs font-mono text-indigo-600 bg-indigo-100 px-2.5 py-1 rounded">
+                    <span className="ml-auto text-xs font-mono text-tscore-creative bg-void-surface px-2.5 py-1 rounded border border-tscore-creative/30">
                       {selectedDemo.agent}
                     </span>
                   </div>
                   {/* Content */}
                   <div className="p-5">
-                    <p className="text-gray-900 font-mono text-sm leading-relaxed">
-                      <span className="text-indigo-600">$</span> {selectedDemo.input[locale]}
+                    <p className="text-stellar-bright font-mono text-sm leading-relaxed">
+                      <span className="text-tscore-creative">$</span> {selectedDemo.input[locale]}
                     </p>
                   </div>
                 </motion.div>
@@ -1126,9 +1131,9 @@ export default function PlaygroundPage() {
                 {/* Run button */}
                 <motion.button
                   onClick={handleRun}
-                  whileHover={{ scale: 1.02 }}
+                  whileHover={{ scale: 1.02, boxShadow: '0 0 20px rgba(68, 255, 170, 0.4)' }}
                   whileTap={{ scale: 0.98 }}
-                  className="inline-flex items-center gap-3 rounded-lg bg-gray-900 px-8 py-3 font-semibold text-white transition-all hover:bg-gray-800"
+                  className="inline-flex items-center gap-3 rounded-lg bg-tscore-creative text-void-deep px-8 py-3 font-semibold font-mono transition-all hover:bg-tscore-creative/90"
                 >
                   <Play className="h-5 w-5" />
                   {locale === 'ko' ? '실행' : 'Run Demo'}
@@ -1140,24 +1145,24 @@ export default function PlaygroundPage() {
                     initial={{ opacity: 0, y: 10, scale: 0.98 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     transition={{ duration: 0.4, ease: "easeOut" }}
-                    className="rounded-xl bg-gray-50 border border-gray-200 overflow-hidden"
+                    className="rounded-xl bg-void-surface border border-stellar-faint/20 overflow-hidden shadow-[0_0_15px_rgba(68,255,170,0.15)]"
                   >
                     {/* Header */}
-                    <div className="flex items-center gap-2 px-4 py-3 bg-white border-b border-gray-200">
+                    <div className="flex items-center gap-2 px-4 py-3 bg-void-elevated border-b border-stellar-faint/20">
                       <motion.div
                         animate={{
                           opacity: [0.6, 1, 0.6]
                         }}
                         transition={{ duration: 2, repeat: Infinity }}
-                        className="h-2.5 w-2.5 rounded-full bg-emerald-500"
+                        className="h-2.5 w-2.5 rounded-full bg-tscore-creative"
                       />
-                      <span className="text-xs font-medium text-gray-600 font-mono">
+                      <span className="text-xs font-medium text-stellar-dim font-mono">
                         {locale === 'ko' ? '응답' : 'Response'}
                       </span>
                     </div>
                     {/* Content */}
                     <div className="p-5">
-                      <pre className="whitespace-pre-wrap text-sm text-gray-900 font-mono leading-relaxed">
+                      <pre className="whitespace-pre-wrap text-sm text-stellar-bright font-mono leading-relaxed">
                         {selectedDemo.output[locale]}
                       </pre>
                     </div>

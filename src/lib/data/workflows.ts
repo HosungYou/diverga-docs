@@ -306,6 +306,61 @@ export const workflows: Workflow[] = [
   }
 ];
 
+// A6 Example Workflow: AI in Education Conceptual Framework
+export const a6ExampleWorkflow: Workflow = {
+  id: 'a6-ai-education',
+  slug: 'a6-ai-education',
+  name: {
+    en: 'A6 Example: AI in Education',
+    ko: 'A6 예시: 교육에서의 AI'
+  },
+  description: {
+    en: 'Conceptual framework visualization for AI-enhanced learning research',
+    ko: 'AI 강화 학습 연구를 위한 개념적 프레임워크 시각화'
+  },
+  paradigm: 'mixed',
+  estimatedTime: '30 min demo',
+  stages: [
+    {
+      agent: 'A1',
+      description: {
+        en: 'Define: "How does AI-powered tutoring affect student metacognition?"',
+        ko: '정의: "AI 기반 튜터링이 학생 메타인지에 어떤 영향을 미치는가?"'
+      },
+      checkpoint: 'CP_RESEARCH_DIRECTION'
+    },
+    {
+      agent: 'A2',
+      description: {
+        en: 'Select theoretical lens: Self-Regulated Learning (T-0.65) vs Actor-Network Theory (T-0.28)',
+        ko: '이론적 렌즈 선택: 자기조절학습(T-0.65) vs 행위자-네트워크 이론(T-0.28)'
+      },
+      checkpoint: 'CP_THEORY_SELECTION'
+    },
+    {
+      agent: 'A6',
+      description: {
+        en: 'Generate conceptual framework visualization using Nano Banana image synthesis',
+        ko: 'Nano Banana 이미지 합성을 사용하여 개념적 프레임워크 시각화 생성'
+      },
+      checkpoint: 'CP_VISUALIZATION_PREFERENCE'
+    }
+  ],
+  example: {
+    researchQuestion: 'How does AI-powered adaptive tutoring influence the development of metacognitive skills in undergraduate students?',
+    variables: {
+      independent: ['AI tutoring intervention', 'Personalization level', 'Feedback frequency'],
+      mediators: ['Metacognitive awareness', 'Self-monitoring', 'Strategy selection'],
+      dependent: ['Learning outcomes', 'Transfer ability', 'Autonomous learning']
+    },
+    theoreticalFramework: 'Integrated Self-Regulated Learning & Cognitive Load Theory',
+    tScore: 0.42
+  }
+};
+
+// Add to main workflows array
+workflows.push(a6ExampleWorkflow);
+
 export function getWorkflowBySlug(slug: string): Workflow | undefined {
   return workflows.find(w => w.slug === slug);
 }
