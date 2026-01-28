@@ -480,40 +480,56 @@ function CheckpointDemo({ locale }: { locale: 'en' | 'ko' }) {
   };
 
   const getTScoreColor = (tscore: number) => {
-    if (tscore >= 0.7) return 'text-orange-500 bg-orange-100 dark:bg-orange-900/30';
-    if (tscore >= 0.4) return 'text-blue-500 bg-blue-100 dark:bg-blue-900/30';
-    if (tscore >= 0.2) return 'text-emerald-500 bg-emerald-100 dark:bg-emerald-900/30';
-    return 'text-purple-500 bg-purple-100 dark:bg-purple-900/30';
+    if (tscore >= 0.7) return 'text-orange-400 bg-orange-500/20 border border-orange-500/40 shadow-[0_0_12px_rgba(251,146,60,0.3)]';
+    if (tscore >= 0.4) return 'text-teal-400 bg-teal-500/20 border border-teal-500/40 shadow-[0_0_12px_rgba(20,184,166,0.3)]';
+    if (tscore >= 0.2) return 'text-emerald-400 bg-emerald-500/20 border border-emerald-500/40 shadow-[0_0_12px_rgba(16,185,129,0.3)]';
+    return 'text-purple-400 bg-purple-500/20 border border-purple-500/40 shadow-[0_0_12px_rgba(168,85,247,0.3)]';
   };
 
   return (
     <div className="relative">
       <Confetti show={showConfetti} />
 
-      {/* Main Demo Container */}
-      <div className="rounded-2xl border border-[var(--border)] bg-gray-900 overflow-hidden shadow-2xl">
+      {/* Main Demo Container - Glass morphism */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
+        className="rounded-[20px] border border-white/10 bg-white/5 backdrop-blur-2xl overflow-hidden shadow-[0_8px_64px_rgba(0,0,0,0.5)]"
+      >
         {/* Terminal Header */}
-        <div className="flex items-center gap-2 px-4 py-3 bg-gray-800 border-b border-gray-700">
-          <div className="h-3 w-3 rounded-full bg-red-500" />
-          <div className="h-3 w-3 rounded-full bg-yellow-500" />
-          <div className="h-3 w-3 rounded-full bg-green-500" />
+        <div className="flex items-center gap-2 px-5 py-4 bg-black/30 border-b border-white/5 backdrop-blur-xl">
+          <motion.div
+            whileHover={{ scale: 1.2 }}
+            className="h-3 w-3 rounded-full bg-red-500 shadow-[0_0_12px_rgba(239,68,68,0.8)]"
+          />
+          <motion.div
+            whileHover={{ scale: 1.2 }}
+            className="h-3 w-3 rounded-full bg-yellow-500 shadow-[0_0_12px_rgba(234,179,8,0.8)]"
+          />
+          <motion.div
+            whileHover={{ scale: 1.2 }}
+            className="h-3 w-3 rounded-full bg-green-500 shadow-[0_0_12px_rgba(34,197,94,0.8)]"
+          />
           <span className="ml-4 text-xs font-mono text-gray-400">
             diverga-research-assistant
           </span>
           {state !== 'intro' && (
-            <button
+            <motion.button
               onClick={resetDemo}
-              className="ml-auto flex items-center gap-1.5 text-xs text-gray-500 hover:text-gray-300 transition-colors"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="ml-auto flex items-center gap-1.5 text-xs text-gray-500 hover:text-gray-300 transition-colors bg-white/5 hover:bg-white/10 px-3 py-1.5 rounded-lg"
               aria-label={locale === 'ko' ? '재시작' : 'Restart'}
             >
               <RotateCcw className="h-3 w-3" />
               {locale === 'ko' ? '재시작' : 'Restart'}
-            </button>
+            </motion.button>
           )}
         </div>
 
         {/* Content Area */}
-        <div className="p-6 min-h-[480px]">
+        <div className="p-8 min-h-[480px] bg-gradient-to-br from-[#0f1c3e]/80 to-[#1a1f3a]/80">
           <AnimatePresence mode="wait">
             {/* INTRO STATE */}
             {state === 'intro' && (
@@ -525,25 +541,44 @@ function CheckpointDemo({ locale }: { locale: 'en' | 'ko' }) {
                 className="flex flex-col items-center justify-center h-[420px] text-center"
               >
                 <motion.div
-                  animate={{ scale: [1, 1.05, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="mb-6 p-4 rounded-full bg-diverga-500/20"
+                  animate={{
+                    scale: [1, 1.1, 1],
+                    rotate: [0, 5, -5, 0]
+                  }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                  className="mb-8 p-6 rounded-full bg-gradient-to-br from-diverga-500/20 to-teal-500/20 backdrop-blur-xl shadow-[0_0_48px_rgba(20,184,166,0.3)]"
                 >
-                  <Sparkles className="h-12 w-12 text-diverga-400" />
+                  <Sparkles className="h-16 w-16 text-transparent bg-gradient-to-br from-diverga-400 to-teal-400 bg-clip-text" style={{ WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }} />
+                  <Sparkles className="h-16 w-16 text-teal-400" />
                 </motion.div>
-                <h3 className="text-2xl font-bold text-white mb-4">
+                <motion.h3
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="text-3xl font-bold text-white mb-4 bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent"
+                >
                   {content.intro[locale].title}
-                </h3>
-                <p className="text-gray-400 max-w-md mb-8">
+                </motion.h3>
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="text-gray-400 max-w-md mb-10 leading-relaxed"
+                >
                   {content.intro[locale].description}
-                </p>
-                <button
+                </motion.p>
+                <motion.button
                   onClick={startSimulation}
-                  className="inline-flex items-center gap-2 rounded-xl bg-diverga-500 px-6 py-3 font-semibold text-white hover:bg-diverga-600 transition-all hover:scale-105"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.4, type: "spring", stiffness: 200 }}
+                  whileHover={{ scale: 1.08, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-flex items-center gap-3 rounded-[16px] bg-gradient-to-r from-diverga-500 to-teal-500 px-8 py-4 font-bold text-white transition-all shadow-[0_0_32px_rgba(20,184,166,0.4)] hover:shadow-[0_0_48px_rgba(20,184,166,0.6)]"
                 >
                   <Play className="h-5 w-5" />
                   {content.intro[locale].buttonText}
-                </button>
+                </motion.button>
               </motion.div>
             )}
 
@@ -554,26 +589,45 @@ function CheckpointDemo({ locale }: { locale: 'en' | 'ko' }) {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="space-y-4"
+                className="space-y-5"
               >
                 {/* User Message */}
-                <div className="flex gap-3">
-                  <div className="flex-shrink-0 h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center text-white text-sm font-bold">
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  className="flex gap-4"
+                >
+                  <motion.div
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    className="flex-shrink-0 h-10 w-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white text-sm font-bold shadow-[0_0_20px_rgba(59,130,246,0.5)]"
+                  >
                     U
-                  </div>
-                  <div className="bg-gray-800 rounded-xl px-4 py-3 max-w-lg">
-                    <p className="text-gray-200">{content.context[locale].userMessage}</p>
-                  </div>
-                </div>
+                  </motion.div>
+                  <motion.div
+                    initial={{ scale: 0.95 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 0.1 }}
+                    className="bg-white/10 backdrop-blur-xl rounded-[16px] px-5 py-4 max-w-lg border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)]"
+                  >
+                    <p className="text-gray-100 leading-relaxed">{content.context[locale].userMessage}</p>
+                  </motion.div>
+                </motion.div>
 
                 {/* System Processing */}
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
-                  className="flex items-center gap-2 text-gray-500"
+                  className="flex items-center gap-3 text-gray-400"
                 >
-                  <div className="h-2 w-2 rounded-full bg-teal-500 animate-pulse" />
+                  <motion.div
+                    animate={{
+                      scale: [1, 1.3, 1],
+                      opacity: [0.5, 1, 0.5]
+                    }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                    className="h-2.5 w-2.5 rounded-full bg-teal-400 shadow-[0_0_12px_rgba(20,184,166,0.8)]"
+                  />
                   <span className="text-sm font-mono">{content.context[locale].systemNote}</span>
                 </motion.div>
               </motion.div>
@@ -586,28 +640,47 @@ function CheckpointDemo({ locale }: { locale: 'en' | 'ko' }) {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="space-y-4"
+                className="space-y-5"
               >
                 {/* Agent Badge */}
-                <div className="inline-flex items-center gap-2 bg-diverga-500/20 text-diverga-400 px-3 py-1.5 rounded-lg">
-                  <div className="h-2 w-2 rounded-full bg-diverga-400 animate-pulse" />
-                  <span className="text-sm font-mono">{content.analysis[locale].agentId}</span>
-                </div>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="inline-flex items-center gap-3 bg-diverga-500/20 backdrop-blur-xl border border-diverga-400/40 text-diverga-300 px-4 py-2 rounded-[12px] shadow-[0_0_24px_rgba(20,184,166,0.3)]"
+                >
+                  <motion.div
+                    animate={{
+                      scale: [1, 1.2, 1],
+                      opacity: [1, 0.7, 1]
+                    }}
+                    transition={{ duration: 1.2, repeat: Infinity }}
+                    className="h-2.5 w-2.5 rounded-full bg-diverga-400 shadow-[0_0_12px_rgba(20,184,166,1)]"
+                  />
+                  <span className="text-sm font-mono font-semibold">{content.analysis[locale].agentId}</span>
+                </motion.div>
 
                 {/* Analysis Lines */}
-                <div className="font-mono text-sm space-y-2">
+                <div className="font-mono text-sm space-y-3 pl-2">
                   {analysisLines.slice(0, analysisLine).map((line, i) => (
                     <motion.div
                       key={i}
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
-                      className="text-gray-400"
+                      transition={{ delay: i * 0.1 }}
+                      className="text-gray-300 flex items-center gap-2"
                     >
+                      <span className="text-teal-400">›</span>
                       {line}
                     </motion.div>
                   ))}
                   {analysisLine < analysisLines.length && (
-                    <span className="inline-block w-2 h-4 bg-teal-400 animate-pulse" />
+                    <motion.span
+                      animate={{
+                        opacity: [1, 0.3, 1]
+                      }}
+                      transition={{ duration: 0.8, repeat: Infinity }}
+                      className="inline-block w-2 h-4 bg-teal-400 shadow-[0_0_8px_rgba(20,184,166,0.8)]"
+                    />
                   )}
                 </div>
               </motion.div>
@@ -622,7 +695,7 @@ function CheckpointDemo({ locale }: { locale: 'en' | 'ko' }) {
                 exit={{ opacity: 0, scale: 0.95 }}
                 className="space-y-6"
               >
-                {/* Checkpoint Header */}
+                {/* Checkpoint Header - Pulsing red glow */}
                 <motion.div
                   initial={{ y: -20 }}
                   animate={{ y: 0 }}
@@ -631,113 +704,145 @@ function CheckpointDemo({ locale }: { locale: 'en' | 'ko' }) {
                   <motion.div
                     animate={{
                       boxShadow: [
-                        '0 0 0 0 rgba(239, 68, 68, 0.4)',
-                        '0 0 0 20px rgba(239, 68, 68, 0)',
+                        '0 0 20px rgba(239, 68, 68, 0.4)',
+                        '0 0 40px rgba(239, 68, 68, 0.6)',
+                        '0 0 20px rgba(239, 68, 68, 0.4)',
                       ],
                     }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                    className="inline-flex items-center gap-3 bg-red-500/20 border border-red-500/50 px-4 py-2 rounded-xl mb-4"
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="inline-flex items-center gap-3 bg-red-500/10 backdrop-blur-xl border-2 border-red-500/50 px-6 py-3 rounded-[16px] mb-4"
                   >
-                    <div className="h-3 w-3 rounded-full bg-red-500 animate-pulse" />
-                    <span className="font-mono font-bold text-red-400">
+                    <motion.div
+                      animate={{
+                        scale: [1, 1.2, 1],
+                        opacity: [1, 0.8, 1]
+                      }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                      className="h-3 w-3 rounded-full bg-red-500 shadow-[0_0_16px_rgba(239,68,68,1)]"
+                    />
+                    <span className="font-mono font-bold text-red-400 text-sm">
                       {content.checkpoint[locale].title}
                     </span>
                   </motion.div>
-                  <p className="text-gray-400 text-sm">{content.checkpoint[locale].subtitle}</p>
+                  <p className="text-gray-400 text-sm font-medium">{content.checkpoint[locale].subtitle}</p>
                 </motion.div>
 
-                {/* Modal Warning */}
-                <div className="bg-orange-500/10 border border-orange-500/30 rounded-xl p-3">
-                  <p className="text-orange-400 text-sm font-mono">
+                {/* Modal Warning - Enhanced glow */}
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="bg-orange-500/10 backdrop-blur-xl border border-orange-500/40 rounded-[16px] p-4 shadow-[0_0_24px_rgba(249,115,22,0.2)]"
+                >
+                  <p className="text-orange-300 text-sm font-mono leading-relaxed">
                     {content.checkpoint[locale].modalWarning}
                   </p>
-                </div>
+                </motion.div>
 
-                {/* Options */}
-                <div className="space-y-3">
+                {/* Options - Floating glass cards */}
+                <div className="space-y-4">
                   {content.checkpoint[locale].options.map((option, i) => (
                     <motion.div
                       key={option.id}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: i * 0.15 }}
+                      initial={{ opacity: 0, x: -20, y: 10 }}
+                      animate={{ opacity: 1, x: 0, y: 0 }}
+                      transition={{ delay: i * 0.15, type: "spring", stiffness: 100 }}
+                      whileHover={{ scale: 1.02, y: -4 }}
                       className={cn(
-                        "relative p-4 rounded-xl border transition-all",
+                        "relative p-5 rounded-[20px] border-2 backdrop-blur-xl transition-all duration-300",
                         option.recommended
-                          ? "border-teal-500/50 bg-teal-500/10"
-                          : "border-gray-700 bg-gray-800/50"
+                          ? "border-teal-500/60 bg-gradient-to-br from-teal-500/20 to-emerald-500/10 shadow-[0_0_32px_rgba(20,184,166,0.3)]"
+                          : "border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.3)]"
                       )}
                     >
                       {option.recommended && (
-                        <span className="absolute -top-2 right-3 bg-teal-500 text-white text-xs px-2 py-0.5 rounded-full">
+                        <motion.span
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ delay: 0.5 + i * 0.15, type: "spring" }}
+                          className="absolute -top-3 right-4 bg-gradient-to-r from-teal-500 to-emerald-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-[0_0_16px_rgba(20,184,166,0.6)]"
+                        >
                           {locale === 'ko' ? '추천' : 'Recommended'}
-                        </span>
+                        </motion.span>
                       )}
                       <div className="flex items-start justify-between gap-4">
                         <div>
-                          <div className="flex items-center gap-2 mb-1">
+                          <div className="flex items-center gap-2 mb-2">
                             <span className="text-lg font-bold text-white">
                               {locale === 'ko' ? '방향' : 'Direction'} {option.id}:
                             </span>
-                            <span className="text-gray-300">{option.name}</span>
+                            <span className="text-gray-200 font-medium">{option.name}</span>
                           </div>
-                          <p className="text-gray-500 text-sm">{option.description}</p>
+                          <p className="text-gray-400 text-sm leading-relaxed">{option.description}</p>
                         </div>
-                        <div className={cn(
-                          "flex-shrink-0 px-2 py-1 rounded-lg text-xs font-mono",
-                          getTScoreColor(option.tscore)
-                        )}>
+                        <motion.div
+                          whileHover={{ scale: 1.1 }}
+                          className={cn(
+                            "flex-shrink-0 px-3 py-1.5 rounded-xl text-xs font-mono font-bold backdrop-blur-xl",
+                            getTScoreColor(option.tscore)
+                          )}
+                        >
                           T={option.tscore.toFixed(1)}
-                        </div>
+                        </motion.div>
                       </div>
                     </motion.div>
                   ))}
                 </div>
 
                 {/* Question */}
-                <p className="text-gray-300 text-center">
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.8 }}
+                  className="text-gray-200 text-center font-medium text-base"
+                >
                   {content.checkpoint[locale].question}
-                </p>
+                </motion.p>
 
-                {/* Decision Buttons */}
-                <div className="flex flex-wrap gap-3 justify-center">
+                {/* Decision Buttons - Enhanced with glow */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1 }}
+                  className="flex flex-wrap gap-4 justify-center"
+                >
                   <motion.button
-                    whileHover={{ scale: 1.05 }}
+                    whileHover={{ scale: 1.08, y: -2 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => handleDecision('approve')}
-                    className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-5 py-2.5 font-semibold text-white hover:bg-emerald-600 transition-colors"
+                    className="inline-flex items-center gap-2 rounded-[16px] bg-gradient-to-r from-emerald-500 to-teal-500 px-6 py-3.5 font-bold text-white transition-all shadow-[0_0_32px_rgba(16,185,129,0.4)] hover:shadow-[0_0_48px_rgba(16,185,129,0.6)]"
                   >
                     <CheckCircle2 className="h-5 w-5" />
                     {content.checkpoint[locale].approveText}
                   </motion.button>
                   <motion.button
-                    whileHover={{ scale: 1.05 }}
+                    whileHover={{ scale: 1.08, y: -2 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => handleDecision('reject')}
-                    className="inline-flex items-center gap-2 rounded-xl bg-red-500/20 border border-red-500/50 px-5 py-2.5 font-semibold text-red-400 hover:bg-red-500/30 transition-colors"
+                    className="inline-flex items-center gap-2 rounded-[16px] bg-red-500/10 backdrop-blur-xl border-2 border-red-500/50 px-6 py-3.5 font-bold text-red-300 hover:bg-red-500/20 transition-all shadow-[0_0_24px_rgba(239,68,68,0.2)] hover:shadow-[0_0_32px_rgba(239,68,68,0.4)]"
                   >
                     <XCircle className="h-5 w-5" />
                     {content.checkpoint[locale].rejectText}
                   </motion.button>
                   <motion.button
-                    whileHover={{ scale: 1.05 }}
+                    whileHover={{ scale: 1.08, y: -2 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => handleDecision('explain')}
-                    className="inline-flex items-center gap-2 rounded-xl bg-gray-700 px-5 py-2.5 font-semibold text-gray-200 hover:bg-gray-600 transition-colors"
+                    className="inline-flex items-center gap-2 rounded-[16px] bg-white/5 backdrop-blur-xl border-2 border-white/20 px-6 py-3.5 font-bold text-gray-200 hover:bg-white/10 transition-all shadow-[0_8px_32px_rgba(0,0,0,0.3)]"
                   >
                     <HelpCircle className="h-5 w-5" />
                     {content.checkpoint[locale].explainText}
                   </motion.button>
-                </div>
+                </motion.div>
 
-                {/* Educational Note */}
+                {/* Educational Note - Gradient border */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 1 }}
-                  className="bg-diverga-500/10 border border-diverga-500/30 rounded-xl p-3 text-center"
+                  transition={{ delay: 1.2 }}
+                  className="relative rounded-[16px] bg-gradient-to-br from-diverga-500/10 to-teal-500/10 backdrop-blur-xl border border-diverga-400/30 p-4 text-center overflow-hidden"
                 >
-                  <p className="text-diverga-400 text-sm">
+                  <div className="absolute inset-0 bg-gradient-to-r from-diverga-500/5 via-transparent to-teal-500/5" />
+                  <p className="relative text-gray-300 text-sm font-medium leading-relaxed">
                     {content.educational[locale].checkpointExplainer}
                   </p>
                 </motion.div>
@@ -753,41 +858,61 @@ function CheckpointDemo({ locale }: { locale: 'en' | 'ko' }) {
                 className="space-y-6"
               >
                 {/* Response Header */}
-                <div className={cn(
-                  "inline-flex items-center gap-2 px-4 py-2 rounded-xl",
-                  decision === 'approve'
-                    ? "bg-emerald-500/20 border border-emerald-500/50"
-                    : decision === 'reject'
-                    ? "bg-red-500/20 border border-red-500/50"
-                    : "bg-blue-500/20 border border-blue-500/50"
-                )}>
-                  {decision === 'approve' && <CheckCircle2 className="h-5 w-5 text-emerald-400" />}
-                  {decision === 'reject' && <XCircle className="h-5 w-5 text-red-400" />}
-                  {decision === 'explain' && <HelpCircle className="h-5 w-5 text-blue-400" />}
+                <motion.div
+                  initial={{ scale: 0.9 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: "spring", stiffness: 200 }}
+                  className={cn(
+                    "inline-flex items-center gap-3 px-5 py-3 rounded-[16px] backdrop-blur-xl border-2",
+                    decision === 'approve'
+                      ? "bg-emerald-500/20 border-emerald-500/50 shadow-[0_0_24px_rgba(16,185,129,0.4)]"
+                      : decision === 'reject'
+                      ? "bg-red-500/20 border-red-500/50 shadow-[0_0_24px_rgba(239,68,68,0.4)]"
+                      : "bg-blue-500/20 border-blue-500/50 shadow-[0_0_24px_rgba(59,130,246,0.4)]"
+                  )}
+                >
+                  {decision === 'approve' && <CheckCircle2 className="h-6 w-6 text-emerald-400" />}
+                  {decision === 'reject' && <XCircle className="h-6 w-6 text-red-400" />}
+                  {decision === 'explain' && <HelpCircle className="h-6 w-6 text-blue-400" />}
                   <span className={cn(
-                    "font-semibold",
-                    decision === 'approve' ? "text-emerald-400" :
-                    decision === 'reject' ? "text-red-400" : "text-blue-400"
+                    "font-bold text-base",
+                    decision === 'approve' ? "text-emerald-300" :
+                    decision === 'reject' ? "text-red-300" : "text-blue-300"
                   )}>
                     {content.responses[decision][locale].title}
                   </span>
-                </div>
+                </motion.div>
 
                 {/* Response Content */}
-                <div className="space-y-4">
-                  <p className="text-white text-lg">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.2 }}
+                  className="space-y-5"
+                >
+                  <p className="text-white text-lg leading-relaxed">
                     {content.responses[decision][locale].message}
                   </p>
-                  <div className="bg-gray-800/50 rounded-xl p-4 border border-gray-700">
-                    <pre className="whitespace-pre-wrap text-gray-300 text-sm font-sans">
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="bg-white/5 backdrop-blur-xl rounded-[16px] p-5 border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)]"
+                  >
+                    <pre className="whitespace-pre-wrap text-gray-200 text-sm font-sans leading-relaxed">
                       {content.responses[decision][locale].detail}
                     </pre>
-                  </div>
-                  <div className="flex items-center gap-2 text-teal-400 text-sm">
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.4 }}
+                    className="flex items-center gap-2 text-teal-400 text-sm font-medium bg-teal-400/10 backdrop-blur-xl border border-teal-400/30 rounded-[12px] px-4 py-3"
+                  >
                     <ArrowRight className="h-4 w-4" />
                     {content.responses[decision][locale].nextStep}
-                  </div>
-                </div>
+                  </motion.div>
+                </motion.div>
 
                 {/* Back to checkpoint for explanation */}
                 {state === 'explanation' && (
@@ -799,7 +924,9 @@ function CheckpointDemo({ locale }: { locale: 'en' | 'ko' }) {
                       setState('checkpoint');
                       setDecision(null);
                     }}
-                    className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
+                    whileHover={{ scale: 1.05, x: -4 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-all bg-white/5 hover:bg-white/10 px-4 py-2 rounded-[12px] backdrop-blur-xl border border-white/10"
                   >
                     <ArrowRight className="h-4 w-4 rotate-180" />
                     {locale === 'ko' ? '체크포인트로 돌아가기' : 'Back to checkpoint'}
@@ -808,31 +935,39 @@ function CheckpointDemo({ locale }: { locale: 'en' | 'ko' }) {
 
                 {/* Human-centered reminder */}
                 <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.8 }}
-                  className="bg-gradient-to-r from-diverga-500/10 to-teal-500/10 border border-diverga-500/30 rounded-xl p-4"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.6 }}
+                  className="relative rounded-[16px] bg-gradient-to-r from-diverga-500/10 via-transparent to-teal-500/10 backdrop-blur-xl border border-diverga-400/30 p-5 overflow-hidden"
                 >
-                  <p className="text-gray-300 text-sm text-center">
+                  <div className="absolute inset-0 bg-gradient-to-br from-diverga-500/5 via-transparent to-teal-500/5" />
+                  <p className="relative text-gray-200 text-sm text-center font-medium leading-relaxed">
                     {content.educational[locale].humanCentered}
                   </p>
                 </motion.div>
 
                 {/* Restart button */}
-                <div className="text-center pt-4">
-                  <button
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.8 }}
+                  className="text-center pt-4"
+                >
+                  <motion.button
                     onClick={resetDemo}
-                    className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-all bg-white/5 hover:bg-white/10 px-4 py-2 rounded-[12px] backdrop-blur-xl border border-white/10"
                   >
                     <RotateCcw className="h-4 w-4" />
                     {locale === 'ko' ? '다시 체험하기' : 'Try Again'}
-                  </button>
-                </div>
+                  </motion.button>
+                </motion.div>
               </motion.div>
             )}
           </AnimatePresence>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
@@ -864,14 +999,20 @@ export default function PlaygroundPage() {
   ];
 
   return (
-    <div className="py-12 sm:py-16">
-      <div className="mx-auto max-w-6xl px-6 lg:px-8">
+    <div className="relative min-h-screen bg-gradient-to-br from-[#0a0f1e] via-[#0f1c3e] to-[#1a1f3a] py-12 sm:py-16">
+      {/* Ambient glow effects */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-diverga-500/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-[120px]" />
+      </div>
+
+      <div className="relative mx-auto max-w-6xl px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-h1 font-bold text-[var(--foreground)]"
+            className="text-5xl sm:text-6xl font-bold bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent"
           >
             {locale === 'ko' ? '체험하기' : 'Playground'}
           </motion.h1>
@@ -879,7 +1020,7 @@ export default function PlaygroundPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="mt-4 text-lg text-[var(--muted-foreground)]"
+            className="mt-4 text-lg text-gray-400"
           >
             {locale === 'ko'
               ? 'Diverga의 인간 중심 AI 연구 지원을 직접 체험해보세요'
@@ -887,25 +1028,39 @@ export default function PlaygroundPage() {
           </motion.p>
         </div>
 
-        {/* Tab Navigation */}
+        {/* Tab Navigation - Glass morphism pills */}
         <div className="flex justify-center mb-8">
-          <div className="inline-flex rounded-xl border border-[var(--border)] bg-[var(--card)] p-1">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2 }}
+            className="inline-flex rounded-[20px] bg-white/5 backdrop-blur-xl border border-white/10 p-1.5 shadow-[0_8px_32px_rgba(0,0,0,0.3)]"
+          >
             {tabs.map((tab) => (
-              <button
+              <motion.button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
                 className={cn(
-                  "relative px-6 py-3 rounded-lg font-medium transition-all",
+                  "relative px-8 py-4 rounded-[16px] font-medium transition-all duration-300",
                   activeTab === tab.id
-                    ? "bg-diverga-500 text-white"
-                    : "text-[var(--muted-foreground)] hover:text-[var(--foreground)]"
+                    ? "bg-gradient-to-r from-diverga-500 to-teal-500 text-white shadow-[0_0_24px_rgba(20,184,166,0.5)]"
+                    : "text-gray-400 hover:text-white hover:bg-white/5"
                 )}
               >
-                <span className="block">{tab.label[locale]}</span>
-                <span className="block text-xs opacity-70">{tab.description[locale]}</span>
-              </button>
+                <span className="block text-sm font-semibold">{tab.label[locale]}</span>
+                <span className="block text-xs opacity-70 mt-0.5">{tab.description[locale]}</span>
+                {activeTab === tab.id && (
+                  <motion.div
+                    layoutId="activeTab"
+                    className="absolute inset-0 rounded-[16px] bg-gradient-to-r from-diverga-500 to-teal-500 -z-10"
+                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                  />
+                )}
+              </motion.button>
             ))}
-          </div>
+          </motion.div>
         </div>
 
         {/* Tab Content */}
@@ -916,6 +1071,7 @@ export default function PlaygroundPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
             >
               <CheckpointDemo locale={locale} />
             </motion.div>
@@ -927,83 +1083,120 @@ export default function PlaygroundPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
               className="grid gap-8 lg:grid-cols-3"
             >
               {/* Demo selector */}
               <div className="lg:col-span-1">
-                <h2 className="text-sm font-semibold text-[var(--muted-foreground)] uppercase tracking-wide mb-4">
+                <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4 flex items-center gap-2">
+                  <div className="h-px flex-1 bg-gradient-to-r from-transparent to-gray-700" />
                   {locale === 'ko' ? '예시 선택' : 'Select Demo'}
+                  <div className="h-px flex-1 bg-gradient-to-l from-transparent to-gray-700" />
                 </h2>
-                <div className="space-y-2">
-                  {demos.map((demo) => (
-                    <button
+                <motion.div
+                  className="space-y-3"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ staggerChildren: 0.1 }}
+                >
+                  {demos.map((demo, i) => (
+                    <motion.button
                       key={demo.id}
                       onClick={() => {
                         setSelectedDemo(demo);
                         setShowOutput(false);
                       }}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.1 }}
+                      whileHover={{ scale: 1.02, y: -2 }}
+                      whileTap={{ scale: 0.98 }}
                       className={cn(
-                        "w-full text-left rounded-xl border p-4 transition-all",
+                        "w-full text-left rounded-[20px] p-5 transition-all duration-300",
                         selectedDemo.id === demo.id
-                          ? "border-diverga-500 bg-diverga-50 dark:bg-diverga-950/50"
-                          : "border-[var(--border)] bg-[var(--card)] hover:border-diverga-300"
+                          ? "bg-white/10 backdrop-blur-xl border-2 border-diverga-400/50 shadow-[0_0_32px_rgba(20,184,166,0.3)]"
+                          : "bg-white/5 backdrop-blur-xl border border-white/10 hover:border-diverga-400/30 hover:bg-white/8"
                       )}
                     >
                       <div className="flex items-center justify-between">
-                        <span className="font-medium text-[var(--foreground)]">
+                        <span className="font-semibold text-white text-sm">
                           {demo.title[locale]}
                         </span>
-                        <span className="text-xs font-mono text-[var(--muted-foreground)]">
+                        <span className="text-xs font-mono text-teal-400 bg-teal-400/10 px-2.5 py-1 rounded-lg">
                           {demo.agent}
                         </span>
                       </div>
-                    </button>
+                    </motion.button>
                   ))}
-                </div>
+                </motion.div>
               </div>
 
               {/* Demo display */}
-              <div className="lg:col-span-2 space-y-4">
-                {/* Input */}
-                <div className="rounded-xl border border-[var(--border)] bg-[var(--card)] p-4">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-sm font-medium text-[var(--muted-foreground)]">
+              <div className="lg:col-span-2 space-y-5">
+                {/* Input - Terminal style */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="rounded-[20px] bg-[#0f1c3e] border border-white/10 overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.4)]"
+                >
+                  {/* Terminal header */}
+                  <div className="flex items-center gap-2 px-4 py-3 bg-black/30 border-b border-white/5">
+                    <div className="h-3 w-3 rounded-full bg-red-500/80 shadow-[0_0_8px_rgba(239,68,68,0.6)]" />
+                    <div className="h-3 w-3 rounded-full bg-yellow-500/80 shadow-[0_0_8px_rgba(234,179,8,0.6)]" />
+                    <div className="h-3 w-3 rounded-full bg-green-500/80 shadow-[0_0_8px_rgba(34,197,94,0.6)]" />
+                    <span className="ml-3 text-xs font-mono text-gray-500">
                       {locale === 'ko' ? '입력' : 'Input'}
                     </span>
-                    <span className="text-xs font-mono text-diverga-600 bg-diverga-100 dark:bg-diverga-900/50 px-2 py-1 rounded">
+                    <span className="ml-auto text-xs font-mono text-teal-400 bg-teal-400/10 px-2.5 py-1 rounded">
                       {selectedDemo.agent}
                     </span>
                   </div>
-                  <p className="text-[var(--foreground)]">
-                    {selectedDemo.input[locale]}
-                  </p>
-                </div>
+                  {/* Terminal content */}
+                  <div className="p-5">
+                    <p className="text-gray-200 font-mono text-sm leading-relaxed">
+                      <span className="text-teal-400">$</span> {selectedDemo.input[locale]}
+                    </p>
+                  </div>
+                </motion.div>
 
-                {/* Run button */}
-                <button
+                {/* Run button with glow */}
+                <motion.button
                   onClick={handleRun}
-                  className="inline-flex items-center gap-2 rounded-xl bg-diverga-500 px-6 py-3 font-semibold text-white hover:bg-diverga-600 transition-colors"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-flex items-center gap-3 rounded-[16px] bg-gradient-to-r from-diverga-500 to-teal-500 px-8 py-4 font-bold text-white transition-all duration-300 shadow-[0_0_32px_rgba(20,184,166,0.4)] hover:shadow-[0_0_48px_rgba(20,184,166,0.6)]"
                 >
                   <Play className="h-5 w-5" />
                   {locale === 'ko' ? '실행' : 'Run Demo'}
-                </button>
+                </motion.button>
 
-                {/* Output */}
+                {/* Output - Terminal style */}
                 {showOutput && (
                   <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="rounded-xl border border-emerald-200 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-950/30 p-4"
+                    initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
+                    className="rounded-[20px] bg-[#0f1c3e] border border-emerald-500/30 overflow-hidden shadow-[0_0_32px_rgba(16,185,129,0.2)]"
                   >
-                    <div className="flex items-center gap-2 mb-3">
-                      <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                      <span className="text-sm font-medium text-emerald-700 dark:text-emerald-400">
+                    {/* Terminal header */}
+                    <div className="flex items-center gap-2 px-4 py-3 bg-black/30 border-b border-emerald-500/20">
+                      <motion.div
+                        animate={{
+                          boxShadow: ['0 0 8px rgba(16,185,129,0.4)', '0 0 16px rgba(16,185,129,0.8)', '0 0 8px rgba(16,185,129,0.4)']
+                        }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                        className="h-2.5 w-2.5 rounded-full bg-emerald-500"
+                      />
+                      <span className="text-xs font-medium text-emerald-400 font-mono">
                         {locale === 'ko' ? '응답' : 'Response'}
                       </span>
                     </div>
-                    <pre className="whitespace-pre-wrap text-sm text-emerald-800 dark:text-emerald-200 font-mono">
-                      {selectedDemo.output[locale]}
-                    </pre>
+                    {/* Terminal content with syntax highlighting */}
+                    <div className="p-5 bg-gradient-to-br from-emerald-950/20 to-transparent">
+                      <pre className="whitespace-pre-wrap text-sm text-gray-200 font-mono leading-relaxed">
+                        {selectedDemo.output[locale]}
+                      </pre>
+                    </div>
                   </motion.div>
                 )}
               </div>

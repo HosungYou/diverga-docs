@@ -57,11 +57,35 @@
   --color-vs-enhanced: oklch(0.55 0.12 200);
   --color-vs-light: oklch(0.65 0.03 75);
 
+  /* Brevian Palette */
+  --color-brevian-dark-start: #0f1c3e;
+  --color-brevian-dark-end: #050915;
+  --color-brevian-dark-mid: #0a1228;
+  --color-brevian-accent: #FA5D29;
+  --color-brevian-accent-light: #FF8A5B;
+  --color-brevian-accent-dark: #D94A1A;
+  --color-brevian-purple: #502bd8;
+  --color-brevian-purple-light: #7B5AE8;
+  --color-brevian-green: #AAEEC4;
+  --color-brevian-green-dark: #6BCF8E;
+  --color-brevian-blue: #49B3FC;
+  --color-brevian-blue-light: #7FCAFF;
+  --color-brevian-card-1: #cbd4e4;
+  --color-brevian-card-2: #aeb9d4;
+  --color-brevian-card-3: #d1d8de;
+  --color-brevian-card-4: #e8ebf0;
+  --color-brevian-card-dark-1: #1a2744;
+  --color-brevian-card-dark-2: #152038;
+  --color-brevian-card-dark-3: #0f1728;
+
   /* Animations */
   --animate-fade-in: fadeIn 0.5s ease-out;
   --animate-slide-up: slideUp 0.5s ease-out;
   --animate-slide-down: slideDown 0.3s ease-out;
   --animate-pulse-subtle: pulseSubtle 2s infinite;
+  --animate-glow: glow 3s ease-in-out infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-shimmer: shimmer 2s linear infinite;
 
   @keyframes fadeIn {
     0% { opacity: 0; }
@@ -81,6 +105,46 @@
   @keyframes pulseSubtle {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.7; }
+  }
+
+  /* Brevian Keyframes */
+  @keyframes glow {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  @keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  @keyframes scaleIn {
+    0% { opacity: 0; transform: scale(0.95); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes bounceSubtle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(250, 93, 41, 0.3), 0 0 40px rgba(250, 93, 41, 0.1);
+    }
+    50% {
+      box-shadow: 0 0 30px rgba(250, 93, 41, 0.5), 0 0 60px rgba(250, 93, 41, 0.2);
+    }
   }
 }
 
@@ -103,6 +167,13 @@
   --input: oklch(0.90 0.01 270);
   --ring: oklch(0.45 0.14 270);
   --radius: 0.75rem;
+
+  /* Brevian-specific root variables */
+  --brevian-radius: 20px;
+  --brevian-radius-sm: 12px;
+  --brevian-radius-lg: 24px;
+  --brevian-shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 40px 26px rgba(0, 0, 0, 0.05);
+  --brevian-shadow-card-hover: 0 8px 12px -2px rgba(0, 0, 0, 0.15), 0 25px 30px -5px rgba(0, 0, 0, 0.12), 0 50px 35px rgba(0, 0, 0, 0.08);
 }
 
 .dark {
@@ -123,6 +194,23 @@
   --border: oklch(0.25 0.01 270);
   --input: oklch(0.25 0.01 270);
   --ring: oklch(0.55 0.12 270);
+
+  /* Brevian dark mode shadows */
+  --brevian-shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 40px 26px rgba(0, 0, 0, 0.2);
+  --brevian-shadow-card-hover: 0 8px 12px -2px rgba(0, 0, 0, 0.4), 0 25px 30px -5px rgba(0, 0, 0, 0.5), 0 50px 35px rgba(0, 0, 0, 0.3);
+}
+
+/* Brevian Hero Theme - Deep Navy Dark Mode */
+.brevian-hero {
+  --background: #050915;
+  --foreground: #f8fafc;
+  --card: #1a2744;
+  --card-foreground: #f8fafc;
+  --muted: #0f1c3e;
+  --muted-foreground: #94a3b8;
+  --accent: #FA5D29;
+  --accent-foreground: #ffffff;
+  --border: rgba(255, 255, 255, 0.1);
 }
 
 * {
@@ -135,9 +223,24 @@ body {
   font-feature-settings: "rlig" 1, "calt" 1;
 }
 
+/* Brevian Typography */
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   letter-spacing: -0.025em;
+}
+
+.brevian-heading {
+  letter-spacing: -0.05em;
+  font-weight: 700;
+}
+
+.brevian-subheading {
+  letter-spacing: -0.03em;
+  font-weight: 600;
+}
+
+.brevian-body {
+  letter-spacing: -0.015em;
 }
 
 code {
@@ -149,21 +252,25 @@ code {
 .text-hero {
   font-size: clamp(2.5rem, 6vw, 4.5rem);
   line-height: 1.1;
+  letter-spacing: -0.05em;
 }
 
 .text-h1 {
   font-size: clamp(2rem, 4vw, 3rem);
   line-height: 1.2;
+  letter-spacing: -0.03em;
 }
 
 .text-h2 {
   font-size: clamp(1.5rem, 3vw, 2rem);
   line-height: 1.3;
+  letter-spacing: -0.03em;
 }
 
 .text-h3 {
   font-size: clamp(1.25rem, 2vw, 1.5rem);
   line-height: 1.4;
+  letter-spacing: -0.02em;
 }
 
 /* Custom scrollbar */
@@ -192,4 +299,245 @@ code {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Brevian Gradient Text Variants */
+.gradient-text-brevian {
+  background: linear-gradient(135deg, #FA5D29 0%, #FF8A5B 50%, #502bd8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-brevian-cool {
+  background: linear-gradient(135deg, #49B3FC 0%, #502bd8 50%, #AAEEC4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-brevian-warm {
+  background: linear-gradient(135deg, #FA5D29 0%, #FF8A5B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Brevian Hero Section */
+.brevian-hero-bg {
+  background: radial-gradient(100% 100% at 50% 0, #0f1c3e 0%, #050915 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.brevian-hero-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(at 40% 20%, rgba(80, 43, 216, 0.15) 0px, transparent 50%),
+    radial-gradient(at 80% 0%, rgba(250, 93, 41, 0.15) 0px, transparent 50%),
+    radial-gradient(at 0% 50%, rgba(73, 179, 252, 0.1) 0px, transparent 50%);
+  pointer-events: none;
+}
+
+/* Brevian Glow Effects */
+.brevian-glow {
+  position: relative;
+}
+
+.brevian-glow::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: radial-gradient(ellipse at center, rgba(250, 93, 41, 0.3), transparent 70%);
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.brevian-glow:hover::after {
+  opacity: 1;
+}
+
+.brevian-glow-always::after {
+  opacity: 1;
+  animation: glow 3s ease-in-out infinite;
+}
+
+/* Brevian Card Styles */
+.brevian-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--brevian-radius);
+  box-shadow: var(--brevian-shadow-card);
+  transition: all 0.3s ease;
+}
+
+.brevian-card:hover {
+  box-shadow: var(--brevian-shadow-card-hover);
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.brevian-card-solid {
+  background: var(--color-brevian-card-1);
+  border-radius: var(--brevian-radius);
+  box-shadow: var(--brevian-shadow-card);
+  transition: all 0.3s ease;
+}
+
+.brevian-card-solid:hover {
+  box-shadow: var(--brevian-shadow-card-hover);
+  transform: translateY(-4px);
+}
+
+.dark .brevian-card-solid {
+  background: var(--color-brevian-card-dark-1);
+}
+
+/* Brevian Button Styles */
+.brevian-btn {
+  border-radius: var(--brevian-radius-sm);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.brevian-btn-primary {
+  background: #FA5D29;
+  color: white;
+  box-shadow: 0 4px 14px rgba(250, 93, 41, 0.4);
+}
+
+.brevian-btn-primary:hover {
+  background: #FF8A5B;
+  box-shadow: 0 6px 20px rgba(250, 93, 41, 0.5);
+  transform: translateY(-2px);
+}
+
+.brevian-btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.brevian-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Brevian Float Animation Classes */
+.brevian-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.brevian-float-slow {
+  animation: float 8s ease-in-out infinite;
+}
+
+.brevian-float-fast {
+  animation: float 4s ease-in-out infinite;
+}
+
+.brevian-float-delay-1 {
+  animation-delay: -2s;
+}
+
+.brevian-float-delay-2 {
+  animation-delay: -4s;
+}
+
+/* Brevian Shimmer Effect */
+.brevian-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+}
+
+/* Brevian Glass Effect */
+.brevian-glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.brevian-glass-dark {
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Brevian Noise Texture Overlay */
+.brevian-noise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+/* Brevian Accent Borders */
+.brevian-border-accent {
+  position: relative;
+}
+
+.brevian-border-accent::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, #FA5D29, #502bd8, #49B3FC);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* Brevian Pulse Glow Button */
+.brevian-pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+/* Stagger Animation Utilities */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+.stagger-6 { animation-delay: 0.6s; }
+
+/* Brevian Section Divider */
+.brevian-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+}
+
+/* Brevian Feature Grid Card Colors */
+.brevian-feature-orange {
+  background: linear-gradient(135deg, rgba(250, 93, 41, 0.1), rgba(250, 93, 41, 0.05));
+  border-color: rgba(250, 93, 41, 0.2);
+}
+
+.brevian-feature-purple {
+  background: linear-gradient(135deg, rgba(80, 43, 216, 0.1), rgba(80, 43, 216, 0.05));
+  border-color: rgba(80, 43, 216, 0.2);
+}
+
+.brevian-feature-blue {
+  background: linear-gradient(135deg, rgba(73, 179, 252, 0.1), rgba(73, 179, 252, 0.05));
+  border-color: rgba(73, 179, 252, 0.2);
+}
+
+.brevian-feature-green {
+  background: linear-gradient(135deg, rgba(170, 238, 196, 0.1), rgba(170, 238, 196, 0.05));
+  border-color: rgba(170, 238, 196, 0.2);
 }

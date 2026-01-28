@@ -25,95 +25,115 @@ export default function WorkflowsPage() {
   const locale = useLocale() as 'en' | 'ko';
 
   return (
-    <div className="py-12 sm:py-16">
-      <div className="mx-auto max-w-4xl px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-h1 font-bold text-[var(--foreground)]"
-          >
-            {locale === 'ko' ? '연구 워크플로우' : 'Research Workflows'}
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="mt-4 text-lg text-[var(--muted-foreground)]"
-          >
-            {locale === 'ko'
-              ? '연구 패러다임별로 에이전트를 조합하는 가이드'
-              : 'Guides for combining agents by research paradigm'}
-          </motion.p>
-        </div>
+    <div className="relative overflow-hidden">
+      {/* Dark gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-gray-800 to-[var(--background)]">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(20,184,166,0.15),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_60%,rgba(139,92,246,0.1),transparent_50%)]" />
+      </div>
 
-        <div className="grid gap-6 sm:grid-cols-2">
-          {workflows.map((workflow, index) => {
-            const Icon = workflowIcons[workflow.id as keyof typeof workflowIcons] || BookOpen;
-            const colorClass = workflowColors[workflow.id as keyof typeof workflowColors] || workflowColors.quantitative;
-            const agents = getAgentsByParadigm(workflow.paradigm);
-            const checkpointCount = workflow.stages.filter(s => s.checkpoint).length;
+      <div className="relative py-20 sm:py-32">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-5xl sm:text-6xl font-bold bg-gradient-to-r from-white via-teal-100 to-purple-100 bg-clip-text text-transparent"
+            >
+              {locale === 'ko' ? '연구 워크플로우' : 'Research Workflows'}
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="mt-6 text-lg text-gray-300"
+            >
+              {locale === 'ko'
+                ? '연구 패러다임별로 에이전트를 조합하는 가이드'
+                : 'Guides for combining agents by research paradigm'}
+            </motion.p>
+          </div>
 
-            return (
-              <motion.div
-                key={workflow.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 * (index + 1) }}
-              >
-                <Link
-                  href={`/${locale}/workflows/${workflow.slug}`}
-                  className="group block rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 hover:border-diverga-300 hover:shadow-lg transition-all"
+          <div className="grid gap-8 sm:grid-cols-2">
+            {workflows.map((workflow, index) => {
+              const Icon = workflowIcons[workflow.id as keyof typeof workflowIcons] || BookOpen;
+              const colorClass = workflowColors[workflow.id as keyof typeof workflowColors] || workflowColors.quantitative;
+              const agents = getAgentsByParadigm(workflow.paradigm);
+              const checkpointCount = workflow.stages.filter(s => s.checkpoint).length;
+
+              return (
+                <motion.div
+                  key={workflow.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 * (index + 1) }}
+                  whileHover={{ y: -6 }}
                 >
-                  <div className={`inline-flex p-3 rounded-xl border ${colorClass}`}>
-                    <Icon className="h-6 w-6" />
-                  </div>
-                  <h2 className="mt-4 text-xl font-semibold text-[var(--foreground)] group-hover:text-diverga-600 transition-colors">
-                    {workflow.name[locale]}
-                  </h2>
-                  <p className="mt-2 text-[var(--muted-foreground)]">
-                    {workflow.description[locale]}
-                  </p>
+                  <Link
+                    href={`/${locale}/workflows/${workflow.slug}`}
+                    className="group block relative overflow-hidden bg-gradient-to-br from-white to-gray-50
+                      rounded-[20px] p-8 border border-gray-100
+                      shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_10px_15px_-3px_rgba(0,0,0,0.1)]
+                      hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.2)]
+                      transition-all duration-300"
+                  >
+                    {/* Floating gradient orb */}
+                    <div className="absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-teal-400/20 to-purple-400/20 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                  {/* Workflow metadata */}
-                  <div className="mt-4 flex items-center gap-4 text-xs text-[var(--muted-foreground)]">
-                    <div className="flex items-center gap-1">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-diverga-500" />
-                      <span>{workflow.stages.length} {locale === 'ko' ? '단계' : 'stages'}</span>
-                    </div>
-                    {checkpointCount > 0 && (
-                      <div className="flex items-center gap-1">
-                        <span className="w-2 h-2 rounded-full bg-red-500"></span>
-                        <span>{checkpointCount} {locale === 'ko' ? '체크포인트' : 'checkpoints'}</span>
+                    <div className="relative">
+                      <div className={`inline-flex p-4 rounded-2xl border-2 ${colorClass}
+                        shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                        <Icon className="h-7 w-7" />
                       </div>
-                    )}
-                  </div>
+                      <h2 className="mt-6 text-2xl font-bold text-gray-900 group-hover:text-teal-600 transition-colors">
+                        {workflow.name[locale]}
+                      </h2>
+                      <p className="mt-3 text-gray-600 leading-relaxed">
+                        {workflow.description[locale]}
+                      </p>
 
-                  {/* Agent tags */}
-                  <div className="mt-4 flex flex-wrap gap-1">
-                    {workflow.stages.slice(0, 6).map((stage) => (
-                      <span
-                        key={stage.agent}
-                        className="rounded-md bg-[var(--muted)] px-2 py-0.5 text-xs font-mono text-[var(--muted-foreground)]"
-                      >
-                        {stage.agent}
-                      </span>
-                    ))}
-                    {workflow.stages.length > 6 && (
-                      <span className="rounded-md bg-[var(--muted)] px-2 py-0.5 text-xs font-mono text-[var(--muted-foreground)]">
-                        +{workflow.stages.length - 6}
-                      </span>
-                    )}
-                  </div>
+                      {/* Workflow metadata */}
+                      <div className="mt-6 flex items-center gap-4 text-sm text-gray-600">
+                        <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gray-100">
+                          <CheckCircle2 className="w-4 h-4 text-teal-600" />
+                          <span className="font-medium">{workflow.stages.length} {locale === 'ko' ? '단계' : 'stages'}</span>
+                        </div>
+                        {checkpointCount > 0 && (
+                          <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-red-50">
+                            <div className="w-3 h-3 rounded-full bg-red-500 shadow-lg shadow-red-500/50 animate-pulse" />
+                            <span className="font-medium text-red-700">{checkpointCount} {locale === 'ko' ? '체크포인트' : 'checkpoints'}</span>
+                          </div>
+                        )}
+                      </div>
 
-                  <div className="mt-4 flex items-center text-sm font-medium text-diverga-500 group-hover:text-diverga-600 transition-colors">
-                    {locale === 'ko' ? '타임라인 보기' : 'View Timeline'}
-                    <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </div>
-                </Link>
-              </motion.div>
-            );
-          })}
+                      {/* Agent tags */}
+                      <div className="mt-6 flex flex-wrap gap-2">
+                        {workflow.stages.slice(0, 6).map((stage) => (
+                          <span
+                            key={stage.agent}
+                            className="rounded-lg bg-gradient-to-r from-gray-100 to-gray-50 border border-gray-200 px-3 py-1.5 text-xs font-mono font-semibold text-gray-700
+                              hover:border-teal-300 hover:shadow-sm transition-all"
+                          >
+                            {stage.agent}
+                          </span>
+                        ))}
+                        {workflow.stages.length > 6 && (
+                          <span className="rounded-lg bg-gradient-to-r from-teal-100 to-teal-50 border border-teal-200 px-3 py-1.5 text-xs font-mono font-bold text-teal-700">
+                            +{workflow.stages.length - 6}
+                          </span>
+                        )}
+                      </div>
+
+                      <div className="mt-6 flex items-center text-base font-semibold text-teal-600 group-hover:text-teal-700 transition-colors">
+                        {locale === 'ko' ? '타임라인 보기' : 'View Timeline'}
+                        <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-2" />
+                      </div>
+                    </div>
+                  </Link>
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>

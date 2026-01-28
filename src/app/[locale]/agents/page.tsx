@@ -66,26 +66,26 @@ function AgentsCatalog() {
   return (
     <>
       {/* Header */}
-      <div className="mx-auto max-w-2xl text-center mb-12">
-        <h1 className="text-h1 font-bold text-[var(--foreground)]">
+      <div className="mx-auto max-w-3xl text-center mb-16">
+        <h1 className="text-5xl sm:text-6xl font-black text-gray-900 mb-6 tracking-tight">
           {t('title')}
         </h1>
-        <p className="mt-4 text-lg text-[var(--muted-foreground)]">
+        <p className="mt-4 text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
           {t('description')}
         </p>
       </div>
 
       {/* Search and Filters */}
-      <div className="mb-8 space-y-4">
+      <div className="mb-12 space-y-6">
         {/* Search */}
-        <div className="relative max-w-md mx-auto">
-          <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-[var(--muted-foreground)]" />
+        <div className="relative max-w-2xl mx-auto">
+          <Search className="absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
           <input
             type="text"
             placeholder={t('search')}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full rounded-xl border border-[var(--border)] bg-[var(--background)] py-3 pl-10 pr-4 text-[var(--foreground)] placeholder:text-[var(--muted-foreground)] focus:border-diverga-500 focus:outline-none focus:ring-2 focus:ring-diverga-500/20"
+            className="w-full rounded-full border-2 border-gray-200 bg-white py-4 pl-14 pr-6 text-gray-900 placeholder:text-gray-400 focus:border-diverga-500 focus:outline-none focus:ring-4 focus:ring-diverga-100 transition-all shadow-sm hover:shadow-md"
           />
         </div>
 
@@ -102,12 +102,14 @@ function AgentsCatalog() {
       </div>
 
       {/* Results count */}
-      <div className="mb-6 text-sm text-[var(--muted-foreground)]">
-        {filteredAgents.length} {locale === 'ko' ? '개 에이전트' : 'agents'}
+      <div className="mb-8 flex items-center justify-between">
+        <div className="text-sm font-semibold text-gray-700 bg-gray-100 px-4 py-2 rounded-full">
+          {filteredAgents.length} {locale === 'ko' ? '개 에이전트' : 'agents'}
+        </div>
       </div>
 
       {/* Agent Grid */}
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {filteredAgents.map((agent) => (
           <AgentCard key={agent.id} agent={agent} />
         ))}
@@ -115,9 +117,13 @@ function AgentsCatalog() {
 
       {/* Empty state */}
       {filteredAgents.length === 0 && (
-        <div className="text-center py-12">
-          <p className="text-[var(--muted-foreground)]">
-            {locale === 'ko' ? '검색 결과가 없습니다.' : 'No agents found.'}
+        <div className="text-center py-20">
+          <div className="text-6xl mb-4">🔍</div>
+          <p className="text-xl font-semibold text-gray-900 mb-2">
+            {locale === 'ko' ? '검색 결과가 없습니다' : 'No agents found'}
+          </p>
+          <p className="text-gray-600">
+            {locale === 'ko' ? '다른 검색어나 필터를 시도해보세요' : 'Try different search terms or filters'}
           </p>
         </div>
       )}
@@ -151,7 +157,7 @@ function AgentsCatalogFallback() {
 
 export default function AgentsPage() {
   return (
-    <div className="py-12 sm:py-16">
+    <div className="py-12 sm:py-16 bg-gradient-to-b from-gray-50 via-white to-gray-50 min-h-screen">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <Suspense fallback={<AgentsCatalogFallback />}>
           <AgentsCatalog />

@@ -60,7 +60,7 @@ export default function DocsPage() {
 
         <div className="grid gap-6 sm:grid-cols-2">
           {docSections.map((section, index) => {
-            // Special design for Human Checkpoints card
+            // Special design for Human Checkpoints card - Gold gradient with glow
             if (section.href === '/docs/checkpoints') {
               return (
                 <motion.div
@@ -68,17 +68,21 @@ export default function DocsPage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 * (index + 1) }}
+                  whileHover={{ y: -8 }}
                   className="relative overflow-hidden"
                 >
                   <Link
                     href={`/${locale}${section.href}`}
-                    className="group relative flex flex-col gap-4 rounded-xl border-2 border-gold-300 bg-gradient-to-br from-gold-50 via-white to-diverga-50 p-6 hover:border-gold-400 hover:shadow-2xl transition-all duration-500 min-h-[180px]"
+                    className="group relative flex flex-col gap-4 rounded-[20px] bg-gradient-to-br from-gold-50 via-white to-gold-50 p-8
+                      shadow-[0_4px_6px_-1px_rgba(217,119,6,0.1),0_10px_15px_-3px_rgba(217,119,6,0.15),0_0_0_1px_rgba(217,119,6,0.1)]
+                      hover:shadow-[0_20px_40px_-10px_rgba(217,119,6,0.25),0_0_0_2px_rgba(217,119,6,0.15)]
+                      transition-all duration-300 min-h-[200px]"
                   >
                     {/* Glowing corner accent */}
                     <motion.div
-                      className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-gold-200/40 to-transparent rounded-bl-[100px] pointer-events-none"
+                      className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-gold-200/40 via-gold-100/20 to-transparent rounded-bl-[120px] pointer-events-none"
                       animate={{
-                        opacity: [0.3, 0.6, 0.3],
+                        opacity: [0.4, 0.7, 0.4],
                       }}
                       transition={{
                         duration: 3,
@@ -89,9 +93,15 @@ export default function DocsPage() {
 
                     {/* NEW v6.0 badge */}
                     <motion.div
-                      className="absolute top-3 right-3 px-3 py-1 rounded-full bg-gradient-to-r from-gold-500 to-gold-600 text-white text-xs font-bold tracking-wider shadow-lg"
+                      className="absolute top-4 right-4 px-3 py-1.5 rounded-full bg-gradient-to-r from-gold-500 to-gold-600 text-white text-xs font-bold tracking-wider
+                        shadow-[0_4px_12px_rgba(217,119,6,0.4)]"
                       animate={{
                         scale: [1, 1.05, 1],
+                        boxShadow: [
+                          '0 4px 12px rgba(217,119,6,0.4)',
+                          '0 6px 16px rgba(217,119,6,0.5)',
+                          '0 4px 12px rgba(217,119,6,0.4)',
+                        ],
                       }}
                       transition={{
                         duration: 2,
@@ -105,17 +115,18 @@ export default function DocsPage() {
                     <div className="flex items-start gap-4 relative z-10">
                       {/* Icon with glow effect */}
                       <motion.div
-                        className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-gold-400 to-gold-600 shadow-lg"
+                        className="relative flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-gold-400 to-gold-600
+                          shadow-[0_8px_16px_rgba(217,119,6,0.3)]"
                         whileHover={{ scale: 1.1, rotate: 5 }}
                         transition={{ type: "spring", stiffness: 400 }}
                       >
-                        <Hand className="h-6 w-6 text-white" />
+                        <Hand className="h-7 w-7 text-white" />
                         {/* Glow ring */}
                         <motion.div
-                          className="absolute inset-0 rounded-xl bg-gold-400 opacity-0 group-hover:opacity-50 blur-lg"
+                          className="absolute inset-0 rounded-xl bg-gold-400 opacity-0 group-hover:opacity-50 blur-xl"
                           animate={{
-                            scale: [1, 1.2, 1],
-                            opacity: [0, 0.3, 0],
+                            scale: [1, 1.3, 1],
+                            opacity: [0, 0.4, 0],
                           }}
                           transition={{
                             duration: 2,
@@ -126,27 +137,28 @@ export default function DocsPage() {
                       </motion.div>
 
                       <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-1">
-                          <h2 className="font-bold text-lg text-transparent bg-clip-text bg-gradient-to-r from-gold-700 via-gold-600 to-diverga-600 group-hover:from-gold-800 group-hover:to-diverga-700 transition-all">
+                        <div className="flex items-center gap-2 mb-1.5">
+                          <h2 className="font-bold text-xl text-transparent bg-clip-text bg-gradient-to-r from-gold-700 via-gold-600 to-diverga-600 group-hover:from-gold-800 group-hover:to-diverga-700 transition-all">
                             {section.title[locale]}
                           </h2>
-                          <Sparkles className="h-4 w-4 text-gold-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                          <Sparkles className="h-5 w-5 text-gold-500 opacity-0 group-hover:opacity-100 transition-opacity" />
                         </div>
-                        <p className="text-sm text-gray-600 font-medium">
+                        <p className="text-sm text-gray-700 font-medium leading-relaxed">
                           {section.description[locale]}
                         </p>
                       </div>
                     </div>
 
                     {/* Traffic light metaphor */}
-                    <div className="flex items-center gap-3 px-4 py-3 bg-white/80 rounded-lg border border-gold-200 relative z-10">
-                      <div className="flex gap-1.5">
+                    <div className="flex items-center gap-3 px-4 py-3 bg-white/90 rounded-xl border border-gold-200 relative z-10
+                      shadow-[0_2px_8px_rgba(217,119,6,0.1)]">
+                      <div className="flex gap-2">
                         <motion.div
-                          className="w-3 h-3 rounded-full bg-red-500 shadow-sm"
+                          className="w-3.5 h-3.5 rounded-full bg-red-500 shadow-md"
                           animate={{
                             boxShadow: [
                               '0 0 0 0 rgba(239, 68, 68, 0)',
-                              '0 0 0 4px rgba(239, 68, 68, 0.3)',
+                              '0 0 0 5px rgba(239, 68, 68, 0.3)',
                               '0 0 0 0 rgba(239, 68, 68, 0)',
                             ],
                           }}
@@ -156,16 +168,17 @@ export default function DocsPage() {
                             ease: "easeInOut"
                           }}
                         />
-                        <div className="w-3 h-3 rounded-full bg-amber-500 shadow-sm" />
-                        <div className="w-3 h-3 rounded-full bg-yellow-400 shadow-sm" />
+                        <div className="w-3.5 h-3.5 rounded-full bg-amber-500 shadow-md" />
+                        <div className="w-3.5 h-3.5 rounded-full bg-yellow-400 shadow-md" />
                       </div>
-                      <div className="text-xs font-semibold text-gray-700 border-l border-gold-300 pl-3">
+                      <div className="text-xs font-bold text-gray-800 border-l-2 border-gold-400 pl-3">
                         {locale === 'ko' ? '당신이 결정합니다. Diverga가 지원합니다.' : 'You Decide. Diverga Assists.'}
                       </div>
                     </div>
 
                     {/* Human-Centered badge */}
-                    <div className="absolute bottom-3 right-3 px-2 py-1 rounded bg-diverga-600 text-white text-[10px] font-bold tracking-wide shadow-md opacity-90">
+                    <div className="absolute bottom-4 right-4 px-3 py-1.5 rounded-lg bg-diverga-600 text-white text-[10px] font-bold tracking-widest
+                      shadow-[0_4px_12px_rgba(20,184,166,0.4)]">
                       {locale === 'ko' ? '인간 중심' : 'HUMAN-CENTERED'}
                     </div>
                   </Link>
@@ -173,26 +186,73 @@ export default function DocsPage() {
               );
             }
 
-            // Regular card design for other sections
+            // VS Methodology card - Teal accent
+            if (section.href === '/docs/vs-methodology') {
+              return (
+                <motion.div
+                  key={section.href}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 * (index + 1) }}
+                  whileHover={{ y: -4 }}
+                >
+                  <Link
+                    href={`/${locale}${section.href}`}
+                    className="group relative flex items-start gap-5 rounded-[20px] bg-white p-8
+                      shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_10px_15px_-3px_rgba(0,0,0,0.1)]
+                      hover:shadow-[0_20px_40px_-10px_rgba(20,184,166,0.2)]
+                      border border-gray-100 hover:border-teal-200
+                      transition-all duration-300 min-h-[200px]"
+                  >
+                    {/* Teal accent corner */}
+                    <motion.div
+                      className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-teal-100/60 to-transparent rounded-bl-[60px]"
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ type: "spring", stiffness: 400 }}
+                    />
+
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-teal-400 to-teal-600
+                      shadow-[0_4px_12px_rgba(20,184,166,0.3)]">
+                      <section.icon className="h-6 w-6 text-white" />
+                    </div>
+                    <div className="flex-1">
+                      <h2 className="font-bold text-lg text-[var(--foreground)] group-hover:text-teal-600 transition-colors mb-2">
+                        {section.title[locale]}
+                      </h2>
+                      <p className="text-sm text-[var(--muted-foreground)] leading-relaxed">
+                        {section.description[locale]}
+                      </p>
+                    </div>
+                  </Link>
+                </motion.div>
+              );
+            }
+
+            // Regular card design for other sections - Brevian style
             return (
               <motion.div
                 key={section.href}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * (index + 1) }}
+                whileHover={{ y: -4 }}
               >
                 <Link
                   href={`/${locale}${section.href}`}
-                  className="group flex items-start gap-4 rounded-xl border border-[var(--border)] bg-[var(--card)] p-5 hover:border-diverga-300 hover:shadow-md transition-all"
+                  className="group flex items-start gap-5 rounded-[20px] bg-white p-8
+                    shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_10px_15px_-3px_rgba(0,0,0,0.1)]
+                    hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.15)]
+                    border border-gray-100
+                    transition-all duration-300"
                 >
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-diverga-100">
-                    <section.icon className="h-5 w-5 text-diverga-600" />
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-diverga-100 group-hover:bg-diverga-200 transition-colors">
+                    <section.icon className="h-6 w-6 text-diverga-600" />
                   </div>
                   <div>
-                    <h2 className="font-semibold text-[var(--foreground)] group-hover:text-diverga-600 transition-colors">
+                    <h2 className="font-bold text-lg text-[var(--foreground)] group-hover:text-diverga-600 transition-colors mb-2">
                       {section.title[locale]}
                     </h2>
-                    <p className="mt-1 text-sm text-[var(--muted-foreground)]">
+                    <p className="text-sm text-[var(--muted-foreground)] leading-relaxed">
                       {section.description[locale]}
                     </p>
                   </div>

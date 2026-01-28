@@ -316,40 +316,76 @@ export default function VSMethodologyPage() {
           </div>
           <p className="text-lg text-[var(--muted-foreground)] mb-6">{t.tscoreDescription}</p>
 
-          {/* T-Score Visualization */}
-          <div className="rounded-xl border border-[var(--border)] bg-[var(--card)] p-6 mb-6">
-            <div className="space-y-4">
+          {/* T-Score Visualization with gradient bars */}
+          <div className="rounded-[20px] bg-white p-8 mb-8
+            shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_10px_15px_-3px_rgba(0,0,0,0.1)]
+            border border-gray-100">
+            <div className="space-y-6">
               {t.tscoreRanges.map((item, index) => (
-                <div key={index} className="flex items-center gap-4">
-                  <div className="w-24 text-sm font-mono text-[var(--muted-foreground)]">
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.25 + index * 0.1 }}
+                  className="flex items-center gap-6"
+                >
+                  <div className="w-28 text-sm font-mono font-bold text-gray-700">
                     {item.range}
                   </div>
                   <div className="flex-1">
-                    <div className="h-8 rounded-lg overflow-hidden bg-[var(--muted)]">
-                      <div
-                        className={`h-full ${tscoreBarColors[item.color]} transition-all`}
-                        style={{ width: `${100 - index * 25}%` }}
-                      />
+                    <div className="h-10 rounded-xl overflow-hidden bg-gray-100 shadow-inner">
+                      <motion.div
+                        className={`h-full relative ${tscoreBarColors[item.color]}`}
+                        initial={{ width: 0 }}
+                        animate={{ width: `${100 - index * 25}%` }}
+                        transition={{ duration: 0.8, delay: 0.3 + index * 0.1, ease: "easeOut" }}
+                      >
+                        {/* Gradient overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/20" />
+                        {/* Shimmer effect */}
+                        <motion.div
+                          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                          animate={{
+                            x: ['-100%', '200%'],
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: index * 0.2,
+                          }}
+                        />
+                      </motion.div>
                     </div>
                   </div>
-                  <div className={`px-3 py-1 rounded-full text-sm font-medium border ${tscoreColors[item.color]}`}>
+                  <div className={`px-4 py-2 rounded-xl text-sm font-bold shadow-md ${tscoreColors[item.color]}`}>
                     {item.label}
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
 
-          {/* T-Score Legend */}
-          <div className="grid gap-3 sm:grid-cols-2">
+          {/* T-Score Legend with hover effects */}
+          <div className="grid gap-4 sm:grid-cols-2">
             {t.tscoreRanges.map((item, index) => (
-              <div key={index} className={`rounded-lg border p-4 ${tscoreColors[item.color]}`}>
-                <div className="flex items-center justify-between mb-1">
-                  <span className="font-semibold">{item.label}</span>
-                  <span className="text-sm font-mono">{item.range}</span>
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 + index * 0.1 }}
+                whileHover={{ y: -4, scale: 1.02 }}
+                className={`rounded-[16px] p-5 ${tscoreColors[item.color]} border-2 cursor-default
+                  shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)]
+                  hover:shadow-[0_12px_24px_-6px_rgba(0,0,0,0.15)]
+                  transition-all duration-300`}
+              >
+                <div className="flex items-center justify-between mb-2">
+                  <span className="font-bold text-base">{item.label}</span>
+                  <span className="text-sm font-mono font-bold px-2 py-1 rounded-lg bg-white/50">{item.range}</span>
                 </div>
-                <p className="text-sm opacity-80">{item.description}</p>
-              </div>
+                <p className="text-sm leading-relaxed font-medium">{item.description}</p>
+              </motion.div>
             ))}
           </div>
         </motion.section>
@@ -370,38 +406,114 @@ export default function VSMethodologyPage() {
           <p className="text-lg text-[var(--muted-foreground)]">{t.solutionDescription}</p>
         </motion.section>
 
-        {/* VS Process Section */}
+        {/* VS Process Section - 5-Phase Timeline with Glass Effect */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
           className="mb-16"
         >
-          <h2 className="text-h2 font-bold text-[var(--foreground)] mb-8">{t.processTitle}</h2>
+          <h2 className="text-h2 font-bold text-[var(--foreground)] mb-12 text-center">{t.processTitle}</h2>
 
-          <div className="space-y-4">
-            {t.phases.map((phase, index) => (
-              <motion.div
-                key={phase.number}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.5 + index * 0.1 }}
-                className="flex gap-4"
-              >
-                <div className="flex-shrink-0">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-diverga-500 text-white font-bold">
-                    {phase.number}
+          <div className="relative">
+            {/* Animated connector line */}
+            <motion.div
+              className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-diverga-200 via-diverga-400 to-diverga-600 rounded-full"
+              initial={{ scaleY: 0 }}
+              animate={{ scaleY: 1 }}
+              transition={{ duration: 1, ease: "easeOut" }}
+              style={{ transformOrigin: 'top' }}
+            />
+
+            <div className="space-y-8">
+              {t.phases.map((phase, index) => (
+                <motion.div
+                  key={phase.number}
+                  initial={{ opacity: 0, x: -40 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.5 + index * 0.15, type: "spring", stiffness: 100 }}
+                  whileHover={{ x: 8, scale: 1.02 }}
+                  className="flex gap-6 relative"
+                >
+                  {/* Phase number with glow */}
+                  <div className="flex-shrink-0 relative z-10">
+                    <motion.div
+                      className={`flex h-16 w-16 items-center justify-center rounded-2xl font-bold text-xl
+                        shadow-[0_8px_16px_rgba(20,184,166,0.3)]
+                        ${phase.number === 5
+                          ? 'bg-gradient-to-br from-gold-400 to-gold-600 text-white ring-4 ring-gold-200'
+                          : 'bg-gradient-to-br from-diverga-400 to-diverga-600 text-white'}`}
+                      animate={{
+                        boxShadow: phase.number === 5
+                          ? [
+                              '0 8px 16px rgba(217,119,6,0.3)',
+                              '0 12px 24px rgba(217,119,6,0.5)',
+                              '0 8px 16px rgba(217,119,6,0.3)',
+                            ]
+                          : undefined,
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: phase.number === 5 ? Infinity : 0,
+                        ease: "easeInOut"
+                      }}
+                    >
+                      {phase.number}
+                    </motion.div>
+
+                    {/* Animated connector dots */}
+                    {index < t.phases.length - 1 && (
+                      <div className="absolute left-1/2 top-16 -translate-x-1/2 flex flex-col gap-2 py-4">
+                        {[0, 1, 2].map((dotIndex) => (
+                          <motion.div
+                            key={dotIndex}
+                            className="w-2 h-2 rounded-full bg-diverga-400"
+                            animate={{
+                              scale: [1, 1.5, 1],
+                              opacity: [0.3, 1, 0.3],
+                            }}
+                            transition={{
+                              duration: 1.5,
+                              repeat: Infinity,
+                              ease: "easeInOut",
+                              delay: dotIndex * 0.2 + index * 0.1,
+                            }}
+                          />
+                        ))}
+                      </div>
+                    )}
                   </div>
-                  {index < t.phases.length - 1 && (
-                    <div className="w-0.5 h-full bg-diverga-200 mx-auto mt-2" />
-                  )}
-                </div>
-                <div className="flex-1 pb-8">
-                  <h3 className="font-semibold text-[var(--foreground)] mb-1">{phase.title}</h3>
-                  <p className="text-[var(--muted-foreground)]">{phase.description}</p>
-                </div>
-              </motion.div>
-            ))}
+
+                  {/* Phase card with glass effect */}
+                  <div className={`flex-1 rounded-[20px] p-6 backdrop-blur-sm
+                    shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_10px_15px_-3px_rgba(0,0,0,0.1)]
+                    hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.2)]
+                    border transition-all duration-300
+                    ${phase.number === 5
+                      ? 'bg-gradient-to-br from-gold-50/90 to-white/90 border-gold-200 hover:border-gold-400'
+                      : 'bg-white/90 border-gray-100 hover:border-diverga-200'}`}>
+                    <div className="flex items-center gap-3 mb-3">
+                      <h3 className={`font-bold text-lg
+                        ${phase.number === 5 ? 'text-transparent bg-clip-text bg-gradient-to-r from-gold-700 to-diverga-600' : 'text-[var(--foreground)]'}`}>
+                        {phase.title}
+                      </h3>
+                      {phase.number === 5 && (
+                        <motion.span
+                          className="text-gold-500"
+                          animate={{ rotate: [0, 10, -10, 0] }}
+                          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                        >
+                          ⭐
+                        </motion.span>
+                      )}
+                    </div>
+                    <p className={`leading-relaxed ${phase.number === 5 ? 'text-gray-800 font-medium' : 'text-[var(--muted-foreground)]'}`}>
+                      {phase.description}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </motion.section>
 
