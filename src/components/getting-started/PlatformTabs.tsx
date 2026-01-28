@@ -30,8 +30,8 @@ const platforms: PlatformConfig[] = [
     id: 'claude-code',
     name: 'Claude Code',
     icon: '🤖',
-    description: 'Anthropic\'s official CLI for Claude',
-    descriptionKo: 'Anthropic 공식 Claude CLI',
+    description: 'Anthropic\'s official CLI for Claude (Recommended)',
+    descriptionKo: 'Anthropic 공식 Claude CLI (권장)',
     installSteps: [
       {
         title: 'Install Claude Code',
@@ -71,24 +71,24 @@ const platforms: PlatformConfig[] = [
     descriptionKo: 'OpenAI 명령줄 인터페이스',
     installSteps: [
       {
-        title: 'Install Codex CLI',
-        titleKo: 'Codex CLI 설치',
+        title: 'Install Codex CLI (if not installed)',
+        titleKo: 'Codex CLI 설치 (미설치 시)',
         commands: ['npm install -g @openai/codex-cli'],
       },
       {
-        title: 'Clone Diverga',
-        titleKo: 'Diverga 클론',
+        title: 'Install Diverga (One-line)',
+        titleKo: 'Diverga 설치 (원라인)',
         commands: [
-          'git clone https://github.com/HosungYou/Diverga.git ~/.codex/diverga',
+          'curl -sSL https://raw.githubusercontent.com/HosungYou/Diverga/main/scripts/install-codex.sh | bash',
         ],
       },
       {
         title: 'Run Setup',
         titleKo: '설정 실행',
-        commands: ['node ~/.codex/diverga/.codex/diverga-codex.js setup'],
+        commands: ['node ~/.codex/diverga/diverga-codex.cjs setup'],
       },
     ],
-    setupCommand: 'node ~/.codex/diverga/.codex/diverga-codex.js setup',
+    setupCommand: 'node ~/.codex/diverga/diverga-codex.cjs setup',
   },
   {
     id: 'opencode',
@@ -98,31 +98,30 @@ const platforms: PlatformConfig[] = [
     descriptionKo: '커뮤니티 기반 오픈 코딩 어시스턴트',
     installSteps: [
       {
-        title: 'Install OpenCode',
-        titleKo: 'OpenCode 설치',
+        title: 'Install OpenCode (if not installed)',
+        titleKo: 'OpenCode 설치 (미설치 시)',
         commands: ['npm install -g opencode'],
       },
       {
-        title: 'Add Diverga Plugin',
-        titleKo: 'Diverga 플러그인 추가',
+        title: 'Install Diverga (One-line)',
+        titleKo: 'Diverga 설치 (원라인)',
         commands: [
-          'git clone https://github.com/HosungYou/Diverga.git',
-          'cp -r Diverga/.opencode/plugins/diverga ~/.opencode/plugins/',
+          'curl -sSL https://raw.githubusercontent.com/HosungYou/Diverga/main/scripts/install-opencode.sh | bash',
         ],
       },
       {
-        title: 'Configure in Settings',
-        titleKo: '설정에서 구성',
+        title: 'Start Using',
+        titleKo: '사용 시작',
         commands: [
-          '# Add to ~/.opencode/oh-my-opencode.json:',
-          '{',
-          '  "plugins": ["./plugins/diverga"],',
-          '  "diverga": { "autoTrigger": true }',
-          '}',
+          '# List all agents',
+          'opencode "diverga:list"',
+          '',
+          '# Show agent details',
+          'opencode "diverga:agent A1"',
         ],
       },
     ],
-    setupCommand: '# Edit ~/.opencode/oh-my-opencode.json',
+    setupCommand: 'opencode "diverga:list"',
   },
 ];
 
