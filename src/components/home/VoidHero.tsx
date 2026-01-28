@@ -14,7 +14,13 @@ interface Particle {
   alpha: number;
 }
 
-function TScoreIndicator({ score, label }: { score: number; label: string }) {
+function TScoreIndicator({ score, label, description, descriptionKo, locale }: {
+  score: number;
+  label: string;
+  description?: string;
+  descriptionKo?: string;
+  locale?: string;
+}) {
   const getColor = (s: number) => {
     if (s >= 0.8) return '#ff3366';
     if (s >= 0.6) return '#ff8844';
@@ -24,17 +30,24 @@ function TScoreIndicator({ score, label }: { score: number; label: string }) {
   };
 
   return (
-    <div className="flex items-center gap-3 border border-stellar-faint/20 bg-void-surface/50 px-4 py-2 backdrop-blur-sm">
-      <div
-        className="h-2 w-2 rounded-full"
-        style={{ backgroundColor: getColor(score) }}
-      />
-      <span className="font-mono text-micro uppercase tracking-widest text-stellar-faint">
-        {label}
-      </span>
-      <span className="font-mono text-sm text-stellar-dim">
-        T-{score.toFixed(2)}
-      </span>
+    <div className="flex flex-col items-center gap-2">
+      <div className="flex items-center gap-3 border border-stellar-faint/20 bg-void-surface/50 px-4 py-2 backdrop-blur-sm">
+        <div
+          className="h-2 w-2 rounded-full"
+          style={{ backgroundColor: getColor(score) }}
+        />
+        <span className="font-mono text-micro uppercase tracking-widest text-stellar-faint">
+          {label}
+        </span>
+        <span className="font-mono text-sm text-stellar-dim">
+          T-{score.toFixed(2)}
+        </span>
+      </div>
+      {description && (
+        <span className="font-mono text-micro text-stellar-faint/70">
+          {locale === 'ko' ? descriptionKo || description : description}
+        </span>
+      )}
     </div>
   );
 }
@@ -199,7 +212,13 @@ export function VoidHero() {
           transition={{ delay: 0.3, duration: 0.6 }}
           className="mb-8"
         >
-          <TScoreIndicator score={0.42} label="Void Cartography" />
+          <TScoreIndicator
+            score={0.42}
+            label="Void Cartography"
+            description="Anti-modal yet feasible"
+            descriptionKo="뻔하지 않으면서도 실현 가능한 영역"
+            locale={locale}
+          />
         </motion.div>
 
         {/* Main Title */}
@@ -220,8 +239,8 @@ export function VoidHero() {
           className="mt-6 max-w-2xl text-center text-body-lg text-stellar-dim"
         >
           {locale === 'ko'
-            ? '27개의 전문 에이전트가 체계적 문헌 고찰을 오케스트레이션합니다.'
-            : '27 specialized agents orchestrating systematic literature review.'
+            ? '40개의 전문 에이전트가 체계적 문헌 고찰을 오케스트레이션합니다.'
+            : '40 specialized agents orchestrating systematic literature review.'
           }
         </motion.p>
 
@@ -276,7 +295,7 @@ export function VoidHero() {
           className="mt-16 flex flex-wrap justify-center gap-6"
         >
           {[
-            { label: '27 Agents', value: 'Specialized Research' },
+            { label: '40 Agents', value: 'Specialized Research' },
             { label: 'VS Methodology', value: 'Beyond Mode Collapse' },
             { label: 'T-Score', value: 'Typicality-Aware' },
           ].map((feature, i) => (

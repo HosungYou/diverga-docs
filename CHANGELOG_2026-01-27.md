@@ -191,16 +191,222 @@
 
 ---
 
-## 파일 변경 요약
+---
+
+## UX 개선 피드백 (Phase 2)
+
+### 피드백 6: VoidHero T-Score 설명 강화
+
+**원본 피드백**: "T-0.42 배지 옆에 설명 추가 필요"
+
+**구현 내용**:
+- VoidHero.tsx의 TScoreIndicator 컴포넌트 확장
+- T-Score 배지 아래에 설명 텍스트 추가
+- 영문: "Anti-modal yet feasible"
+- 한국어: "뻔하지 않으면서도 실현 가능한 영역"
+- Feature badges "27 Agents" → "40 Agents" 수정
+
+**수정된 파일**: `src/components/home/VoidHero.tsx`
+
+---
+
+### 피드백 7: TScoreSpectrum 호버 정보 확장
+
+**원본 피드백**: "T-Score Spectrum 호버 시 연구자 친화적 설명 필요"
+
+**구현 내용**:
+
+1. **DataPoint 인터페이스 확장**:
+   ```typescript
+   interface DataPoint {
+     label: string;
+     score: number;
+     description?: string;
+     strengths?: string;      // 장점
+     risks?: string;          // 위험
+     bestFor?: string;        // 적합한 연구
+   }
+   ```
+
+2. **향상된 툴팁 정보**:
+   - TAM (T-0.92): "검증이 잘 되어있고 리뷰어 수용도가 높음" / "기존 문헌과 차별화가 어려움"
+   - UTAUT (T-0.78): "다양한 조절변수 설명 가능" / "복잡성이 높아 분석 어려움"
+   - Activity Theory (T-0.45): "맥락적 분석에 강함" / "양적 연구에 적용 어려움"
+   - ANT (T-0.28): "혁신적 관점 제공" / "높은 전문성 요구"
+
+3. **아이콘 기반 표시**:
+   - `+` 장점 (strengths)
+   - `!` 위험 (risks)
+   - `→` 적합한 연구 (bestFor)
+
+**수정된 파일**: `src/components/visualization/TScoreSpectrum.tsx`
+
+---
+
+### 피드백 8: DivergenceAnimation 인터랙티브 개선
+
+**원본 피드백**: "VS Methodology in Action에 호버/클릭/순차 애니메이션 추가"
+
+**구현 내용**:
+
+1. **Branch 데이터 구조 확장**:
+   ```typescript
+   interface Branch {
+     angle: number;
+     length: number;
+     label: string;
+     labelKo: string;
+     color: string;
+     tScore: number;
+     description: string;      // 설명
+     examples: string[];       // 예시
+     recommendations: string;  // 권장사항
+   }
+   ```
+
+2. **5개 방향 정의**:
+   | 방향 | T-Score | 색상 | 설명 |
+   |------|---------|------|------|
+   | Divergent | 0.15 | #22ccff | 기존 가정에 도전하는 역발상적 접근 |
+   | Creative | 0.35 | #44ffaa | 기존 이론의 새로운 조합과 신선한 관점 |
+   | Balanced | 0.50 | #ffcc22 | 의미 있는 추가로 확립된 프레임워크 확장 |
+   | Typical | 0.72 | #ff8844 | 잘 검증된 프레임워크를 새로운 맥락에 적용 |
+   | Modal | 0.92 | #ff3366 | AI가 가장 예측 가능하게 추천; 모드 붕괴 위험 |
+
+3. **인터랙션 기능**:
+   - **Auto-play**: 3초 간격 순차 하이라이트
+   - **Hover**: 해당 방향 강조 + 상세 패널 표시
+   - **Click**: 선택 고정 + auto-play 일시정지
+   - **Center Click**: 선택 해제 + auto-play 재개
+
+4. **상세 패널 정보**:
+   - 설명 (description)
+   - 예시 태그 (examples)
+   - 권장 사항 (recommendations)
+
+**수정된 파일**: `src/components/visualization/DivergenceAnimation.tsx` (전면 재작성)
+
+---
+
+### 피드백 9: Interactive Terminal 자연어 대화 지원
+
+**원본 피드백**: "명령어 없이 자연어로 대화 가능하게"
+
+**구현 내용**:
+
+1. **InteractiveCLI 자연어 처리**:
+   - 알 수 없는 명령어 → 자연어로 처리
+   - `callDivergaAPI('chat', undefined, input)` 호출
+   - 예: "이론적 프레임워크를 추천해줘" → AI 응답
+
+2. **개선된 UX**:
+   - placeholder: "연구에 대해 무엇이든 물어보세요..." / "Ask anything about research..."
+   - 환영 메시지에 사용 예시 추가:
+     ```
+     Examples:
+     "이론적 프레임워크 추천해줘"
+     "What is T-Score?"
+     "run a1" - Research Question Refiner
+     ```
+
+3. **API 라우트 확장**:
+   - `command: 'chat'` 처리 추가
+   - CHAT_SYSTEM 프롬프트 정의
+   - Demo 모드 지원
+
+**수정된 파일**:
+- `src/components/cli/InteractiveCLI.tsx`
+- `src/app/api/diverga/route.ts`
+
+---
+
+### 피드백 10: AgentCard 다크 테마 적용
+
+**원본 피드백**: "Agent Catalog의 밝은 배경을 void 테마로 변경"
+
+**구현 내용**:
+
+1. **색상 변환**:
+   | 이전 | 이후 |
+   |------|------|
+   | `bg-white` | `bg-void-elevated` |
+   | `text-gray-900` | `text-stellar-core` |
+   | `text-gray-600` | `text-stellar-dim` |
+   | `border-gray-200` | `border-stellar-faint/20` |
+   | `hover:shadow-md` | `hover:shadow-glow-sm` |
+
+2. **Tier 배지 다크 테마**:
+   ```typescript
+   const tierColors = {
+     HIGH: 'bg-void-surface text-[#9b59b6] border-[#9b59b6]/30',    // Opus
+     MEDIUM: 'bg-void-surface text-[#4d96ff] border-[#4d96ff]/30', // Sonnet
+     LOW: 'bg-void-surface text-[#8888aa] border-[#8888aa]/30',    // Haiku
+   };
+   ```
+
+3. **Checkpoint 인디케이터**:
+   - REQUIRED: 🔴
+   - RECOMMENDED: 🟠
+   - OPTIONAL: 🟡
+
+**수정된 파일**: `src/components/agents/AgentCard.tsx`
+
+---
+
+### 피드백 11: CheckpointTimeline 다크 테마 및 컨텐츠 확장
+
+**원본 피드백**: "Workflow 페이지 CheckpointTimeline 개선 (Research Orchestrator 기반)"
+
+**구현 내용**:
+
+1. **다크 테마 색상 체계**:
+   ```typescript
+   const getCheckpointColors = (level: string) => {
+     switch (level) {
+       case 'REQUIRED':
+         return {
+           bg: 'bg-void-surface',
+           border: 'border-checkpoint-required/40',
+           text: 'text-checkpoint-required',
+           indicator: 'bg-checkpoint-required',
+           glow: 'shadow-[0_0_10px_rgba(255,51,102,0.3)]'
+         };
+       // ... RECOMMENDED, OPTIONAL
+     }
+   };
+   ```
+
+2. **확장된 체크포인트 정보**:
+   ```typescript
+   const extendedCheckpointInfo = {
+     CP_RESEARCH_DIRECTION: {
+       orchestratorRule: 'System must halt and wait for human confirmation',
+       humanTasks: [
+         'Verify research question clarity',
+         'Confirm scope is appropriate',
+         'Approve theoretical direction'
+       ],
+       exampleScenario: 'Before A2 proceeds, researcher must confirm...'
+     }
+   };
+   ```
+
+3. **드롭다운 컨텐츠 개선**:
+   - Orchestrator Rule 박스
+   - Human Tasks 체크리스트
+   - Example Scenario 하이라이트
+   - 확장 시 글로우 효과
+
+**수정된 파일**: `src/components/CheckpointTimeline.tsx`
+
+---
+
+## 파일 변경 요약 (전체)
 
 ```
-17 files changed, 2921 insertions(+), 1168 deletions(-)
-
-신규 생성:
-- src/app/api/diverga/route.ts
-- src/components/visualization/ConceptualFramework.tsx
-
-수정:
+Phase 1 (17 files):
+- src/app/api/diverga/route.ts (신규)
+- src/components/visualization/ConceptualFramework.tsx (신규)
 - src/app/[locale]/agents/page.tsx
 - src/app/[locale]/docs/checkpoints/page.tsx
 - src/app/[locale]/docs/page.tsx
@@ -216,4 +422,13 @@
 - src/components/visualization/index.ts
 - src/lib/data/types.ts
 - src/lib/data/workflows.ts
+
+Phase 2 (6 files):
+- src/components/home/VoidHero.tsx
+- src/components/visualization/TScoreSpectrum.tsx
+- src/components/visualization/DivergenceAnimation.tsx (전면 재작성)
+- src/components/cli/InteractiveCLI.tsx
+- src/app/api/diverga/route.ts
+- src/components/agents/AgentCard.tsx
+- src/components/CheckpointTimeline.tsx
 ```

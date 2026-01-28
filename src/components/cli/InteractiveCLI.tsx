@@ -141,8 +141,26 @@ export function InteractiveCLI({ height = 400, initialCommands = [] }: Interacti
     {
       type: 'output',
       content: locale === 'ko'
-        ? 'DIVERGA CLI v6.0 - "help"를 입력하여 시작하세요\n연결됨: Groq LLM (llama-3.3-70b)\n'
-        : 'DIVERGA CLI v6.0 - Type "help" to get started\nConnected: Groq LLM (llama-3.3-70b)\n'
+        ? `DIVERGA CLI v6.0 - 연구 방법론 AI 어시스턴트
+연결됨: Groq LLM (llama-3.3-70b)
+
+무엇이든 물어보세요! 예시:
+  "T-Score란 무엇인가요?"
+  "연구 질문을 정제하고 싶어요"
+  "메타분석 설계를 도와주세요"
+
+명령어: help (도움말) | agents (에이전트 목록) | run <id> (에이전트 실행)
+`
+        : `DIVERGA CLI v6.0 - Research Methodology AI Assistant
+Connected: Groq LLM (llama-3.3-70b)
+
+Ask anything! Examples:
+  "What is T-Score?"
+  "Help me refine my research question"
+  "How do I design a meta-analysis?"
+
+Commands: help | agents | run <agent_id>
+`
     },
   ]);
   const [input, setInput] = useState('');
@@ -350,16 +368,42 @@ export function InteractiveCLI({ height = 400, initialCommands = [] }: Interacti
       return;
     }
 
-    // Unknown command
+    // Treat unknown commands as natural language queries
     setHistory((prev) => [
       ...prev,
       {
-        type: 'error',
-        content: locale === 'ko'
-          ? `명령어를 찾을 수 없습니다: ${command}\n"help"를 입력하여 사용 가능한 명령어를 확인하세요.`
-          : `Command not found: ${command}\nType "help" for available commands.`
+        type: 'output',
+        content: locale === 'ko' ? '\n처리 중...' : '\nProcessing...'
       },
     ]);
+
+    setIsLoading(true);
+    const result = await callDivergaAPI('chat', undefined, command);
+    setIsLoading(false);
+
+    if (result.error) {
+      setHistory((prev) => {
+        const newHistory = [...prev];
+        newHistory.pop(); // Remove "Processing..."
+        return [
+          ...newHistory,
+          { type: 'error', content: `Error: ${result.response}` },
+        ];
+      });
+    } else {
+      setHistory((prev) => {
+        const newHistory = [...prev];
+        newHistory.pop(); // Remove "Processing..."
+        return [
+          ...newHistory,
+          {
+            type: 'agent',
+            content: `\n[DIVERGA]\n${result.response}`,
+            tScore: result.tScore,
+          },
+        ];
+      });
+    }
   }, [locale, typeOutput, currentAgent]);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -474,7 +518,7 @@ export function InteractiveCLI({ height = 400, initialCommands = [] }: Interacti
                 ? ''
                 : currentAgent
                   ? (locale === 'ko' ? '질문하기...' : 'Ask a question...')
-                  : (locale === 'ko' ? '명령어 입력...' : 'Enter command...')
+                  : (locale === 'ko' ? '연구에 대해 무엇이든 물어보세요...' : 'Ask anything about research...')
             }
             autoFocus
           />

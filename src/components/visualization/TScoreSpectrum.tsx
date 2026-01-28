@@ -9,6 +9,12 @@ interface DataPoint {
   score: number;
   description?: string;
   descriptionKo?: string;
+  strengths?: string;
+  strengthsKo?: string;
+  risks?: string;
+  risksKo?: string;
+  bestFor?: string;
+  bestForKo?: string;
 }
 
 interface TScoreSpectrumProps {
@@ -19,11 +25,71 @@ interface TScoreSpectrumProps {
 }
 
 const defaultData: DataPoint[] = [
-  { label: 'TAM', labelKo: 'TAM', score: 0.92, description: 'Technology Acceptance Model - Most commonly recommended' },
-  { label: 'UTAUT', labelKo: 'UTAUT', score: 0.85, description: 'Unified Theory of Acceptance and Use of Technology' },
-  { label: 'Hybrid', labelKo: '하이브리드', score: 0.55, description: 'Custom hybrid frameworks' },
-  { label: 'SDT+TAM', labelKo: 'SDT+TAM', score: 0.38, description: 'Self-Determination Theory combined with TAM' },
-  { label: 'Novel', labelKo: '새로운 이론', score: 0.18, description: 'Novel theoretical combinations' },
+  {
+    label: 'TAM',
+    labelKo: 'TAM',
+    score: 0.92,
+    description: 'Technology Acceptance Model - Most commonly recommended by AI',
+    descriptionKo: '기술수용모델 - AI가 가장 빈번하게 추천하는 이론',
+    strengths: 'Well-validated, high acceptance by reviewers',
+    strengthsKo: '검증이 잘 되어있고 리뷰어 수용도가 높음',
+    risks: 'Hard to differentiate from existing literature',
+    risksKo: '기존 문헌과 차별화가 어려움',
+    bestFor: 'Replication studies, validation research',
+    bestForKo: '반복 연구, 검증 연구',
+  },
+  {
+    label: 'UTAUT',
+    labelKo: 'UTAUT',
+    score: 0.85,
+    description: 'Unified Theory of Acceptance and Use of Technology',
+    descriptionKo: '통합기술수용이론',
+    strengths: 'Comprehensive, accounts for moderators',
+    strengthsKo: '포괄적이며 조절변수를 고려함',
+    risks: 'Complex, requires large sample size',
+    risksKo: '복잡하고 큰 표본 크기가 필요함',
+    bestFor: 'Enterprise technology adoption studies',
+    bestForKo: '기업 기술 채택 연구',
+  },
+  {
+    label: 'Hybrid',
+    labelKo: '하이브리드',
+    score: 0.55,
+    description: 'Custom hybrid frameworks combining multiple theories',
+    descriptionKo: '여러 이론을 결합한 맞춤형 하이브리드 프레임워크',
+    strengths: 'Tailored to research context, moderate novelty',
+    strengthsKo: '연구 맥락에 맞춤화, 적당한 참신성',
+    risks: 'Requires strong theoretical justification',
+    risksKo: '강력한 이론적 정당화가 필요함',
+    bestFor: 'Exploratory studies with clear theoretical gaps',
+    bestForKo: '명확한 이론적 공백이 있는 탐색 연구',
+  },
+  {
+    label: 'SDT+TAM',
+    labelKo: 'SDT+TAM',
+    score: 0.38,
+    description: 'Self-Determination Theory integrated with TAM',
+    descriptionKo: '자기결정이론과 TAM의 통합',
+    strengths: 'Novel yet grounded, explains intrinsic motivation',
+    strengthsKo: '참신하면서도 기반이 있음, 내재적 동기 설명',
+    risks: 'Needs careful operationalization',
+    risksKo: '신중한 조작화가 필요함',
+    bestFor: 'Educational technology, gamification research',
+    bestForKo: '교육 기술, 게이미피케이션 연구',
+  },
+  {
+    label: 'Novel',
+    labelKo: '새로운 이론',
+    score: 0.18,
+    description: 'Novel theoretical combinations or emerging frameworks',
+    descriptionKo: '새로운 이론적 조합 또는 신흥 프레임워크',
+    strengths: 'High differentiation, potential for high impact',
+    strengthsKo: '높은 차별화, 높은 영향력 가능성',
+    risks: 'May face resistance from conservative reviewers',
+    risksKo: '보수적인 리뷰어의 저항을 받을 수 있음',
+    bestFor: 'Paradigm-shifting research, emerging phenomena',
+    bestForKo: '패러다임 전환 연구, 신흥 현상',
+  },
 ];
 
 export function TScoreSpectrum({
@@ -143,10 +209,10 @@ export function TScoreSpectrum({
             initial={{ opacity: 0, scale: 0.95, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
-            className="pointer-events-none fixed z-50 max-w-xs border border-stellar-faint/20 bg-void-surface p-4 shadow-glow-sm"
+            className="pointer-events-none fixed z-50 w-80 border border-stellar-faint/20 bg-void-surface p-4 shadow-glow-sm"
             style={{
               left: `${tooltipPos.x}px`,
-              top: `${tooltipPos.y - 100}px`,
+              top: `${tooltipPos.y - 180}px`,
               transform: 'translateX(-50%)',
             }}
           >
@@ -176,6 +242,34 @@ export function TScoreSpectrum({
                 {locale === 'ko' ? activePoint.descriptionKo || activePoint.description : activePoint.description}
               </p>
             )}
+
+            {/* Additional research context */}
+            <div className="mt-3 space-y-2 border-t border-stellar-faint/20 pt-3">
+              {activePoint.strengths && (
+                <div className="flex items-start gap-2">
+                  <span className="text-tscore-creative text-micro font-mono">+</span>
+                  <span className="text-caption text-stellar-dim">
+                    {locale === 'ko' ? activePoint.strengthsKo || activePoint.strengths : activePoint.strengths}
+                  </span>
+                </div>
+              )}
+              {activePoint.risks && (
+                <div className="flex items-start gap-2">
+                  <span className="text-tscore-modal text-micro font-mono">!</span>
+                  <span className="text-caption text-stellar-dim">
+                    {locale === 'ko' ? activePoint.risksKo || activePoint.risks : activePoint.risks}
+                  </span>
+                </div>
+              )}
+              {activePoint.bestFor && (
+                <div className="flex items-start gap-2">
+                  <span className="text-tscore-divergent text-micro font-mono">→</span>
+                  <span className="text-caption text-stellar-dim">
+                    {locale === 'ko' ? activePoint.bestForKo || activePoint.bestFor : activePoint.bestFor}
+                  </span>
+                </div>
+              )}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

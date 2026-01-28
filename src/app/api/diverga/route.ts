@@ -37,7 +37,7 @@ const AGENT_PROMPTS: Record<string, { system: string; examples: string[] }> = {
 };
 
 // Default system prompt for general queries
-const DEFAULT_SYSTEM = `You are Diverga CLI v6.0, an AI-powered research methodology assistant. You help researchers with:
+const DEFAULT_SYSTEM = `You are Diverga CLI v6.0, an AI-powered research methodology assistant with 40 specialized agents. You help researchers with:
 - Research question formulation (A1)
 - Theoretical framework design (A2)
 - Critical review (A3)
@@ -51,13 +51,35 @@ const DEFAULT_SYSTEM = `You are Diverga CLI v6.0, an AI-powered research methodo
 
 You use VS (Verbalized Sampling) methodology to avoid mode collapse and explore creative alternatives. Present options with T-Scores when applicable.
 
-Available commands:
-- help: Show available commands
-- agents: List all 40 agents
-- run <agent_id>: Run a specific agent (e.g., run a2)
-- ask <question>: Ask a research question
+IMPORTANT: Users can ask questions in natural language. When they do:
+1. Understand their research needs
+2. If a specific agent would be helpful, mention it (e.g., "For theoretical framework design, you might want to 'run a2'")
+3. Provide helpful, actionable guidance
+4. Use T-Scores to indicate the typicality of your suggestions (0.0 = divergent/novel, 1.0 = modal/typical)
+
+Key concepts to explain when asked:
+- T-Score: A typicality score from 0.0 (divergent/novel) to 1.0 (modal/predictable). Target 0.2-0.5 for creative yet feasible research.
+- VS (Verbalized Sampling): Method to avoid mode collapse by explicitly sampling from the long-tail of possibilities.
+- Mode Collapse: When AI gives the same predictable answers (e.g., always suggesting TAM for tech adoption).
 
 Be concise and helpful. Format responses for terminal display.`;
+
+// Chat system prompt for natural language conversations
+const CHAT_SYSTEM = `You are Diverga, a friendly research methodology AI assistant. The user is chatting naturally with you about research.
+
+Your role:
+1. Understand their research question or challenge
+2. Provide helpful, actionable guidance
+3. When appropriate, suggest which specialized agent could help (e.g., "run a1" for research question refinement)
+4. Explain concepts like T-Score, VS methodology, and mode collapse if asked
+5. Be warm and supportive while remaining academically rigorous
+
+Key concepts:
+- T-Score: Typicality score (0.0 = divergent/novel, 1.0 = modal/predictable). The sweet spot is 0.2-0.5.
+- VS Methodology: Verbalized Sampling to explore creative alternatives beyond the obvious.
+- Mode Collapse: When AI defaults to predictable answers (like always suggesting TAM).
+
+Keep responses concise for terminal display. Use bullet points and clear formatting.`;
 
 // Demo responses when API key is not available
 const DEMO_RESPONSES: Record<string, string> = {
@@ -103,6 +125,27 @@ export async function POST(request: NextRequest) {
 
     // If no API key, return demo response
     if (!GROQ_API_KEY) {
+      // Handle chat command in demo mode
+      if (command === 'chat') {
+        return NextResponse.json({
+          success: true,
+          response: `I understand you're asking about: "${input}"
+
+This is a demo mode response. With a Groq API key, I can provide:
+- Research methodology guidance
+- T-Score aware recommendations
+- Agent-specific expertise
+
+Try these commands:
+- "run a1" for Research Question Refiner
+- "run a2" for Theoretical Framework Architect
+- "agents" to see all 40 agents`,
+          model: 'demo-mode',
+          tScore: 0.42,
+          demo: true
+        });
+      }
+
       const demoKey = agentId?.toLowerCase() || 'default';
       const demoResponse = DEMO_RESPONSES[demoKey] || DEMO_RESPONSES.default;
       return NextResponse.json({
@@ -115,9 +158,11 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // Determine the system prompt based on agent
+    // Determine the system prompt based on command type and agent
     let systemPrompt = DEFAULT_SYSTEM;
-    if (agentId && AGENT_PROMPTS[agentId.toLowerCase()]) {
+    if (command === 'chat') {
+      systemPrompt = CHAT_SYSTEM;
+    } else if (agentId && AGENT_PROMPTS[agentId.toLowerCase()]) {
       systemPrompt = AGENT_PROMPTS[agentId.toLowerCase()].system;
     }
 
