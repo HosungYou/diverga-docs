@@ -57,6 +57,7 @@ export function VoidHero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll();
   const locale = useLocale();
+  const [isCanvasReady, setIsCanvasReady] = useState(false);
 
   const titleOpacity = useTransform(scrollYProgress, [0, 0.25], [1, 0]);
   const titleY = useTransform(scrollYProgress, [0, 0.25], [0, -80]);
@@ -174,6 +175,9 @@ export function VoidHero() {
     createParticles();
     draw();
 
+    // Mark canvas as ready after initialization
+    setIsCanvasReady(true);
+
     window.addEventListener('resize', () => {
       resize();
       createParticles();
@@ -191,10 +195,30 @@ export function VoidHero() {
 
   return (
     <div ref={containerRef} className="relative h-screen min-h-[600px] overflow-hidden bg-void-deep">
+      {/* SSR Fallback background - shows before canvas is ready */}
+      {!isCanvasReady && (
+        <div className="absolute inset-0 bg-void-deep">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-stellar-faint/5 via-void-deep to-void-deep" />
+          <div className="absolute inset-0 opacity-30">
+            {/* Static particle-like dots for SSR */}
+            {[...Array(20)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute w-1 h-1 rounded-full bg-stellar-faint/30"
+                style={{
+                  left: `${(i * 47) % 100}%`,
+                  top: `${(i * 31) % 100}%`,
+                }}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Particle Canvas */}
       <canvas
         ref={canvasRef}
-        className="absolute inset-0"
+        className={`absolute inset-0 transition-opacity duration-500 ${isCanvasReady ? 'opacity-100' : 'opacity-0'}`}
       />
 
       {/* Gradient overlay for depth */}
@@ -298,6 +322,7 @@ export function VoidHero() {
             { label: '40 Agents', value: 'Specialized Research' },
             { label: 'VS Methodology', value: 'Beyond Mode Collapse' },
             { label: 'T-Score', value: 'Typicality-Aware' },
+            { label: 'Cross-Platform', value: 'Claude · Codex · OpenCode' },
           ].map((feature, i) => (
             <div key={i} className="flex items-center gap-3 text-stellar-faint">
               <div className="h-1.5 w-1.5 rounded-full bg-tscore-creative" />

@@ -1,266 +1,20 @@
 "use client";
 
-import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import {
-  Terminal,
-  Download,
-  Settings,
   Rocket,
   Check,
-  Copy,
   ChevronRight,
-  Apple,
-  MonitorIcon as Windows,
-  Monitor as Linux,
   Hand,
   Sparkles,
   ArrowRight,
 } from 'lucide-react';
-import { cn } from '@/lib/utils/cn';
-
-type Platform = 'mac' | 'windows' | 'linux';
-
-const installCommands = {
-  mac: 'brew install anthropics/tap/claude-code',
-  windows: 'winget install Anthropic.ClaudeCode',
-  linux: 'curl -fsSL https://claude.ai/install.sh | bash',
-};
-
-// Terminal-style command component
-function TerminalCommand({
-  command,
-  step,
-  copiedStep,
-  onCopy,
-}: {
-  command: string;
-  step: number;
-  copiedStep: number | null;
-  onCopy: (text: string, step: number) => void;
-}) {
-  return (
-    <div className="void-terminal overflow-hidden">
-      <div className="void-terminal-header">
-        <div className="flex items-center gap-2">
-          <div className="void-terminal-dot void-terminal-dot-red" />
-          <div className="void-terminal-dot void-terminal-dot-yellow" />
-          <div className="void-terminal-dot void-terminal-dot-green" />
-        </div>
-        <span className="text-micro text-stellar-faint ml-4">terminal</span>
-      </div>
-      <div className="p-4 relative group">
-        <pre className="font-mono text-caption text-stellar-bright overflow-x-auto">
-          <span className="text-tscore-creative">$</span> {command}
-        </pre>
-        <button
-          onClick={() => onCopy(command, step)}
-          className="absolute top-3 right-3 p-2 bg-void-elevated border border-stellar-faint/20 hover:border-stellar-dim opacity-0 group-hover:opacity-100 transition-all"
-        >
-          {copiedStep === step ? (
-            <Check className="h-4 w-4 text-checkpoint-complete" />
-          ) : (
-            <Copy className="h-4 w-4 text-stellar-dim" />
-          )}
-        </button>
-      </div>
-    </div>
-  );
-}
-
-// Progress step indicator
-function StepIndicator({
-  currentStep,
-  totalSteps,
-  locale,
-}: {
-  currentStep: number;
-  totalSteps: number;
-  locale: string;
-}) {
-  return (
-    <div className="void-card p-4 mb-8">
-      <div className="flex items-center justify-between mb-3">
-        <span className="void-label text-stellar-dim">
-          {locale === 'ko' ? '설치 진행도' : 'Installation Progress'}
-        </span>
-        <span className="font-mono text-micro text-stellar-faint">
-          {currentStep} / {totalSteps}
-        </span>
-      </div>
-      <div className="flex items-center gap-1">
-        {Array.from({ length: totalSteps }).map((_, i) => {
-          let colorClass = 'bg-stellar-muted';
-          if (i < currentStep) {
-            // Completed steps use T-Score gradient colors
-            const progressPercent = (i / (totalSteps - 1)) * 100;
-            if (progressPercent >= 75) colorClass = 'bg-tscore-modal';
-            else if (progressPercent >= 50) colorClass = 'bg-tscore-typical';
-            else if (progressPercent >= 25) colorClass = 'bg-tscore-balanced';
-            else colorClass = 'bg-tscore-creative';
-          }
-          return (
-            <motion.div
-              key={i}
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ delay: i * 0.1 }}
-              className={`flex-1 h-2 ${colorClass} transition-colors duration-300`}
-            />
-          );
-        })}
-      </div>
-    </div>
-  );
-}
+import { PlatformTabs } from '@/components/getting-started/PlatformTabs';
 
 export default function GettingStartedPage() {
   const t = useTranslations('gettingStarted');
   const locale = useLocale();
-  const [platform, setPlatform] = useState<Platform>('mac');
-  const [copiedStep, setCopiedStep] = useState<number | null>(null);
-
-  const copyToClipboard = (text: string, step: number) => {
-    navigator.clipboard.writeText(text);
-    setCopiedStep(step);
-    setTimeout(() => setCopiedStep(null), 2000);
-  };
-
-  const steps = [
-    {
-      icon: Download,
-      title: t('step1.title'),
-      description: t('step1.description'),
-      category: 'a', // Research Design - Coral
-      content: (
-        <div className="space-y-4">
-          {/* Platform tabs */}
-          <div className="inline-flex bg-void-surface border border-stellar-faint/20 p-1">
-            {[
-              { id: 'mac' as Platform, icon: Apple, label: 'macOS' },
-              { id: 'windows' as Platform, icon: Windows, label: 'Windows' },
-              { id: 'linux' as Platform, icon: Linux, label: 'Linux' },
-            ].map((p) => (
-              <button
-                key={p.id}
-                onClick={() => setPlatform(p.id)}
-                className={cn(
-                  "flex items-center gap-2 px-4 py-2 font-mono text-micro uppercase tracking-wider transition-all",
-                  platform === p.id
-                    ? "bg-void-elevated text-stellar-core border border-stellar-faint/30"
-                    : "text-stellar-dim hover:text-stellar-bright"
-                )}
-              >
-                <p.icon className="h-4 w-4" />
-                {p.label}
-              </button>
-            ))}
-          </div>
-
-          {/* Command */}
-          <TerminalCommand
-            command={installCommands[platform]}
-            step={1}
-            copiedStep={copiedStep}
-            onCopy={copyToClipboard}
-          />
-        </div>
-      ),
-    },
-    {
-      icon: Terminal,
-      title: t('step2.title'),
-      description: t('step2.description'),
-      category: 'b', // Literature Review - Gold
-      content: (
-        <div className="space-y-3">
-          <TerminalCommand
-            command="/plugin marketplace add https://github.com/HosungYou/Diverga"
-            step={2}
-            copiedStep={copiedStep}
-            onCopy={copyToClipboard}
-          />
-          <TerminalCommand
-            command="/plugin install diverga"
-            step={3}
-            copiedStep={copiedStep}
-            onCopy={copyToClipboard}
-          />
-        </div>
-      ),
-    },
-    {
-      icon: Settings,
-      title: t('step3.title'),
-      description: t('step3.description'),
-      category: 'c', // Methodology - Emerald
-      content: (
-        <TerminalCommand
-          command="/diverga:setup"
-          step={4}
-          copiedStep={copiedStep}
-          onCopy={copyToClipboard}
-        />
-      ),
-    },
-    {
-      icon: Rocket,
-      title: t('step4.title'),
-      description: t('step4.description'),
-      category: 'd', // Analysis - Sapphire
-      content: (
-        <div className="space-y-4">
-          <p className="text-caption text-stellar-dim">
-            {locale === 'ko'
-              ? '연구 주제를 설명하기만 하면 Diverga가 자동으로 적절한 에이전트를 선택합니다:'
-              : 'Just describe your research topic and Diverga will automatically select the appropriate agents:'}
-          </p>
-          <div className="void-terminal overflow-hidden">
-            <div className="void-terminal-header">
-              <div className="flex items-center gap-2">
-                <div className="void-terminal-dot void-terminal-dot-red" />
-                <div className="void-terminal-dot void-terminal-dot-yellow" />
-                <div className="void-terminal-dot void-terminal-dot-green" />
-              </div>
-              <span className="text-micro text-stellar-faint ml-4">input</span>
-            </div>
-            <div className="p-4">
-              <pre className="font-mono text-caption text-stellar-bright whitespace-pre-wrap">
-                {locale === 'ko'
-                  ? '"AI 채택에 관한 메타분석을 수행하고 싶어요"'
-                  : '"I want to conduct a meta-analysis on AI adoption in education"'}
-              </pre>
-            </div>
-          </div>
-          <div className="void-card border-checkpoint-complete/30 p-4">
-            <div className="flex items-start gap-3">
-              <Check className="h-5 w-5 text-checkpoint-complete mt-0.5 shrink-0" />
-              <div className="text-caption">
-                <p className="font-mono text-checkpoint-complete uppercase tracking-wider mb-2">
-                  {locale === 'ko' ? '자동 감지:' : 'Auto-detected:'}
-                </p>
-                <ul className="space-y-1 text-stellar-dim">
-                  <li className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-category-c" />
-                    C5-MetaAnalysisMaster {locale === 'ko' ? '활성화' : 'activated'}
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-category-b" />
-                    B1-SystematicLiteratureScout {locale === 'ko' ? '대기중' : 'queued'}
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-checkpoint-required animate-pulse" />
-                    CP_META_GATE {locale === 'ko' ? '체크포인트 예정' : 'checkpoint ready'}
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      ),
-    },
-  ];
 
   return (
     <div className="min-h-screen bg-void-deep">
@@ -303,39 +57,109 @@ export default function GettingStartedPage() {
 
       {/* Steps Section */}
       <section className="mx-auto max-w-4xl px-6 lg:px-8 py-12 sm:py-16">
-        {/* Progress Indicator */}
-        <StepIndicator currentStep={4} totalSteps={4} locale={locale} />
+        {/* Cross-Platform Banner */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="void-card p-6 mb-8 border-tscore-creative/30"
+        >
+          <div className="flex flex-col sm:flex-row items-center gap-4">
+            <div className="flex items-center gap-3">
+              <Sparkles className="h-5 w-5 text-tscore-creative" />
+              <span className="font-mono text-caption font-bold text-tscore-creative uppercase tracking-wider">
+                {locale === 'ko' ? '크로스-플랫폼 지원' : 'Cross-Platform Support'}
+              </span>
+            </div>
+            <p className="text-body text-stellar-dim text-center sm:text-left">
+              {locale === 'ko'
+                ? 'Diverga는 Claude Code, Codex CLI, OpenCode 모두에서 작동합니다. 원하는 플랫폼을 선택하세요.'
+                : 'Diverga works with Claude Code, Codex CLI, and OpenCode. Choose your preferred platform.'}
+            </p>
+          </div>
+        </motion.div>
 
-        {/* Steps */}
-        <div className="space-y-6">
-          {steps.map((step, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 * (index + 1) }}
-              className="void-card p-8 hover:shadow-glow-sm transition-all duration-300"
-            >
-              <div className="flex items-start gap-6 mb-6">
-                {/* Step number with category color */}
-                <div className={`w-12 h-12 flex items-center justify-center category-bg-${step.category} border border-stellar-faint/20 shrink-0`}>
-                  <span className={`font-mono text-lg font-bold category-text-${step.category}`}>
-                    {index + 1}
-                  </span>
+        {/* Platform-specific Installation Steps */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+        >
+          <PlatformTabs locale={locale} />
+        </motion.div>
+
+        {/* Step 4: Start Researching (Common to all platforms) */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="mt-8"
+        >
+          <div className="void-card p-8 hover:shadow-glow-sm transition-all duration-300">
+            <div className="flex items-start gap-6 mb-6">
+              <div className="w-12 h-12 flex items-center justify-center bg-category-d/10 border border-stellar-faint/20 shrink-0">
+                <Rocket className="h-6 w-6 text-category-d" />
+              </div>
+              <div className="flex-1">
+                <h2 className="void-heading-3 text-stellar-core mb-2">
+                  {t('step4.title')}
+                </h2>
+                <p className="text-body text-stellar-dim">
+                  {t('step4.description')}
+                </p>
+              </div>
+            </div>
+            <div className="ml-[72px]">
+              <div className="space-y-4">
+                <p className="text-caption text-stellar-dim">
+                  {locale === 'ko'
+                    ? '연구 주제를 설명하기만 하면 Diverga가 자동으로 적절한 에이전트를 선택합니다:'
+                    : 'Just describe your research topic and Diverga will automatically select the appropriate agents:'}
+                </p>
+                <div className="void-terminal overflow-hidden">
+                  <div className="void-terminal-header">
+                    <div className="flex items-center gap-2">
+                      <div className="void-terminal-dot void-terminal-dot-red" />
+                      <div className="void-terminal-dot void-terminal-dot-yellow" />
+                      <div className="void-terminal-dot void-terminal-dot-green" />
+                    </div>
+                    <span className="text-micro text-stellar-faint ml-4">input</span>
+                  </div>
+                  <div className="p-4">
+                    <pre className="font-mono text-caption text-stellar-bright whitespace-pre-wrap">
+                      {locale === 'ko'
+                        ? '"AI 채택에 관한 메타분석을 수행하고 싶어요"'
+                        : '"I want to conduct a meta-analysis on AI adoption in education"'}
+                    </pre>
+                  </div>
                 </div>
-                <div className="flex-1">
-                  <h2 className="void-heading-3 text-stellar-core mb-2">
-                    {step.title}
-                  </h2>
-                  <p className="text-body text-stellar-dim">
-                    {step.description}
-                  </p>
+                <div className="void-card border-checkpoint-complete/30 p-4">
+                  <div className="flex items-start gap-3">
+                    <Check className="h-5 w-5 text-checkpoint-complete mt-0.5 shrink-0" />
+                    <div className="text-caption">
+                      <p className="font-mono text-checkpoint-complete uppercase tracking-wider mb-2">
+                        {locale === 'ko' ? '자동 감지:' : 'Auto-detected:'}
+                      </p>
+                      <ul className="space-y-1 text-stellar-dim">
+                        <li className="flex items-center gap-2">
+                          <span className="w-2 h-2 rounded-full bg-category-c" />
+                          C5-MetaAnalysisMaster {locale === 'ko' ? '활성화' : 'activated'}
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="w-2 h-2 rounded-full bg-category-b" />
+                          B1-SystematicLiteratureScout {locale === 'ko' ? '대기중' : 'queued'}
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="w-2 h-2 rounded-full bg-checkpoint-required animate-pulse" />
+                          CP_META_GATE {locale === 'ko' ? '체크포인트 예정' : 'checkpoint ready'}
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="pl-18 ml-[72px]">{step.content}</div>
-            </motion.div>
-          ))}
-        </div>
+            </div>
+          </div>
+        </motion.div>
 
         {/* Checkpoint Preview Section */}
         <motion.div

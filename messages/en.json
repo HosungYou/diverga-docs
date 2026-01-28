@@ -125,22 +125,44 @@
   },
   "gettingStarted": {
     "title": "Getting Started",
-    "description": "Install Diverga and run your first agent in under 5 minutes",
+    "description": "Install Diverga on your preferred platform and run your first agent in under 5 minutes",
+    "platformBanner": {
+      "title": "Cross-Platform Support",
+      "description": "Diverga works with Claude Code, Codex CLI, and OpenCode. Choose your preferred platform."
+    },
+    "platforms": {
+      "claudeCode": {
+        "name": "Claude Code",
+        "description": "Anthropic's official CLI for Claude"
+      },
+      "codexCli": {
+        "name": "Codex CLI",
+        "description": "OpenAI's command-line interface"
+      },
+      "opencode": {
+        "name": "OpenCode",
+        "description": "Community-driven open coding assistant"
+      }
+    },
     "step1": {
-      "title": "Install Claude Code",
-      "description": "Diverga runs inside Claude Code CLI"
+      "title": "Install Platform",
+      "description": "Choose and install your preferred coding assistant"
     },
     "step2": {
-      "title": "Add Diverga Plugin",
-      "description": "Install from the marketplace"
+      "title": "Add Diverga",
+      "description": "Install Diverga plugin for your platform"
     },
     "step3": {
-      "title": "Configure (Optional)",
-      "description": "Set your preferences"
+      "title": "Configure",
+      "description": "Run setup to configure your preferences"
     },
     "step4": {
       "title": "Start Researching",
-      "description": "Just describe what you want to do"
+      "description": "Just describe what you want to do - works the same on all platforms"
+    },
+    "modelMapping": {
+      "title": "Model Mapping",
+      "description": "Diverga automatically maps agent tiers to the best available models on each platform"
     },
     "checkpoint": {
       "title": "Experience Your First Checkpoint",

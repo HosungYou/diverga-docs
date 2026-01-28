@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { VoidHero } from '@/components/home/VoidHero';
@@ -9,6 +10,11 @@ import Link from 'next/link';
 
 export default function HomePage() {
   const locale = useLocale();
+
+  // Scroll to top on page load to ensure VoidHero is visible first
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const content = {
     en: {

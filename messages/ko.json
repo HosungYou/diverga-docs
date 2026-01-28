@@ -125,22 +125,44 @@
   },
   "gettingStarted": {
     "title": "시작하기",
-    "description": "5분 안에 Diverga를 설치하고 첫 번째 에이전트를 실행하세요",
+    "description": "원하는 플랫폼에 Diverga를 설치하고 5분 안에 첫 번째 에이전트를 실행하세요",
+    "platformBanner": {
+      "title": "크로스-플랫폼 지원",
+      "description": "Diverga는 Claude Code, Codex CLI, OpenCode 모두에서 작동합니다. 원하는 플랫폼을 선택하세요."
+    },
+    "platforms": {
+      "claudeCode": {
+        "name": "Claude Code",
+        "description": "Anthropic 공식 Claude CLI"
+      },
+      "codexCli": {
+        "name": "Codex CLI",
+        "description": "OpenAI 명령줄 인터페이스"
+      },
+      "opencode": {
+        "name": "OpenCode",
+        "description": "커뮤니티 기반 오픈 코딩 어시스턴트"
+      }
+    },
     "step1": {
-      "title": "Claude Code 설치",
-      "description": "Diverga는 Claude Code CLI 안에서 실행됩니다"
+      "title": "플랫폼 설치",
+      "description": "원하는 코딩 어시스턴트를 선택하고 설치하세요"
     },
     "step2": {
-      "title": "Diverga 플러그인 추가",
-      "description": "마켓플레이스에서 설치"
+      "title": "Diverga 추가",
+      "description": "플랫폼에 맞는 Diverga 플러그인 설치"
     },
     "step3": {
-      "title": "설정 (선택사항)",
-      "description": "선호 설정 지정"
+      "title": "설정",
+      "description": "설정을 실행하여 선호도를 구성하세요"
     },
     "step4": {
       "title": "연구 시작",
-      "description": "하고 싶은 것을 설명하기만 하면 됩니다"
+      "description": "하고 싶은 것을 설명하기만 하면 됩니다 - 모든 플랫폼에서 동일하게 작동합니다"
+    },
+    "modelMapping": {
+      "title": "모델 매핑",
+      "description": "Diverga는 에이전트 티어를 각 플랫폼에서 사용 가능한 최적의 모델에 자동으로 매핑합니다"
     },
     "checkpoint": {
       "title": "첫 번째 체크포인트 경험하기",
