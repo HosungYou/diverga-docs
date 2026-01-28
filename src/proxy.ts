@@ -10,5 +10,6 @@ export default createMiddleware({
 });
 
 export const config = {
-  matcher: ['/', '/(en|ko)/:path*']
+  // Match all paths except _next, api, _vercel, and static files
+  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)']
 };
