@@ -1,17 +1,13 @@
 import createMiddleware from 'next-intl/middleware';
-import { NextRequest } from 'next/server';
 import { locales, defaultLocale } from './i18n/config';
 
-const intlMiddleware = createMiddleware({
+// Next.js 16: proxy.ts replaces middleware.ts
+// Using default export as recommended by next-intl
+export default createMiddleware({
   locales,
   defaultLocale,
   localePrefix: 'as-needed'
 });
-
-// Next.js 16: renamed from middleware to proxy
-export function proxy(request: NextRequest) {
-  return intlMiddleware(request);
-}
 
 export const config = {
   matcher: ['/', '/(en|ko)/:path*']
