@@ -76,19 +76,29 @@ const platforms: PlatformConfig[] = [
         commands: ['npm install -g @openai/codex-cli'],
       },
       {
-        title: 'Install Diverga (One-line)',
-        titleKo: 'Diverga 설치 (원라인)',
+        title: 'Install Diverga (Choose Method)',
+        titleKo: 'Diverga 설치 (방법 선택)',
         commands: [
+          '# Method 1: Interactive TUI (Recommended)',
+          'npx @diverga/codex-setup',
+          '',
+          '# Method 2: One-line Script',
           'curl -sSL https://raw.githubusercontent.com/HosungYou/Diverga/main/scripts/install-codex.sh | bash',
         ],
       },
       {
-        title: 'Run Setup',
-        titleKo: '설정 실행',
-        commands: ['node ~/.codex/diverga/diverga-codex.cjs setup'],
+        title: 'Verify Installation',
+        titleKo: '설치 확인',
+        commands: [
+          '# List all 40 agents',
+          'diverga-codex list',
+          '',
+          '# Show agent details',
+          'diverga-codex agent A1',
+        ],
       },
     ],
-    setupCommand: 'node ~/.codex/diverga/diverga-codex.cjs setup',
+    setupCommand: 'diverga-codex setup',
   },
   {
     id: 'opencode',
@@ -309,9 +319,9 @@ export function PlatformTabs({ locale }: PlatformTabsProps) {
                     HIGH
                   </span>
                 </td>
-                <td className="py-2 px-3 font-mono text-micro">claude-opus-4-5</td>
-                <td className="py-2 px-3 font-mono text-micro">gpt-5.2-codex</td>
-                <td className="py-2 px-3 font-mono text-micro">o4-max</td>
+                <td className="py-2 px-3 font-mono text-micro">opus</td>
+                <td className="py-2 px-3 font-mono text-micro">o1</td>
+                <td className="py-2 px-3 font-mono text-micro">o1</td>
               </tr>
               <tr className="border-b border-stellar-faint/10">
                 <td className="py-2 px-3">
@@ -320,9 +330,9 @@ export function PlatformTabs({ locale }: PlatformTabsProps) {
                     MEDIUM
                   </span>
                 </td>
-                <td className="py-2 px-3 font-mono text-micro">claude-sonnet-4</td>
-                <td className="py-2 px-3 font-mono text-micro">gpt-4.5-turbo</td>
-                <td className="py-2 px-3 font-mono text-micro">o4-mini</td>
+                <td className="py-2 px-3 font-mono text-micro">sonnet</td>
+                <td className="py-2 px-3 font-mono text-micro">gpt-4</td>
+                <td className="py-2 px-3 font-mono text-micro">gpt-4</td>
               </tr>
               <tr>
                 <td className="py-2 px-3">
@@ -331,9 +341,9 @@ export function PlatformTabs({ locale }: PlatformTabsProps) {
                     LOW
                   </span>
                 </td>
-                <td className="py-2 px-3 font-mono text-micro">claude-haiku-3</td>
-                <td className="py-2 px-3 font-mono text-micro">gpt-4o-mini</td>
-                <td className="py-2 px-3 font-mono text-micro">o3-mini</td>
+                <td className="py-2 px-3 font-mono text-micro">haiku</td>
+                <td className="py-2 px-3 font-mono text-micro">gpt-3.5-turbo</td>
+                <td className="py-2 px-3 font-mono text-micro">gpt-3.5-turbo</td>
               </tr>
             </tbody>
           </table>
