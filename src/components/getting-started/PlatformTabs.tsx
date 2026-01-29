@@ -67,15 +67,26 @@ const platforms: PlatformConfig[] = [
     id: 'codex-cli',
     name: 'Codex CLI',
     icon: '⚡',
-    description: 'OpenAI\'s CLI - Install from REGULAR terminal',
-    descriptionKo: 'OpenAI CLI - 일반 터미널에서 설치',
+    description: 'OpenAI\'s CLI (o3, o4-mini, codex-mini)',
+    descriptionKo: 'OpenAI CLI (o3, o4-mini, codex-mini)',
     installSteps: [
       {
-        title: '⚠️ Run in REGULAR Terminal (not inside Codex)',
-        titleKo: '⚠️ 일반 터미널에서 실행 (Codex 내부 아님)',
+        title: 'Install Codex CLI',
+        titleKo: 'Codex CLI 설치',
         commands: [
-          '# Unlike Claude Code, run this in a regular terminal',
-          '# Claude Code와 달리, 일반 터미널에서 실행하세요',
+          '# Install Codex CLI first',
+          'npm install -g @openai/codex',
+          '',
+          '# Or using Homebrew',
+          'brew install openai/tap/codex',
+        ],
+      },
+      {
+        title: '⚠️ Install Diverga (REGULAR Terminal)',
+        titleKo: '⚠️ Diverga 설치 (일반 터미널에서)',
+        commands: [
+          '# Run this in a regular terminal, NOT inside Codex',
+          '# 일반 터미널에서 실행하세요 (Codex 내부 아님)',
           'npx @diverga/codex-setup',
         ],
       },
@@ -97,17 +108,26 @@ const platforms: PlatformConfig[] = [
     id: 'opencode',
     name: 'OpenCode',
     icon: '🌐',
-    description: 'Open coding assistant - Install from REGULAR terminal',
-    descriptionKo: '오픈 코딩 어시스턴트 - 일반 터미널에서 설치',
+    description: 'Provider-agnostic (75+ models supported)',
+    descriptionKo: 'Provider-agnostic (75+ 모델 지원)',
     installSteps: [
       {
-        title: '⚠️ Run in REGULAR Terminal (not inside OpenCode)',
-        titleKo: '⚠️ 일반 터미널에서 실행 (OpenCode 내부 아님)',
+        title: 'Install OpenCode',
+        titleKo: 'OpenCode 설치',
         commands: [
-          '# Install OpenCode first (if needed)',
+          '# Install OpenCode CLI',
           'brew install anomalyco/tap/opencode',
           '',
-          '# Then install Diverga',
+          '# Or quick install',
+          'curl -fsSL https://opencode.ai/install | bash',
+        ],
+      },
+      {
+        title: '⚠️ Install Diverga (REGULAR Terminal)',
+        titleKo: '⚠️ Diverga 설치 (일반 터미널에서)',
+        commands: [
+          '# Run this in a regular terminal, NOT inside OpenCode',
+          '# 일반 터미널에서 실행하세요 (OpenCode 내부 아님)',
           'curl -sSL https://raw.githubusercontent.com/HosungYou/Diverga/main/scripts/install-opencode.sh | bash',
         ],
       },
@@ -312,8 +332,8 @@ export function PlatformTabs({ locale }: PlatformTabsProps) {
                   </span>
                 </td>
                 <td className="py-2 px-3 font-mono text-micro">opus</td>
-                <td className="py-2 px-3 font-mono text-micro">o1</td>
-                <td className="py-2 px-3 font-mono text-micro">o1</td>
+                <td className="py-2 px-3 font-mono text-micro">o3 / codex-mini</td>
+                <td className="py-2 px-3 font-mono text-micro text-stellar-faint">provider 설정</td>
               </tr>
               <tr className="border-b border-stellar-faint/10">
                 <td className="py-2 px-3">
@@ -323,8 +343,8 @@ export function PlatformTabs({ locale }: PlatformTabsProps) {
                   </span>
                 </td>
                 <td className="py-2 px-3 font-mono text-micro">sonnet</td>
-                <td className="py-2 px-3 font-mono text-micro">gpt-4</td>
-                <td className="py-2 px-3 font-mono text-micro">gpt-4</td>
+                <td className="py-2 px-3 font-mono text-micro">gpt-4.1</td>
+                <td className="py-2 px-3 font-mono text-micro text-stellar-faint">provider 설정</td>
               </tr>
               <tr>
                 <td className="py-2 px-3">
@@ -334,11 +354,16 @@ export function PlatformTabs({ locale }: PlatformTabsProps) {
                   </span>
                 </td>
                 <td className="py-2 px-3 font-mono text-micro">haiku</td>
-                <td className="py-2 px-3 font-mono text-micro">gpt-3.5-turbo</td>
-                <td className="py-2 px-3 font-mono text-micro">gpt-3.5-turbo</td>
+                <td className="py-2 px-3 font-mono text-micro">gpt-4o-mini</td>
+                <td className="py-2 px-3 font-mono text-micro text-stellar-faint">provider 설정</td>
               </tr>
             </tbody>
           </table>
+          <p className="mt-3 text-micro text-stellar-faint">
+            {locale === 'ko'
+              ? '* OpenCode는 provider-agnostic (75+ 모델 지원). /connect 명령으로 provider 설정'
+              : '* OpenCode is provider-agnostic (75+ models). Use /connect to configure provider'}
+          </p>
         </div>
       </div>
     </div>
