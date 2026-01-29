@@ -87,7 +87,7 @@ const platforms: PlatformConfig[] = [
         commands: [
           '# Run this in a regular terminal, NOT inside Codex',
           '# 일반 터미널에서 실행하세요 (Codex 내부 아님)',
-          'npx @diverga/codex-setup',
+          'curl -sSL https://raw.githubusercontent.com/HosungYou/Diverga/main/scripts/install-multi-cli.sh | bash -s -- --codex',
         ],
       },
       {
@@ -102,7 +102,7 @@ const platforms: PlatformConfig[] = [
         ],
       },
     ],
-    setupCommand: 'npx @diverga/codex-setup',
+    setupCommand: 'curl -sSL ... | bash -s -- --codex',
   },
   {
     id: 'opencode',
@@ -128,7 +128,7 @@ const platforms: PlatformConfig[] = [
         commands: [
           '# Run this in a regular terminal, NOT inside OpenCode',
           '# 일반 터미널에서 실행하세요 (OpenCode 내부 아님)',
-          'curl -sSL https://raw.githubusercontent.com/HosungYou/Diverga/main/scripts/install-opencode.sh | bash',
+          'curl -sSL https://raw.githubusercontent.com/HosungYou/Diverga/main/scripts/install-multi-cli.sh | bash -s -- --opencode',
         ],
       },
       {
@@ -143,7 +143,7 @@ const platforms: PlatformConfig[] = [
         ],
       },
     ],
-    setupCommand: 'curl -sSL ... | bash',
+    setupCommand: 'curl -sSL ... | bash -s -- --opencode',
   },
 ];
 
