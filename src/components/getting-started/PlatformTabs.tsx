@@ -82,12 +82,16 @@ const platforms: PlatformConfig[] = [
         ],
       },
       {
-        title: '⚠️ Install Diverga (REGULAR Terminal)',
-        titleKo: '⚠️ Diverga 설치 (일반 터미널에서)',
+        title: '⚠️ Install Diverga (Choose ONE method)',
+        titleKo: '⚠️ Diverga 설치 (방법 중 하나 선택)',
         commands: [
-          '# Run this in a regular terminal, NOT inside Codex',
-          '# 일반 터미널에서 실행하세요 (Codex 내부 아님)',
+          '# Option A: Quick Install (shell script)',
+          '# 옵션 A: 빠른 설치 (쉘 스크립트)',
           'curl -sSL https://raw.githubusercontent.com/HosungYou/Diverga/main/scripts/install-multi-cli.sh | bash -s -- --codex',
+          '',
+          '# Option B: Configured Install (interactive TUI)',
+          '# 옵션 B: 맞춤 설치 (인터랙티브 TUI)',
+          'npx @diverga/codex-setup',
         ],
       },
       {
@@ -102,7 +106,7 @@ const platforms: PlatformConfig[] = [
         ],
       },
     ],
-    setupCommand: 'curl -sSL ... | bash -s -- --codex',
+    setupCommand: 'npx @diverga/codex-setup',
   },
   {
     id: 'opencode',
