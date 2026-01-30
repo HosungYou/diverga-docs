@@ -28,6 +28,52 @@ interface PlatformConfig {
   setupCommand: string;
 }
 
+// Why Claude Code is recommended over other CLIs
+const claudeCodeAdvantages = {
+  en: [
+    {
+      title: 'Task Tool Support',
+      description: 'Execute 40 specialized agents via Task tool with proper model routing (opus/sonnet/haiku)',
+    },
+    {
+      title: 'AskUserQuestion Tool',
+      description: 'Interactive UI with clickable options for human checkpoints - not just text prompts',
+    },
+    {
+      title: 'Tool-Level Checkpoint Enforcement',
+      description: 'System blocks progression until user approves - impossible to bypass checkpoints',
+    },
+    {
+      title: 'Parallel Agent Execution',
+      description: 'Run multiple agents simultaneously for faster research workflows',
+    },
+  ],
+  ko: [
+    {
+      title: 'Task Tool 지원',
+      description: '40개 전문 에이전트를 Task tool로 실행, 적절한 모델 라우팅 (opus/sonnet/haiku)',
+    },
+    {
+      title: 'AskUserQuestion Tool',
+      description: '클릭 가능한 옵션이 있는 인터랙티브 UI - 텍스트 프롬프트가 아닌 진정한 체크포인트',
+    },
+    {
+      title: '도구 수준 체크포인트 강제',
+      description: '사용자 승인 전까지 시스템이 진행을 차단 - 체크포인트 우회 불가능',
+    },
+    {
+      title: '병렬 에이전트 실행',
+      description: '여러 에이전트를 동시에 실행하여 연구 워크플로우 가속화',
+    },
+  ],
+};
+
+// Codex CLI limitations explained
+const codexLimitations = {
+  en: 'Codex CLI uses SKILL.md files for behavioral guidance. Checkpoints are model-voluntary (not tool-enforced), and all work is handled by the main model without dedicated agent instances.',
+  ko: 'Codex CLI는 SKILL.md 파일을 행동 지침으로 사용합니다. 체크포인트는 모델 자발적(도구 강제 아님)이며, 모든 작업은 전용 에이전트 인스턴스 없이 메인 모델이 처리합니다.',
+};
+
 const platforms: PlatformConfig[] = [
   {
     id: 'claude-code',
@@ -352,6 +398,53 @@ export function PlatformTabs({ locale }: PlatformTabsProps) {
           ))}
         </div>
       </div>
+
+      {/* Claude Code Recommendation Banner */}
+      {selectedPlatform === 'claude-code' && (
+        <div className="void-card p-4 border-checkpoint-complete/50 bg-checkpoint-complete/5">
+          <div className="flex items-start gap-3 mb-3">
+            <span className="text-xl">⭐</span>
+            <p className="text-caption text-checkpoint-complete font-medium">
+              {locale === 'ko'
+                ? 'Diverga의 모든 기능을 사용하려면 Claude Code를 권장합니다'
+                : 'Claude Code is recommended for full Diverga functionality'}
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 ml-8">
+            {(locale === 'ko' ? claudeCodeAdvantages.ko : claudeCodeAdvantages.en).map((adv, i) => (
+              <div key={i} className="flex items-start gap-2">
+                <span className="text-checkpoint-complete mt-0.5">✓</span>
+                <div>
+                  <span className="text-caption text-stellar-bright font-medium">{adv.title}</span>
+                  <p className="text-micro text-stellar-dim">{adv.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Codex CLI Limitations Notice */}
+      {selectedPlatform === 'codex-cli' && (
+        <div className="void-card p-4 border-checkpoint-suggested/50 bg-checkpoint-suggested/5">
+          <div className="flex items-start gap-3">
+            <span className="text-xl">ℹ️</span>
+            <div>
+              <p className="text-caption text-checkpoint-suggested font-medium mb-2">
+                {locale === 'ko' ? 'Codex CLI 제한 사항' : 'Codex CLI Limitations'}
+              </p>
+              <p className="text-caption text-stellar-dim">
+                {locale === 'ko' ? codexLimitations.ko : codexLimitations.en}
+              </p>
+              <p className="text-micro text-stellar-faint mt-2">
+                {locale === 'ko'
+                  ? '→ 전체 기능이 필요하면 Claude Code 사용을 권장합니다'
+                  : '→ For full functionality, we recommend using Claude Code'}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Platform Warning */}
       {currentPlatform.warning && (
