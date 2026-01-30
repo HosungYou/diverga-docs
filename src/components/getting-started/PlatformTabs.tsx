@@ -89,8 +89,8 @@ const platforms: PlatformConfig[] = [
     icon: '⚡',
     description: 'OpenAI\'s CLI (gpt-5.2-codex, gpt-5.1-codex-mini)',
     descriptionKo: 'OpenAI CLI (gpt-5.2-codex, gpt-5.1-codex-mini)',
-    warning: 'Run installation in a REGULAR terminal (Terminal.app, iTerm, VS Code terminal), NOT inside Codex CLI. Running inside Codex CLI will cause interactive prompt failures.',
-    warningKo: '설치는 일반 터미널(Terminal.app, iTerm, VS Code 터미널)에서 실행하세요. Codex CLI 내부에서 실행하면 인터랙티브 프롬프트가 작동하지 않습니다.',
+    warning: 'Run installation in a REGULAR terminal, NOT inside Codex CLI. IMPORTANT: AGENTS.md must be configured (Step 3) for Diverga agents to work in Codex sessions.',
+    warningKo: '설치는 일반 터미널에서 실행하세요. 중요: Diverga 에이전트가 작동하려면 AGENTS.md 설정(3단계)이 필요합니다.',
     installSteps: [
       {
         title: 'Install Codex CLI',
@@ -126,6 +126,30 @@ const platforms: PlatformConfig[] = [
           '',
           '# 옵션 B: 맞춤 설치 (인터랙티브 TUI)',
           'npx @diverga/codex-setup',
+        ],
+      },
+      {
+        title: 'Configure AGENTS.md Loading',
+        titleKo: 'AGENTS.md 로딩 설정',
+        commands: [
+          '# Option A: Project-level (create codex.json in project root)',
+          '{ "agents": ".codex/AGENTS.md" }',
+          '',
+          '# Option B: Global config (~/.codex/config.json)',
+          '{ "agents": "~/.codex/diverga/.codex/AGENTS.md" }',
+          '',
+          '# Option C: Command-line flag',
+          'codex --agents-file .codex/AGENTS.md',
+        ],
+        commandsKo: [
+          '# 옵션 A: 프로젝트 레벨 (프로젝트 루트에 codex.json 생성)',
+          '{ "agents": ".codex/AGENTS.md" }',
+          '',
+          '# 옵션 B: 전역 설정 (~/.codex/config.json)',
+          '{ "agents": "~/.codex/diverga/.codex/AGENTS.md" }',
+          '',
+          '# 옵션 C: 명령줄 플래그',
+          'codex --agents-file .codex/AGENTS.md',
         ],
       },
       {
