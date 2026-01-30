@@ -2,11 +2,15 @@
 
 <div align="center">
 
+[![Version](https://img.shields.io/badge/version-1.2.0-7c3aed?style=flat-square)](https://github.com/HosungYou/diverga-docs)
+[![Diverga](https://img.shields.io/badge/Diverga-v6.6.3-violet?style=flat-square)](https://github.com/HosungYou/Diverga)
+[![Live](https://img.shields.io/badge/live-diverga--docs.vercel.app-0969da?style=flat-square)](https://diverga-docs.vercel.app)
+
 **"Beyond Modal Answers"** | **"뻔한 답을 넘어서"**
 
 Documentation website for [Diverga](https://github.com/HosungYou/Diverga) - 40 specialized research methodology agents.
 
-**Cross-Platform Support**: Claude Code · Codex CLI · OpenCode
+**Cross-Platform Support**: Claude Code (Recommended) · Codex CLI · OpenCode
 
 [Live Site](https://diverga-docs.vercel.app) · [한국어](https://diverga-docs.vercel.app/ko)
 

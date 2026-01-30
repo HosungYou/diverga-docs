@@ -2,6 +2,32 @@
 
 All notable changes to Diverga Docs will be documented in this file.
 
+## [1.2.1] - 2026-01-30
+
+### Added
+- **Claude Code Recommendation Banner**: Added feature comparison showing why Claude Code is recommended
+  - Task Tool support (40 specialized agents)
+  - AskUserQuestion tool (clickable UI for checkpoints)
+  - Tool-level checkpoint enforcement
+  - Parallel agent execution
+
+- **Codex CLI Limitations Notice**: Added explanatory notice for Codex CLI users
+  - Behavioral checkpoints (model-voluntary, not tool-enforced)
+  - Main model handles all work (no dedicated agent instances)
+  - Recommendation to use Claude Code for full functionality
+
+### Changed
+- **PlatformTabs Component**: Enhanced with recommendation indicators
+  - Green banner for Claude Code advantages
+  - Yellow notice for Codex CLI limitations
+  - Visual hierarchy guiding users to recommended platform
+
+### Related
+- Diverga v6.6.3: Codex CLI SKILL.md implementation
+- See: `docs/CODEX-SKILL-SYSTEM.md` for technical details
+
+---
+
 ## [1.2.0] - 2025-01-28
 
 ### Added
