@@ -41,6 +41,10 @@ import { g5Content } from './g5-content';
 import { g6Content } from './g6-content';
 import { h1Content } from './h1-content';
 import { h2Content } from './h2-content';
+import { i0Content } from './i0-content';
+import { i1Content } from './i1-content';
+import { i2Content } from './i2-content';
+import { i3Content } from './i3-content';
 
 const allContent: Record<string, ExtendedAgentContent> = {
   A1: a1Content,
@@ -83,6 +87,10 @@ const allContent: Record<string, ExtendedAgentContent> = {
   G6: g6Content,
   H1: h1Content,
   H2: h2Content,
+  I0: i0Content,
+  I1: i1Content,
+  I2: i2Content,
+  I3: i3Content,
 };
 
 export function getAgentContent(agentId: string): ExtendedAgentContent | undefined {

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, Code2, BookOpen, Lightbulb, Shield, Zap, ArrowRight } from 'lucide-react';
+import { ChevronDown, Code2, BookOpen, Lightbulb, Shield, Zap, ArrowRight, HelpCircle, Award, Sparkles, FileText } from 'lucide-react';
 import type { ExtendedAgentContent } from '@/lib/data/types';
 
 interface AgentDetailSectionsProps {
@@ -304,6 +304,181 @@ export function AgentDetailSections({ content, locale }: AgentDetailSectionsProp
               </li>
             ))}
           </ul>
+        </CollapsibleSection>
+      )}
+
+      {/* FAQ Section - Accordion style */}
+      {content.faq && content.faq.length > 0 && (
+        <CollapsibleSection
+          title={locale === 'ko' ? '자주 묻는 질문 (FAQ)' : 'Frequently Asked Questions'}
+          icon={HelpCircle}
+        >
+          <div className="space-y-3">
+            {content.faq.map((item, i) => (
+              <div key={i} className="p-4 rounded-lg bg-void-surface border border-stellar-faint/10">
+                <div className="flex items-start gap-3 mb-2">
+                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-tscore-creative/20 flex items-center justify-center">
+                    <span className="text-xs font-mono font-bold text-tscore-creative">Q</span>
+                  </div>
+                  <h4 className="font-semibold text-stellar-core text-sm">
+                    {item.question[locale]}
+                  </h4>
+                </div>
+                <div className="flex items-start gap-3 pl-9">
+                  <p className="text-sm text-stellar-dim leading-relaxed">
+                    {item.answer[locale]}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </CollapsibleSection>
+      )}
+
+      {/* Success Stories Section */}
+      {content.successStories && content.successStories.length > 0 && (
+        <CollapsibleSection
+          title={locale === 'ko' ? '성공 사례' : 'Success Stories'}
+          icon={Award}
+        >
+          <div className="space-y-4">
+            {content.successStories.map((story, i) => (
+              <div key={i} className="p-5 rounded-xl bg-gradient-to-br from-void-surface to-void-deep border border-tscore-creative/20">
+                {/* Researcher info */}
+                <div className="flex items-start gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-full bg-tscore-creative/20 flex items-center justify-center flex-shrink-0">
+                    <Award className="w-5 h-5 text-tscore-creative" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-stellar-core">{story.researcher.name}</h4>
+                    <p className="text-sm text-stellar-faint">
+                      {story.researcher.field[locale]}
+                      {story.researcher.institution && ` · ${story.researcher.institution}`}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Challenge, Solution, Outcome */}
+                <div className="space-y-3">
+                  <div className="pl-4 border-l-2 border-tscore-modal/40">
+                    <span className="text-xs font-mono text-tscore-modal uppercase tracking-wider">
+                      {locale === 'ko' ? '도전과제' : 'Challenge'}
+                    </span>
+                    <p className="text-sm text-stellar-dim mt-1">{story.challenge[locale]}</p>
+                  </div>
+                  <div className="pl-4 border-l-2 border-tscore-balanced/40">
+                    <span className="text-xs font-mono text-tscore-balanced uppercase tracking-wider">
+                      {locale === 'ko' ? '해결방안' : 'Solution'}
+                    </span>
+                    <p className="text-sm text-stellar-dim mt-1">{story.solution[locale]}</p>
+                  </div>
+                  <div className="pl-4 border-l-2 border-tscore-creative/40">
+                    <span className="text-xs font-mono text-tscore-creative uppercase tracking-wider">
+                      {locale === 'ko' ? '성과' : 'Outcome'}
+                    </span>
+                    <p className="text-sm text-stellar-bright mt-1">{story.outcome[locale]}</p>
+                  </div>
+                </div>
+
+                {/* Metrics */}
+                {story.metrics && story.metrics.length > 0 && (
+                  <div className="mt-4 pt-4 border-t border-stellar-faint/10">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                      {story.metrics.map((metric, j) => (
+                        <div key={j} className="text-center p-2 rounded bg-void-surface/50">
+                          <div className="text-xl font-bold text-tscore-creative font-mono">
+                            {metric.value}
+                          </div>
+                          <div className="text-xs text-stellar-faint mt-0.5">
+                            {metric.label[locale]}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </CollapsibleSection>
+      )}
+
+      {/* Pro Tips Section */}
+      {content.proTips && content.proTips.length > 0 && (
+        <CollapsibleSection
+          title={locale === 'ko' ? '전문가 팁' : 'Pro Tips'}
+          icon={Sparkles}
+        >
+          <div className="space-y-3">
+            {content.proTips.map((tip, i) => {
+              const difficultyColors = {
+                beginner: '#6bcb77',
+                intermediate: '#ff8844',
+                advanced: '#ff3366',
+              };
+              const difficultyLabels = {
+                beginner: { en: 'Beginner', ko: '초급' },
+                intermediate: { en: 'Intermediate', ko: '중급' },
+                advanced: { en: 'Advanced', ko: '고급' },
+              };
+              const difficulty = tip.difficulty || 'intermediate';
+              const color = difficultyColors[difficulty];
+              const label = difficultyLabels[difficulty];
+
+              return (
+                <div key={i} className="p-4 rounded-lg bg-void-surface border border-stellar-faint/10">
+                  <div className="flex items-start justify-between gap-3 mb-2">
+                    <div className="flex-1">
+                      <p className="text-sm text-stellar-bright leading-relaxed">
+                        {tip.tip[locale]}
+                      </p>
+                    </div>
+                    <div
+                      className="flex-shrink-0 px-2 py-1 rounded text-xs font-mono font-bold"
+                      style={{
+                        backgroundColor: `${color}20`,
+                        color: color,
+                        borderColor: `${color}40`,
+                      }}
+                    >
+                      {label[locale]}
+                    </div>
+                  </div>
+                  <p className="text-xs text-stellar-faint italic">
+                    — {tip.source[locale]}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </CollapsibleSection>
+      )}
+
+      {/* Analogies Section */}
+      {content.analogies && content.analogies.length > 0 && (
+        <CollapsibleSection
+          title={locale === 'ko' ? '비유로 이해하기' : 'Understanding Through Analogies'}
+          icon={FileText}
+        >
+          <div className="space-y-4">
+            {content.analogies.map((analogy, i) => (
+              <div key={i} className="p-4 rounded-lg bg-gradient-to-r from-void-surface to-void-deep border border-stellar-faint/10">
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-full bg-tscore-divergent/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Lightbulb className="w-4 h-4 text-tscore-divergent" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="font-semibold text-stellar-core text-sm mb-2">
+                      {analogy.metaphor[locale]}
+                    </p>
+                    <p className="text-sm text-stellar-dim leading-relaxed">
+                      {analogy.explanation[locale]}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </CollapsibleSection>
       )}
     </div>

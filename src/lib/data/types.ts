@@ -85,6 +85,88 @@ export interface TScoreRange {
   examples: string[];
 }
 
+// Quick Summary for 5-second understanding
+export interface QuickSummary {
+  oneLiner: BilingualText;
+  bestFor: BilingualText[];
+  notFor: BilingualText[];
+  timeToResult: string;
+}
+
+// Real-world use case scenarios
+export interface UseCase {
+  title: BilingualText;
+  scenario: BilingualText;
+  outcome: BilingualText;
+  discipline?: string;
+  complexity: 'beginner' | 'intermediate' | 'advanced';
+}
+
+// Copy-paste ready prompts
+export interface PromptStarter {
+  prompt: BilingualText;
+  context: BilingualText;
+  expectedResponse: BilingualText;
+}
+
+// Decision helper for agent selection
+export interface DecisionHelper {
+  useWhen: BilingualText[];
+  dontUseWhen: BilingualText[];
+  alternativeAgents?: { agentId: string; condition: BilingualText }[];
+}
+
+// Agent persona for emotional connection
+export interface AgentPersona {
+  archetype: string;
+  personality: BilingualText;
+  voiceSample: BilingualText;
+  motto: BilingualText;
+  catchphrase?: BilingualText;
+}
+
+// Transformation journey narrative
+export interface Journey {
+  startState: BilingualText;
+  transformation: BilingualText[];
+  endState: BilingualText;
+  timeEstimate: string;
+}
+
+// Success story testimonial
+export interface SuccessStory {
+  researcher: { name: string; field: BilingualText; institution?: string };
+  challenge: BilingualText;
+  solution: BilingualText;
+  outcome: BilingualText;
+  metrics?: { label: BilingualText; value: string }[];
+}
+
+// Metaphor for understanding
+export interface Analogy {
+  metaphor: BilingualText;
+  explanation: BilingualText;
+}
+
+// Expert tips
+export interface ProTip {
+  tip: BilingualText;
+  source: BilingualText;
+  difficulty?: 'beginner' | 'intermediate' | 'advanced';
+}
+
+// Visual badge system
+export interface Badge {
+  type: 'new' | 'popular' | 'essential' | 'advanced' | 'quick' | 'deep';
+  label?: BilingualText;
+}
+
+// FAQ entry
+export interface FAQ {
+  question: BilingualText;
+  answer: BilingualText;
+}
+
 export interface ExtendedAgentContent {
   agentId: string;
   vsProcess?: {
@@ -121,4 +203,17 @@ export interface ExtendedAgentContent {
     before: BilingualText;
     after: BilingualText;
   };
+
+  // NEW FIELDS: User-friendly content additions
+  quickSummary?: QuickSummary;
+  useCases?: UseCase[];
+  promptStarters?: PromptStarter[];
+  decisionHelper?: DecisionHelper;
+  persona?: AgentPersona;
+  journey?: Journey;
+  successStories?: SuccessStory[];
+  analogies?: Analogy[];
+  proTips?: ProTip[];
+  badges?: Badge[];
+  faq?: FAQ[];
 }

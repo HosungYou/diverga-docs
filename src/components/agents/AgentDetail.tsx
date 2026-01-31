@@ -8,6 +8,12 @@ import { Agent, Category, ExtendedAgentContent } from '@/lib/data/types';
 import { TScoreBadge } from './TScoreBadge';
 import { CheckpointBadge } from './CheckpointBadge';
 import { AgentDetailSections } from './AgentDetailSections';
+import { QuickSummaryCard } from './QuickSummaryCard';
+import { PersonaCard } from './PersonaCard';
+import { PromptStarters } from './PromptStarters';
+import { DecisionHelperComponent } from './DecisionHelper';
+import { UseCaseGallery } from './UseCaseGallery';
+import { JourneyNarrativeSection } from './JourneyNarrativeSection';
 import { cn } from '@/lib/utils/cn';
 
 interface AgentDetailProps {
@@ -141,6 +147,18 @@ export function AgentDetail({ agent, category, relatedAgents, extendedContent }:
       <div className="py-12 sm:py-16 bg-void-deep">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
 
+        {/* Quick Summary Card - TOP PRIORITY */}
+        {extendedContent?.quickSummary && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.05 }}
+            className="mb-8"
+          >
+            <QuickSummaryCard quickSummary={extendedContent.quickSummary} locale={locale} />
+          </motion.div>
+        )}
+
         {/* Void Cards */}
         <div className="grid gap-6 sm:grid-cols-2 mb-8">
           {/* Purpose */}
@@ -187,6 +205,22 @@ export function AgentDetail({ agent, category, relatedAgents, extendedContent }:
               ))}
             </div>
           </motion.div>
+
+          {/* Persona Card - After Paradigms */}
+          {extendedContent?.persona && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.25 }}
+              className="sm:col-span-2"
+            >
+              <PersonaCard
+                persona={extendedContent.persona}
+                locale={locale}
+                themeColor={categoryColors[agent.category]}
+              />
+            </motion.div>
+          )}
         </div>
 
         {/* Triggers */}
@@ -211,6 +245,30 @@ export function AgentDetail({ agent, category, relatedAgents, extendedContent }:
             ))}
           </div>
         </motion.div>
+
+        {/* Journey Narrative Section - Mid-page storytelling */}
+        {extendedContent?.journey && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.35 }}
+            className="mb-8"
+          >
+            <JourneyNarrativeSection journey={extendedContent.journey} locale={locale} />
+          </motion.div>
+        )}
+
+        {/* Use Case Gallery - Real-world examples */}
+        {extendedContent?.useCases && extendedContent.useCases.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.38 }}
+            className="mb-8"
+          >
+            <UseCaseGallery useCases={extendedContent.useCases} locale={locale} />
+          </motion.div>
+        )}
 
         {/* Checkpoint Section */}
         {agent.checkpoint && agent.checkpoint.level && (
@@ -265,6 +323,18 @@ export function AgentDetail({ agent, category, relatedAgents, extendedContent }:
           </motion.div>
         )}
 
+        {/* Prompt Starters - Before technical sections */}
+        {extendedContent?.promptStarters && extendedContent.promptStarters.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.45 }}
+            className="mb-8"
+          >
+            <PromptStarters promptStarters={extendedContent.promptStarters} locale={locale} />
+          </motion.div>
+        )}
+
         {/* Extended Content Sections */}
         {extendedContent && (
           <motion.div
@@ -274,6 +344,22 @@ export function AgentDetail({ agent, category, relatedAgents, extendedContent }:
             className="mb-8"
           >
             <AgentDetailSections content={extendedContent} locale={locale} />
+          </motion.div>
+        )}
+
+        {/* Decision Helper - Before Related Agents */}
+        {extendedContent?.decisionHelper && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.55 }}
+            className="mb-8"
+          >
+            <DecisionHelperComponent
+              decisionHelper={extendedContent.decisionHelper}
+              locale={locale}
+              agents={relatedAgents}
+            />
           </motion.div>
         )}
 

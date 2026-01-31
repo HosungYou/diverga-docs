@@ -2,6 +2,59 @@ import type { ExtendedAgentContent } from '../types';
 
 export const c1Content: ExtendedAgentContent = {
   agentId: 'C1',
+  quickSummary: {
+    oneLiner: {
+      en: 'Quantitative research design architect avoiding simple pre-post defaults',
+      ko: '단순한 사전-사후 설계를 피하는 양적 연구 설계 설계자'
+    },
+    bestFor: [
+      { en: 'Experimental and quasi-experimental design selection', ko: '실험 및 준실험 설계 선택' },
+      { en: 'RDD, SMART, and adaptive design implementation', ko: 'RDD, SMART, 적응형 설계 구현' },
+      { en: 'Power analysis and sample size calculation', ko: '검정력 분석 및 표본 크기 계산' },
+      { en: 'Internal and external validity threat assessment', ko: '내적 및 외적 타당도 위협 평가' },
+      { en: 'Causal inference methodology', ko: '인과 추론 방법론' }
+    ],
+    notFor: [
+      { en: 'Qualitative research design (use C2)', ko: '질적 연구 설계 (C2 사용)' },
+      { en: 'Mixed methods integration (use C3)', ko: '혼합방법 통합 (C3 사용)' },
+      { en: 'Meta-analysis planning (use C5)', ko: '메타분석 계획 (C5 사용)' }
+    ],
+    timeToResult: '2-4 hours'
+  },
+  persona: {
+    archetype: 'The Blueprint Architect',
+    personality: {
+      en: 'Methodical, creative, and validity-obsessed. Challenges conventional designs while maintaining rigor.',
+      ko: '체계적이고 창의적이며 타당도에 집착하는 성격. 엄격성을 유지하면서 기존 설계에 도전.'
+    },
+    voiceSample: {
+      en: "Before we default to a simple RCT, let's explore whether a regression discontinuity design might better fit your natural selection mechanism.",
+      ko: "단순 RCT를 기본으로 하기 전에, 회귀 불연속 설계가 귀하의 자연적 선택 메커니즘에 더 적합할지 탐색해봅시다."
+    },
+    motto: {
+      en: 'Question the obvious, design for causality',
+      ko: '당연한 것에 의문을 제기하고, 인과관계를 위한 설계를'
+    }
+  },
+  decisionHelper: {
+    useWhen: [
+      { en: 'You need to establish causal relationships', ko: '인과 관계를 확립해야 할 때' },
+      { en: 'Random assignment is possible or infeasible', ko: '무작위 배정이 가능하거나 불가능할 때' },
+      { en: 'You want to avoid simple pre-post designs', ko: '단순한 사전-사후 설계를 피하고 싶을 때' },
+      { en: 'Power analysis is needed for funding', ko: '연구비를 위해 검정력 분석이 필요할 때' }
+    ],
+    dontUseWhen: [
+      { en: 'Your research question is exploratory/qualitative', ko: '연구 질문이 탐색적/질적일 때' },
+      { en: 'You are conducting a meta-analysis', ko: '메타분석을 수행할 때' },
+      { en: 'Mixed methods integration is the primary goal', ko: '혼합방법 통합이 주요 목표일 때' }
+    ],
+    alternativeAgents: [
+      { agentId: 'C2', condition: { en: 'When qualitative research is needed', ko: '질적 연구가 필요할 때' } },
+      { agentId: 'C3', condition: { en: 'When mixed methods integration is needed', ko: '혼합방법 통합이 필요할 때' } },
+      { agentId: 'C5', condition: { en: 'When conducting meta-analysis', ko: '메타분석 수행 시' } }
+    ]
+  },
+  badges: [{ type: 'essential' }],
   vsProcess: {
     type: 'FULL_5_PHASE',
     phases: [

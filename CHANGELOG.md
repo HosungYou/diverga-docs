@@ -2,6 +2,86 @@
 
 All notable changes to Diverga Docs will be documented in this file.
 
+## [2.0.0] - 2026-01-31
+
+### Major Feature: User-Friendly Agent Documentation Enhancement
+
+This release transforms the agent documentation from technical/academic descriptions to researcher-friendly, practical guides with memorable personas and actionable content.
+
+### Added
+
+#### New Type System Extensions (`src/lib/data/types.ts`)
+
+11 new TypeScript interfaces for enhanced agent content:
+
+| Interface | Purpose |
+|-----------|---------|
+| `QuickSummary` | 5-second understanding with oneLiner, bestFor, notFor, timeToResult |
+| `UseCase` | Real-world scenarios with discipline and complexity levels |
+| `PromptStarter` | Copy-paste ready prompts with context and expected responses |
+| `DecisionHelper` | Agent selection guidance with alternatives |
+| `AgentPersona` | Memorable character archetypes (archetype, personality, voiceSample, motto) |
+| `Journey` | Transformation narrative (before → steps → after) |
+| `SuccessStory` | Researcher testimonials with metrics |
+| `Analogy` | Understanding metaphors |
+| `ProTip` | Expert advice with difficulty levels |
+| `Badge` | Visual classification (new, popular, essential, advanced, quick, deep) |
+| `FAQ` | Common questions and answers |
+
+#### Category I: ScholaRAG Integration Agents (4 NEW)
+
+| Agent | Persona | Description |
+|-------|---------|-------------|
+| **I0** | "The Pipeline Conductor" | Scholar Agent Orchestrator - manages 7-stage ScholaRAG pipeline |
+| **I1** | "The API Whisperer" | Paper Retrieval Agent - fetches from Semantic Scholar, OpenAlex, arXiv |
+| **I2** | "The Efficient Screener" | Screening Assistant - PRISMA 6-dimension AI screening |
+| **I3** | "The Knowledge Architect" | RAG Builder - builds ChromaDB vector database |
+
+#### UI Components with VS Diverge Design (6 NEW)
+
+| Component | Purpose |
+|-----------|---------|
+| `QuickSummaryCard.tsx` | Hero summary with best/not-for lists, time estimate |
+| `PersonaCard.tsx` | Agent persona with typewriter animation, gradient mesh |
+| `PromptStarters.tsx` | Copyable prompts with EN/KO toggle, copy feedback |
+| `DecisionHelper.tsx` | Two-column comparison, alternative agent cards |
+| `UseCaseGallery.tsx` | Discipline filters, complexity badges |
+| `JourneyNarrativeSection.tsx` | Before→After transformation timeline |
+
+### Enhanced
+
+#### All 40 Agents Enhanced with User-Friendly Content
+
+**Category A (Foundation)**: A1-A6 with personas like "The Socratic Sculptor", "The Theory Librarian", "The Friendly Nemesis"
+
+**Category B (Evidence)**: B1-B5 with personas like "The Evidence Hunter", "The Numbers Whisperer"
+
+**Category C (Design)**: C1-C7 with personas like "The Blueprint Architect", "The Depth Diver"
+
+**Category D (Data Collection)**: D1-D4 with personas like "The Sample Sage", "The Conversation Architect"
+
+**Category E (Analysis)**: E1-E5 with personas like "The Stats Translator", "The Pattern Finder"
+
+**Category F (Quality)**: F1-F5 with personas like "The Consistency Checker", "The Checklist Champion"
+
+**Category G (Communication)**: G1-G6 with personas like "The Journal Navigator", "The Natural Voice"
+
+**Category H (Specialized)**: H1-H2 with personas like "The Cultural Immersionist", "The Change Catalyst"
+
+### Component Integration
+
+- Updated `AgentDetail.tsx` with new component sections
+- Updated `AgentDetailSections.tsx` with FAQ, Success Stories, Pro Tips, Analogies sections
+- All components conditionally render based on data availability
+
+### Technical Details
+
+- **Build**: 109 static pages generated successfully
+- **TypeScript**: Zero compilation errors
+- **Files Changed**: 44 modified, 16 created
+
+---
+
 ## [1.2.1] - 2026-01-30
 
 ### Added
