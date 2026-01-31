@@ -96,6 +96,18 @@ export const categories: Category[] = [
     color: "category-h",
     bgColor: "bg-[oklch(0.95_0.05_125)]",
     agents: ["H1", "H2"]
+  },
+  {
+    id: "I",
+    slug: "systematic-review",
+    name: { en: "Systematic Review Automation", ko: "체계적 문헌고찰 자동화" },
+    description: {
+      en: "ScholaRAG integration: paper retrieval, PRISMA screening, RAG building",
+      ko: "ScholaRAG 통합: 논문 수집, PRISMA 스크리닝, RAG 구축"
+    },
+    color: "category-i",
+    bgColor: "bg-[oklch(0.95_0.05_85)]",
+    agents: ["I0", "I1", "I2", "I3"]
   }
 ];
 

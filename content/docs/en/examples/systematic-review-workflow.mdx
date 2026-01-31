@@ -1,0 +1,380 @@
+---
+title: "Systematic Review Workflow Example"
+description: "Complete QUANT-006 conversation script demonstrating Category I agents for PRISMA 2020 systematic literature review automation"
+---
+
+# Systematic Review Workflow Example (QUANT-006)
+
+This example demonstrates a complete systematic literature review workflow using Diverga's Category I agents integrated with ScholaRAG.
+
+<Callout type="info">
+**Test ID**: QUANT-006
+**Tested On**: 2026-01-30
+**Diverga Version**: v6.5
+**ScholaRAG Version**: v1.2.6
+</Callout>
+
+## Overview
+
+This conversation shows how to:
+1. Initialize a PRISMA 2020 systematic review project
+2. Navigate human checkpoints at critical decision points
+3. Use VS methodology for research question refinement
+4. Execute the 7-stage ScholaRAG pipeline
+5. Generate publication-ready outputs
+
+## Agents Involved
+
+| Agent | Role | Model |
+|-------|------|-------|
+| **I0** | Scholar Agent Orchestrator | Opus |
+| **I1** | Paper Retrieval Agent | Sonnet |
+| **I2** | Screening Assistant | Sonnet |
+| **I3** | RAG Builder | Haiku |
+
+## Checkpoints Encountered
+
+| Checkpoint | Level | Purpose |
+|------------|-------|---------|
+| 🔴 SCH_DATABASE_SELECTION | Required | Confirm database configuration |
+| 🔴 SCH_SCREENING_CRITERIA | Required | Select project type (50%/90% threshold) |
+| 🟠 SCH_RAG_READINESS | Recommended | Confirm search strategy |
+| 🟡 SCH_PRISMA_GENERATION | Optional | Generate final outputs |
+
+---
+
+## Conversation Script
+
+### Turn 1: Initial Request
+
+<ConversationTurn speaker="user">
+I want to conduct a PRISMA 2020 systematic literature review on AI chatbots in language learning. Can you help me automate the process using ScholaRAG?
+</ConversationTurn>
+
+<ConversationTurn speaker="claude">
+I'll help you conduct a PRISMA 2020 systematic literature review on AI chatbots in language learning using the ScholaRAG integration.
+
+### 🔴 CHECKPOINT: SCH_DATABASE_SELECTION (REQUIRED)
+
+Before I proceed, I need to confirm your database selection strategy.
+
+**ScholaRAG supports these open access databases:**
+
+| Database | Open Access Rate | PDF Availability |
+|----------|------------------|------------------|
+| **Semantic Scholar** | ~40% | Direct PDF URLs |
+| **OpenAlex** | ~50% | OA PDF URLs |
+| **arXiv** | 100% | All PDFs available |
+
+**Please select your database configuration:**
+
+- **[A] Open Access Only** (Semantic Scholar + OpenAlex + arXiv)
+- **[B] Open Access + Scopus** (requires institutional access)
+- **[C] Full Coverage** (all 5 databases)
+
+Which option would you prefer? [A/B/C]
+</ConversationTurn>
+
+<Callout type="warning">
+Notice how the system **stops and waits** for user approval at the 🔴 REQUIRED checkpoint. This is the Human-Centered design in action.
+</Callout>
+
+---
+
+### Turn 2: Database Selection
+
+<ConversationTurn speaker="user">
+Let's go with Option A - Open Access Only. I don't have institutional access.
+</ConversationTurn>
+
+<ConversationTurn speaker="claude">
+✅ **Database Selection Confirmed**: Open Access Only (Semantic Scholar + OpenAlex + arXiv)
+
+Now let me help you refine your research question using **VS methodology**:
+
+### Research Question Options (VS T-Score Analysis)
+
+| Option | Research Question | T-Score | Recommendation |
+|--------|-------------------|---------|----------------|
+| A | "What is the effect of AI chatbots on language learning outcomes?" | 0.72 | Common/Safe |
+| B | "How do AI-powered conversational agents affect speaking proficiency in L2 learners?" | 0.45 | **⭐ Balanced** |
+| C | "What mechanisms mediate the relationship between AI chatbot interaction and pragmatic competence development?" | 0.28 | Innovative |
+
+### 🔴 CHECKPOINT: CP_RESEARCH_DIRECTION (REQUIRED)
+
+Which research question direction would you like to pursue? [A/B/C]
+</ConversationTurn>
+
+<Callout type="info">
+**VS Methodology** presents options across the typicality spectrum:
+- **T=0.72**: Common (safe but limited novelty)
+- **T=0.45**: Balanced (moderate novelty) ⭐
+- **T=0.28**: Innovative (high novelty, requires strong justification)
+</Callout>
+
+---
+
+### Turn 3: Research Direction
+
+<ConversationTurn speaker="user">
+I'll go with Option B - the balanced approach.
+</ConversationTurn>
+
+<ConversationTurn speaker="claude">
+✅ **Research Direction Confirmed**: Balanced approach (T=0.45)
+
+**Final Research Question**: "How do AI-powered conversational agents affect speaking proficiency in L2 learners?"
+
+### Project Type Selection
+
+| Mode | Confidence Threshold | Expected Papers | Best For |
+|------|---------------------|-----------------|----------|
+| **knowledge_repository** | 50% (lenient) | 5,000-15,000 | AI research assistant |
+| **systematic_review** | 90% (strict) | 50-300 | Meta-analysis publication |
+
+### 🔴 CHECKPOINT: SCH_SCREENING_CRITERIA (REQUIRED)
+
+Which project type matches your needs? [A/B]
+</ConversationTurn>
+
+---
+
+### Turn 4: Project Type
+
+<ConversationTurn speaker="user">
+Option B - Systematic Review. I plan to publish this as a meta-analysis.
+</ConversationTurn>
+
+<ConversationTurn speaker="claude">
+✅ **Project Type Confirmed**: Systematic Review (90% threshold)
+
+### Executing ScholaRAG Initialization
+
+```bash
+python scholarag_cli.py init \
+  --name "AI-Chatbots-L2-Speaking" \
+  --question "How do AI-powered conversational agents affect speaking proficiency in L2 learners?" \
+  --project-type systematic_review \
+  --databases semantic_scholar openalex arxiv
+```
+
+**Output**:
+```
+✅ Project created: projects/2026-01-30_AI-Chatbots-L2-Speaking/
+✅ config.yaml generated
+✅ Directory structure initialized
+```
+
+### 🟠 CHECKPOINT: SCH_RAG_READINESS (RECOMMENDED)
+
+**Search Strategy**:
+- **Keywords**: AI chatbot, conversational agent, language learning, speaking proficiency, L2
+- **Year Range**: 2018-2026
+- **Estimated Results**: 800-1,200 papers
+
+**Ready to execute I1-PaperRetrievalAgent?** [Y/N/Q]
+</ConversationTurn>
+
+---
+
+### Turn 5: Pipeline Execution
+
+<ConversationTurn speaker="user">
+Y - proceed with paper retrieval
+</ConversationTurn>
+
+<ConversationTurn speaker="claude">
+### Executing Paper Retrieval Pipeline
+
+**I1-PaperRetrievalAgent activating...**
+
+```
+[I1] Fetching from Semantic Scholar... 523 papers
+[I1] Fetching from OpenAlex... 412 papers
+[I1] Fetching from arXiv... 187 papers
+[I1] Total raw papers: 1,122
+
+[I1] Running deduplication...
+     DOI matches: 234 duplicates removed
+     Title similarity: 156 duplicates removed
+     Remaining unique papers: 732
+```
+
+### Output Summary
+
+| Stage | Count |
+|-------|-------|
+| Total Raw | 1,122 |
+| After Deduplication | 732 |
+
+Proceed with PRISMA screening? [Y/N]
+</ConversationTurn>
+
+---
+
+### Turn 6: Screening
+
+<ConversationTurn speaker="user">
+Yes, proceed with screening.
+</ConversationTurn>
+
+<ConversationTurn speaker="claude">
+### Executing PRISMA Screening
+
+**I2-ScreeningAssistant activating...**
+
+```
+[I2] Loading 732 papers...
+[I2] Using LLM Provider: Groq (llama-3.3-70b-versatile)
+[I2] Screening threshold: 90%
+
+[I2] Progress: [██████████████████████████████] 732/732
+
+[I2] Results:
+     ✅ Included (≥90% confidence): 127 papers
+     ❌ Excluded (<90% confidence): 605 papers
+```
+
+### Screening Results
+
+| Category | Count |
+|----------|-------|
+| **Included** | 127 (17.3%) |
+| **Excluded** | 605 (82.7%) |
+
+**Estimated Cost**: ~$0.07 (Groq LLM)
+
+Continue to PDF Download & RAG Building? [A/B/C]
+</ConversationTurn>
+
+---
+
+### Turn 7: RAG Building
+
+<ConversationTurn speaker="user">
+A - Continue to PDF Download & RAG Building
+</ConversationTurn>
+
+<ConversationTurn speaker="claude">
+### Executing RAG Building Pipeline
+
+**I3-RAGBuilder activating...**
+
+```
+[I3] Downloading PDFs for 127 papers...
+     ✅ Downloaded: 78 PDFs (61.4%)
+     ⏳ Unpaywall fallback: 12 additional
+     ❌ Not available: 37 papers
+     Total: 90/127 (70.9%)
+
+[I3] Building ChromaDB...
+     Chunks created: 4,521
+     Embedding model: all-MiniLM-L6-v2 (local, $0)
+     Vector database ready!
+```
+
+### RAG System Summary
+
+| Metric | Value |
+|--------|-------|
+| Papers Included | 127 |
+| PDFs Downloaded | 90 (70.9%) |
+| Total Chunks | 4,521 |
+
+Generate PRISMA diagram? [Y/N]
+</ConversationTurn>
+
+---
+
+### Turn 8: Final Output
+
+<ConversationTurn speaker="user">
+Yes, generate the PRISMA diagram.
+</ConversationTurn>
+
+<ConversationTurn speaker="claude">
+### 🟡 CHECKPOINT: SCH_PRISMA_GENERATION (OPTIONAL)
+
+**I0-ScholarAgentOrchestrator executing final stage...**
+
+### PRISMA 2020 Flow Diagram
+
+```
+┌──────────────────────────────────────────┐
+│            IDENTIFICATION                 │
+├──────────────────────────────────────────┤
+│  Records identified: n = 1,122            │
+│    • Semantic Scholar: 523                │
+│    • OpenAlex: 412                        │
+│    • arXiv: 187                           │
+└──────────────────────────────────────────┘
+                    │
+                    ▼
+┌──────────────────────────────────────────┐
+│  After duplicates removed: n = 732       │
+└──────────────────────────────────────────┘
+                    │
+                    ▼
+┌──────────────────────────────────────────┐
+│             SCREENING                     │
+├──────────────────────────────────────────┤
+│  Records screened: n = 732               │
+│  Records excluded: n = 605               │
+└──────────────────────────────────────────┘
+                    │
+                    ▼
+┌──────────────────────────────────────────┐
+│             INCLUDED                      │
+├──────────────────────────────────────────┤
+│  Studies included: n = 90                │
+│  RAG Vector Database: 4,521 chunks       │
+└──────────────────────────────────────────┘
+```
+
+### Project Complete! 🎉
+
+**Checkpoints Completed**:
+- 🔴 SCH_DATABASE_SELECTION ✅
+- 🔴 SCH_SCREENING_CRITERIA ✅
+- 🟠 SCH_RAG_READINESS ✅
+- 🟡 SCH_PRISMA_GENERATION ✅
+
+**Total Cost**: ~$0.07
+</ConversationTurn>
+
+---
+
+## Key Takeaways
+
+<Cards>
+  <Card title="Human Checkpoints" icon="shield">
+    The system stops at every 🔴 REQUIRED checkpoint and waits for explicit user approval.
+  </Card>
+  <Card title="VS Methodology" icon="lightbulb">
+    Research questions are presented with T-Scores across the typicality spectrum.
+  </Card>
+  <Card title="Cost Efficiency" icon="dollar-sign">
+    Groq LLM screening costs ~$0.07 (100x cheaper than Claude).
+  </Card>
+  <Card title="Automation" icon="zap">
+    ScholaRAG scripts execute automatically after user approval.
+  </Card>
+</Cards>
+
+## Try It Yourself
+
+```bash
+# Install Diverga plugin
+/plugin marketplace add https://github.com/HosungYou/Diverga
+/plugin install diverga
+
+# Start a systematic review
+"I want to conduct a PRISMA 2020 systematic review on [YOUR TOPIC]"
+```
+
+## Related Resources
+
+- [Category I Agents Reference](/docs/agents/category-i)
+- [ScholaRAG Integration Guide](/docs/integrations/scholarag)
+- [Human Checkpoint System](/docs/core/checkpoints)
+- [VS Methodology](/docs/core/vs-methodology)

@@ -991,6 +991,108 @@ export const agents: Agent[] = [
     relatedAgents: ["C2", "A5"],
     paradigms: ["qualitative"],
     checkpoint: { id: "CP_METHODOLOGY_APPROVAL", level: "REQUIRED" }
+  },
+
+  // Category I: Systematic Review Automation (4 agents) - ScholaRAG Integration
+  {
+    id: "I0",
+    slug: "scholar-agent-orchestrator",
+    name: { en: "Scholar Agent Orchestrator", ko: "학술 에이전트 오케스트레이터" },
+    category: "I",
+    icon: "🎼",
+    tier: "HIGH",
+    model: "opus",
+    vsLevel: "FULL",
+    description: {
+      en: "Orchestrates the complete ScholaRAG 7-stage PRISMA systematic review pipeline, coordinating I1→I2→I3 agents.",
+      ko: "ScholaRAG 7단계 PRISMA 체계적 문헌고찰 파이프라인 전체를 조율하고 I1→I2→I3 에이전트를 조정합니다."
+    },
+    purpose: {
+      en: "Serve as the single entry point for systematic literature reviews, managing checkpoints and agent coordination.",
+      ko: "체계적 문헌고찰의 단일 진입점으로서 체크포인트와 에이전트 조정을 관리합니다."
+    },
+    triggers: {
+      en: "systematic review, literature review automation, ScholaRAG, PRISMA pipeline",
+      ko: "체계적 문헌고찰, 문헌고찰 자동화, ScholaRAG, PRISMA 파이프라인"
+    },
+    relatedAgents: ["I1", "I2", "I3", "B1"],
+    paradigms: ["quantitative", "mixed"],
+    checkpoint: { id: "SCH_PRISMA_GENERATION", level: "OPTIONAL" }
+  },
+  {
+    id: "I1",
+    slug: "paper-retrieval-agent",
+    name: { en: "Paper Retrieval Agent", ko: "논문 수집 에이전트" },
+    category: "I",
+    icon: "📥",
+    tier: "MEDIUM",
+    model: "sonnet",
+    vsLevel: "ENHANCED",
+    description: {
+      en: "Retrieves papers from Semantic Scholar, OpenAlex, and arXiv APIs with automatic deduplication by DOI/title.",
+      ko: "Semantic Scholar, OpenAlex, arXiv API에서 논문을 수집하고 DOI/제목으로 자동 중복 제거합니다."
+    },
+    purpose: {
+      en: "Execute multi-database paper retrieval with 40-50% open access PDF URL availability.",
+      ko: "40-50% 오픈 액세스 PDF URL 가용성으로 다중 데이터베이스 논문 검색을 실행합니다."
+    },
+    triggers: {
+      en: "fetch papers, retrieve papers, database search, Semantic Scholar, OpenAlex, arXiv",
+      ko: "논문 검색, 논문 수집, 데이터베이스 검색, Semantic Scholar, OpenAlex, arXiv"
+    },
+    relatedAgents: ["I0", "I2", "B1"],
+    paradigms: ["quantitative", "mixed"],
+    checkpoint: { id: "SCH_DATABASE_SELECTION", level: "REQUIRED" }
+  },
+  {
+    id: "I2",
+    slug: "screening-assistant",
+    name: { en: "Screening Assistant", ko: "스크리닝 어시스턴트" },
+    category: "I",
+    icon: "🔬",
+    tier: "MEDIUM",
+    model: "sonnet",
+    vsLevel: "ENHANCED",
+    description: {
+      en: "AI-assisted PRISMA 6-dimension screening using Groq LLM (100x cheaper than Claude). Supports knowledge_repository (50%) and systematic_review (90%) thresholds.",
+      ko: "Groq LLM을 사용한 AI 지원 PRISMA 6차원 스크리닝 (Claude보다 100배 저렴). knowledge_repository (50%)와 systematic_review (90%) 임계값을 지원합니다."
+    },
+    purpose: {
+      en: "Screen papers against inclusion/exclusion criteria with configurable confidence thresholds.",
+      ko: "구성 가능한 신뢰도 임계값으로 포함/제외 기준에 따라 논문을 스크리닝합니다."
+    },
+    triggers: {
+      en: "screen papers, PRISMA screening, inclusion criteria, exclusion criteria, relevance screening",
+      ko: "논문 스크리닝, PRISMA 스크리닝, 포함 기준, 제외 기준, 관련성 스크리닝"
+    },
+    relatedAgents: ["I0", "I1", "I3", "B2"],
+    paradigms: ["quantitative", "mixed"],
+    checkpoint: { id: "SCH_SCREENING_CRITERIA", level: "REQUIRED" }
+  },
+  {
+    id: "I3",
+    slug: "rag-builder",
+    name: { en: "RAG Builder", ko: "RAG 빌더" },
+    category: "I",
+    icon: "🧱",
+    tier: "LOW",
+    model: "haiku",
+    vsLevel: "LIGHT",
+    description: {
+      en: "Builds ChromaDB vector database with local embeddings (all-MiniLM-L6-v2). Zero-cost stack for PDF processing and RAG queries.",
+      ko: "로컬 임베딩(all-MiniLM-L6-v2)으로 ChromaDB 벡터 데이터베이스를 구축합니다. PDF 처리와 RAG 쿼리를 위한 무비용 스택."
+    },
+    purpose: {
+      en: "Create searchable vector database from screened papers for literature synthesis queries.",
+      ko: "문헌 종합 쿼리를 위해 스크리닝된 논문에서 검색 가능한 벡터 데이터베이스를 생성합니다."
+    },
+    triggers: {
+      en: "build RAG, vector database, ChromaDB, PDF embeddings, literature synthesis",
+      ko: "RAG 구축, 벡터 데이터베이스, ChromaDB, PDF 임베딩, 문헌 종합"
+    },
+    relatedAgents: ["I0", "I2", "B5"],
+    paradigms: ["quantitative", "qualitative", "mixed"],
+    checkpoint: { id: "SCH_RAG_READINESS", level: "RECOMMENDED" }
   }
 ];
 
