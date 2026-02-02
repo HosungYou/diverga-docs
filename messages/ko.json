@@ -6,6 +6,7 @@
   "nav": {
     "home": "홈",
     "agents": "에이전트",
+    "features": "기능",
     "gettingStarted": "시작하기",
     "workflows": "워크플로우",
     "docs": "문서",
@@ -123,6 +124,58 @@
       }
     }
   },
+  "features": {
+    "title": "기능",
+    "description": "연구자가 AI와 상호작용하는 방식을 혁신하는 5가지 핵심 기능",
+    "badge": "5가지 핵심 기능",
+    "viewAll": "모든 기능 보기",
+    "memory": {
+      "name": "메모리 시스템",
+      "shortName": "메모리",
+      "description": "세션을 넘어 지속되는 연구 맥락",
+      "badge": "v6.8 신규",
+      "hero": {
+        "title": "연구 메모리, 드디어 해결",
+        "subtitle": "더 이상 매 세션마다 연구 맥락을 재설명할 필요가 없습니다"
+      }
+    },
+    "vs": {
+      "name": "VS 방법론",
+      "shortName": "VS 방법론",
+      "description": "AI 모드 붕괴를 벗어나 창의적 대안을 제시",
+      "hero": {
+        "title": "모드 붕괴에서 벗어나세요",
+        "subtitle": "전형성 스펙트럼에 걸친 창의적 옵션 제공"
+      }
+    },
+    "checkpoints": {
+      "name": "휴먼 체크포인트 시스템",
+      "shortName": "체크포인트",
+      "description": "중요한 결정은 인간의 손에",
+      "hero": {
+        "title": "중요한 결정은 인간의 손에",
+        "subtitle": "패러다임 선택에 대한 통제권 유지"
+      }
+    },
+    "systematic": {
+      "name": "체계적 문헌고찰 자동화",
+      "shortName": "PRISMA",
+      "description": "PRISMA 2020 준수 문헌고찰 파이프라인",
+      "hero": {
+        "title": "PRISMA 2020 준수 자동화",
+        "subtitle": "체계적 문헌고찰 자동화"
+      }
+    },
+    "humanization": {
+      "name": "휴먼화 파이프라인",
+      "shortName": "휴먼화",
+      "description": "AI 텍스트를 자연스러운 학술 문체로 변환",
+      "hero": {
+        "title": "AI 텍스트를 자연스러운 학술 문체로",
+        "subtitle": "AI 작성 패턴 감지 및 변환"
+      }
+    }
+  },
   "gettingStarted": {
     "title": "시작하기",
     "description": "원하는 플랫폼에 Diverga를 설치하고 5분 안에 첫 번째 에이전트를 실행하세요",
@@ -187,7 +240,8 @@
     "links": {
       "github": "GitHub",
       "docs": "문서",
-      "agents": "에이전트"
+      "agents": "에이전트",
+      "features": "기능"
     },
     "copyright": "© 2025 Diverga. MIT 라이선스 오픈소스."
   },
@@ -196,6 +250,8 @@
     "learnMore": "더 알아보기",
     "tryIt": "체험하기",
     "copy": "복사",
-    "copied": "복사됨!"
+    "copied": "복사됨!",
+    "new": "신규",
+    "comingSoon": "준비 중"
   }
 }

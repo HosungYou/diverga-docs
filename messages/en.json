@@ -6,6 +6,7 @@
   "nav": {
     "home": "Home",
     "agents": "Agents",
+    "features": "Features",
     "gettingStarted": "Getting Started",
     "workflows": "Workflows",
     "docs": "Docs",
@@ -123,6 +124,58 @@
       }
     }
   },
+  "features": {
+    "title": "Features",
+    "description": "Five core features that transform how researchers interact with AI",
+    "badge": "5 Core Features",
+    "viewAll": "View All Features",
+    "memory": {
+      "name": "Memory System",
+      "shortName": "Memory",
+      "description": "Research context that persists across sessions",
+      "badge": "NEW in v6.8",
+      "hero": {
+        "title": "Research Memory, Finally Solved",
+        "subtitle": "No more re-explaining your research context every session"
+      }
+    },
+    "vs": {
+      "name": "VS Methodology",
+      "shortName": "VS Method",
+      "description": "Break free from AI mode collapse with creative alternatives",
+      "hero": {
+        "title": "Break Free from Mode Collapse",
+        "subtitle": "Get creative options across the typicality spectrum"
+      }
+    },
+    "checkpoints": {
+      "name": "Human Checkpoint System",
+      "shortName": "Checkpoints",
+      "description": "Critical decisions stay in human hands",
+      "hero": {
+        "title": "Critical Decisions Stay in Human Hands",
+        "subtitle": "You maintain control over paradigm selection"
+      }
+    },
+    "systematic": {
+      "name": "Systematic Review Automation",
+      "shortName": "PRISMA",
+      "description": "PRISMA 2020 compliant literature review pipeline",
+      "hero": {
+        "title": "PRISMA 2020 Compliant Automation",
+        "subtitle": "Automate systematic literature reviews"
+      }
+    },
+    "humanization": {
+      "name": "Humanization Pipeline",
+      "shortName": "Humanize",
+      "description": "Transform AI text into natural academic writing",
+      "hero": {
+        "title": "AI Text to Natural Academic Writing",
+        "subtitle": "Detect and transform AI writing patterns"
+      }
+    }
+  },
   "gettingStarted": {
     "title": "Getting Started",
     "description": "Install Diverga on your preferred platform and run your first agent in under 5 minutes",
@@ -187,7 +240,8 @@
     "links": {
       "github": "GitHub",
       "docs": "Documentation",
-      "agents": "Agents"
+      "agents": "Agents",
+      "features": "Features"
     },
     "copyright": "© 2025 Diverga. Open source under MIT license."
   },
@@ -196,6 +250,8 @@
     "learnMore": "Learn More",
     "tryIt": "Try It",
     "copy": "Copy",
-    "copied": "Copied!"
+    "copied": "Copied!",
+    "new": "NEW",
+    "comingSoon": "Coming Soon"
   }
 }
