@@ -4,3 +4,4 @@ export { DocsBreadcrumb } from './DocsBreadcrumb';
 export { DocsTOC, type TOCItem } from './DocsTOC';
 export { DocsLayout } from './DocsLayout';
 export { DocsCard, DocsCategoryCard } from './DocsCard';
+export { DocsComingSoon } from './DocsComingSoon';
