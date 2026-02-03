@@ -253,5 +253,24 @@
     "copied": "Copied!",
     "new": "NEW",
     "comingSoon": "Coming Soon"
+  },
+  "docs": {
+    "title": "Documentation",
+    "description": "Learn how to get the most out of Diverga",
+    "search": "Search Diverga docs...",
+    "onThisPage": "On this page",
+    "sections": {
+      "gettingStarted": "Getting Started",
+      "coreFeatures": "Core Features",
+      "agents": "Agents",
+      "reference": "Reference",
+      "resources": "Resources"
+    },
+    "quickLinks": "Quick Links",
+    "noResults": "No results found",
+    "tryDifferent": "Try a different search term",
+    "navigate": "Navigate",
+    "go": "Go",
+    "close": "Close"
   }
 }

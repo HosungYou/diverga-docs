@@ -1,312 +1,320 @@
-"use client";
+'use client';
 
+import { motion } from 'framer-motion';
 import { useLocale } from 'next-intl';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { BookOpen, Zap, Shield, Code, Hand, Sparkles } from 'lucide-react';
-
-const docSections = [
-  {
-    icon: BookOpen,
-    title: { en: 'Getting Started', ko: '시작하기' },
-    description: { en: 'Installation, setup, and first steps', ko: '설치, 설정 및 첫 단계' },
-    href: '/getting-started',
-    category: null,
-  },
-  {
-    icon: Zap,
-    title: { en: 'VS Methodology', ko: 'VS 방법론' },
-    description: { en: 'Understanding T-Scores and creative alternatives', ko: 'T-Score와 창의적 대안 이해하기' },
-    href: '/docs/vs-methodology',
-    category: 'a',
-    tScore: 0.42,
-  },
-  {
-    icon: Shield,
-    title: { en: 'Human Checkpoints', ko: '인간 체크포인트' },
-    description: { en: 'How the checkpoint system works', ko: '체크포인트 시스템 작동 방식' },
-    href: '/docs/checkpoints',
-    category: 'e',
-    isNew: true,
-  },
-  {
-    icon: Code,
-    title: { en: 'Agent Reference', ko: '에이전트 레퍼런스' },
-    description: { en: 'Complete API reference for all 40 agents', ko: '40개 에이전트 전체 API 레퍼런스' },
-    href: '/agents',
-    category: null,
-  },
-];
+import {
+  Sparkles,
+  ArrowRight,
+  Rocket,
+  Brain,
+  ShieldCheck,
+  BookOpen,
+  PenTool,
+  Users,
+  Terminal,
+  Github,
+  ExternalLink,
+} from 'lucide-react';
+import { DocsCategoryCard } from '@/components/docs';
+import { docsCategories } from '@/lib/data/docs-navigation';
 
 // Animation variants
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
+    transition: { staggerChildren: 0.1 },
   },
 };
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 };
 
-// Helper to get T-Score color
-function getTScoreColor(score: number): string {
-  if (score >= 0.8) return '#ff3366';  // modal
-  if (score >= 0.6) return '#ff8844';  // typical
-  if (score >= 0.4) return '#ffcc22';  // balanced
-  if (score >= 0.2) return '#44ffaa';  // creative
-  return '#22ccff';                     // divergent
-}
-
-// Category colors from design system
-const categoryColors: Record<string, { text: string; bg: string; glow: string }> = {
-  a: { text: '#ff6b6b', bg: 'rgba(255, 107, 107, 0.15)', glow: 'rgba(255, 107, 107, 0.3)' },
-  e: { text: '#9b59b6', bg: 'rgba(155, 89, 182, 0.15)', glow: 'rgba(155, 89, 182, 0.3)' },
-};
-
-export default function DocsPage() {
+export default function DocsHomePage() {
   const locale = useLocale() as 'en' | 'ko';
 
   return (
-    <div className="min-h-screen bg-void-deep py-16 sm:py-24">
-      <div className="mx-auto max-w-4xl px-6 lg:px-8">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center mb-16"
-        >
-          {/* T-Score Badge */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-stellar-faint/20 bg-void-surface/50 backdrop-blur-sm"
-          >
-            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#44ffaa' }} />
-            <span className="font-mono text-xs uppercase tracking-widest text-stellar-faint">
-              Void Cartography
-            </span>
-            <span className="font-mono text-sm text-stellar-dim">T-0.42</span>
-          </motion.div>
-
-          <h1 className="void-heading-1 text-stellar-core mb-4">
+    <div className="max-w-5xl">
+      {/* Hero Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="mb-16"
+      >
+        {/* Badge */}
+        <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-stellar-faint/20 bg-void-surface/50">
+          <div className="w-2 h-2 rounded-full bg-[#44ffaa] animate-pulse" />
+          <span className="font-mono text-xs uppercase tracking-widest text-stellar-faint">
             {locale === 'ko' ? '문서' : 'Documentation'}
-          </h1>
-          <p className="text-body-lg text-stellar-dim max-w-xl mx-auto">
-            {locale === 'ko'
-              ? 'Diverga를 최대한 활용하는 방법 배우기'
-              : 'Learn how to get the most out of Diverga'}
-          </p>
-        </motion.div>
+          </span>
+          <span className="font-mono text-sm text-stellar-dim">v6.8</span>
+        </div>
 
-        {/* Section Divider */}
-        <div className="void-divider-glow mb-12" />
+        <h1 className="text-4xl sm:text-5xl font-display text-stellar-core mb-4">
+          {locale === 'ko' ? 'Diverga와 함께하는' : 'Build with'}
+          <br />
+          <span className="text-[#44ffaa]">
+            {locale === 'ko' ? '창의적 연구 AI' : 'Creative Research AI'}
+          </span>
+        </h1>
 
-        {/* Cards Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="grid gap-6 sm:grid-cols-2"
-        >
-          {docSections.map((section, index) => {
-            // Human Checkpoints card - special design with category E color
-            if (section.href === '/docs/checkpoints') {
-              return (
-                <motion.div
-                  key={section.href}
-                  variants={itemVariants}
-                  whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                  className="relative"
+        <p className="text-lg text-stellar-dim max-w-2xl mb-8">
+          {locale === 'ko'
+            ? 'Diverga를 시작하고 40개 전문 에이전트로 연구를 혁신하는 방법을 알아보세요. VS 방법론으로 모드 붕괴에서 벗어나세요.'
+            : 'Learn how to get started with Diverga and transform your research with 40 specialized agents. Break free from mode collapse with VS methodology.'}
+        </p>
+
+        {/* Quick action buttons */}
+        <div className="flex flex-wrap gap-4">
+          <Link
+            href={`/${locale}/docs/quick-start`}
+            className="void-btn void-btn-accent inline-flex items-center gap-2"
+          >
+            <Rocket className="h-4 w-4" />
+            {locale === 'ko' ? '빠른 시작' : 'Quick Start'}
+          </Link>
+          <Link
+            href={`/${locale}/agents`}
+            className="void-btn void-btn-secondary inline-flex items-center gap-2"
+          >
+            <Users className="h-4 w-4" />
+            {locale === 'ko' ? '에이전트 탐색' : 'Explore Agents'}
+          </Link>
+        </div>
+      </motion.div>
+
+      {/* Divider */}
+      <div className="void-divider-glow mb-12" />
+
+      {/* Categories Grid */}
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="grid gap-6 md:grid-cols-2 mb-16"
+      >
+        {docsCategories.map((category, index) => (
+          <motion.div key={category.id} variants={itemVariants}>
+            <DocsCategoryCard
+              title={category.title[locale]}
+              description={category.description[locale]}
+              icon={category.icon}
+              color={category.color}
+              items={category.items.map(item => ({
+                title: item.title[locale],
+                description: item.description[locale],
+                href: item.href,
+                icon: item.icon,
+                isNew: item.isNew,
+              }))}
+              locale={locale}
+            />
+          </motion.div>
+        ))}
+      </motion.div>
+
+      {/* Divider */}
+      <div className="border-b border-stellar-faint/10 mb-12" />
+
+      {/* Feature Highlights */}
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="mb-16"
+      >
+        <h2 className="text-2xl font-display text-stellar-core mb-8">
+          {locale === 'ko' ? '핵심 기능 하이라이트' : 'Feature Highlights'}
+        </h2>
+
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            {
+              icon: Brain,
+              title: { en: 'Memory System', ko: '메모리 시스템' },
+              description: {
+                en: 'Context persists across sessions',
+                ko: '세션 간 맥락 지속',
+              },
+              href: '/docs/memory-system',
+              color: '#44ffaa',
+              isNew: true,
+            },
+            {
+              icon: Sparkles,
+              title: { en: 'VS Methodology', ko: 'VS 방법론' },
+              description: {
+                en: 'Break free from mode collapse',
+                ko: '모드 붕괴에서 벗어나기',
+              },
+              href: '/docs/vs-methodology',
+              color: '#22ccff',
+            },
+            {
+              icon: ShieldCheck,
+              title: { en: 'Human Checkpoints', ko: '휴먼 체크포인트' },
+              description: {
+                en: 'Critical decisions stay with you',
+                ko: '중요한 결정은 당신의 몫',
+              },
+              href: '/docs/checkpoints',
+              color: '#ff3366',
+            },
+            {
+              icon: BookOpen,
+              title: { en: 'Systematic Review', ko: '체계적 문헌고찰' },
+              description: {
+                en: 'PRISMA 2020 automation',
+                ko: 'PRISMA 2020 자동화',
+              },
+              href: '/docs/systematic-review',
+              color: '#44ffaa',
+            },
+            {
+              icon: PenTool,
+              title: { en: 'Humanization', ko: '휴먼화' },
+              description: {
+                en: 'Natural academic writing',
+                ko: '자연스러운 학술 문체',
+              },
+              href: '/docs/humanization',
+              color: '#ff8844',
+            },
+            {
+              icon: Users,
+              title: { en: '40 Agents', ko: '40개 에이전트' },
+              description: {
+                en: 'Complete research lifecycle',
+                ko: '연구 전 과정 지원',
+              },
+              href: '/agents',
+              color: '#9b59b6',
+            },
+          ].map((feature, index) => (
+            <Link
+              key={index}
+              href={`/${locale}${feature.href}`}
+              className="group p-4 bg-void-elevated border border-stellar-faint/10 hover:border-stellar-faint/30 transition-all duration-300"
+            >
+              <div className="flex items-start gap-3">
+                <div
+                  className="flex h-9 w-9 shrink-0 items-center justify-center border border-stellar-faint/20"
+                  style={{ backgroundColor: `${feature.color}15` }}
                 >
-                  <Link
-                    href={`/${locale}${section.href}`}
-                    className="group relative flex flex-col gap-4 p-6 min-h-[220px]
-                      bg-void-elevated border border-stellar-faint/10
-                      hover:border-[#9b59b6]/50
-                      transition-all duration-300"
-                    style={{
-                      boxShadow: 'inset 0 1px 0 0 rgba(240, 240, 245, 0.05)',
-                    }}
-                  >
-                    {/* Glow effect on hover */}
-                    <div
-                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                      style={{
-                        background: 'radial-gradient(ellipse at center, rgba(155, 89, 182, 0.1) 0%, transparent 70%)',
-                      }}
-                    />
-
-                    {/* NEW v6.0 badge */}
-                    <div className="absolute top-4 right-4 px-3 py-1 bg-void-surface border border-[#9b59b6]/30 font-mono text-xs uppercase tracking-wider text-[#9b59b6]">
-                      NEW v6.0
-                    </div>
-
-                    <div className="flex items-start gap-4 relative z-10">
-                      <div
-                        className="flex h-12 w-12 shrink-0 items-center justify-center border border-stellar-faint/20 transition-colors duration-300"
-                        style={{ backgroundColor: categoryColors.e.bg }}
-                      >
-                        <Hand className="h-6 w-6" style={{ color: categoryColors.e.text }} />
-                      </div>
-
-                      <div className="flex-1">
-                        <h2 className="void-heading-3 text-stellar-core group-hover:text-stellar-bright transition-colors mb-1.5">
-                          {section.title[locale]}
-                        </h2>
-                        <p className="text-body text-stellar-dim leading-relaxed">
-                          {section.description[locale]}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Traffic light metaphor - void style */}
-                    <div className="flex items-center gap-3 px-4 py-3 bg-void-surface border border-stellar-faint/10">
-                      <div className="flex gap-2">
-                        <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#ff3366' }} />
-                        <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#ff8844' }} />
-                        <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#ffcc22' }} />
-                      </div>
-                      <div className="text-xs font-mono uppercase tracking-wider text-stellar-dim border-l border-stellar-faint/20 pl-3">
-                        {locale === 'ko' ? '당신이 결정합니다' : 'You Decide'}
-                      </div>
-                    </div>
-
-                    {/* Category E badge */}
-                    <div
-                      className="absolute bottom-4 right-4 px-3 py-1 font-mono text-[10px] uppercase tracking-widest border"
-                      style={{
-                        color: categoryColors.e.text,
-                        borderColor: `${categoryColors.e.text}50`,
-                        backgroundColor: categoryColors.e.bg
-                      }}
-                    >
-                      {locale === 'ko' ? '인간 중심' : 'HUMAN-CENTERED'}
-                    </div>
-                  </Link>
-                </motion.div>
-              );
-            }
-
-            // VS Methodology card - special design with category A color and T-Score
-            if (section.href === '/docs/vs-methodology') {
-              return (
-                <motion.div
-                  key={section.href}
-                  variants={itemVariants}
-                  whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                >
-                  <Link
-                    href={`/${locale}${section.href}`}
-                    className="group relative flex items-start gap-5 p-6 min-h-[220px]
-                      bg-void-elevated border border-stellar-faint/10
-                      hover:border-[#44ffaa]/50
-                      transition-all duration-300"
-                    style={{
-                      boxShadow: 'inset 0 1px 0 0 rgba(240, 240, 245, 0.05)',
-                    }}
-                  >
-                    {/* Glow effect on hover */}
-                    <div
-                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                      style={{
-                        background: 'radial-gradient(ellipse at center, rgba(68, 255, 170, 0.1) 0%, transparent 70%)',
-                      }}
-                    />
-
-                    <div
-                      className="flex h-12 w-12 shrink-0 items-center justify-center border border-stellar-faint/20 transition-colors duration-300"
-                      style={{ backgroundColor: 'rgba(68, 255, 170, 0.15)' }}
-                    >
-                      <section.icon className="h-6 w-6" style={{ color: '#44ffaa' }} />
-                    </div>
-
-                    <div className="flex-1 relative z-10">
-                      <div className="flex items-center gap-3 mb-2">
-                        <h2 className="void-heading-3 text-stellar-core group-hover:text-stellar-bright transition-colors">
-                          {section.title[locale]}
-                        </h2>
-                        {/* T-Score indicator */}
-                        {section.tScore && (
-                          <div className="flex items-center gap-1.5 px-2 py-1 bg-void-surface border border-stellar-faint/20">
-                            <div
-                              className="w-1.5 h-1.5 rounded-full"
-                              style={{ backgroundColor: getTScoreColor(section.tScore) }}
-                            />
-                            <span className="font-mono text-xs text-stellar-dim">
-                              T-{section.tScore.toFixed(2)}
-                            </span>
-                          </div>
-                        )}
-                      </div>
-                      <p className="text-body text-stellar-dim leading-relaxed">
-                        {section.description[locale]}
-                      </p>
-                    </div>
-                  </Link>
-                </motion.div>
-              );
-            }
-
-            // Regular card design for other sections
-            return (
-              <motion.div
-                key={section.href}
-                variants={itemVariants}
-                whileHover={{ y: -4, transition: { duration: 0.2 } }}
-              >
-                <Link
-                  href={`/${locale}${section.href}`}
-                  className="group flex items-start gap-5 p-6
-                    bg-void-elevated border border-stellar-faint/10
-                    hover:border-stellar-faint/30
-                    transition-all duration-300"
-                  style={{
-                    boxShadow: 'inset 0 1px 0 0 rgba(240, 240, 245, 0.05)',
-                  }}
-                >
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center bg-void-surface border border-stellar-faint/20 group-hover:border-stellar-faint/40 transition-colors">
-                    <section.icon className="h-6 w-6 text-stellar-dim group-hover:text-stellar-bright transition-colors" />
+                  <feature.icon className="h-4 w-4" style={{ color: feature.color }} />
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-1">
+                    <h3 className="text-sm font-medium text-stellar-bright group-hover:text-stellar-core transition-colors">
+                      {feature.title[locale]}
+                    </h3>
+                    {feature.isNew && (
+                      <span className="px-1 py-0.5 text-[9px] font-mono uppercase bg-[#44ffaa]/20 text-[#44ffaa] border border-[#44ffaa]/30">
+                        NEW
+                      </span>
+                    )}
                   </div>
-                  <div>
-                    <h2 className="void-heading-3 text-stellar-core group-hover:text-stellar-bright transition-colors mb-2">
-                      {section.title[locale]}
-                    </h2>
-                    <p className="text-body text-stellar-dim leading-relaxed">
-                      {section.description[locale]}
-                    </p>
-                  </div>
-                </Link>
-              </motion.div>
-            );
-          })}
-        </motion.div>
+                  <p className="text-xs text-stellar-faint">
+                    {feature.description[locale]}
+                  </p>
+                </div>
+                <ArrowRight className="h-4 w-4 text-stellar-faint/50 group-hover:text-stellar-dim transition-colors mt-2" />
+              </div>
+            </Link>
+          ))}
+        </div>
+      </motion.section>
 
-        {/* Bottom Section Divider */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6 }}
-          className="void-divider-glow mt-16"
-        />
+      {/* Divider */}
+      <div className="border-b border-stellar-faint/10 mb-12" />
 
-        {/* Footer Note */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.7 }}
-          className="text-center text-caption text-stellar-faint mt-8 font-mono uppercase tracking-wider"
-        >
-          {locale === 'ko' ? '27개 에이전트 오케스트레이션 시스템' : '27-Agent Orchestration System'}
-        </motion.p>
-      </div>
+      {/* Resources Section */}
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="mb-16"
+      >
+        <h2 className="text-2xl font-display text-stellar-core mb-8">
+          {locale === 'ko' ? '추가 리소스' : 'Additional Resources'}
+        </h2>
+
+        <div className="grid gap-4 sm:grid-cols-3">
+          <a
+            href="https://github.com/HosungYou/Diverga"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-4 p-4 bg-void-elevated border border-stellar-faint/10 hover:border-stellar-faint/30 transition-all"
+          >
+            <div className="flex h-10 w-10 items-center justify-center bg-void-surface border border-stellar-faint/20">
+              <Github className="h-5 w-5 text-stellar-dim" />
+            </div>
+            <div className="flex-1">
+              <h3 className="text-sm font-medium text-stellar-bright group-hover:text-stellar-core transition-colors">
+                GitHub
+              </h3>
+              <p className="text-xs text-stellar-faint">
+                {locale === 'ko' ? '소스 코드 보기' : 'View source code'}
+              </p>
+            </div>
+            <ExternalLink className="h-4 w-4 text-stellar-faint/50" />
+          </a>
+
+          <Link
+            href={`/${locale}/docs/changelog`}
+            className="group flex items-center gap-4 p-4 bg-void-elevated border border-stellar-faint/10 hover:border-stellar-faint/30 transition-all"
+          >
+            <div className="flex h-10 w-10 items-center justify-center bg-void-surface border border-stellar-faint/20">
+              <Sparkles className="h-5 w-5 text-stellar-dim" />
+            </div>
+            <div className="flex-1">
+              <h3 className="text-sm font-medium text-stellar-bright group-hover:text-stellar-core transition-colors">
+                {locale === 'ko' ? '변경 로그' : 'Changelog'}
+              </h3>
+              <p className="text-xs text-stellar-faint">
+                {locale === 'ko' ? '최신 업데이트' : 'Latest updates'}
+              </p>
+            </div>
+            <ArrowRight className="h-4 w-4 text-stellar-faint/50" />
+          </Link>
+
+          <Link
+            href={`/${locale}/docs/cli`}
+            className="group flex items-center gap-4 p-4 bg-void-elevated border border-stellar-faint/10 hover:border-stellar-faint/30 transition-all"
+          >
+            <div className="flex h-10 w-10 items-center justify-center bg-void-surface border border-stellar-faint/20">
+              <Terminal className="h-5 w-5 text-stellar-dim" />
+            </div>
+            <div className="flex-1">
+              <h3 className="text-sm font-medium text-stellar-bright group-hover:text-stellar-core transition-colors">
+                {locale === 'ko' ? 'CLI 레퍼런스' : 'CLI Reference'}
+              </h3>
+              <p className="text-xs text-stellar-faint">
+                {locale === 'ko' ? '명령어 문서' : 'Command docs'}
+              </p>
+            </div>
+            <ArrowRight className="h-4 w-4 text-stellar-faint/50" />
+          </Link>
+        </div>
+      </motion.section>
+
+      {/* Footer Note */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.8 }}
+        className="text-center pt-8 border-t border-stellar-faint/10"
+      >
+        <p className="text-xs text-stellar-faint font-mono uppercase tracking-wider">
+          {locale === 'ko'
+            ? '40개 에이전트 · 8개 카테고리 · VS 방법론'
+            : '40 Agents · 8 Categories · VS Methodology'}
+        </p>
+      </motion.div>
     </div>
   );
 }
