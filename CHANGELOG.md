@@ -2,6 +2,100 @@
 
 All notable changes to Diverga Docs will be documented in this file.
 
+## [2.2.1] - 2026-02-03
+
+### Added
+- `DocsComingSoon` component for placeholder pages with "Coming Soon" UI
+- 29 placeholder pages for all documentation routes:
+  - Configuration, CLI Reference, Changelog
+  - Memory System: types, commands, api
+  - VS Methodology: tscore, process, implementation
+  - Checkpoints: types, workflow
+  - Systematic Review: main, prisma, scholarag, databases
+  - Humanization: main, patterns, modes
+  - Agents: overview + 8 category pages (foundation, evidence, design, collection, analysis, quality, communication, specialized)
+  - Reference: configuration, model-tiers
+
+### Fixed
+- All internal navigation links now functional (no more 404 errors)
+
+---
+
+## [2.2.0] - 2026-02-03
+
+### Added
+
+#### Claude-Style Documentation Site Structure
+Complete redesign of `/docs` section with sidebar navigation following Anthropic's Claude docs pattern.
+
+#### New Components (7 NEW)
+| Component | Purpose |
+|-----------|---------|
+| `DocsSidebar.tsx` | Collapsible navigation with 25+ icon mappings |
+| `DocsSearch.tsx` | Cmd+K modal search with keyboard navigation |
+| `DocsBreadcrumb.tsx` | Navigation context breadcrumbs |
+| `DocsTOC.tsx` | Table of Contents with scroll spy |
+| `DocsLayout.tsx` | Main layout with mobile responsive support |
+| `DocsCard.tsx` | Card component with hover effects |
+| `DocsCategoryCard.tsx` | Grouped item cards for landing page |
+
+#### New Documentation Pages
+| Page | Path | Description |
+|------|------|-------------|
+| Docs Landing | `/docs` | Category grid with feature highlights |
+| Installation | `/docs/installation` | Platform-specific installation guide |
+| Quick Start | `/docs/quick-start` | 4-step timeline with VS checkpoint demo |
+| Memory System | `/docs/memory-system` | 5 memory types, lifecycle diagram, CLI commands |
+
+#### Navigation Data Structure
+- `src/lib/data/docs-navigation.ts` with DocsNavItem, DocsSection interfaces
+- 5 navigation sections: Getting Started, Core Features, Agents, Reference, Resources
+- Helper functions: `flattenNavigation()`, `getBreadcrumbPath()`
+
+### Changed
+- Redesigned docs landing page with category-based organization
+- Added i18n translations for docs section (en, ko)
+
+### Technical Details
+- **Build**: 185+ static pages generated successfully
+- **TypeScript**: Zero compilation errors
+- **Files Created**: 15 new components and pages
+
+---
+
+## [2.1.0] - 2026-02-02
+
+### Added
+
+#### Comprehensive Features Section
+5 core Diverga features with dedicated detail pages:
+
+| Feature | Path | Highlights |
+|---------|------|------------|
+| Memory System | `/features/memory-system` | 5 memory types, lifecycle flow, CLI demo |
+| VS Methodology | `/features/vs-methodology` | T-Score spectrum, mode collapse visualization |
+| Human Checkpoints | `/features/checkpoints` | Timeline, 3-tier checkpoint system |
+| Systematic Review | `/features/systematic-review` | PRISMA pipeline, database support |
+| Humanization | `/features/humanization` | 24 pattern categories, transformation modes |
+
+#### New Feature Components (12 NEW)
+| Component | Purpose |
+|-----------|---------|
+| `FeatureHero.tsx` | Storytelling hero section |
+| `MemoryFlowDiagram.tsx` | Animated memory lifecycle |
+| `MemoryTypeCard.tsx` | T-Score colored memory cards |
+| `MemoryCLIDemo.tsx` | Interactive CLI demonstration |
+| `VSProcessFlow.tsx` | 3-stage VS process visualization |
+| `ModeCollapseDemo.tsx` | Before/After AI comparison |
+| `CheckpointTimeline.tsx` | Research phase timeline |
+| `CheckpointBadges.tsx` | Required/Recommended/Optional badges |
+| `PRISMAPipeline.tsx` | I0→I1→I2→I3 agent pipeline |
+| `HumanizationDemo.tsx` | Before/After text comparison |
+| `PatternHeatmap.tsx` | 24 AI pattern categories |
+| `TransformationModes.tsx` | Conservative/Balanced/Aggressive tabs |
+
+---
+
 ## [2.0.0] - 2026-01-31
 
 ### Major Feature: User-Friendly Agent Documentation Enhancement
