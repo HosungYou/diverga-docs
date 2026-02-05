@@ -75,6 +75,13 @@ export function DocsSidebar({ locale, onClose }: DocsSidebarProps) {
   const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set(['getting-started', 'tutorials', 'core-features']));
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
 
+  // Close mobile menu when route changes
+  useEffect(() => {
+    if (onClose) {
+      onClose();
+    }
+  }, [pathname]); // eslint-disable-line react-hooks/exhaustive-deps
+
   // Build href with locale prefix only for non-default locales
   const buildHref = (path: string) => {
     // English is default locale - no prefix needed (site redirects /en/ to /)
@@ -149,8 +156,7 @@ export function DocsSidebar({ locale, onClose }: DocsSidebarProps) {
           {item.href && !hasChildren ? (
             <Link
               href={buildHref(item.href)}
-              onClick={onClose}
-              className={`
+                            className={`
                 group flex items-center gap-3 px-3 py-2 text-sm transition-all duration-200
                 ${depth === 0 ? 'font-medium' : 'pl-10'}
                 ${active
@@ -230,8 +236,7 @@ export function DocsSidebar({ locale, onClose }: DocsSidebarProps) {
           {item.href && hasChildren && (
             <Link
               href={buildHref(item.href)}
-              onClick={onClose}
-              className={`
+                            className={`
                 absolute inset-0 flex items-center
                 ${active ? '' : 'hover:bg-void-surface/30'}
               `}
@@ -256,8 +261,7 @@ export function DocsSidebar({ locale, onClose }: DocsSidebarProps) {
                     <Link
                       key={child.id}
                       href={buildHref(child.href || '')}
-                      onClick={onClose}
-                      className={`
+                                            className={`
                         block px-4 py-2 text-sm transition-all duration-200
                         ${isActive(child.href || '')
                           ? 'text-[#44ffaa] bg-[#44ffaa]/5 border-l-2 border-l-[#44ffaa] -ml-px'
@@ -320,8 +324,7 @@ export function DocsSidebar({ locale, onClose }: DocsSidebarProps) {
       <Link
         href={buildHref('/docs')}
         className="flex items-center gap-3 px-3 py-2 mb-6 group"
-        onClick={onClose}
-      >
+              >
         <div className="flex h-8 w-8 items-center justify-center bg-[#44ffaa]/10 border border-[#44ffaa]/30 group-hover:bg-[#44ffaa]/20 transition-colors">
           <span className="text-[#44ffaa] font-mono text-sm font-bold">D</span>
         </div>
