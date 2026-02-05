@@ -31,6 +31,8 @@ import {
   GitCommit,
   Github,
   ExternalLink,
+  GraduationCap,
+  Rocket,
 } from 'lucide-react';
 import { docsNavigation, type DocsNavItem, type DocsSection } from '@/lib/data/docs-navigation';
 
@@ -59,6 +61,8 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   layers: Layers,
   'git-commit': GitCommit,
   github: Github,
+  'graduation-cap': GraduationCap,
+  rocket: Rocket,
 };
 
 interface DocsSidebarProps {
@@ -68,7 +72,7 @@ interface DocsSidebarProps {
 
 export function DocsSidebar({ locale, onClose }: DocsSidebarProps) {
   const pathname = usePathname();
-  const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set(['getting-started', 'core-features']));
+  const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set(['getting-started', 'tutorials', 'core-features']));
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
 
   // Auto-expand parent sections when navigating
