@@ -2,8 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { Link, usePathname } from '@/i18n/navigation';
 import { useLocale } from 'next-intl';
 
 interface NavItem {
@@ -88,7 +87,7 @@ export function VoidNav() {
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         {/* Logo */}
-        <Link href={`/${locale}`} className="flex items-center gap-3 group">
+        <Link href="/" className="flex items-center gap-3 group">
           <span className="font-display text-xl font-bold tracking-tight text-stellar-core transition-all group-hover:text-tscore-creative">
             DIVERGA
           </span>
@@ -142,9 +141,9 @@ export function VoidNav() {
                       >
                         <div className="py-2">
                           {item.dropdownItems?.map((dropdownItem, index) => (
-                            <Link
-                              key={dropdownItem.href}
-                              href={`/${locale}${dropdownItem.href}`}
+                              <Link
+                                key={dropdownItem.href}
+                                href={dropdownItem.href}
                               className="flex items-center gap-3 px-4 py-2.5 transition-colors hover:bg-void-hover"
                             >
                               <span className="text-lg">{dropdownItem.icon}</span>
@@ -162,7 +161,7 @@ export function VoidNav() {
                         {/* View all link */}
                         <div className="border-t border-stellar-faint/10 px-4 py-2">
                           <Link
-                            href={`/${locale}${item.href}`}
+                            href={item.href}
                             className="flex items-center justify-between font-mono text-micro text-stellar-faint transition-colors hover:text-stellar-core"
                           >
                             <span>{locale === 'ko' ? '모두 보기' : 'View All Features'}</span>
@@ -181,7 +180,7 @@ export function VoidNav() {
             return (
               <Link
                 key={item.href}
-                href={`/${locale}${item.href}`}
+                href={item.href}
                 className={`void-nav-link relative py-2 ${
                   isActive ? 'text-stellar-core' : ''
                 }`}
@@ -201,7 +200,8 @@ export function VoidNav() {
           {/* Language Toggle */}
           <div className="flex items-center gap-1 border-l border-stellar-faint/20 pl-6">
             <Link
-              href={pathname?.replace(`/${locale}`, '/en') || '/en'}
+              href={pathname || '/'}
+              locale="en"
               className={`font-mono text-micro uppercase tracking-widest transition-colors ${
                 locale === 'en' ? 'text-stellar-core' : 'text-stellar-faint hover:text-stellar-dim'
               }`}
@@ -210,7 +210,8 @@ export function VoidNav() {
             </Link>
             <span className="text-stellar-faint/50">/</span>
             <Link
-              href={pathname?.replace(`/${locale}`, '/ko') || '/ko'}
+              href={pathname || '/'}
+              locale="ko"
               className={`font-mono text-micro uppercase tracking-widest transition-colors ${
                 locale === 'ko' ? 'text-stellar-core' : 'text-stellar-faint hover:text-stellar-dim'
               }`}
@@ -221,7 +222,7 @@ export function VoidNav() {
 
           {/* CTA Button */}
           <Link
-            href={`/${locale}/getting-started`}
+            href="/getting-started"
             className="void-btn void-btn-primary ml-2"
           >
             Get Started
@@ -298,7 +299,7 @@ export function VoidNav() {
                             {item.dropdownItems?.map((dropdownItem) => (
                               <Link
                                 key={dropdownItem.href}
-                                href={`/${locale}${dropdownItem.href}`}
+                                href={dropdownItem.href}
                                 className="flex items-center gap-3 py-2 pl-4 text-stellar-faint transition-colors hover:text-stellar-core"
                               >
                                 <span>{dropdownItem.icon}</span>
@@ -318,7 +319,7 @@ export function VoidNav() {
                     </div>
                   ) : (
                     <Link
-                      href={`/${locale}${item.href}`}
+                      href={item.href}
                       className="flex items-center justify-between py-3 font-display text-lg uppercase tracking-wider text-stellar-dim transition-colors hover:text-stellar-core"
                     >
                       <span>{locale === 'ko' ? item.labelKo : item.label}</span>
@@ -341,7 +342,8 @@ export function VoidNav() {
                   Language:
                 </span>
                 <Link
-                  href={pathname?.replace(`/${locale}`, '/en') || '/en'}
+                  href={pathname || '/'}
+                  locale="en"
                   className={`font-mono text-sm uppercase ${
                     locale === 'en' ? 'text-stellar-core' : 'text-stellar-faint'
                   }`}
@@ -349,7 +351,8 @@ export function VoidNav() {
                   English
                 </Link>
                 <Link
-                  href={pathname?.replace(`/${locale}`, '/ko') || '/ko'}
+                  href={pathname || '/'}
+                  locale="ko"
                   className={`font-mono text-sm uppercase ${
                     locale === 'ko' ? 'text-stellar-core' : 'text-stellar-faint'
                   }`}

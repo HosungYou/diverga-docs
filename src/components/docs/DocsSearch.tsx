@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/i18n/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, X, ArrowRight, Command, Sparkles } from 'lucide-react';
 import { flattenNavigation, docsNavigation, type DocsNavItem } from '@/lib/data/docs-navigation';
@@ -11,6 +11,9 @@ interface DocsSearchProps {
   placeholder?: string;
 }
 
+// Static - computed once at module load since docsNavigation is a static import
+const allItems = flattenNavigation(docsNavigation);
+
 export function DocsSearch({ locale, placeholder }: DocsSearchProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState('');
@@ -18,8 +21,6 @@ export function DocsSearch({ locale, placeholder }: DocsSearchProps) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
-
-  const allItems = flattenNavigation(docsNavigation);
 
   const defaultPlaceholder = locale === 'ko' ? 'Diverga 문서 검색...' : 'Search Diverga docs...';
 
@@ -39,7 +40,7 @@ export function DocsSearch({ locale, placeholder }: DocsSearchProps) {
 
     setResults(filtered);
     setSelectedIndex(0);
-  }, [query, allItems]);
+  }, [query]);
 
   // Keyboard shortcuts
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
@@ -79,7 +80,7 @@ export function DocsSearch({ locale, placeholder }: DocsSearchProps) {
       e.preventDefault();
       const item = results[selectedIndex];
       if (item.href && !item.isExternal) {
-        router.push(`/${locale}${item.href}`);
+        router.push(item.href);
         setIsOpen(false);
         setQuery('');
       }
@@ -91,7 +92,7 @@ export function DocsSearch({ locale, placeholder }: DocsSearchProps) {
       if (item.isExternal) {
         window.open(item.href, '_blank');
       } else {
-        router.push(`/${locale}${item.href}`);
+        router.push(item.href);
       }
       setIsOpen(false);
       setQuery('');
@@ -228,7 +229,7 @@ export function DocsSearch({ locale, placeholder }: DocsSearchProps) {
                           <button
                             key={link.href}
                             onClick={() => {
-                              router.push(`/${locale}${link.href}`);
+                              router.push(link.href);
                               setIsOpen(false);
                             }}
                             className="flex items-center gap-3 px-3 py-2 text-sm text-stellar-dim hover:text-stellar-bright hover:bg-void-surface/50 transition-colors"

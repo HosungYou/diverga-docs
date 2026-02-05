@@ -468,7 +468,7 @@ export function flattenNavigation(sections: DocsSection[]): DocsNavItem[] {
 // Get breadcrumb path for a given href
 export function getBreadcrumbPath(href: string, locale: string): { title: string; href: string }[] {
   const path: { title: string; href: string }[] = [
-    { title: locale === 'ko' ? '문서' : 'Docs', href: `/${locale}/docs` }
+    { title: locale === 'ko' ? '문서' : 'Docs', href: '/docs' }
   ];
 
   for (const section of docsNavigation) {
@@ -476,7 +476,7 @@ export function getBreadcrumbPath(href: string, locale: string): { title: string
       if (item.href === href) {
         path.push({
           title: item.title[locale as 'en' | 'ko'],
-          href: `/${locale}${item.href}`
+          href: item.href || '/docs'
         });
         return path;
       }
@@ -486,11 +486,11 @@ export function getBreadcrumbPath(href: string, locale: string): { title: string
           if (child.href === href) {
             path.push({
               title: item.title[locale as 'en' | 'ko'],
-              href: `/${locale}${item.href}`
+              href: item.href || '/docs'
             });
             path.push({
               title: child.title[locale as 'en' | 'ko'],
-              href: `/${locale}${child.href}`
+              href: child.href || '/docs'
             });
             return path;
           }

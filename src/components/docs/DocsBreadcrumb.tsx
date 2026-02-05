@@ -1,7 +1,6 @@
 'use client';
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { Link, usePathname } from '@/i18n/navigation';
 import { ChevronRight, Home } from 'lucide-react';
 import { getBreadcrumbPath } from '@/lib/data/docs-navigation';
 
@@ -22,7 +21,7 @@ export function DocsBreadcrumb({ locale }: DocsBreadcrumbProps) {
   return (
     <nav className="flex items-center gap-2 text-sm mb-6">
       <Link
-        href={`/${locale}/docs`}
+        href="/docs"
         className="flex items-center gap-1 text-stellar-faint hover:text-stellar-dim transition-colors"
       >
         <Home className="h-3.5 w-3.5" />

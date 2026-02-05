@@ -1,17 +1,16 @@
 "use client";
 
-import Link from 'next/link';
-import { useTranslations, useLocale } from 'next-intl';
+import { Link } from '@/i18n/navigation';
+import { useTranslations } from 'next-intl';
 import { Github, ExternalLink } from 'lucide-react';
 
 export function Footer() {
   const t = useTranslations('footer');
-  const locale = useLocale();
 
   const links = [
     { name: t('links.github'), href: 'https://github.com/HosungYou/Diverga', external: true },
-    { name: t('links.docs'), href: `/${locale}/docs` },
-    { name: t('links.agents'), href: `/${locale}/agents` },
+    { name: t('links.docs'), href: '/docs' },
+    { name: t('links.agents'), href: '/agents' },
   ];
 
   return (
@@ -19,7 +18,7 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex flex-col items-center gap-8 md:flex-row md:justify-between">
           <div className="flex flex-col items-center md:items-start gap-3">
-            <Link href={`/${locale}`} className="flex items-center gap-2">
+            <Link href="/" className="flex items-center gap-2">
               <span className="text-xl font-semibold text-gray-900">Diverga</span>
             </Link>
             <p className="text-sm text-gray-500">{t('tagline')}</p>
