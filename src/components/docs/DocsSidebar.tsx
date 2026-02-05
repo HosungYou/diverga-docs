@@ -1,8 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { usePathname } from 'next/navigation';
-import Link from 'next/link';
+import { Link, usePathname } from '@/i18n/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ChevronRight,
@@ -82,15 +81,8 @@ export function DocsSidebar({ locale, onClose }: DocsSidebarProps) {
     }
   }, [pathname]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Build href with locale prefix only for non-default locales
-  const buildHref = (path: string) => {
-    // English is default locale - no prefix needed (site redirects /en/ to /)
-    if (locale === 'en') {
-      return path;
-    }
-    // For other locales, add the prefix
-    return `/${locale}${path}`;
-  };
+  // next-intl Link handles locale prefixes automatically
+  const buildHref = (path: string) => path;
 
   // Auto-expand parent sections when navigating
   useEffect(() => {
