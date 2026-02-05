@@ -105,6 +105,14 @@ const itemVariants = {
 export default function TutorialsPage() {
   const locale = useLocale() as 'en' | 'ko';
 
+  // Build href with locale prefix only for non-default locales
+  const buildHref = (path: string) => {
+    if (locale === 'en') {
+      return path;
+    }
+    return `/${locale}${path}`;
+  };
+
   return (
     <div className="max-w-5xl">
       {/* Hero Section */}
@@ -155,7 +163,7 @@ export default function TutorialsPage() {
             return (
               <motion.div key={tutorial.id} variants={itemVariants}>
                 <Link
-                  href={`/${locale}${tutorial.href}`}
+                  href={buildHref(tutorial.href)}
                   className="group block h-full p-6 bg-void-elevated border border-stellar-faint/10 hover:border-stellar-faint/30 transition-all duration-300"
                 >
                   {/* Icon & Title */}
@@ -322,7 +330,7 @@ export default function TutorialsPage() {
           </div>
           <div className="flex flex-wrap gap-3">
             <Link
-              href={`/${locale}/docs`}
+              href={buildHref('/docs')}
               className="void-btn void-btn-secondary inline-flex items-center gap-2"
             >
               <BookOpen className="h-4 w-4" />
