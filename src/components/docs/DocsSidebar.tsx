@@ -139,7 +139,7 @@ export function DocsSidebar({ locale, onClose }: DocsSidebarProps) {
           {item.href && !hasChildren ? (
             <Link
               href={`/${locale}${item.href}`}
-              onClick={() => onClose?.()}
+              {...(onClose && { onClick: onClose })}
               className={`
                 group flex items-center gap-3 px-3 py-2 text-sm transition-all duration-200
                 ${depth === 0 ? 'font-medium' : 'pl-10'}
@@ -220,7 +220,7 @@ export function DocsSidebar({ locale, onClose }: DocsSidebarProps) {
           {item.href && hasChildren && (
             <Link
               href={`/${locale}${item.href}`}
-              onClick={() => onClose?.()}
+              {...(onClose && { onClick: onClose })}
               className={`
                 absolute inset-0 flex items-center
                 ${active ? '' : 'hover:bg-void-surface/30'}
@@ -246,7 +246,7 @@ export function DocsSidebar({ locale, onClose }: DocsSidebarProps) {
                     <Link
                       key={child.id}
                       href={`/${locale}${child.href}`}
-                      onClick={() => onClose?.()}
+                      {...(onClose && { onClick: onClose })}
                       className={`
                         block px-4 py-2 text-sm transition-all duration-200
                         ${isActive(child.href || '')
@@ -310,7 +310,7 @@ export function DocsSidebar({ locale, onClose }: DocsSidebarProps) {
       <Link
         href={`/${locale}/docs`}
         className="flex items-center gap-3 px-3 py-2 mb-6 group"
-        onClick={() => onClose?.()}
+        {...(onClose && { onClick: onClose })}
       >
         <div className="flex h-8 w-8 items-center justify-center bg-[#44ffaa]/10 border border-[#44ffaa]/30 group-hover:bg-[#44ffaa]/20 transition-colors">
           <span className="text-[#44ffaa] font-mono text-sm font-bold">D</span>
