@@ -51,6 +51,32 @@ export const docsNavigation: DocsSection[] = [
     ],
   },
   {
+    id: 'tutorials',
+    title: { en: 'Tutorials', ko: '튜토리얼' },
+    items: [
+      {
+        id: 'tutorials-overview',
+        title: { en: 'All Tutorials', ko: '모든 튜토리얼' },
+        href: '/docs/tutorials',
+        icon: 'graduation-cap',
+      },
+      {
+        id: 'quick-start-tutorial',
+        title: { en: 'Quick Start', ko: '빠른 시작' },
+        href: '/docs/tutorials/quick-start',
+        icon: 'rocket',
+        badge: { text: 'Beginner', color: '#44ffaa' },
+      },
+      {
+        id: 'meta-analysis-tutorial',
+        title: { en: 'Meta-Analysis Pipeline', ko: '메타분석 파이프라인' },
+        href: '/docs/tutorials/meta-analysis',
+        icon: 'database',
+        badge: { text: 'Advanced', color: '#f39c12' },
+      },
+    ],
+  },
+  {
     id: 'core-features',
     title: { en: 'Core Features', ko: '핵심 기능' },
     items: [

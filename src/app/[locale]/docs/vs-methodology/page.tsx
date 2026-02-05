@@ -270,7 +270,7 @@ const containerVariants = {
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } as any },
 };
 
 export default function VSMethodologyPage() {
@@ -293,7 +293,7 @@ export default function VSMethodologyPage() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as any }}
           className="text-center mb-16"
         >
           {/* T-Score Badge */}
@@ -395,7 +395,7 @@ export default function VSMethodologyPage() {
                         initial={{ width: 0 }}
                         whileInView={{ width: `${100 - index * 25}%` }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: 0.3 + index * 0.1, ease: "easeOut" }}
+                        transition={{ duration: 0.8, delay: 0.3 + index * 0.1, ease: "easeOut" as any }}
                       />
                     </div>
                   </div>

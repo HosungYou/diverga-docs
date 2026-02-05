@@ -236,7 +236,7 @@ export default function GettingStartedPage() {
                       transition={{
                         duration: 2,
                         repeat: Infinity,
-                        ease: "easeInOut"
+                        ease: "easeInOut" as any
                       }}
                       className="w-4 h-4 rounded-full bg-checkpoint-required"
                     />

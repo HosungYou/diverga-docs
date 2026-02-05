@@ -70,7 +70,7 @@ function AgentsCatalog() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as any }}
         className="mx-auto max-w-3xl text-center mb-16"
       >
         <h1 className="void-heading-1 text-stellar-core mb-6">
@@ -85,7 +85,7 @@ function AgentsCatalog() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] as any }}
         className="mb-12 space-y-6"
       >
         {/* Search */}
@@ -147,7 +147,7 @@ function AgentsCatalog() {
               hidden: { opacity: 0, y: 20 },
               visible: { opacity: 1, y: 0 },
             }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] as any }}
           >
             <AgentCard agent={agent} />
           </motion.div>

@@ -395,7 +395,7 @@ const containerVariants = {
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } as any },
 };
 
 export default function CheckpointsPage() {
@@ -418,7 +418,7 @@ export default function CheckpointsPage() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as any }}
           className="text-center mb-16 px-8 py-16 bg-void-elevated border border-stellar-faint/10 relative overflow-hidden"
         >
           {/* Subtle glow background */}

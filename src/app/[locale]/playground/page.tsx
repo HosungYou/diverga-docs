@@ -1144,7 +1144,7 @@ export default function PlaygroundPage() {
                   <motion.div
                     initial={{ opacity: 0, y: 10, scale: 0.98 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                    transition={{ duration: 0.4, ease: "easeOut" }}
+                    transition={{ duration: 0.4, ease: "easeOut" as any }}
                     className="rounded-xl bg-void-surface border border-stellar-faint/20 overflow-hidden shadow-[0_0_15px_rgba(68,255,170,0.15)]"
                   >
                     {/* Header */}
