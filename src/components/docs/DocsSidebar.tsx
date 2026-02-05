@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, usePathname } from '@/i18n/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -75,11 +75,14 @@ export function DocsSidebar({ locale, onClose }: DocsSidebarProps) {
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
 
   // Close mobile menu when route changes
+  const onCloseRef = useRef(onClose);
   useEffect(() => {
-    if (onClose) {
-      onClose();
-    }
-  }, [pathname]); // eslint-disable-line react-hooks/exhaustive-deps
+    onCloseRef.current = onClose;
+  }, [onClose]);
+
+  useEffect(() => {
+    onCloseRef.current?.();
+  }, [pathname]);
 
   // next-intl Link handles locale prefixes automatically
   const buildHref = (path: string) => path;
@@ -91,9 +94,15 @@ export function DocsSidebar({ locale, onClose }: DocsSidebarProps) {
     for (const section of docsNavigation) {
       for (const item of section.items) {
         if (item.href === currentPath || item.children?.some(child => child.href === currentPath)) {
-          setExpandedSections(prev => new Set([...prev, section.id]));
+          setExpandedSections(prev => {
+            if (prev.has(section.id)) return prev;
+            return new Set([...prev, section.id]);
+          });
           if (item.children) {
-            setExpandedItems(prev => new Set([...prev, item.id]));
+            setExpandedItems(prev => {
+              if (prev.has(item.id)) return prev;
+              return new Set([...prev, item.id]);
+            });
           }
         }
       }

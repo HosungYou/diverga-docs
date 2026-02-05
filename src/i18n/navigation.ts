@@ -1,8 +1,5 @@
 import { createNavigation } from 'next-intl/navigation';
-import { locales } from './config';
+import { routing } from './routing';
 
 export const { Link, redirect, usePathname, useRouter } =
-  createNavigation({
-    locales,
-    localePrefix: 'as-needed'  // Only show prefix for non-default locales
-  });
+  createNavigation(routing);

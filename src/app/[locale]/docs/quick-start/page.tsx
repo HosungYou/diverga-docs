@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useLocale } from 'next-intl';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { Zap, MessageSquare, Brain, CheckCircle, ArrowRight, Sparkles } from 'lucide-react';
 import { DocsBreadcrumb } from '@/components/docs';
 
@@ -226,7 +226,7 @@ export default function QuickStartPage() {
 
           <div className="grid gap-4 sm:grid-cols-2">
             <Link
-              href={`/${locale}/docs/vs-methodology`}
+              href="/docs/vs-methodology"
               className="group flex items-center gap-4 p-4 bg-void-elevated border border-stellar-faint/10 hover:border-[#22ccff]/30 transition-all"
             >
               <div className="flex h-10 w-10 items-center justify-center bg-[#22ccff]/10 border border-[#22ccff]/30">
@@ -244,7 +244,7 @@ export default function QuickStartPage() {
             </Link>
 
             <Link
-              href={`/${locale}/docs/memory-system`}
+              href="/docs/memory-system"
               className="group flex items-center gap-4 p-4 bg-void-elevated border border-stellar-faint/10 hover:border-[#44ffaa]/30 transition-all"
             >
               <div className="flex h-10 w-10 items-center justify-center bg-[#44ffaa]/10 border border-[#44ffaa]/30">
