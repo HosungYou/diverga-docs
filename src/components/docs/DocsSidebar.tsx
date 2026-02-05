@@ -1,8 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { usePathname } from 'next/navigation';
-import Link from 'next/link';
+import { Link, usePathname } from '@/i18n/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ChevronRight,
@@ -138,7 +137,7 @@ export function DocsSidebar({ locale, onClose }: DocsSidebarProps) {
           {/* Link or button */}
           {item.href && !hasChildren ? (
             <Link
-              href={`/${locale}${item.href}`}
+              href={item.href}
               {...(onClose && { onClick: onClose })}
               className={`
                 group flex items-center gap-3 px-3 py-2 text-sm transition-all duration-200
@@ -219,7 +218,7 @@ export function DocsSidebar({ locale, onClose }: DocsSidebarProps) {
           {/* Link for items with children */}
           {item.href && hasChildren && (
             <Link
-              href={`/${locale}${item.href}`}
+              href={item.href}
               {...(onClose && { onClick: onClose })}
               className={`
                 absolute inset-0 flex items-center
@@ -245,7 +244,7 @@ export function DocsSidebar({ locale, onClose }: DocsSidebarProps) {
                   {item.children?.map(child => (
                     <Link
                       key={child.id}
-                      href={`/${locale}${child.href}`}
+                      href={child.href || ''}
                       {...(onClose && { onClick: onClose })}
                       className={`
                         block px-4 py-2 text-sm transition-all duration-200
@@ -308,7 +307,7 @@ export function DocsSidebar({ locale, onClose }: DocsSidebarProps) {
     <nav className="h-full overflow-y-auto py-6 px-2 scrollbar-thin scrollbar-thumb-stellar-faint/20 scrollbar-track-transparent">
       {/* Logo/Title */}
       <Link
-        href={`/${locale}/docs`}
+        href="/docs"
         className="flex items-center gap-3 px-3 py-2 mb-6 group"
         {...(onClose && { onClick: onClose })}
       >
