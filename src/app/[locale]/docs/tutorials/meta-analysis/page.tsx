@@ -313,7 +313,7 @@ metabias hedges_g se_g, egger`,
         'Eligibility: Full-text assessed',
         'Included: Final k studies in meta-analysis',
       ],
-      autoGenerate: 'If you started with ScholaRAG (I0-I4), PRISMA is auto-populated',
+      autoGenerate: 'If you started with the I-category pipeline (I0-I3), PRISMA is auto-populated',
     },
 
     // Code Examples
@@ -696,7 +696,7 @@ metabias hedges_g se_g, egger`,
         '적격성: 전체 텍스트 평가',
         '포함: 메타분석에 포함된 최종 k개 연구',
       ],
-      autoGenerate: 'ScholaRAG (I0-I4)로 시작한 경우 PRISMA가 자동으로 채워집니다',
+      autoGenerate: 'I-카테고리 파이프라인(I0-I3)으로 시작한 경우 PRISMA가 자동으로 채워집니다',
     },
 
     // Code Examples

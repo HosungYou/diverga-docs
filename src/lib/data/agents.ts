@@ -993,7 +993,7 @@ export const agents: Agent[] = [
     checkpoint: { id: "CP_METHODOLOGY_APPROVAL", level: "REQUIRED" }
   },
 
-  // Category I: Systematic Review Automation (4 agents) - ScholaRAG Integration
+  // Category I: Systematic Review Automation (4 agents)
   {
     id: "I0",
     slug: "scholar-agent-orchestrator",
@@ -1004,16 +1004,16 @@ export const agents: Agent[] = [
     model: "opus",
     vsLevel: "FULL",
     description: {
-      en: "Orchestrates the complete ScholaRAG 7-stage PRISMA systematic review pipeline, coordinating I1→I2→I3 agents.",
-      ko: "ScholaRAG 7단계 PRISMA 체계적 문헌고찰 파이프라인 전체를 조율하고 I1→I2→I3 에이전트를 조정합니다."
+      en: "Orchestrates the complete 7-stage PRISMA systematic review pipeline, coordinating I1→I2→I3 agents.",
+      ko: "Diverga의 7단계 PRISMA 체계적 문헌고찰 파이프라인 전체를 조율하고 I1→I2→I3 에이전트를 조정합니다."
     },
     purpose: {
       en: "Serve as the single entry point for systematic literature reviews, managing checkpoints and agent coordination.",
       ko: "체계적 문헌고찰의 단일 진입점으로서 체크포인트와 에이전트 조정을 관리합니다."
     },
     triggers: {
-      en: "systematic review, literature review automation, ScholaRAG, PRISMA pipeline",
-      ko: "체계적 문헌고찰, 문헌고찰 자동화, ScholaRAG, PRISMA 파이프라인"
+      en: "systematic review, literature review automation, Diverga, PRISMA pipeline",
+      ko: "체계적 문헌고찰, 문헌고찰 자동화, Diverga, PRISMA 파이프라인"
     },
     relatedAgents: ["I1", "I2", "I3", "B1"],
     paradigms: ["quantitative", "mixed"],

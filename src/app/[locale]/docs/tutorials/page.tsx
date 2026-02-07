@@ -39,7 +39,7 @@ const tutorials = [
 const comingSoon = [
   {
     id: 'scholarag',
-    title: { en: 'ScholaRAG Workflow', ko: 'ScholaRAG 워크플로' },
+    title: { en: 'Systematic Review Workflow', ko: '체계적 문헌고찰 워크플로' },
     description: {
       en: 'PRISMA 2020 systematic literature review automation with I0-I4 agents.',
       ko: 'I0-I4 에이전트로 PRISMA 2020 체계적 문헌고찰 자동화.'

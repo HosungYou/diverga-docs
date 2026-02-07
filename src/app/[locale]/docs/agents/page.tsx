@@ -637,7 +637,68 @@ export default function AgentsOverviewPage() {
         {/* Section Divider */}
         <div className="void-divider-glow mb-16" />
 
-        {/* Section 7: CTA */}
+        {/* Section 7: Quick Links to Categories */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-16"
+        >
+          <h2 className="void-heading-2 text-stellar-core mb-4">{t.quickTitle}</h2>
+          <p className="text-body-lg text-stellar-dim mb-6">{t.quickDescription}</p>
+
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {t.categories.map((category, index) => (
+              <motion.div
+                key={category.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.05 }}
+              >
+                <Link
+                  href={`/${locale}/docs/agents/${category.id.toLowerCase() === 'a' ? 'foundation' :
+                    category.id.toLowerCase() === 'b' ? 'evidence' :
+                    category.id.toLowerCase() === 'c' ? 'design' :
+                    category.id.toLowerCase() === 'd' ? 'collection' :
+                    category.id.toLowerCase() === 'e' ? 'analysis' :
+                    category.id.toLowerCase() === 'f' ? 'quality' :
+                    category.id.toLowerCase() === 'g' ? 'communication' :
+                    category.id.toLowerCase() === 'h' ? 'specialized' :
+                    'systematic-review'}`}
+                  className="block p-4 bg-void-elevated border border-stellar-faint/10 hover:border-stellar-faint/30 transition-all group"
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div
+                        className="flex h-10 w-10 items-center justify-center border"
+                        style={{
+                          backgroundColor: `${category.color}15`,
+                          borderColor: `${category.color}30`,
+                          color: category.color,
+                        }}
+                      >
+                        {categoryIcons[category.icon]}
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-stellar-core group-hover:text-stellar-bright transition-colors">
+                          {category.name}
+                        </h3>
+                        <p className="text-xs text-stellar-faint">{category.count} {locale === 'ko' ? '에이전트' : 'agents'}</p>
+                      </div>
+                    </div>
+                    <ArrowRight className="h-5 w-5 text-stellar-faint group-hover:text-stellar-bright transition-colors" />
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </motion.section>
+
+        {/* Section Divider */}
+        <div className="void-divider-glow mb-16" />
+
+        {/* Section 8: CTA */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

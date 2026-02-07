@@ -24,16 +24,16 @@ const content = {
   en: {
     back: 'Back to Docs',
     title: 'Systematic Review Automation',
-    subtitle: 'PRISMA 2020 Pipeline with ScholaRAG',
+    subtitle: 'PRISMA 2020 Pipeline with I-Category Agents',
     description: 'Conversation-driven systematic literature review automation with AI-assisted screening, automated PDF retrieval, and RAG-powered analysis.',
 
     // Overview Section
-    overviewTitle: 'What is ScholaRAG?',
-    overviewDescription: 'ScholaRAG is a 7-stage automated systematic literature review pipeline following PRISMA 2020 guidelines. It combines conversation-driven workflow with AI-assisted screening and RAG technology.',
+    overviewTitle: 'What is Systematic Review Automation?',
+    overviewDescription: 'Diverga\'s I-category agents provide a 7-stage automated systematic literature review pipeline following PRISMA 2020 guidelines. They combine conversation-driven workflow with AI-assisted screening and RAG technology.',
     overviewFeatures: [
       { icon: 'workflow', text: 'PRISMA 2020 compliant workflow' },
       { icon: 'sparkles', text: 'AI-assisted screening with Groq LLM' },
-      { icon: 'database', text: 'Automated PDF retrieval (3 databases)' },
+      { icon: 'database', text: 'Automated PDF retrieval (5 databases)' },
       { icon: 'zap', text: 'RAG-powered literature analysis' },
     ],
 
@@ -208,8 +208,8 @@ const content = {
         color: '#9b59b6',
       },
       {
-        title: 'ScholaRAG CLI',
-        description: 'Command-line interface and project management',
+        title: 'Pipeline CLI Reference',
+        description: 'Pipeline CLI commands and project management',
         href: '/docs/systematic-review/scholarag',
         icon: 'sparkles',
         color: '#00bcd4',
@@ -225,7 +225,7 @@ const content = {
 
     // CTA
     ctaTitle: 'Ready to Automate Your Systematic Review?',
-    ctaDescription: 'Start with ScholaRAG to conduct PRISMA 2020 compliant systematic reviews in hours, not weeks.',
+    ctaDescription: 'Start with Diverga\'s I-category agents to conduct PRISMA 2020 compliant systematic reviews in hours, not weeks.',
     ctaButtons: {
       agents: 'View I-Category Agents',
       quickStart: 'Quick Start Guide',
@@ -235,16 +235,16 @@ const content = {
   ko: {
     back: '문서로 돌아가기',
     title: '체계적 문헌고찰 자동화',
-    subtitle: 'ScholaRAG를 통한 PRISMA 2020 파이프라인',
+    subtitle: 'I-카테고리 에이전트를 통한 PRISMA 2020 파이프라인',
     description: 'AI 지원 스크리닝, 자동 PDF 검색, RAG 기반 분석을 갖춘 대화형 체계적 문헌고찰 자동화.',
 
     // Overview Section
-    overviewTitle: 'ScholaRAG란?',
-    overviewDescription: 'ScholaRAG는 PRISMA 2020 지침을 따르는 7단계 자동 체계적 문헌고찰 파이프라인입니다. 대화형 워크플로우와 AI 지원 스크리닝, RAG 기술을 결합합니다.',
+    overviewTitle: '체계적 문헌고찰 자동화란?',
+    overviewDescription: 'Diverga의 I-카테고리 에이전트는 PRISMA 2020 지침을 따르는 7단계 자동 체계적 문헌고찰 파이프라인을 제공합니다. 대화형 워크플로우와 AI 지원 스크리닝, RAG 기술을 결합합니다.',
     overviewFeatures: [
       { icon: 'workflow', text: 'PRISMA 2020 준수 워크플로우' },
       { icon: 'sparkles', text: 'Groq LLM을 사용한 AI 지원 스크리닝' },
-      { icon: 'database', text: '자동 PDF 검색 (3개 데이터베이스)' },
+      { icon: 'database', text: '자동 PDF 검색 (5개 데이터베이스)' },
       { icon: 'zap', text: 'RAG 기반 문헌 분석' },
     ],
 
@@ -419,8 +419,8 @@ const content = {
         color: '#9b59b6',
       },
       {
-        title: 'ScholaRAG CLI',
-        description: '커맨드 라인 인터페이스 및 프로젝트 관리',
+        title: '파이프라인 CLI 레퍼런스',
+        description: '파이프라인 CLI 명령어 및 프로젝트 관리',
         href: '/docs/systematic-review/scholarag',
         icon: 'sparkles',
         color: '#00bcd4',
@@ -436,7 +436,7 @@ const content = {
 
     // CTA
     ctaTitle: '체계적 문헌고찰을 자동화할 준비가 되셨나요?',
-    ctaDescription: 'ScholaRAG로 시작하여 몇 주가 아닌 몇 시간 만에 PRISMA 2020 준수 체계적 문헌고찰을 수행하세요.',
+    ctaDescription: 'Diverga의 I-카테고리 에이전트로 시작하여 몇 주가 아닌 몇 시간 만에 PRISMA 2020 준수 체계적 문헌고찰을 수행하세요.',
     ctaButtons: {
       agents: 'I 카테고리 에이전트 보기',
       quickStart: '빠른 시작 가이드',
@@ -965,7 +965,7 @@ export default function SystematicReviewPage() {
                 {t.ctaButtons.quickStart}
               </Link>
               <Link
-                href="https://github.com/HosungYou/ScholaRAG"
+                href="https://github.com/HosungYou/Diverga"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="void-btn void-btn-ghost inline-flex items-center gap-2"

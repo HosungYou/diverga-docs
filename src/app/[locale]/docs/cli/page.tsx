@@ -181,10 +181,10 @@ const content = {
       },
       {
         category: 'I',
-        name: 'ScholaRAG',
+        name: 'Systematic Review',
         color: '#9b59b6',
         agents: [
-          { command: '/i0', name: 'ScholaRAG Pipeline Orchestrator', trigger: 'systematic review, PRISMA' },
+          { command: '/i0', name: 'Pipeline Orchestrator', trigger: 'systematic review, PRISMA' },
           { command: '/i1', name: 'Paper Retrieval Agent', trigger: 'fetch papers, database search' },
           { command: '/i2', name: 'Screening Assistant', trigger: 'screening, inclusion criteria' },
           { command: '/i3', name: 'RAG Builder', trigger: 'build RAG, vector database' },
@@ -219,14 +219,14 @@ const content = {
       },
     ],
 
-    // Section 5: ScholaRAG Commands
-    scholarTitle: 'ScholaRAG Commands',
+    // Section 5: Systematic Review Commands
+    scholarTitle: 'Systematic Review Commands',
     scholarDescription: 'PRISMA 2020 systematic literature review automation',
     scholarCommands: [
       {
         command: '/scholarag',
-        name: 'ScholaRAG Help',
-        description: 'Show ScholaRAG pipeline stages and usage',
+        name: 'Pipeline Help',
+        description: 'Show pipeline stages and usage',
         color: '#9b59b6',
         example: '/scholarag',
       },
@@ -285,7 +285,7 @@ const content = {
         ],
       },
       {
-        name: 'ScholaRAG',
+        name: 'Systematic Review',
         color: '#9b59b6',
         triggers: [
           { keyword: 'systematic review, PRISMA', agent: 'I0-ScholarAgentOrchestrator' },
@@ -314,7 +314,7 @@ const content = {
         steps: [
           { text: 'Say: "I want to do a systematic review on AI in education"' },
           { text: 'I0 auto-triggers → asks about research question, databases' },
-          { text: 'Or: /i0 "Start ScholaRAG pipeline"' },
+          { text: 'Or: /i0 "Start systematic review pipeline"' },
         ],
       },
       {
@@ -531,10 +531,10 @@ const content = {
       },
       {
         category: 'I',
-        name: 'ScholaRAG',
+        name: '체계적 문헌고찰',
         color: '#9b59b6',
         agents: [
-          { command: '/i0', name: 'ScholaRAG 파이프라인 오케스트레이터', trigger: '체계적 문헌고찰, PRISMA' },
+          { command: '/i0', name: '파이프라인 오케스트레이터', trigger: '체계적 문헌고찰, PRISMA' },
           { command: '/i1', name: '논문수집에이전트', trigger: '논문 가져오기, 데이터베이스 검색' },
           { command: '/i2', name: '스크리닝어시스턴트', trigger: '스크리닝, 포함 기준' },
           { command: '/i3', name: 'RAG빌더', trigger: 'RAG 구축, 벡터 데이터베이스' },
@@ -569,14 +569,14 @@ const content = {
       },
     ],
 
-    // Section 5: ScholaRAG Commands
-    scholarTitle: 'ScholaRAG 명령어',
+    // Section 5: Systematic Review Commands
+    scholarTitle: '체계적 문헌고찰 명령어',
     scholarDescription: 'PRISMA 2020 체계적 문헌고찰 자동화',
     scholarCommands: [
       {
         command: '/scholarag',
-        name: 'ScholaRAG 도움말',
-        description: 'ScholaRAG 파이프라인 단계 및 사용법 표시',
+        name: '파이프라인 도움말',
+        description: '파이프라인 단계 및 사용법 표시',
         color: '#9b59b6',
         example: '/scholarag',
       },
@@ -635,7 +635,7 @@ const content = {
         ],
       },
       {
-        name: 'ScholaRAG',
+        name: '체계적 문헌고찰',
         color: '#9b59b6',
         triggers: [
           { keyword: '체계적 문헌고찰, PRISMA', agent: 'I0-스콜라에이전트오케스트레이터' },
@@ -664,7 +664,7 @@ const content = {
         steps: [
           { text: '말하기: "교육에서 AI에 대한 체계적 문헌고찰을 하고 싶어요"' },
           { text: 'I0 자동 트리거 → 연구 질문, 데이터베이스에 대해 질문' },
-          { text: '또는: /i0 "ScholaRAG 파이프라인 시작"' },
+          { text: '또는: /i0 "체계적 문헌고찰 파이프라인 시작"' },
         ],
       },
       {

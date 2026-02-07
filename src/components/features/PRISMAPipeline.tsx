@@ -164,7 +164,7 @@ export function PRISMAPipeline({ locale }: PRISMAPipelineProps) {
           </div>
         </motion.div>
 
-        {/* ScholaRAG Integration Note */}
+        {/* Pipeline Integration Note */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -177,13 +177,13 @@ export function PRISMAPipeline({ locale }: PRISMAPipelineProps) {
             <div>
               <h4 className="mb-1 font-display text-sm font-bold text-stellar-core">
                 {locale === 'ko'
-                  ? 'ScholaRAG 통합'
-                  : 'ScholaRAG Integration'}
+                  ? '파이프라인 통합'
+                  : 'Pipeline Integration'}
               </h4>
               <p className="text-caption leading-relaxed text-stellar-dim">
                 {locale === 'ko'
-                  ? 'Diverga는 ScholaRAG 프로덕션 시스템과 통합되어 대화형 인터페이스를 통해 전체 파이프라인을 자동 실행합니다. 연구자는 프롬프트를 제공하고, Diverga가 백그라운드에서 스크립트를 실행합니다.'
-                  : 'Diverga integrates with the ScholaRAG production system to automate the entire pipeline through a conversational interface. Researchers provide prompts, and Diverga executes scripts in the background.'}
+                  ? 'Diverga는 I-카테고리 파이프라인과 통합되어 대화형 인터페이스를 통해 전체 파이프라인을 자동 실행합니다. 연구자는 프롬프트를 제공하고, Diverga가 백그라운드에서 스크립트를 실행합니다.'
+                  : 'Diverga uses the I-category pipeline to automate the entire workflow through a conversational interface. Researchers provide prompts, and Diverga executes scripts in the background.'}
               </p>
             </div>
           </div>

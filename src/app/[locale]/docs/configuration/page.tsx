@@ -92,7 +92,7 @@ export default function ConfigurationPage() {
         {
           name: 'GROQ_API_KEY',
           required: false,
-          purpose: 'Groq LLM for ScholaRAG screening (budget-friendly alternative)',
+          purpose: 'Groq LLM for I-category screening (budget-friendly alternative)',
           example: 'gsk_...',
         },
         {
@@ -107,7 +107,7 @@ export default function ConfigurationPage() {
       claudeMdExample: `# CLAUDE.md
 
 ## Project Overview
-This project uses ScholaRAG for systematic literature reviews
+This project uses the I-category pipeline for systematic literature reviews
 in education research.
 
 ## Agent Triggers
@@ -248,7 +248,7 @@ Important papers: Smith (2023), Lee (2024) - both use similar frameworks`,
         {
           name: 'GROQ_API_KEY',
           required: false,
-          purpose: 'ScholaRAG 스크리닝용 Groq LLM (저렴한 대안)',
+          purpose: 'I-카테고리 스크리닝용 Groq LLM (저렴한 대안)',
           example: 'gsk_...',
         },
         {
@@ -264,7 +264,7 @@ Important papers: Smith (2023), Lee (2024) - both use similar frameworks`,
 
 ## 프로젝트 개요
 이 프로젝트는 교육 연구에서 체계적 문헌고찰을 위해
-ScholaRAG를 사용합니다.
+I-카테고리 파이프라인을 사용합니다.
 
 ## 에이전트 트리거
 - "체계적 문헌고찰" → I0-ScholarAgentOrchestrator

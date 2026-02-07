@@ -19,8 +19,8 @@ export default function SystematicReviewPage() {
           ko: 'PRISMA 2020 준수 자동화',
         }}
         subtitle={{
-          en: 'ScholaRAG Integration',
-          ko: 'ScholaRAG 통합',
+          en: 'Pipeline Integration',
+          ko: '파이프라인 통합',
         }}
         description={{
           en: 'Automate systematic literature reviews with AI-assisted screening, deduplication, and RAG-powered synthesis. Retrieve papers from Semantic Scholar, OpenAlex, and arXiv automatically.',
@@ -56,7 +56,7 @@ export default function SystematicReviewPage() {
               </div>
               <div className="border border-tscore-creative/30 bg-void-elevated p-6">
                 <div className="mb-4 font-mono text-micro uppercase text-tscore-creative">
-                  {locale === 'ko' ? 'ScholaRAG 방식' : 'ScholaRAG Way'}
+                  {locale === 'ko' ? 'Diverga 방식' : 'Diverga Way'}
                 </div>
                 <ul className="space-y-2 text-left text-stellar-dim">
                   <li>• {locale === 'ko' ? 'API 기반 자동 검색' : 'API-based automatic retrieval'}</li>
@@ -170,8 +170,8 @@ export default function SystematicReviewPage() {
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-body-lg text-stellar-dim">
               {locale === 'ko'
-                ? 'ScholaRAG는 Diverga와 완벽하게 통합됩니다.'
-                : 'ScholaRAG integrates seamlessly with Diverga.'}
+                ? 'I-카테고리 파이프라인이 자동으로 통합됩니다.'
+                : 'The I-category pipeline integrates seamlessly.'}
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Link
@@ -181,7 +181,7 @@ export default function SystematicReviewPage() {
                 {locale === 'ko' ? '시작하기' : 'Get Started'}
               </Link>
               <a
-                href="https://github.com/HosungYou/ScholaRAG"
+                href="https://github.com/HosungYou/Diverga"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="void-btn void-btn-secondary px-8 py-3"

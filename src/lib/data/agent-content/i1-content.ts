@@ -264,8 +264,8 @@ print(f"PDF URLs: {results.pdf_url_count}")`
   promptStarters: [
     {
       prompt: {
-        en: 'Fetch all papers on [topic] from the last [N] years using ScholaRAG',
-        ko: 'ScholaRAG를 사용하여 최근 [N]년간 [주제]에 대한 모든 논문을 가져와주세요'
+        en: 'Fetch all papers on [topic] from the last [N] years using the I-category pipeline',
+        ko: 'I-카테고리 파이프라인을 사용하여 최근 [N]년간 [주제]에 대한 모든 논문을 가져와주세요'
       },
       context: {
         en: 'Use when starting the retrieval stage of a systematic review',

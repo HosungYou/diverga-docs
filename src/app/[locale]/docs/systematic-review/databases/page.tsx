@@ -25,8 +25,8 @@ const content = {
   en: {
     back: 'Back to Systematic Review',
     title: 'Supported Databases',
-    subtitle: 'Three Databases Chosen for API Access and PDF Availability',
-    description: 'ScholaRAG integrates with Semantic Scholar, OpenAlex, and arXiv to provide automated paper retrieval with 50-60% overall PDF success rate. No institutional subscriptions required.',
+    subtitle: 'Five Databases for API Access and PDF Availability',
+    description: 'Diverga\'s I-category pipeline integrates with Semantic Scholar, OpenAlex, arXiv, Scopus, and Web of Science to provide automated paper retrieval with 50-60% overall PDF success rate.',
 
     // Why These Databases
     whyTitle: 'Why These Databases?',
@@ -168,7 +168,7 @@ const content = {
 
     // API Integration
     apiTitle: 'API Integration Examples',
-    apiDescription: 'How ScholaRAG integrates with each database:',
+    apiDescription: 'How the I-category pipeline integrates with each database:',
     apiExamples: [
       {
         database: 'Semantic Scholar',
@@ -231,7 +231,7 @@ const content = {
 
     // PDF Retrieval Workflow
     workflowTitle: 'PDF Retrieval Workflow',
-    workflowDescription: 'ScholaRAG implements retry logic and fallback chains:',
+    workflowDescription: 'The I-category pipeline implements retry logic and fallback chains:',
     workflowSteps: [
       {
         step: 1,
@@ -306,9 +306,9 @@ const content = {
 
     // CTA
     ctaTitle: 'Ready to Automate Your Literature Search?',
-    ctaDescription: 'ScholaRAG handles database integration, deduplication, and PDF retrieval automatically.',
+    ctaDescription: 'The I-category pipeline handles database integration, deduplication, and PDF retrieval automatically.',
     ctaButtons: {
-      scholarag: 'ScholaRAG CLI Guide',
+      scholarag: 'Pipeline CLI Guide',
       prisma: 'PRISMA Workflow',
       github: 'View on GitHub',
     },
@@ -316,8 +316,8 @@ const content = {
   ko: {
     back: '체계적 문헌고찰로 돌아가기',
     title: '지원 데이터베이스',
-    subtitle: 'API 접근과 PDF 가용성을 위해 선택된 세 가지 데이터베이스',
-    description: 'ScholaRAG는 Semantic Scholar, OpenAlex, arXiv와 통합되어 50-60%의 전체 PDF 성공률로 자동 논문 검색을 제공합니다. 기관 구독이 필요하지 않습니다.',
+    subtitle: 'API 접근과 PDF 가용성을 위한 다섯 가지 데이터베이스',
+    description: 'Diverga의 I-카테고리 파이프라인은 Semantic Scholar, OpenAlex, arXiv, Scopus, Web of Science와 통합되어 50-60%의 전체 PDF 성공률로 자동 논문 검색을 제공합니다.',
 
     // Why These Databases
     whyTitle: '왜 이 데이터베이스인가?',
@@ -459,7 +459,7 @@ const content = {
 
     // API Integration
     apiTitle: 'API 통합 예제',
-    apiDescription: 'ScholaRAG가 각 데이터베이스와 통합하는 방법:',
+    apiDescription: 'I-카테고리 파이프라인이 각 데이터베이스와 통합하는 방법:',
     apiExamples: [
       {
         database: 'Semantic Scholar',
@@ -522,7 +522,7 @@ const content = {
 
     // PDF Retrieval Workflow
     workflowTitle: 'PDF 검색 워크플로우',
-    workflowDescription: 'ScholaRAG는 재시도 로직 및 폴백 체인을 구현합니다:',
+    workflowDescription: 'I-카테고리 파이프라인은 재시도 로직 및 폴백 체인을 구현합니다:',
     workflowSteps: [
       {
         step: 1,
@@ -597,9 +597,9 @@ const content = {
 
     // CTA
     ctaTitle: '문헌 검색을 자동화할 준비가 되셨나요?',
-    ctaDescription: 'ScholaRAG는 데이터베이스 통합, 중복 제거, PDF 검색을 자동으로 처리합니다.',
+    ctaDescription: 'I-카테고리 파이프라인은 데이터베이스 통합, 중복 제거, PDF 검색을 자동으로 처리합니다.',
     ctaButtons: {
-      scholarag: 'ScholaRAG CLI 가이드',
+      scholarag: '파이프라인 CLI 가이드',
       prisma: 'PRISMA 워크플로우',
       github: 'GitHub에서 보기',
     },
@@ -1062,7 +1062,7 @@ export default function DatabasesPage() {
             <p className="text-body text-stellar-dim mb-6">{t.ctaDescription}</p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
-                href={`/${locale}/docs/systematic-review/scholarag`}
+                href={`/${locale}/docs/agents/systematic-review`}
                 className="void-btn void-btn-accent inline-flex items-center gap-2"
               >
                 {t.ctaButtons.scholarag}
@@ -1075,7 +1075,7 @@ export default function DatabasesPage() {
                 {t.ctaButtons.prisma}
               </Link>
               <Link
-                href="https://github.com/HosungYou/ScholaRAG"
+                href="https://github.com/HosungYou/Diverga"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="void-btn void-btn-ghost inline-flex items-center gap-2"

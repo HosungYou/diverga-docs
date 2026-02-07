@@ -102,8 +102,8 @@ export const categories: Category[] = [
     slug: "systematic-review",
     name: { en: "Systematic Review Automation", ko: "체계적 문헌고찰 자동화" },
     description: {
-      en: "ScholaRAG integration: paper retrieval, PRISMA screening, RAG building",
-      ko: "ScholaRAG 통합: 논문 수집, PRISMA 스크리닝, RAG 구축"
+      en: "I-category pipeline: paper retrieval, PRISMA screening, RAG building",
+      ko: "I-카테고리 파이프라인: 논문 수집, PRISMA 스크리닝, RAG 구축"
     },
     color: "category-i",
     bgColor: "bg-[oklch(0.95_0.05_85)]",

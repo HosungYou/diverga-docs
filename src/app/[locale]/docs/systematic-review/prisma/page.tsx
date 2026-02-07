@@ -33,8 +33,8 @@ export default function PRISMAPipelinePage() {
         ]
       },
       compliance: {
-        title: 'ScholaRAG PRISMA Compliance',
-        description: 'ScholaRAG implements PRISMA 2020 guidelines throughout the entire systematic review pipeline, ensuring methodological rigor and transparent reporting.',
+        title: 'PRISMA 2020 Compliance',
+        description: 'The I-category pipeline implements PRISMA 2020 guidelines throughout the entire systematic review pipeline, ensuring methodological rigor and transparent reporting.',
       },
       stages: [
         {
@@ -89,7 +89,7 @@ export default function PRISMAPipelinePage() {
       ],
       aiPrisma: {
         title: 'AI-PRISMA 6-Dimension Screening',
-        description: 'ScholaRAG uses a 6-dimensional relevance scoring system for systematic screening, combining AI efficiency with human oversight.',
+        description: 'The pipeline uses a 6-dimensional relevance scoring system for systematic screening, combining AI efficiency with human oversight.',
         dimensions: [
           {
             name: 'Population Relevance',
@@ -129,7 +129,7 @@ export default function PRISMAPipelinePage() {
       },
       flowDiagram: {
         title: 'PRISMA Flow Diagram Generation',
-        description: 'ScholaRAG automatically generates PRISMA 2020-compliant flow diagrams from your screening data.',
+        description: 'The pipeline automatically generates PRISMA 2020-compliant flow diagrams from your screening data.',
         features: [
           'Automatic generation from `screening_results.csv`',
           'Exportable formats: PNG, SVG, PDF',
@@ -141,7 +141,7 @@ export default function PRISMAPipelinePage() {
       },
       checklist: {
         title: 'PRISMA 2020 Checklist Coverage',
-        description: 'ScholaRAG addresses key PRISMA checklist items through automated workflows:',
+        description: 'The pipeline addresses key PRISMA checklist items through automated workflows:',
         items: [
           { item: '#5', description: 'Eligibility criteria', coverage: 'Defined in config.yaml, enforced in screening' },
           { item: '#6', description: 'Information sources', coverage: 'Documented in database_strategy.md' },
@@ -166,9 +166,9 @@ export default function PRISMAPipelinePage() {
             description: 'Downloadable flow diagram templates'
           },
           {
-            title: 'ScholaRAG Documentation',
+            title: 'Pipeline Documentation',
             url: '/docs/systematic-review/scholarag',
-            description: 'Complete ScholaRAG integration guide',
+            description: 'Complete pipeline integration guide',
             isInternal: true
           }
         ]
@@ -188,8 +188,8 @@ export default function PRISMAPipelinePage() {
         ]
       },
       compliance: {
-        title: 'ScholaRAG PRISMA 준수',
-        description: 'ScholaRAG는 전체 체계적 문헌고찰 파이프라인에서 PRISMA 2020 지침을 구현하여 방법론적 엄격성과 투명한 보고를 보장합니다.',
+        title: 'PRISMA 2020 준수',
+        description: 'I-카테고리 파이프라인은 전체 체계적 문헌고찰 파이프라인에서 PRISMA 2020 지침을 구현하여 방법론적 엄격성과 투명한 보고를 보장합니다.',
       },
       stages: [
         {
@@ -244,7 +244,7 @@ export default function PRISMAPipelinePage() {
       ],
       aiPrisma: {
         title: 'AI-PRISMA 6차원 스크리닝',
-        description: 'ScholaRAG는 체계적 스크리닝을 위해 6차원 관련성 점수 시스템을 사용하며, AI 효율성과 인간 감독을 결합합니다.',
+        description: '파이프라인은 체계적 스크리닝을 위해 6차원 관련성 점수 시스템을 사용하며, AI 효율성과 인간 감독을 결합합니다.',
         dimensions: [
           {
             name: '인구 관련성 (Population Relevance)',
@@ -284,7 +284,7 @@ export default function PRISMAPipelinePage() {
       },
       flowDiagram: {
         title: 'PRISMA 흐름도 생성',
-        description: 'ScholaRAG는 스크리닝 데이터에서 PRISMA 2020 준수 흐름도를 자동으로 생성합니다.',
+        description: '파이프라인은 스크리닝 데이터에서 PRISMA 2020 준수 흐름도를 자동으로 생성합니다.',
         features: [
           '`screening_results.csv`에서 자동 생성',
           '내보내기 형식: PNG, SVG, PDF',
@@ -296,7 +296,7 @@ export default function PRISMAPipelinePage() {
       },
       checklist: {
         title: 'PRISMA 2020 체크리스트 범위',
-        description: 'ScholaRAG는 자동화된 워크플로우를 통해 주요 PRISMA 체크리스트 항목을 다룹니다:',
+        description: '파이프라인은 자동화된 워크플로우를 통해 주요 PRISMA 체크리스트 항목을 다룹니다:',
         items: [
           { item: '#5', description: '적격성 기준', coverage: 'config.yaml에 정의, 스크리닝에서 시행' },
           { item: '#6', description: '정보 출처', coverage: 'database_strategy.md에 문서화' },
@@ -321,9 +321,9 @@ export default function PRISMAPipelinePage() {
             description: '다운로드 가능한 흐름도 템플릿'
           },
           {
-            title: 'ScholaRAG 문서',
+            title: '파이프라인 문서',
             url: '/docs/systematic-review/scholarag',
-            description: '완전한 ScholaRAG 통합 가이드',
+            description: '완전한 파이프라인 통합 가이드',
             isInternal: true
           }
         ]

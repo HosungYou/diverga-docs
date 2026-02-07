@@ -48,6 +48,26 @@ const categoryInfo: Record<string, { name: { en: string; ko: string }; descripti
     description: { en: 'Statistical & qualitative analysis', ko: '통계 및 질적 분석' },
     agents: ['E1', 'E2', 'E3', 'E4', 'E5']
   },
+  F: {
+    name: { en: 'Quality Control', ko: '품질 관리' },
+    description: { en: 'Checklists, reproducibility & bias detection', ko: '체크리스트, 재현성 및 편향 감지' },
+    agents: ['F1', 'F2', 'F3', 'F4', 'F5']
+  },
+  G: {
+    name: { en: 'Communication', ko: '커뮤니케이션' },
+    description: { en: 'Writing, journals & peer review', ko: '작문, 저널 및 동료 검토' },
+    agents: ['G1', 'G2', 'G3', 'G4', 'G5', 'G6']
+  },
+  H: {
+    name: { en: 'Specialized', ko: '전문' },
+    description: { en: 'Ethnography & action research', ko: '민족지학 및 실행 연구' },
+    agents: ['H1', 'H2']
+  },
+  I: {
+    name: { en: 'Systematic Review', ko: '체계적 문헌고찰' },
+    description: { en: 'PRISMA pipeline & RAG automation', ko: 'PRISMA 파이프라인 및 RAG 자동화' },
+    agents: ['I0', 'I1', 'I2', 'I3']
+  },
 };
 
 // Animation variants
@@ -109,7 +129,7 @@ export default function WorkflowsPage() {
           >
             <div className="void-card p-8">
               <div className="flex items-center justify-between gap-4 overflow-x-auto pb-4">
-                {['A', 'B', 'C', 'D', 'E'].map((category, index) => {
+                {['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'].map((category, index) => {
                   const info = categoryInfo[category];
                   return (
                     <div key={category} className="flex items-center gap-4 flex-shrink-0">
@@ -118,7 +138,7 @@ export default function WorkflowsPage() {
                           initial={{ scale: 0 }}
                           animate={{ scale: 1 }}
                           transition={{ delay: 0.3 + index * 0.1 }}
-                          className={`w-12 h-12 rounded-full flex items-center justify-center font-mono text-sm font-bold category-bg-${category.toLowerCase()} category-text-${category.toLowerCase()} border border-stellar-faint/20 cursor-pointer transition-transform group-hover:scale-110`}
+                          className={`w-10 h-10 rounded-full flex items-center justify-center font-mono text-sm font-bold category-bg-${category.toLowerCase()} category-text-${category.toLowerCase()} border border-stellar-faint/20 cursor-pointer transition-transform group-hover:scale-110`}
                         >
                           {category}
                         </motion.div>
@@ -136,12 +156,12 @@ export default function WorkflowsPage() {
                           <div className="w-2 h-2 bg-void-surface border-b border-r border-stellar-faint/20 rotate-45 mx-auto -mt-1" />
                         </div>
                       </div>
-                      {index < 4 && (
+                      {index < 8 && (
                         <motion.div
                           initial={{ scaleX: 0 }}
                           animate={{ scaleX: 1 }}
                           transition={{ delay: 0.4 + index * 0.1 }}
-                          className="w-12 h-0.5 bg-gradient-to-r from-stellar-faint to-stellar-muted origin-left"
+                          className="w-6 h-0.5 bg-gradient-to-r from-stellar-faint to-stellar-muted origin-left"
                         />
                       )}
                     </div>

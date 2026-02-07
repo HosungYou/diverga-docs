@@ -68,7 +68,7 @@ export const i0Content: ExtendedAgentContent = {
       {
         range: '0.20-0.39',
         label: { en: 'Full Pipeline', ko: '전체 파이프라인' },
-        examples: ['ScholaRAG systematic_review mode']
+        examples: ['Diverga systematic_review mode']
       },
       {
         range: '0.00-0.19',
@@ -162,7 +162,7 @@ export const i0Content: ExtendedAgentContent = {
   codeTemplates: [
     {
       language: 'bash',
-      title: { en: 'Initialize ScholaRAG Project', ko: 'ScholaRAG 프로젝트 초기화' },
+      title: { en: 'Initialize Systematic Review Project', ko: '체계적 문헌고찰 프로젝트 초기화' },
       code: `# Initialize a new systematic review project
 python scholarag_cli.py init \\
   --name "AI-Learning-Outcomes" \\
@@ -218,8 +218,8 @@ print(pipeline.get_prisma_metrics())
       ko: '수동 프로세스: 6개월에 걸쳐 200시간 이상, 연구원 3명, 일관성 없는 스크리닝 (T-0.95)'
     },
     after: {
-      en: 'ScholaRAG pipeline: 4-8 hours, single researcher, 94% screening consistency, PRISMA-compliant (T-0.15)',
-      ko: 'ScholaRAG 파이프라인: 4-8시간, 연구원 1명, 94% 스크리닝 일관성, PRISMA 준수 (T-0.15)'
+      en: 'I-category pipeline: 4-8 hours, single researcher, 94% screening consistency, PRISMA-compliant (T-0.15)',
+      ko: 'I-카테고리 파이프라인: 4-8시간, 연구원 1명, 94% 스크리닝 일관성, PRISMA 준수 (T-0.15)'
     },
   },
 
@@ -314,8 +314,8 @@ print(pipeline.get_prisma_metrics())
     },
     {
       prompt: {
-        en: 'Run the full ScholaRAG pipeline for my project [project_name]',
-        ko: '내 프로젝트 [project_name]에 대해 전체 ScholaRAG 파이프라인을 실행해주세요'
+        en: 'Run the full systematic review pipeline for my project [project_name]',
+        ko: '내 프로젝트 [project_name]에 대해 전체 체계적 문헌고찰 파이프라인을 실행해주세요'
       },
       context: {
         en: 'Use after project initialization to execute all 7 stages automatically',
@@ -429,7 +429,7 @@ print(pipeline.get_prisma_metrics())
         en: 'Start with knowledge_repository mode (50% threshold) for initial exploration, then switch to systematic_review (90% threshold) for final analysis',
         ko: '초기 탐색에는 knowledge_repository 모드 (50% 임계값)로 시작하고, 최종 분석에는 systematic_review (90% 임계값)로 전환'
       },
-      source: { en: 'ScholaRAG Best Practices Guide', ko: 'ScholaRAG 모범 사례 가이드' },
+      source: { en: 'Systematic Review Best Practices Guide', ko: '체계적 문헌고찰 모범 사례 가이드' },
       difficulty: 'intermediate'
     },
     {
@@ -473,8 +473,8 @@ print(pipeline.get_prisma_metrics())
         ko: '내 분야의 오픈 액세스 가용성이 낮으면 어떻게 하나요?'
       },
       answer: {
-        en: 'ScholaRAG achieves ~50-60% PDF retrieval success across Semantic Scholar, OpenAlex, and arXiv. For remaining papers, you can manually add PDFs or use institutional access. The RAG still functions with partial coverage.',
-        ko: 'ScholaRAG는 Semantic Scholar, OpenAlex, arXiv 전반에서 ~50-60% PDF 검색 성공률을 달성합니다. 나머지 논문은 수동으로 PDF를 추가하거나 기관 액세스를 사용할 수 있습니다. RAG는 부분 커버리지로도 작동합니다.'
+        en: 'The I-category pipeline achieves ~50-60% PDF retrieval success across Semantic Scholar, OpenAlex, and arXiv. For remaining papers, you can manually add PDFs or use institutional access. The RAG still functions with partial coverage.',
+        ko: 'I-카테고리 파이프라인은 Semantic Scholar, OpenAlex, arXiv 전반에서 ~50-60% PDF 검색 성공률을 달성합니다. 나머지 논문은 수동으로 PDF를 추가하거나 기관 액세스를 사용할 수 있습니다. RAG는 부분 커버리지로도 작동합니다.'
       }
     },
     {

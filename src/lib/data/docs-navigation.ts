@@ -86,7 +86,7 @@ export const docsNavigation: DocsSection[] = [
         href: '/docs/memory-system',
         icon: 'brain',
         isNew: true,
-        badge: { text: 'v6.8', color: '#44ffaa' },
+        badge: { text: 'v8.0', color: '#44ffaa' },
         children: [
           {
             id: 'memory-types',
@@ -159,7 +159,7 @@ export const docsNavigation: DocsSection[] = [
           },
           {
             id: 'scholarag',
-            title: { en: 'ScholaRAG Integration', ko: 'ScholaRAG 통합' },
+            title: { en: 'Pipeline CLI', ko: '파이프라인 CLI' },
             href: '/docs/systematic-review/scholarag',
           },
           {
@@ -187,6 +187,30 @@ export const docsNavigation: DocsSection[] = [
           },
         ],
       },
+      {
+        id: 'hud',
+        title: { en: 'HUD Statusline', ko: 'HUD 상태표시줄' },
+        href: '/docs/hud',
+        icon: 'monitor',
+        isNew: true,
+        badge: { text: 'v8.0', color: '#44ffaa' },
+      },
+      {
+        id: 'doctor',
+        title: { en: 'Diagnostics', ko: '진단' },
+        href: '/docs/doctor',
+        icon: 'stethoscope',
+        isNew: true,
+        badge: { text: 'v8.0', color: '#44ffaa' },
+      },
+      {
+        id: 'project-init',
+        title: { en: 'Project Init', ko: '프로젝트 초기화' },
+        href: '/docs/project-init',
+        icon: 'wand',
+        isNew: true,
+        badge: { text: 'v8.0', color: '#44ffaa' },
+      },
     ],
   },
   {
@@ -204,7 +228,7 @@ export const docsNavigation: DocsSection[] = [
         title: { en: 'A: Foundation', ko: 'A: 기초' },
         href: '/docs/agents/foundation',
         icon: 'layout',
-        badge: { text: '5', color: '#ff6b6b' },
+        badge: { text: '6', color: '#ff6b6b' },
       },
       {
         id: 'category-b',
@@ -225,7 +249,7 @@ export const docsNavigation: DocsSection[] = [
         title: { en: 'D: Collection', ko: 'D: 수집' },
         href: '/docs/agents/collection',
         icon: 'database',
-        badge: { text: '5', color: '#96ceb4' },
+        badge: { text: '4', color: '#96ceb4' },
       },
       {
         id: 'category-e',
@@ -246,14 +270,22 @@ export const docsNavigation: DocsSection[] = [
         title: { en: 'G: Communication', ko: 'G: 커뮤니케이션' },
         href: '/docs/agents/communication',
         icon: 'message-circle',
-        badge: { text: '5', color: '#87ceeb' },
+        badge: { text: '6', color: '#87ceeb' },
       },
       {
         id: 'category-h',
         title: { en: 'H: Specialized', ko: 'H: 전문' },
         href: '/docs/agents/specialized',
         icon: 'star',
-        badge: { text: '3', color: '#ffa07a' },
+        badge: { text: '2', color: '#ffa07a' },
+      },
+      {
+        id: 'category-i',
+        title: { en: 'I: Systematic Review', ko: 'I: 체계적 문헌고찰' },
+        href: '/docs/agents/systematic-review',
+        icon: 'book-open',
+        badge: { text: '4', color: '#00bcd4' },
+        isNew: true,
       },
     ],
   },
@@ -391,15 +423,15 @@ export const docsCategories: DocsCategory[] = [
     id: 'agents',
     title: { en: 'Research Agents', ko: '연구 에이전트' },
     description: {
-      en: '40 specialized agents for the complete research lifecycle',
-      ko: '연구 전 과정을 위한 40개 전문 에이전트'
+      en: '44 specialized agents for the complete research lifecycle',
+      ko: '연구 전 과정을 위한 44개 전문 에이전트'
     },
     icon: 'users',
     color: '#ff8844',
     items: [
       {
         title: { en: 'Agent Catalog', ko: '에이전트 카탈로그' },
-        description: { en: 'Browse all 40 agents', ko: '40개 에이전트 모두 보기' },
+        description: { en: 'Browse all 44 agents', ko: '44개 에이전트 모두 보기' },
         href: '/agents',
         icon: 'grid',
       },

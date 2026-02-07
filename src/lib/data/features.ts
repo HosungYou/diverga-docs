@@ -150,8 +150,8 @@ export const features: FeatureItem[] = [
       ko: 'PRISMA 2020 준수 문헌고찰 파이프라인',
     },
     longDescription: {
-      en: 'ScholaRAG integration provides automated paper retrieval from Semantic Scholar, OpenAlex, and arXiv. AI-assisted screening, deduplication, and RAG-powered synthesis following PRISMA 2020 guidelines.',
-      ko: 'ScholaRAG 통합으로 Semantic Scholar, OpenAlex, arXiv에서 자동 논문 검색을 제공합니다. PRISMA 2020 가이드라인을 따르는 AI 지원 스크리닝, 중복 제거, RAG 기반 종합을 수행합니다.',
+      en: 'The I-category pipeline provides automated paper retrieval from Semantic Scholar, OpenAlex, and arXiv. AI-assisted screening, deduplication, and RAG-powered synthesis following PRISMA 2020 guidelines.',
+      ko: 'I-카테고리 파이프라인으로 Semantic Scholar, OpenAlex, arXiv에서 자동 논문 검색을 제공합니다. PRISMA 2020 가이드라인을 따르는 AI 지원 스크리닝, 중복 제거, RAG 기반 종합을 수행합니다.',
     },
     icon: '📚',
     color: '#44ffaa',

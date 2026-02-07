@@ -87,14 +87,14 @@ const content = {
     ],
 
     // Category I
-    categoryITitle: 'Category I: Systematic Review Automation (ScholaRAG)',
+    categoryITitle: 'Category I: Systematic Review Automation',
     categoryIDescription: 'PRISMA 2020 compliant automated systematic literature reviews with cost-optimized workflows',
     categoryIColor: '#00bcd4',
 
     categoryIAgents: [
       {
         id: 'I0',
-        name: 'ScholaRAG Pipeline Orchestrator',
+        name: 'Pipeline Orchestrator',
         icon: 'workflow',
         color: '#00bcd4',
         model: 'Opus',
@@ -103,8 +103,8 @@ const content = {
         checkpointLevel: 'REQUIRED',
         purpose: 'Coordinate 7-stage PRISMA 2020 pipeline from research question to RAG system',
         triggers: {
-          en: ['systematic review', 'PRISMA', 'ScholaRAG', 'literature review automation', 'evidence synthesis'],
-          ko: ['체계적 문헌고찰', '프리즈마', '스콜라랙', '문헌고찰 자동화', '증거 종합'],
+          en: ['systematic review', 'PRISMA', 'Diverga', 'literature review automation', 'evidence synthesis'],
+          ko: ['체계적 문헌고찰', '프리즈마', 'Diverga', '문헌고찰 자동화', '증거 종합'],
         },
         capabilities: [
           'Stage 1-7 pipeline coordination',
@@ -239,13 +239,13 @@ const content = {
       { id: 'SCH_PRISMA_GENERATION', level: 'OPTIONAL', agent: 'I0', description: 'PRISMA flow diagram generation' },
     ],
 
-    // ScholaRAG Pipeline Diagram
-    pipelineTitle: 'ScholaRAG 7-Stage Pipeline',
+    // Systematic Review Pipeline Diagram
+    pipelineTitle: '7-Stage Systematic Review Pipeline',
     pipelineDescription: 'Automated PRISMA 2020 workflow from research question to RAG system:',
 
     // Cost optimization
     costTitle: 'Cost Optimization',
-    costDescription: 'ScholaRAG achieves 100x cost reduction vs. Claude-only approach:',
+    costDescription: 'The I-category pipeline achieves 100x cost reduction vs. Claude-only approach:',
     costBreakdown: [
       { task: 'Screening (500 papers)', provider: 'Groq (llama-3.3-70b)', cost: '$0.05' },
       { task: 'RAG Queries (100 queries)', provider: 'Groq', cost: '$0.02' },
@@ -340,14 +340,14 @@ const content = {
       },
     ],
 
-    categoryITitle: '카테고리 I: 체계적 문헌고찰 자동화 (ScholaRAG)',
+    categoryITitle: '카테고리 I: 체계적 문헌고찰 자동화',
     categoryIDescription: '비용 최적화된 워크플로를 통한 PRISMA 2020 준수 자동화 체계적 문헌고찰',
     categoryIColor: '#00bcd4',
 
     categoryIAgents: [
       {
         id: 'I0',
-        name: 'ScholaRAG 파이프라인 오케스트레이터',
+        name: '파이프라인 오케스트레이터',
         icon: 'workflow',
         color: '#00bcd4',
         model: 'Opus',
@@ -356,8 +356,8 @@ const content = {
         checkpointLevel: 'REQUIRED',
         purpose: '연구 질문에서 RAG 시스템까지 7단계 PRISMA 2020 파이프라인 조정',
         triggers: {
-          en: ['systematic review', 'PRISMA', 'ScholaRAG', 'literature review automation', 'evidence synthesis'],
-          ko: ['체계적 문헌고찰', '프리즈마', '스콜라랙', '문헌고찰 자동화', '증거 종합'],
+          en: ['systematic review', 'PRISMA', 'Diverga', 'literature review automation', 'evidence synthesis'],
+          ko: ['체계적 문헌고찰', '프리즈마', 'Diverga', '문헌고찰 자동화', '증거 종합'],
         },
         capabilities: [
           '1-7단계 파이프라인 조정',
@@ -491,11 +491,11 @@ const content = {
       { id: 'SCH_PRISMA_GENERATION', level: 'OPTIONAL', agent: 'I0', description: 'PRISMA 흐름도 생성' },
     ],
 
-    pipelineTitle: 'ScholaRAG 7단계 파이프라인',
+    pipelineTitle: '7단계 체계적 문헌고찰 파이프라인',
     pipelineDescription: '연구 질문에서 RAG 시스템까지 자동화된 PRISMA 2020 워크플로:',
 
     costTitle: '비용 최적화',
-    costDescription: 'ScholaRAG는 Claude 전용 접근법 대비 100배 비용 절감 달성:',
+    costDescription: 'I-카테고리 파이프라인은 Claude 전용 접근법 대비 100배 비용 절감 달성:',
     costBreakdown: [
       { task: '스크리닝 (500편)', provider: 'Groq (llama-3.3-70b)', cost: '$0.05' },
       { task: 'RAG 쿼리 (100개)', provider: 'Groq', cost: '$0.02' },

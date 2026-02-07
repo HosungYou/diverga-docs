@@ -43,7 +43,7 @@ const content = {
         examples: [
           'CP_RESEARCH_DIRECTION',
           'META_ANALYSIS_PROTOCOL',
-          'SCH_DATABASE_SELECTION',
+          'CP_FRAMEWORK_SELECTION',
           'CP_PARADIGM_SELECTION',
         ],
       },
@@ -61,7 +61,7 @@ const content = {
         ],
         examples: [
           'CP_METHODOLOGY_APPROVAL',
-          'SCH_RAG_READINESS',
+          'CP_INSTRUMENT_VALIDATION',
           'CP_SAMPLE_SIZE_CONFIRMATION',
           'CP_VISUALIZATION_STYLE',
         ],
@@ -108,7 +108,7 @@ const content = {
 
     // Section 2: Checkpoint Categories
     categoriesTitle: 'Checkpoint Categories',
-    categoriesDescription: 'Checkpoints are organized into 6 thematic categories based on research workflow stages.',
+    categoriesDescription: 'Checkpoints are organized into 5 thematic categories based on research workflow stages.',
     categories: [
       {
         name: 'Research Direction',
@@ -152,18 +152,6 @@ const content = {
           { name: 'CP_ANALYSIS_STRATEGY', severity: 'required', description: 'Approve statistical/qualitative analysis plan' },
           { name: 'CP_ASSUMPTION_VIOLATIONS', severity: 'required', description: 'Address violated statistical assumptions' },
           { name: 'CP_EFFECT_SIZE_INTERPRETATION', severity: 'recommended', description: 'Review practical significance' },
-        ],
-      },
-      {
-        name: 'ScholaRAG',
-        icon: 'file-search',
-        color: '#22ccff',
-        description: 'Systematic review automation and PRISMA compliance',
-        checkpoints: [
-          { name: 'SCH_DATABASE_SELECTION', severity: 'required', description: 'Select databases for literature search' },
-          { name: 'SCH_SCREENING_CRITERIA', severity: 'required', description: 'Define inclusion/exclusion criteria' },
-          { name: 'SCH_RAG_READINESS', severity: 'recommended', description: 'Verify PDF collection completeness' },
-          { name: 'SCH_QUALITY_GATES', severity: 'advisory', description: 'PRISMA compliance validation' },
         ],
       },
       {
@@ -330,7 +318,7 @@ const content = {
         examples: [
           'CP_RESEARCH_DIRECTION',
           'META_ANALYSIS_PROTOCOL',
-          'SCH_DATABASE_SELECTION',
+          'CP_FRAMEWORK_SELECTION',
           'CP_PARADIGM_SELECTION',
         ],
       },
@@ -348,7 +336,7 @@ const content = {
         ],
         examples: [
           'CP_METHODOLOGY_APPROVAL',
-          'SCH_RAG_READINESS',
+          'CP_INSTRUMENT_VALIDATION',
           'CP_SAMPLE_SIZE_CONFIRMATION',
           'CP_VISUALIZATION_STYLE',
         ],
@@ -395,7 +383,7 @@ const content = {
 
     // Section 2: Checkpoint Categories
     categoriesTitle: '체크포인트 카테고리',
-    categoriesDescription: '체크포인트는 연구 워크플로우 단계에 따라 6가지 주제별 카테고리로 구성됩니다.',
+    categoriesDescription: '체크포인트는 연구 워크플로우 단계에 따라 5가지 주제별 카테고리로 구성됩니다.',
     categories: [
       {
         name: '연구 방향',
@@ -439,18 +427,6 @@ const content = {
           { name: 'CP_ANALYSIS_STRATEGY', severity: 'required', description: '통계/질적 분석 계획 승인' },
           { name: 'CP_ASSUMPTION_VIOLATIONS', severity: 'required', description: '위반된 통계 가정 처리' },
           { name: 'CP_EFFECT_SIZE_INTERPRETATION', severity: 'recommended', description: '실질적 유의성 검토' },
-        ],
-      },
-      {
-        name: 'ScholaRAG',
-        icon: 'file-search',
-        color: '#22ccff',
-        description: '체계적 문헌고찰 자동화 및 PRISMA 준수',
-        checkpoints: [
-          { name: 'SCH_DATABASE_SELECTION', severity: 'required', description: '문헌 검색용 데이터베이스 선택' },
-          { name: 'SCH_SCREENING_CRITERIA', severity: 'required', description: '포함/제외 기준 정의' },
-          { name: 'SCH_RAG_READINESS', severity: 'recommended', description: 'PDF 수집 완전성 확인' },
-          { name: 'SCH_QUALITY_GATES', severity: 'advisory', description: 'PRISMA 준수 검증' },
         ],
       },
       {
