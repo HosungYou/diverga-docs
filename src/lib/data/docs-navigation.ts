@@ -158,11 +158,6 @@ export const docsNavigation: DocsSection[] = [
             href: '/docs/systematic-review/prisma',
           },
           {
-            id: 'scholarag',
-            title: { en: 'Pipeline CLI', ko: '파이프라인 CLI' },
-            href: '/docs/systematic-review/scholarag',
-          },
-          {
             id: 'databases',
             title: { en: 'Supported Databases', ko: '지원 데이터베이스' },
             href: '/docs/systematic-review/databases',

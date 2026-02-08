@@ -308,7 +308,7 @@ const content = {
     ctaTitle: 'Ready to Automate Your Literature Search?',
     ctaDescription: 'The I-category pipeline handles database integration, deduplication, and PDF retrieval automatically.',
     ctaButtons: {
-      scholarag: 'Pipeline CLI Guide',
+      agents: 'I-Category Agents',
       prisma: 'PRISMA Workflow',
       github: 'View on GitHub',
     },
@@ -599,7 +599,7 @@ const content = {
     ctaTitle: '문헌 검색을 자동화할 준비가 되셨나요?',
     ctaDescription: 'I-카테고리 파이프라인은 데이터베이스 통합, 중복 제거, PDF 검색을 자동으로 처리합니다.',
     ctaButtons: {
-      scholarag: '파이프라인 CLI 가이드',
+      agents: 'I-카테고리 에이전트',
       prisma: 'PRISMA 워크플로우',
       github: 'GitHub에서 보기',
     },
@@ -1065,7 +1065,7 @@ export default function DatabasesPage() {
                 href={`/${locale}/docs/agents/systematic-review`}
                 className="void-btn void-btn-accent inline-flex items-center gap-2"
               >
-                {t.ctaButtons.scholarag}
+                {t.ctaButtons.agents}
                 <ArrowRight className="h-5 w-5" />
               </Link>
               <Link

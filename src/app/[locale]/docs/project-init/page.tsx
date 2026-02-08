@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { useLocale } from 'next-intl';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
@@ -12,6 +13,7 @@ import {
   Sparkles,
   FolderTree,
   ArrowRight,
+  ChevronDown,
 } from 'lucide-react';
 
 const content = {
@@ -52,20 +54,182 @@ const content = {
     ],
 
     structureTitle: 'Generated Project Structure',
-    structureExample: `.diverga/
-├── project.yaml          # Research configuration
-├── memory/
-│   ├── decision-log.yaml # Checkpoint decisions
-│   └── context.json      # Session context
-├── docs/
-│   ├── PROJECT_STATUS.md
-│   ├── DECISION_LOG.md
-│   ├── RESEARCH_AUDIT.md
-│   ├── METHODOLOGY.md
-│   ├── TIMELINE.md
-│   ├── REFERENCES.md
-│   └── README.md
-└── data/                  # Research data directory`,
+    structureExample: `.research/                    # System files (hidden)
+├── baselines/
+│   ├── literature/
+│   ├── methodology/
+│   └── framework/
+├── changes/
+│   ├── current/
+│   └── archive/
+├── sessions/
+├── project-state.yaml        # Research configuration
+├── decision-log.yaml         # Checkpoint decisions
+├── checkpoints.yaml          # Checkpoint states
+└── hud-state.json            # HUD display state
+
+docs/                          # Researcher-facing (auto-generated)
+├── PROJECT_STATUS.md
+├── DECISION_LOG.md
+├── RESEARCH_AUDIT.md
+├── METHODOLOGY.md
+├── TIMELINE.md
+├── REFERENCES.md
+└── README.md`,
+
+    docPreviews: {
+      'PROJECT_STATUS.md': `# Project Status
+
+**Generated**: 2026-02-07 14:30:00 UTC
+
+---
+
+## Overview
+- **Project**: AI-Assisted Language Learning
+- **Research Question**: How do AI chatbots improve speaking skills?
+- **Paradigm**: Mixed Methods
+- **Current Stage**: design
+
+## Progress
+\`\`\`
+[●●●●○○○] Stage: design
+\`\`\`
+
+### Stage Legend
+| Stage | Description |
+|-------|-------------|
+| foundation | Research question, theoretical framework |
+| evidence | Literature review, evidence synthesis |
+| design | Methodology, sampling, instruments |
+| data | Data collection |
+| analysis | Data analysis |
+| synthesis | Results integration, interpretation |
+| publication | Writing, peer review, publication |`,
+
+      'DECISION_LOG.md': `# Research Decision Log
+
+**Project**: AI-Assisted Language Learning
+**Last Updated**: 2026-02-07 14:30:00 UTC
+
+---
+
+## DEC-001: CP_RESEARCH_DIRECTION (2026-02-01)
+
+**Checkpoint**: CP_RESEARCH_DIRECTION
+**Selected**: Mixed methods approach to AI chatbot effectiveness
+
+### Rationale
+Combining quantitative learning gains with qualitative learner experiences provides a more complete understanding.
+
+### Alternatives Considered
+| Option | Rejection Reason |
+|--------|------------------|
+| Pure quantitative RCT | Misses learner experience dimension |
+| Pure qualitative case study | Cannot measure learning gains |`,
+
+      'RESEARCH_AUDIT.md': `# Research Audit Trail
+
+**Project**: AI-Assisted Language Learning
+**Generated**: 2026-02-07 14:30:00 UTC
+
+---
+
+## Purpose
+This document provides an audit trail for research reproducibility,
+IRB compliance, and transparent decision documentation.
+
+## Decision Summary
+- **Total Decisions**: 4
+
+### Decisions by Checkpoint
+| Checkpoint | Count |
+|------------|-------|
+| CP_PARADIGM_SELECTION | 1 |
+| CP_RESEARCH_DIRECTION | 1 |
+| CP_THEORY_SELECTION | 1 |
+| CP_METHODOLOGY_APPROVAL | 1 |`,
+
+      'METHODOLOGY.md': `# Research Methodology
+
+> **Auto-generated** from \`.research/project-state.yaml\`
+> Last updated: 2026-02-07 14:30:00 UTC
+
+## Research Paradigm
+
+**Selected Paradigm**: Mixed
+
+This research employs a mixed methods approach, integrating both quantitative and qualitative data collection and analysis.
+
+## Research Design
+
+**Design Type**: Sequential Explanatory
+
+### Key Methodological Decisions
+- **CP_PARADIGM_SELECTION**: Mixed Methods
+- **CP_METHODOLOGY_APPROVAL**: Sequential Explanatory Design`,
+
+      'TIMELINE.md': `# Research Timeline
+
+> **Auto-generated** from \`.research/project-state.yaml\`
+> Last updated: 2026-02-07 14:30:00 UTC
+
+## Project Timeline
+| Field | Date |
+|-------|------|
+| Start Date | 2026-01-15 |
+| Target End | 2026-08-30 |
+| Current Phase | Design |
+
+## Milestones
+| Milestone | Target Date | Status |
+|-----------|-------------|--------|
+| Literature Review Complete | 2026-03-15 | ✅ |
+| IRB Approval | 2026-04-01 | ⬜ |
+| Data Collection | 2026-06-15 | ⬜ |`,
+
+      'REFERENCES.md': `# Key References
+
+> **Auto-generated** from \`.research/project-state.yaml\`
+> Last updated: 2026-02-07 14:30:00 UTC
+
+## Key Papers
+
+1. Smith, J. & Jones, M. (2024). *AI Chatbots in Language Education*. CALL Journal, 15(3), 45-67.
+
+2. Kim, S. (2023). *Effectiveness of Conversational AI*. Educational Technology Research, 8(1), 112-130.
+
+## Theoretical Frameworks
+
+### Sociocultural Theory (Vygotsky)
+Zone of Proximal Development applied to AI-mediated interaction.
+
+## How to Add References
+Add references to \`.research/project-state.yaml\``,
+
+      'README.md': `# AI-Assisted Language Learning
+
+## Research Question
+
+How do AI chatbots improve speaking skills in university-level language learners?
+
+## Overview
+
+_Add your project overview here._
+
+## Getting Started
+
+This project uses Diverga v8.0 for research project management.
+
+### Key Documents
+| Document | Description |
+|----------|-------------|
+| [PROJECT_STATUS.md](PROJECT_STATUS.md) | Progress tracking (auto-generated) |
+| [DECISION_LOG.md](DECISION_LOG.md) | Decision audit trail (auto-generated) |
+| [METHODOLOGY.md](METHODOLOGY.md) | Research methodology (auto-generated) |
+| [TIMELINE.md](TIMELINE.md) | Timeline and milestones (auto-generated) |
+| [REFERENCES.md](REFERENCES.md) | Key references (auto-generated) |
+| [RESEARCH_AUDIT.md](RESEARCH_AUDIT.md) | IRB/reproducibility audit (auto-generated) |`,
+    },
 
     ctaTitle: 'Start Your Research Project',
     ctaDescription: 'Just tell Diverga what you want to research. Everything else is automatic.',
@@ -111,20 +275,182 @@ const content = {
     ],
 
     structureTitle: '생성된 프로젝트 구조',
-    structureExample: `.diverga/
-├── project.yaml          # 연구 설정
-├── memory/
-│   ├── decision-log.yaml # 체크포인트 결정
-│   └── context.json      # 세션 맥락
-├── docs/
-│   ├── PROJECT_STATUS.md
-│   ├── DECISION_LOG.md
-│   ├── RESEARCH_AUDIT.md
-│   ├── METHODOLOGY.md
-│   ├── TIMELINE.md
-│   ├── REFERENCES.md
-│   └── README.md
-└── data/                  # 연구 데이터 디렉토리`,
+    structureExample: `.research/                    # 시스템 파일 (숨김)
+├── baselines/
+│   ├── literature/
+│   ├── methodology/
+│   └── framework/
+├── changes/
+│   ├── current/
+│   └── archive/
+├── sessions/
+├── project-state.yaml        # 연구 설정
+├── decision-log.yaml         # 체크포인트 결정
+├── checkpoints.yaml          # 체크포인트 상태
+└── hud-state.json            # HUD 표시 상태
+
+docs/                          # 연구자 문서 (자동 생성)
+├── PROJECT_STATUS.md
+├── DECISION_LOG.md
+├── RESEARCH_AUDIT.md
+├── METHODOLOGY.md
+├── TIMELINE.md
+├── REFERENCES.md
+└── README.md`,
+
+    docPreviews: {
+      'PROJECT_STATUS.md': `# Project Status
+
+**Generated**: 2026-02-07 14:30:00 UTC
+
+---
+
+## Overview
+- **Project**: AI-Assisted Language Learning
+- **Research Question**: How do AI chatbots improve speaking skills?
+- **Paradigm**: Mixed Methods
+- **Current Stage**: design
+
+## Progress
+\`\`\`
+[●●●●○○○] Stage: design
+\`\`\`
+
+### Stage Legend
+| Stage | Description |
+|-------|-------------|
+| foundation | Research question, theoretical framework |
+| evidence | Literature review, evidence synthesis |
+| design | Methodology, sampling, instruments |
+| data | Data collection |
+| analysis | Data analysis |
+| synthesis | Results integration, interpretation |
+| publication | Writing, peer review, publication |`,
+
+      'DECISION_LOG.md': `# Research Decision Log
+
+**Project**: AI-Assisted Language Learning
+**Last Updated**: 2026-02-07 14:30:00 UTC
+
+---
+
+## DEC-001: CP_RESEARCH_DIRECTION (2026-02-01)
+
+**Checkpoint**: CP_RESEARCH_DIRECTION
+**Selected**: Mixed methods approach to AI chatbot effectiveness
+
+### Rationale
+Combining quantitative learning gains with qualitative learner experiences provides a more complete understanding.
+
+### Alternatives Considered
+| Option | Rejection Reason |
+|--------|------------------|
+| Pure quantitative RCT | Misses learner experience dimension |
+| Pure qualitative case study | Cannot measure learning gains |`,
+
+      'RESEARCH_AUDIT.md': `# Research Audit Trail
+
+**Project**: AI-Assisted Language Learning
+**Generated**: 2026-02-07 14:30:00 UTC
+
+---
+
+## Purpose
+This document provides an audit trail for research reproducibility,
+IRB compliance, and transparent decision documentation.
+
+## Decision Summary
+- **Total Decisions**: 4
+
+### Decisions by Checkpoint
+| Checkpoint | Count |
+|------------|-------|
+| CP_PARADIGM_SELECTION | 1 |
+| CP_RESEARCH_DIRECTION | 1 |
+| CP_THEORY_SELECTION | 1 |
+| CP_METHODOLOGY_APPROVAL | 1 |`,
+
+      'METHODOLOGY.md': `# Research Methodology
+
+> **Auto-generated** from \`.research/project-state.yaml\`
+> Last updated: 2026-02-07 14:30:00 UTC
+
+## Research Paradigm
+
+**Selected Paradigm**: Mixed
+
+This research employs a mixed methods approach, integrating both quantitative and qualitative data collection and analysis.
+
+## Research Design
+
+**Design Type**: Sequential Explanatory
+
+### Key Methodological Decisions
+- **CP_PARADIGM_SELECTION**: Mixed Methods
+- **CP_METHODOLOGY_APPROVAL**: Sequential Explanatory Design`,
+
+      'TIMELINE.md': `# Research Timeline
+
+> **Auto-generated** from \`.research/project-state.yaml\`
+> Last updated: 2026-02-07 14:30:00 UTC
+
+## Project Timeline
+| Field | Date |
+|-------|------|
+| Start Date | 2026-01-15 |
+| Target End | 2026-08-30 |
+| Current Phase | Design |
+
+## Milestones
+| Milestone | Target Date | Status |
+|-----------|-------------|--------|
+| Literature Review Complete | 2026-03-15 | ✅ |
+| IRB Approval | 2026-04-01 | ⬜ |
+| Data Collection | 2026-06-15 | ⬜ |`,
+
+      'REFERENCES.md': `# Key References
+
+> **Auto-generated** from \`.research/project-state.yaml\`
+> Last updated: 2026-02-07 14:30:00 UTC
+
+## Key Papers
+
+1. Smith, J. & Jones, M. (2024). *AI Chatbots in Language Education*. CALL Journal, 15(3), 45-67.
+
+2. Kim, S. (2023). *Effectiveness of Conversational AI*. Educational Technology Research, 8(1), 112-130.
+
+## Theoretical Frameworks
+
+### Sociocultural Theory (Vygotsky)
+Zone of Proximal Development applied to AI-mediated interaction.
+
+## How to Add References
+Add references to \`.research/project-state.yaml\``,
+
+      'README.md': `# AI-Assisted Language Learning
+
+## Research Question
+
+How do AI chatbots improve speaking skills in university-level language learners?
+
+## Overview
+
+_Add your project overview here._
+
+## Getting Started
+
+This project uses Diverga v8.0 for research project management.
+
+### Key Documents
+| Document | Description |
+|----------|-------------|
+| [PROJECT_STATUS.md](PROJECT_STATUS.md) | Progress tracking (auto-generated) |
+| [DECISION_LOG.md](DECISION_LOG.md) | Decision audit trail (auto-generated) |
+| [METHODOLOGY.md](METHODOLOGY.md) | Research methodology (auto-generated) |
+| [TIMELINE.md](TIMELINE.md) | Timeline and milestones (auto-generated) |
+| [REFERENCES.md](REFERENCES.md) | Key references (auto-generated) |
+| [RESEARCH_AUDIT.md](RESEARCH_AUDIT.md) | IRB/reproducibility audit (auto-generated) |`,
+    },
 
     ctaTitle: '연구 프로젝트 시작하기',
     ctaDescription: 'Diverga에 무엇을 연구하고 싶은지 말하기만 하면 됩니다. 나머지는 자동입니다.',
@@ -138,6 +464,7 @@ const content = {
 export default function ProjectInitPage() {
   const locale = useLocale() as 'en' | 'ko';
   const t = content[locale];
+  const [expandedDoc, setExpandedDoc] = useState<string | null>(null);
 
   return (
     <div className="min-h-screen bg-void-deep py-16 sm:py-24">
@@ -222,14 +549,30 @@ export default function ProjectInitPage() {
           <p className="text-body-lg text-stellar-dim mb-6">{t.docsDescription}</p>
           <div className="space-y-3">
             {t.docs.map((doc, index) => (
-              <motion.div key={index} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.05 }} className="flex items-center gap-4 p-3 bg-void-elevated border border-stellar-faint/10">
-                <div className="flex h-8 w-8 items-center justify-center shrink-0" style={{ color: doc.color }}>
-                  <FileText className="h-4 w-4" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <code className="font-mono text-sm" style={{ color: doc.color }}>{doc.name}</code>
-                  <p className="text-xs text-stellar-faint">{doc.description}</p>
-                </div>
+              <motion.div key={index} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.05 }}>
+                <button
+                  onClick={() => setExpandedDoc(expandedDoc === doc.name ? null : doc.name)}
+                  className="w-full flex items-center gap-4 p-3 bg-void-elevated border border-stellar-faint/10 hover:border-stellar-faint/20 transition-colors text-left"
+                >
+                  <div className="flex h-8 w-8 items-center justify-center shrink-0" style={{ color: doc.color }}>
+                    <FileText className="h-4 w-4" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <code className="font-mono text-sm" style={{ color: doc.color }}>{doc.name}</code>
+                    <p className="text-xs text-stellar-faint">{doc.description}</p>
+                  </div>
+                  <ChevronDown
+                    className={`h-4 w-4 text-stellar-faint transition-transform ${expandedDoc === doc.name ? 'rotate-180' : ''}`}
+                  />
+                </button>
+                {expandedDoc === doc.name && (t.docPreviews as Record<string, string>)[doc.name] && (
+                  <div className="border border-t-0 border-stellar-faint/10 bg-void-deep">
+                    <div className="flex items-center gap-2 px-4 py-1.5 border-b border-stellar-faint/10 bg-void-elevated/50">
+                      <span className="text-xs font-mono text-stellar-faint">{locale === 'ko' ? '미리보기' : 'Preview'}</span>
+                    </div>
+                    <pre className="p-4 text-xs font-mono text-stellar-dim overflow-x-auto whitespace-pre-wrap max-h-64 overflow-y-auto">{(t.docPreviews as Record<string, string>)[doc.name]}</pre>
+                  </div>
+                )}
               </motion.div>
             ))}
           </div>

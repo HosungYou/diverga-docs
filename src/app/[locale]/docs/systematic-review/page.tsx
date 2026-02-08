@@ -18,6 +18,7 @@ import {
   DollarSign,
   Clock,
   Workflow,
+  FolderTree,
 } from 'lucide-react';
 
 const content = {
@@ -111,6 +112,59 @@ const content = {
         color: '#9b59b6',
         description: 'Rigorous PRISMA 2020 compliance, publication-ready',
         useCases: ['Meta-analysis', 'Clinical guidelines', 'Evidence synthesis'],
+      },
+    ],
+
+    // Project Structure
+    structureTitle: 'Project Structure',
+    structureDescription: 'Diverga creates a dual-directory structure separating system files from researcher-facing documentation:',
+    structures: [
+      {
+        name: 'General Research Project',
+        description: 'Created by natural language project init or /diverga:setup',
+        color: '#9b59b6',
+        tree: `.research/                    # System files (hidden)
+├── baselines/
+│   ├── literature/
+│   ├── methodology/
+│   └── framework/
+├── changes/
+│   ├── current/
+│   └── archive/
+├── sessions/
+├── project-state.yaml        # Research configuration
+├── decision-log.yaml         # Checkpoint decisions
+├── checkpoints.yaml          # Checkpoint states
+└── hud-state.json            # HUD display state
+
+docs/                          # Researcher-facing (auto-generated)
+├── PROJECT_STATUS.md          # Progress tracking
+├── DECISION_LOG.md            # Decision audit trail
+├── RESEARCH_AUDIT.md          # IRB/reproducibility audit
+├── METHODOLOGY.md             # Research design summary
+├── TIMELINE.md                # Milestones and deadlines
+├── REFERENCES.md              # Bibliography tracking
+└── README.md                  # Project overview (editable)`,
+      },
+      {
+        name: 'PRISMA Pipeline Project',
+        description: 'Additional structure created when running systematic review pipeline',
+        color: '#00bcd4',
+        tree: `data/
+├── raw/                       # Downloaded PDFs
+│   ├── semantic_scholar/
+│   ├── openalex/
+│   └── arxiv/
+├── processed/
+│   ├── deduplicated.json      # After deduplication
+│   ├── screened.json           # After AI screening
+│   └── included.json           # Final included papers
+├── vectordb/                   # ChromaDB vector database
+│   └── chroma/
+├── reports/
+│   ├── prisma_flow.png         # PRISMA 2020 diagram
+│   └── screening_report.md     # Screening statistics
+└── config.yaml                 # Pipeline configuration`,
       },
     ],
 
@@ -208,18 +262,18 @@ const content = {
         color: '#9b59b6',
       },
       {
-        title: 'Pipeline CLI Reference',
-        description: 'Pipeline CLI commands and project management',
-        href: '/docs/systematic-review/scholarag',
-        icon: 'sparkles',
-        color: '#00bcd4',
-      },
-      {
-        title: 'Database Strategy',
-        description: 'API integration and PDF retrieval workflow',
+        title: 'Supported Databases',
+        description: 'Database API integration and PDF retrieval strategy',
         href: '/docs/systematic-review/databases',
         icon: 'database',
-        color: '#4ecdc4',
+        color: '#45b7d1',
+      },
+      {
+        title: 'Project Structure',
+        description: 'Auto-generated documentation and folder layout',
+        href: '/docs/project-init',
+        icon: 'sparkles',
+        color: '#9b59b6',
       },
     ],
 
@@ -325,6 +379,59 @@ const content = {
       },
     ],
 
+    // Project Structure
+    structureTitle: '프로젝트 구조',
+    structureDescription: 'Diverga는 시스템 파일과 연구자용 문서를 분리하는 이중 디렉토리 구조를 생성합니다:',
+    structures: [
+      {
+        name: '일반 연구 프로젝트',
+        description: '자연어 프로젝트 초기화 또는 /diverga:setup으로 생성',
+        color: '#9b59b6',
+        tree: `.research/                    # 시스템 파일 (숨김)
+├── baselines/
+│   ├── literature/
+│   ├── methodology/
+│   └── framework/
+├── changes/
+│   ├── current/
+│   └── archive/
+├── sessions/
+├── project-state.yaml        # 연구 설정
+├── decision-log.yaml         # 체크포인트 결정
+├── checkpoints.yaml          # 체크포인트 상태
+└── hud-state.json            # HUD 표시 상태
+
+docs/                          # 연구자 문서 (자동 생성)
+├── PROJECT_STATUS.md          # 진행 상황 추적
+├── DECISION_LOG.md            # 결정 감사 추적
+├── RESEARCH_AUDIT.md          # IRB/재현성 감사
+├── METHODOLOGY.md             # 연구 설계 요약
+├── TIMELINE.md                # 마일스톤 및 기한
+├── REFERENCES.md              # 참고문헌 추적
+└── README.md                  # 프로젝트 개요 (편집 가능)`,
+      },
+      {
+        name: 'PRISMA 파이프라인 프로젝트',
+        description: '체계적 문헌고찰 파이프라인 실행 시 추가 생성되는 구조',
+        color: '#00bcd4',
+        tree: `data/
+├── raw/                       # 다운로드된 PDF
+│   ├── semantic_scholar/
+│   ├── openalex/
+│   └── arxiv/
+├── processed/
+│   ├── deduplicated.json      # 중복 제거 후
+│   ├── screened.json           # AI 스크리닝 후
+│   └── included.json           # 최종 포함 논문
+├── vectordb/                   # ChromaDB 벡터 데이터베이스
+│   └── chroma/
+├── reports/
+│   ├── prisma_flow.png         # PRISMA 2020 다이어그램
+│   └── screening_report.md     # 스크리닝 통계
+└── config.yaml                 # 파이프라인 설정`,
+      },
+    ],
+
     // Databases
     databasesTitle: '지원 데이터베이스',
     databasesDescription: 'API 접근과 PDF 가용성을 위해 선택된 세 가지 데이터베이스:',
@@ -419,18 +526,18 @@ const content = {
         color: '#9b59b6',
       },
       {
-        title: '파이프라인 CLI 레퍼런스',
-        description: '파이프라인 CLI 명령어 및 프로젝트 관리',
-        href: '/docs/systematic-review/scholarag',
-        icon: 'sparkles',
-        color: '#00bcd4',
-      },
-      {
-        title: '데이터베이스 전략',
-        description: 'API 통합 및 PDF 검색 워크플로우',
+        title: '지원 데이터베이스',
+        description: '데이터베이스 API 통합 및 PDF 검색 전략',
         href: '/docs/systematic-review/databases',
         icon: 'database',
-        color: '#4ecdc4',
+        color: '#45b7d1',
+      },
+      {
+        title: '프로젝트 구조',
+        description: '자동 생성 문서 및 폴더 레이아웃',
+        href: '/docs/project-init',
+        icon: 'sparkles',
+        color: '#9b59b6',
       },
     ],
 
@@ -723,6 +830,53 @@ export default function SystematicReviewPage() {
                       <span>{useCase}</span>
                     </div>
                   ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.section>
+
+        {/* Section Divider */}
+        <div className="border-b border-stellar-faint/10 mb-16" />
+
+        {/* Project Structure */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-16"
+        >
+          <div className="flex items-center gap-3 mb-4">
+            <div
+              className="flex h-10 w-10 items-center justify-center border border-stellar-faint/20"
+              style={{ backgroundColor: 'rgba(155, 89, 182, 0.15)' }}
+            >
+              <FolderTree className="h-5 w-5" style={{ color: '#9b59b6' }} />
+            </div>
+            <h2 className="void-heading-2 text-stellar-core">{t.structureTitle}</h2>
+          </div>
+          <p className="text-body-lg text-stellar-dim mb-8">{t.structureDescription}</p>
+
+          <div className="grid gap-6 lg:grid-cols-2">
+            {t.structures.map((structure, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <div className="bg-void-elevated border border-stellar-faint/10 overflow-hidden h-full">
+                  <div className="flex items-center justify-between px-4 py-2 border-b border-stellar-faint/10">
+                    <div className="flex items-center gap-2">
+                      <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#ff5f56' }} />
+                      <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#ffbd2e' }} />
+                      <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#27c93f' }} />
+                    </div>
+                    <span className="text-xs font-mono" style={{ color: structure.color }}>{structure.name}</span>
+                  </div>
+                  <p className="px-4 py-2 text-xs text-stellar-faint border-b border-stellar-faint/5">{structure.description}</p>
+                  <pre className="p-4 text-xs font-mono text-stellar-bright overflow-x-auto whitespace-pre">{structure.tree}</pre>
                 </div>
               </motion.div>
             ))}

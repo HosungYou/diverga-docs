@@ -167,7 +167,7 @@ export default function PRISMAPipelinePage() {
           },
           {
             title: 'Pipeline Documentation',
-            url: '/docs/systematic-review/scholarag',
+            url: '/docs/systematic-review/databases',
             description: 'Complete pipeline integration guide',
             isInternal: true
           }
@@ -322,7 +322,7 @@ export default function PRISMAPipelinePage() {
           },
           {
             title: '파이프라인 문서',
-            url: '/docs/systematic-review/scholarag',
+            url: '/docs/systematic-review/databases',
             description: '완전한 파이프라인 통합 가이드',
             isInternal: true
           }
