@@ -53,15 +53,19 @@ const AGENT_NAMES: Record<string, { en: string; ko: string }> = {
   g6: { en: 'Academic Style Humanizer', ko: '학술 스타일 휴먼화자' },
   h1: { en: 'Ethnographic Research Advisor', ko: '민족지학 연구 자문자' },
   h2: { en: 'Action Research Facilitator', ko: '실행연구 촉진자' },
+  i0: { en: 'Review Pipeline Orchestrator', ko: '리뷰 파이프라인 오케스트레이터' },
+  i1: { en: 'Paper Retrieval Agent', ko: '논문 수집 에이전트' },
+  i2: { en: 'Screening Assistant', ko: '스크리닝 어시스턴트' },
+  i3: { en: 'RAG Builder', ko: 'RAG 빌더' },
 };
 
 const DEMO_COMMANDS: Record<string, { en: string; ko: string }> = {
   'help': {
     en: `
-DIVERGA CLI v6.0 - Available Commands
+DIVERGA CLI v9.0 - Available Commands
 
   help                    Show this help message
-  agents                  List all 40 available agents
+  agents                  List all 44 available agents
   run <agent_id>          Execute specific agent with AI (e.g., run a2)
   ask <question>          Ask a research question to Diverga AI
   clear                   Clear terminal
@@ -73,10 +77,10 @@ Examples:
 For more info: https://diverga.dev/docs
 `,
     ko: `
-DIVERGA CLI v6.0 - 사용 가능한 명령어
+DIVERGA CLI v9.0 - 사용 가능한 명령어
 
   help                    도움말 표시
-  agents                  40개 에이전트 목록 표시
+  agents                  44개 에이전트 목록 표시
   run <agent_id>          AI로 특정 에이전트 실행 (예: run a2)
   ask <질문>              Diverga AI에게 연구 질문하기
   clear                   터미널 지우기
@@ -91,7 +95,7 @@ DIVERGA CLI v6.0 - 사용 가능한 명령어
   'agents': {
     en: `
 ┌────────────────────────────────────────────────────────────────────┐
-│                     DIVERGA AGENT REGISTRY (40)                     │
+│                     DIVERGA AGENT REGISTRY (44)                     │
 ├──────────┬───────────────────────────────────┬─────────┬───────────┤
 │ Category │ Agents                            │ Count   │ Focus     │
 ├──────────┼───────────────────────────────────┼─────────┼───────────┤
@@ -103,6 +107,7 @@ DIVERGA CLI v6.0 - 사용 가능한 명령어
 │ F        │ F1-F5 Quality                     │ 5       │ Validation│
 │ G        │ G1-G6 Communication               │ 6       │ Writing   │
 │ H        │ H1-H2 Specialized                 │ 2       │ Advanced  │
+│ I        │ I0-I3 Systematic Review            │ 4       │ PRISMA    │
 └──────────┴───────────────────────────────────┴─────────┴───────────┘
 
 Use 'run <agent_id>' to interact with an agent (e.g., run a2)
@@ -110,7 +115,7 @@ Powered by Groq LLM (llama-3.3-70b-versatile)
 `,
     ko: `
 ┌────────────────────────────────────────────────────────────────────┐
-│                   DIVERGA 에이전트 레지스트리 (40)                   │
+│                   DIVERGA 에이전트 레지스트리 (44)                   │
 ├──────────┬───────────────────────────────────┬─────────┬───────────┤
 │ 카테고리  │ 에이전트                           │ 개수    │ 초점       │
 ├──────────┼───────────────────────────────────┼─────────┼───────────┤
@@ -122,6 +127,7 @@ Powered by Groq LLM (llama-3.3-70b-versatile)
 │ F        │ F1-F5 품질 관리                    │ 5       │ 검증       │
 │ G        │ G1-G6 커뮤니케이션                  │ 6       │ 글쓰기     │
 │ H        │ H1-H2 특수                        │ 2       │ 고급       │
+│ I        │ I0-I3 체계적 문헌고찰                │ 4       │ PRISMA    │
 └──────────┴───────────────────────────────────┴─────────┴───────────┘
 
 'run <agent_id>'로 에이전트와 상호작용 (예: run a2)
@@ -141,7 +147,7 @@ export function InteractiveCLI({ height = 400, initialCommands = [] }: Interacti
     {
       type: 'output',
       content: locale === 'ko'
-        ? `DIVERGA CLI v6.0 - 연구 방법론 AI 어시스턴트
+        ? `DIVERGA CLI v9.0 - 연구 방법론 AI 어시스턴트
 연결됨: Groq LLM (llama-3.3-70b)
 
 무엇이든 물어보세요! 예시:
@@ -151,7 +157,7 @@ export function InteractiveCLI({ height = 400, initialCommands = [] }: Interacti
 
 명령어: help (도움말) | agents (에이전트 목록) | run <id> (에이전트 실행)
 `
-        : `DIVERGA CLI v6.0 - Research Methodology AI Assistant
+        : `DIVERGA CLI v9.0 - Research Methodology AI Assistant
 Connected: Groq LLM (llama-3.3-70b)
 
 Ask anything! Examples:
@@ -243,7 +249,7 @@ Commands: help | agents | run <agent_id>
     if (commandLower === 'clear') {
       setHistory([{
         type: 'output',
-        content: 'DIVERGA CLI v6.0\n'
+        content: 'DIVERGA CLI v9.0\n'
       }]);
       setCurrentAgent(null);
       return;
@@ -267,8 +273,8 @@ Commands: help | agents | run <agent_id>
           {
             type: 'error',
             content: locale === 'ko'
-              ? `에이전트를 찾을 수 없습니다: ${agentId}\n유효한 에이전트 ID: a1-a6, b1-b5, c1-c7, d1-d4, e1-e5, f1-f5, g1-g6, h1-h2`
-              : `Agent not found: ${agentId}\nValid agent IDs: a1-a6, b1-b5, c1-c7, d1-d4, e1-e5, f1-f5, g1-g6, h1-h2`
+              ? `에이전트를 찾을 수 없습니다: ${agentId}\n유효한 에이전트 ID: a1-a6, b1-b5, c1-c7, d1-d4, e1-e5, f1-f5, g1-g6, h1-h2, i0-i3`
+              : `Agent not found: ${agentId}\nValid agent IDs: a1-a6, b1-b5, c1-c7, d1-d4, e1-e5, f1-f5, g1-g6, h1-h2, i0-i3`
           },
         ]);
         return;

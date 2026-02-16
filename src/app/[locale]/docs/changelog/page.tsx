@@ -17,6 +17,56 @@ interface VersionRelease {
 
 const releases: VersionRelease[] = [
   {
+    version: '9.0.0',
+    date: '2026-02-16',
+    title: {
+      en: 'Architecture — SQLite + MCP Server Split',
+      ko: '아키텍처 — SQLite + MCP 서버 분할',
+    },
+    type: 'major',
+    highlights: {
+      en: [
+        'MCP 3-server split: checkpoint/memory/comm with 16 tools (up from 7)',
+        'SQLite WAL backend for ACID-safe parallel agent execution',
+        'Dual backend: YAML (default) or SQLite via DIVERGA_BACKEND env var',
+        'Auto-migration from YAML/JSON to SQLite on first run',
+        'Agent messaging: register, send, mailbox, acknowledge, broadcast',
+        'New entry point: diverga-server.js with tool-registry.js routing',
+      ],
+      ko: [
+        'MCP 3-서버 분할: 체크포인트/메모리/통신 16개 도구 (기존 7개)',
+        'ACID 안전 병렬 에이전트 실행을 위한 SQLite WAL 백엔드',
+        '이중 백엔드: YAML (기본) 또는 DIVERGA_BACKEND 환경변수로 SQLite',
+        '첫 실행 시 YAML/JSON에서 SQLite로 자동 마이그레이션',
+        '에이전트 메시징: 등록, 전송, 메일박스, 확인, 브로드캐스트',
+        '새 진입점: tool-registry.js 라우팅을 갖춘 diverga-server.js',
+      ],
+    },
+  },
+  {
+    version: '8.5.0',
+    date: '2026-02-14',
+    title: {
+      en: 'DX Tooling + Agent Teams Pilot',
+      ko: 'DX 도구 + 에이전트 팀 파일럿',
+    },
+    type: 'minor',
+    highlights: {
+      en: [
+        'Agent Teams: parallel execution via TeamCreate/TaskCreate/SendMessage',
+        'I0 Team Lead mode: 3x parallel database fetching for systematic reviews',
+        'DX: agents.json SSoT, generate.js, sync-version.js, release.js, doctor.js',
+        'Version sync automation: 103 files synced from package.json',
+      ],
+      ko: [
+        '에이전트 팀: TeamCreate/TaskCreate/SendMessage를 통한 병렬 실행',
+        'I0 팀 리더 모드: 체계적 문헌고찰을 위한 3배 병렬 데이터베이스 검색',
+        'DX: agents.json SSoT, generate.js, sync-version.js, release.js, doctor.js',
+        '버전 동기화 자동화: package.json에서 103개 파일 동기화',
+      ],
+    },
+  },
+  {
     version: '8.0.1',
     date: '2026-02-05',
     title: {

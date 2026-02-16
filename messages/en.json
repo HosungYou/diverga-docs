@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "Diverga - Beyond Modal Research AI",
-    "description": "40 specialized AI agents for the complete research lifecycle. Break free from mode collapse with VS methodology."
+    "description": "44 specialized AI agents across 9 categories for the complete research lifecycle. Break free from mode collapse with VS methodology."
   },
   "nav": {
     "home": "Home",
@@ -13,7 +13,7 @@
     "playground": "Playground"
   },
   "hero": {
-    "badge": "40 Research Agents",
+    "badge": "44 Research Agents · v9.0",
     "title": "Beyond Modal Answers",
     "titleHighlight": "Creative Research AI",
     "description": "Diverga breaks free from AI mode collapse. Get creative, defensible research choices—not the same predictable recommendations every time.",
@@ -46,7 +46,7 @@
     }
   },
   "categories": {
-    "title": "8 Categories, 40 Agents",
+    "title": "9 Categories, 44 Agents",
     "description": "Specialized support for every stage of your research",
     "a": {
       "name": "Foundation",
@@ -79,6 +79,10 @@
     "h": {
       "name": "Specialized",
       "description": "Ethnography, action research"
+    },
+    "i": {
+      "name": "Systematic Review",
+      "description": "PRISMA pipeline, paper retrieval, screening, RAG"
     }
   },
   "cta": {
@@ -88,7 +92,7 @@
   },
   "agents": {
     "title": "Agent Catalog",
-    "description": "40 specialized agents organized by research phase",
+    "description": "44 specialized agents organized across 9 research categories",
     "search": "Search agents...",
     "filter": {
       "all": "All",
@@ -126,14 +130,14 @@
   },
   "features": {
     "title": "Features",
-    "description": "Five core features that transform how researchers interact with AI",
-    "badge": "5 Core Features",
+    "description": "Core features that transform how researchers interact with AI",
+    "badge": "9 Core Features",
     "viewAll": "View All Features",
     "memory": {
       "name": "Memory System",
       "shortName": "Memory",
       "description": "Research context that persists across sessions",
-      "badge": "NEW in v6.8",
+      "badge": "Since v6.8",
       "hero": {
         "title": "Research Memory, Finally Solved",
         "subtitle": "No more re-explaining your research context every session"
@@ -173,6 +177,46 @@
       "hero": {
         "title": "AI Text to Natural Academic Writing",
         "subtitle": "Detect and transform AI writing patterns"
+      }
+    },
+    "mcpCheckpoints": {
+      "name": "MCP Runtime Checkpoints",
+      "shortName": "MCP Checkpoints",
+      "description": "Real-time checkpoint validation via MCP server protocol",
+      "badge": "NEW in v8.2",
+      "hero": {
+        "title": "Runtime Checkpoint Validation",
+        "subtitle": "Consistent checkpoint enforcement across all platforms"
+      }
+    },
+    "crossPlatform": {
+      "name": "Cross-Platform Support",
+      "shortName": "Cross-Platform",
+      "description": "Works with Claude Code, Codex CLI, and OpenCode",
+      "badge": "NEW in v8.3",
+      "hero": {
+        "title": "One Framework, Any Platform",
+        "subtitle": "Same 44-agent experience on Claude Code, Codex CLI, or OpenCode"
+      }
+    },
+    "dualDirectory": {
+      "name": "Dual Directory Structure",
+      "shortName": "Dual Dir",
+      "description": "Separate .research/ and research/ for config vs output",
+      "badge": "NEW in v8.4",
+      "hero": {
+        "title": "Clean Separation of Config and Output",
+        "subtitle": "Git-tracked configs in .research/, outputs in research/"
+      }
+    },
+    "agentTeams": {
+      "name": "Agent Teams",
+      "shortName": "Teams",
+      "description": "Parallel multi-agent coordination for complex research",
+      "badge": "NEW in v8.5",
+      "hero": {
+        "title": "Parallel Agent Coordination",
+        "subtitle": "Multiple agents working simultaneously on complex tasks"
       }
     }
   },
@@ -243,7 +287,7 @@
       "agents": "Agents",
       "features": "Features"
     },
-    "copyright": "© 2025 Diverga. Open source under MIT license."
+    "copyright": "© 2025-2026 Diverga. Open source under MIT license."
   },
   "common": {
     "viewAll": "View All",

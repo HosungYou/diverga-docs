@@ -94,7 +94,7 @@ claude marketplace install diverga`,
           ],
           code: '/diverga-help',
           codeDesc: 'Run your first command:',
-          output: `Diverga v8.0 - Research Coordinator
+          output: `Diverga v9.0 - Research Coordinator
 
 Available Skills:
 • /diverga-setup - Initial configuration
@@ -229,7 +229,7 @@ claude marketplace install diverga`,
           ],
           code: '/diverga-help',
           codeDesc: '첫 번째 명령 실행:',
-          output: `Diverga v8.0 - 연구 코디네이터
+          output: `Diverga v9.0 - 연구 코디네이터
 
 사용 가능한 스킬:
 • /diverga-setup - 초기 구성

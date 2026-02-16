@@ -996,20 +996,20 @@ export const agents: Agent[] = [
   // Category I: Systematic Review Automation (4 agents)
   {
     id: "I0",
-    slug: "scholar-agent-orchestrator",
-    name: { en: "Scholar Agent Orchestrator", ko: "학술 에이전트 오케스트레이터" },
+    slug: "review-pipeline-orchestrator",
+    name: { en: "Review Pipeline Orchestrator", ko: "리뷰 파이프라인 오케스트레이터" },
     category: "I",
     icon: "🎼",
     tier: "HIGH",
     model: "opus",
     vsLevel: "FULL",
     description: {
-      en: "Orchestrates the complete 7-stage PRISMA systematic review pipeline, coordinating I1→I2→I3 agents.",
-      ko: "Diverga의 7단계 PRISMA 체계적 문헌고찰 파이프라인 전체를 조율하고 I1→I2→I3 에이전트를 조정합니다."
+      en: "Orchestrates the complete 7-stage PRISMA systematic review pipeline, coordinating I1→I2→I3 agents with MCP runtime checkpoints.",
+      ko: "MCP 런타임 체크포인트와 함께 7단계 PRISMA 체계적 문헌고찰 파이프라인 전체를 조율하고 I1→I2→I3 에이전트를 조정합니다."
     },
     purpose: {
-      en: "Serve as the single entry point for systematic literature reviews, managing checkpoints and agent coordination.",
-      ko: "체계적 문헌고찰의 단일 진입점으로서 체크포인트와 에이전트 조정을 관리합니다."
+      en: "Serve as the single entry point for systematic literature reviews, managing all SCH_* checkpoints and agent coordination.",
+      ko: "체계적 문헌고찰의 단일 진입점으로서 모든 SCH_* 체크포인트와 에이전트 조정을 관리합니다."
     },
     triggers: {
       en: "systematic review, literature review automation, Diverga, PRISMA pipeline",
@@ -1029,12 +1029,12 @@ export const agents: Agent[] = [
     model: "sonnet",
     vsLevel: "ENHANCED",
     description: {
-      en: "Retrieves papers from Semantic Scholar, OpenAlex, and arXiv APIs with automatic deduplication by DOI/title.",
-      ko: "Semantic Scholar, OpenAlex, arXiv API에서 논문을 수집하고 DOI/제목으로 자동 중복 제거합니다."
+      en: "Retrieves papers from Semantic Scholar, OpenAlex, and arXiv APIs with automatic deduplication by DOI/title. Validates API keys before retrieval.",
+      ko: "Semantic Scholar, OpenAlex, arXiv API에서 논문을 수집하고 DOI/제목으로 자동 중복 제거합니다. 검색 전 API 키를 검증합니다."
     },
     purpose: {
-      en: "Execute multi-database paper retrieval with 40-50% open access PDF URL availability.",
-      ko: "40-50% 오픈 액세스 PDF URL 가용성으로 다중 데이터베이스 논문 검색을 실행합니다."
+      en: "Execute multi-database paper retrieval with 40-50% open access PDF URL availability and API key validation.",
+      ko: "API 키 검증과 함께 40-50% 오픈 액세스 PDF URL 가용성으로 다중 데이터베이스 논문 검색을 실행합니다."
     },
     triggers: {
       en: "fetch papers, retrieve papers, database search, Semantic Scholar, OpenAlex, arXiv",

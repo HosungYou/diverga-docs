@@ -341,7 +341,7 @@ export function DocsSidebar({ locale, onClose }: DocsSidebarProps) {
       {/* Footer */}
       <div className="mt-8 px-3 pt-6 border-t border-stellar-faint/10">
         <p className="text-xs text-stellar-faint font-mono">
-          v6.8.0
+          v9.0.0
         </p>
       </div>
     </nav>

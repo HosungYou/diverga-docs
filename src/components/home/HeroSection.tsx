@@ -114,7 +114,7 @@ export function HeroSection() {
           className="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto"
         >
           {[
-            { icon: Brain, label: '40 Specialized Agents', sublabel: 'Complete research lifecycle', color: 'text-violet-600', bg: 'bg-violet-50' },
+            { icon: Brain, label: '44 Specialized Agents', sublabel: '9 categories, complete lifecycle', color: 'text-violet-600', bg: 'bg-violet-50' },
             { icon: Target, label: 'VS Methodology', sublabel: 'Beyond mode collapse', color: 'text-indigo-600', bg: 'bg-indigo-50' },
             { icon: Zap, label: 'T-Score Analytics', sublabel: 'Typicality-aware guidance', color: 'text-teal-600', bg: 'bg-teal-50' },
           ].map((feature, index) => (

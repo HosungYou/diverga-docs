@@ -37,7 +37,7 @@ const AGENT_PROMPTS: Record<string, { system: string; examples: string[] }> = {
 };
 
 // Default system prompt for general queries
-const DEFAULT_SYSTEM = `You are Diverga CLI v6.0, an AI-powered research methodology assistant with 40 specialized agents. You help researchers with:
+const DEFAULT_SYSTEM = `You are Diverga CLI v9.0, an AI-powered research methodology assistant with 44 specialized agents. You help researchers with:
 - Research question formulation (A1)
 - Theoretical framework design (A2)
 - Critical review (A3)
@@ -48,6 +48,7 @@ const DEFAULT_SYSTEM = `You are Diverga CLI v6.0, an AI-powered research methodo
 - Quality control (F1-F5)
 - Communication (G1-G6)
 - Specialized methods (H1-H2)
+- Systematic review automation (I0-I3)
 
 You use VS (Verbalized Sampling) methodology to avoid mode collapse and explore creative alternatives. Present options with T-Scores when applicable.
 
@@ -108,9 +109,9 @@ I can generate:
 - Hypothesis path diagrams
 
 Using Nano Banana image synthesis, I create publication-ready figures. What framework would you like visualized?`,
-  default: `Welcome to Diverga CLI v6.0!
+  default: `Welcome to Diverga CLI v9.0!
 
-I'm an AI research assistant with 40 specialized agents. Try:
+I'm an AI research assistant with 44 specialized agents. Try:
 - "run a1" - Research question refinement
 - "run a2" - Theoretical framework design
 - "run a6" - Conceptual framework visualization

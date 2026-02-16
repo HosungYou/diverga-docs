@@ -306,6 +306,79 @@ export const workflows: Workflow[] = [
   }
 ];
 
+// Systematic Review Workflow (I-Pipeline)
+export const systematicReviewWorkflow: Workflow = {
+  id: 'systematic-review',
+  slug: 'systematic-review',
+  name: {
+    en: 'Systematic Review (I-Pipeline)',
+    ko: '체계적 문헌고찰 (I-파이프라인)'
+  },
+  description: {
+    en: 'PRISMA 2020 compliant automated systematic literature review using I-category agents',
+    ko: 'I-카테고리 에이전트를 사용한 PRISMA 2020 준수 자동화된 체계적 문헌고찰'
+  },
+  paradigm: 'quantitative',
+  estimatedTime: '2-4 hours',
+  stages: [
+    {
+      agent: 'I0',
+      description: {
+        en: 'Research setup: define question, scope, and databases',
+        ko: '연구 설정: 질문, 범위, 데이터베이스 정의'
+      }
+    },
+    {
+      agent: 'A1',
+      description: {
+        en: 'Refine research question and define search query strategy',
+        ko: '연구 질문 정제 및 검색 쿼리 전략 정의'
+      },
+      checkpoint: 'CP_RESEARCH_DIRECTION'
+    },
+    {
+      agent: 'I1',
+      description: {
+        en: 'Retrieve papers from Semantic Scholar, OpenAlex, arXiv with API key validation',
+        ko: 'API 키 검증과 함께 Semantic Scholar, OpenAlex, arXiv에서 논문 검색'
+      },
+      checkpoint: 'SCH_DATABASE_SELECTION'
+    },
+    {
+      agent: 'I1',
+      description: {
+        en: 'Deduplicate results by DOI, arXiv ID, and title similarity',
+        ko: 'DOI, arXiv ID, 제목 유사성으로 결과 중복 제거'
+      }
+    },
+    {
+      agent: 'I2',
+      description: {
+        en: 'AI-assisted PRISMA 6-dimension screening with configurable LLM',
+        ko: '설정 가능한 LLM을 사용한 AI 지원 PRISMA 6차원 스크리닝'
+      },
+      checkpoint: 'SCH_SCREENING_CRITERIA'
+    },
+    {
+      agent: 'I3',
+      description: {
+        en: 'Build ChromaDB vector database from screened papers',
+        ko: '스크리닝된 논문에서 ChromaDB 벡터 데이터베이스 구축'
+      },
+      checkpoint: 'SCH_RAG_READINESS'
+    },
+    {
+      agent: 'I0',
+      description: {
+        en: 'Generate PRISMA flow diagram and documentation',
+        ko: 'PRISMA 흐름도 및 문서화 생성'
+      }
+    }
+  ]
+};
+
+workflows.push(systematicReviewWorkflow);
+
 // A6 Example Workflow: AI in Education Conceptual Framework
 export const a6ExampleWorkflow: Workflow = {
   id: 'a6-conceptual-framework',
@@ -480,5 +553,60 @@ export const checkpointInfo = {
       ko: '권장: 사전등록 완전성 확인'
     },
     level: 'RECOMMENDED' as const
+  },
+  SCH_DATABASE_SELECTION: {
+    name: {
+      en: 'Database Selection',
+      ko: '데이터베이스 선택'
+    },
+    description: {
+      en: 'Select databases for paper retrieval: Semantic Scholar, OpenAlex, arXiv',
+      ko: '논문 검색 데이터베이스 선택: Semantic Scholar, OpenAlex, arXiv'
+    },
+    level: 'REQUIRED' as const
+  },
+  SCH_API_KEY_VALIDATION: {
+    name: {
+      en: 'API Key Validation',
+      ko: 'API 키 검증'
+    },
+    description: {
+      en: 'Validate API keys for selected databases before retrieval begins',
+      ko: '검색 시작 전 선택된 데이터베이스의 API 키 검증'
+    },
+    level: 'REQUIRED' as const
+  },
+  SCH_SCREENING_CRITERIA: {
+    name: {
+      en: 'Screening Criteria',
+      ko: '스크리닝 기준'
+    },
+    description: {
+      en: 'Define inclusion/exclusion criteria and screening LLM configuration',
+      ko: '포함/제외 기준 및 스크리닝 LLM 설정 정의'
+    },
+    level: 'REQUIRED' as const
+  },
+  SCH_RAG_READINESS: {
+    name: {
+      en: 'RAG Readiness',
+      ko: 'RAG 준비 상태'
+    },
+    description: {
+      en: 'Verify PDF collection is complete and ready for embedding',
+      ko: 'PDF 수집 완료 및 임베딩 준비 상태 확인'
+    },
+    level: 'RECOMMENDED' as const
+  },
+  SCH_PRISMA_GENERATION: {
+    name: {
+      en: 'PRISMA Generation',
+      ko: 'PRISMA 생성'
+    },
+    description: {
+      en: 'Optional: Generate PRISMA 2020 flow diagram and compliance report',
+      ko: '선택사항: PRISMA 2020 흐름도 및 준수 보고서 생성'
+    },
+    level: 'OPTIONAL' as const
   }
 } as const;

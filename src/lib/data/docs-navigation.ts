@@ -285,6 +285,20 @@ export const docsNavigation: DocsSection[] = [
     ],
   },
   {
+    id: 'guides',
+    title: { en: 'Guides', ko: '가이드' },
+    items: [
+      {
+        id: 'migration-guide',
+        title: { en: 'Migration Guide (v6→v8)', ko: '마이그레이션 가이드 (v6→v8)' },
+        href: '/docs/guides/migration',
+        icon: 'arrow-up-circle',
+        isNew: true,
+        badge: { text: 'v8.4', color: '#44ffaa' },
+      },
+    ],
+  },
+  {
     id: 'reference',
     title: { en: 'Reference', ko: '레퍼런스' },
     items: [
@@ -305,6 +319,44 @@ export const docsNavigation: DocsSection[] = [
         title: { en: 'Model Tiers', ko: '모델 티어' },
         href: '/docs/reference/model-tiers',
         icon: 'layers',
+      },
+      {
+        id: 'mcp-server',
+        title: { en: 'MCP Server', ko: 'MCP 서버' },
+        href: '/docs/reference/mcp-server',
+        icon: 'server',
+        isNew: true,
+        badge: { text: 'v8.2', color: '#44ffaa' },
+      },
+      {
+        id: 'cross-platform',
+        title: { en: 'Cross-Platform Support', ko: '크로스 플랫폼 지원' },
+        href: '/docs/reference/cross-platform',
+        icon: 'monitor',
+        isNew: true,
+        badge: { text: 'v8.3', color: '#44ffaa' },
+      },
+      {
+        id: 'mcp-architecture',
+        title: { en: 'MCP Architecture', ko: 'MCP 아키텍처' },
+        href: '/docs/reference/mcp-architecture',
+        icon: 'box',
+        isNew: true,
+        badge: { text: 'v9.0', color: '#44ffaa' },
+      },
+    ],
+  },
+  {
+    id: 'advanced',
+    title: { en: 'Advanced', ko: '고급' },
+    items: [
+      {
+        id: 'agent-teams',
+        title: { en: 'Agent Teams', ko: '에이전트 팀' },
+        href: '/docs/advanced/agent-teams',
+        icon: 'users',
+        isNew: true,
+        badge: { text: 'v8.5', color: '#44ffaa' },
       },
     ],
   },
@@ -448,8 +500,8 @@ export const docsCategories: DocsCategory[] = [
     id: 'advanced',
     title: { en: 'Advanced Topics', ko: '고급 주제' },
     description: {
-      en: 'Deep dives into systematic reviews and humanization',
-      ko: '체계적 문헌고찰과 휴먼화 심층 분석'
+      en: 'Deep dives into systematic reviews, humanization, and platform integration',
+      ko: '체계적 문헌고찰, 휴먼화, 플랫폼 통합 심층 분석'
     },
     icon: 'graduation-cap',
     color: '#9b59b6',
@@ -467,10 +519,25 @@ export const docsCategories: DocsCategory[] = [
         icon: 'pen-tool',
       },
       {
-        title: { en: 'CLI Reference', ko: 'CLI 레퍼런스' },
-        description: { en: 'Command line interface', ko: '명령줄 인터페이스' },
-        href: '/docs/cli',
-        icon: 'terminal',
+        title: { en: 'MCP Server', ko: 'MCP 서버' },
+        description: { en: 'Runtime checkpoint protocol', ko: '런타임 체크포인트 프로토콜' },
+        href: '/docs/reference/mcp-server',
+        icon: 'server',
+        isNew: true,
+      },
+      {
+        title: { en: 'Cross-Platform', ko: '크로스 플랫폼' },
+        description: { en: 'Claude Code, Codex CLI, OpenCode', ko: 'Claude Code, Codex CLI, OpenCode' },
+        href: '/docs/reference/cross-platform',
+        icon: 'monitor',
+        isNew: true,
+      },
+      {
+        title: { en: 'Agent Teams', ko: '에이전트 팀' },
+        description: { en: 'Parallel agent coordination', ko: '병렬 에이전트 조율' },
+        href: '/docs/advanced/agent-teams',
+        icon: 'users',
+        isNew: true,
       },
     ],
   },

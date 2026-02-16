@@ -51,7 +51,7 @@ export default function DocsHomePage() {
           <span className="font-mono text-xs uppercase tracking-widest text-stellar-faint">
             {locale === 'ko' ? '문서' : 'Documentation'}
           </span>
-          <span className="font-mono text-sm text-stellar-dim">v6.8</span>
+          <span className="font-mono text-sm text-stellar-dim">v9.0</span>
         </div>
 
         <h1 className="text-4xl sm:text-5xl font-display text-stellar-core mb-4">

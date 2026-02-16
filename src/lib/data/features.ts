@@ -77,10 +77,10 @@ export const features: FeatureItem[] = [
     color: '#9b59b6',
     bgColor: 'rgba(155, 89, 182, 0.1)',
     accentColor: '#a855f7',
-    isNew: true,
+    isNew: false,
     badge: {
-      en: 'NEW in v6.8',
-      ko: 'v6.8 신규',
+      en: 'Since v6.8',
+      ko: 'v6.8부터',
     },
     keywords: ['memory', 'context', 'persistence', 'session', 'recall'],
   },
@@ -183,6 +183,156 @@ export const features: FeatureItem[] = [
     bgColor: 'rgba(255, 136, 68, 0.1)',
     accentColor: '#f97316',
     keywords: ['humanization', 'writing', 'academic', 'transform', 'natural'],
+  },
+  {
+    id: 'mcp-checkpoints',
+    slug: 'mcp-checkpoints',
+    name: {
+      en: 'MCP Runtime Checkpoints',
+      ko: 'MCP 런타임 체크포인트',
+    },
+    shortName: {
+      en: 'MCP Checkpoints',
+      ko: 'MCP 체크포인트',
+    },
+    description: {
+      en: 'Real-time checkpoint validation via MCP server protocol',
+      ko: 'MCP 서버 프로토콜을 통한 실시간 체크포인트 검증',
+    },
+    longDescription: {
+      en: 'Checkpoints are now enforced at the MCP runtime level, providing consistent validation across all supported platforms. The SCH_* checkpoint system ensures PRISMA compliance at every pipeline stage.',
+      ko: '체크포인트가 MCP 런타임 수준에서 적용되어 모든 지원 플랫폼에서 일관된 검증을 제공합니다. SCH_* 체크포인트 시스템이 모든 파이프라인 단계에서 PRISMA 준수를 보장합니다.',
+    },
+    icon: '🔌',
+    color: '#3b82f6',
+    bgColor: 'rgba(59, 130, 246, 0.1)',
+    accentColor: '#2563eb',
+    isNew: true,
+    badge: {
+      en: 'NEW in v8.2',
+      ko: 'v8.2 신규',
+    },
+    keywords: ['mcp', 'checkpoint', 'runtime', 'validation', 'protocol'],
+  },
+  {
+    id: 'cross-platform',
+    slug: 'cross-platform',
+    name: {
+      en: 'Cross-Platform Support',
+      ko: '크로스 플랫폼 지원',
+    },
+    shortName: {
+      en: 'Cross-Platform',
+      ko: '크로스 플랫폼',
+    },
+    description: {
+      en: 'Works with Claude Code, Codex CLI, and OpenCode',
+      ko: 'Claude Code, Codex CLI, OpenCode에서 동작',
+    },
+    longDescription: {
+      en: 'Diverga is no longer limited to a single platform. Install on Claude Code, Codex CLI, or OpenCode and get the same 44-agent research experience with automatic model tier mapping for each platform.',
+      ko: 'Diverga는 더 이상 단일 플랫폼에 한정되지 않습니다. Claude Code, Codex CLI, OpenCode에 설치하면 각 플랫폼에 맞는 자동 모델 티어 매핑으로 동일한 44개 에이전트 연구 경험을 제공합니다.',
+    },
+    icon: '🌐',
+    color: '#8b5cf6',
+    bgColor: 'rgba(139, 92, 246, 0.1)',
+    accentColor: '#7c3aed',
+    isNew: true,
+    badge: {
+      en: 'NEW in v8.3',
+      ko: 'v8.3 신규',
+    },
+    keywords: ['cross-platform', 'claude-code', 'codex', 'opencode', 'multi-platform'],
+  },
+  {
+    id: 'dual-directory',
+    slug: 'dual-directory',
+    name: {
+      en: 'Dual Directory Structure',
+      ko: '이중 디렉토리 구조',
+    },
+    shortName: {
+      en: 'Dual Dir',
+      ko: '이중 디렉토리',
+    },
+    description: {
+      en: 'Separate .research/ and research/ directories for config vs output',
+      ko: '설정과 출력을 위한 .research/ 및 research/ 디렉토리 분리',
+    },
+    longDescription: {
+      en: 'The new dual directory structure separates configuration (.research/) from research outputs (research/). This keeps your git-tracked configs clean while research data lives alongside your project.',
+      ko: '새로운 이중 디렉토리 구조는 설정(.research/)과 연구 출력(research/)을 분리합니다. git 추적 설정을 깔끔하게 유지하면서 연구 데이터는 프로젝트와 함께 저장됩니다.',
+    },
+    icon: '📂',
+    color: '#059669',
+    bgColor: 'rgba(5, 150, 105, 0.1)',
+    accentColor: '#047857',
+    isNew: true,
+    badge: {
+      en: 'NEW in v8.4',
+      ko: 'v8.4 신규',
+    },
+    keywords: ['directory', 'structure', 'dual', 'config', 'output', 'organization'],
+  },
+  {
+    id: 'agent-teams',
+    slug: 'agent-teams',
+    name: {
+      en: 'Agent Teams',
+      ko: '에이전트 팀',
+    },
+    shortName: {
+      en: 'Teams',
+      ko: '팀',
+    },
+    description: {
+      en: 'Parallel multi-agent coordination for complex research tasks',
+      ko: '복잡한 연구 작업을 위한 병렬 다중 에이전트 조율',
+    },
+    longDescription: {
+      en: 'Agent Teams enables parallel coordination of multiple specialized agents working on different aspects of a research task simultaneously, dramatically reducing time for complex workflows.',
+      ko: '에이전트 팀은 여러 전문 에이전트가 연구 작업의 다양한 측면을 동시에 작업하도록 병렬 조율을 가능하게 하여 복잡한 워크플로우의 소요 시간을 대폭 줄입니다.',
+    },
+    icon: '👥',
+    color: '#d946ef',
+    bgColor: 'rgba(217, 70, 239, 0.1)',
+    accentColor: '#c026d3',
+    isNew: true,
+    badge: {
+      en: 'NEW in v8.5',
+      ko: 'v8.5 신규',
+    },
+    keywords: ['agent-teams', 'parallel', 'coordination', 'multi-agent', 'collaboration'],
+  },
+  {
+    id: 'mcp-architecture',
+    slug: 'mcp-architecture',
+    name: {
+      en: 'MCP Server Architecture',
+      ko: 'MCP 서버 아키텍처',
+    },
+    shortName: {
+      en: 'MCP Architecture',
+      ko: 'MCP 아키텍처',
+    },
+    description: {
+      en: 'Modular 3-server split with 16 tools, SQLite WAL backend for ACID-safe parallel execution',
+      ko: '16개 도구를 갖춘 모듈형 3-서버 분할, ACID 안전 병렬 실행을 위한 SQLite WAL 백엔드',
+    },
+    longDescription: {
+      en: 'Diverga v9.0 introduces a modular 3-server MCP architecture (checkpoint, memory, comm) with 16 specialized tools. SQLite WAL backend ensures ACID-safe parallel agent coordination with automatic migration from YAML.',
+      ko: 'Diverga v9.0은 16개의 전문 도구를 갖춘 모듈형 3-서버 MCP 아키텍처(체크포인트, 메모리, 통신)를 도입합니다. SQLite WAL 백엔드는 YAML에서 자동 마이그레이션과 함께 ACID 안전 병렬 에이전트 조율을 보장합니다.',
+    },
+    icon: '🏗️',
+    color: '#06b6d4',
+    bgColor: 'rgba(6, 182, 212, 0.1)',
+    accentColor: '#0891b2',
+    isNew: true,
+    badge: {
+      en: 'NEW in v9.0',
+      ko: 'v9.0 신규',
+    },
+    keywords: ['mcp', 'architecture', 'server', 'sqlite', 'modular', 'backend', 'parallel'],
   },
 ];
 
@@ -487,20 +637,20 @@ export const prismaPipelineStages = [
   {
     id: 'I0',
     name: { en: 'Orchestrator', ko: '오케스트레이터' },
-    agent: 'I0-ScholarAgentOrchestrator',
+    agent: 'I0-ReviewPipelineOrchestrator',
     description: {
-      en: 'Pipeline coordination and stage management',
-      ko: '파이프라인 조정 및 단계 관리',
+      en: 'Pipeline coordination and stage management with MCP runtime checkpoints',
+      ko: 'MCP 런타임 체크포인트를 통한 파이프라인 조정 및 단계 관리',
     },
     hasCheckpoint: false,
   },
   {
     id: 'I1',
     name: { en: 'Paper Retrieval', ko: '논문 검색' },
-    agent: 'I1-paper-retrieval-agent',
+    agent: 'I1-PaperRetrievalAgent',
     description: {
-      en: 'Database fetching from Semantic Scholar, OpenAlex, arXiv',
-      ko: 'Semantic Scholar, OpenAlex, arXiv에서 데이터베이스 검색',
+      en: 'Database fetching from Semantic Scholar, OpenAlex, arXiv with API key validation',
+      ko: 'API 키 검증과 함께 Semantic Scholar, OpenAlex, arXiv에서 데이터베이스 검색',
     },
     hasCheckpoint: true,
     checkpointId: 'SCH_DATABASE_SELECTION',
@@ -508,10 +658,10 @@ export const prismaPipelineStages = [
   {
     id: 'I2',
     name: { en: 'Screening', ko: '스크리닝' },
-    agent: 'I2-screening-assistant',
+    agent: 'I2-ScreeningAssistant',
     description: {
-      en: 'PRISMA 2020 screening with configurable LLM',
-      ko: '설정 가능한 LLM을 사용한 PRISMA 2020 스크리닝',
+      en: 'PRISMA 2020 screening with configurable LLM (Groq/Claude/Ollama)',
+      ko: '설정 가능한 LLM(Groq/Claude/Ollama)을 사용한 PRISMA 2020 스크리닝',
     },
     hasCheckpoint: true,
     checkpointId: 'SCH_SCREENING_CRITERIA',
@@ -519,24 +669,13 @@ export const prismaPipelineStages = [
   {
     id: 'I3',
     name: { en: 'RAG Builder', ko: 'RAG 빌더' },
-    agent: 'I3-rag-builder',
+    agent: 'I3-RAGBuilder',
     description: {
-      en: 'Vector database construction and indexing',
-      ko: '벡터 데이터베이스 구성 및 인덱싱',
+      en: 'ChromaDB vector database construction with local embeddings',
+      ko: '로컬 임베딩을 사용한 ChromaDB 벡터 데이터베이스 구성',
     },
     hasCheckpoint: true,
     checkpointId: 'SCH_RAG_READINESS',
-  },
-  {
-    id: 'I4',
-    name: { en: 'Quality Auditor', ko: '품질 감사' },
-    agent: 'I4-quality-auditor',
-    description: {
-      en: 'PRISMA compliance validation',
-      ko: 'PRISMA 준수 검증',
-    },
-    hasCheckpoint: true,
-    checkpointId: 'SCH_QUALITY_GATES',
   },
 ];
 
