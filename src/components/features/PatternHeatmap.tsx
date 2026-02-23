@@ -42,18 +42,18 @@ export function PatternHeatmap({ locale }: PatternHeatmapProps) {
         className="mb-8 text-center"
       >
         <h2 className="mb-4 font-display text-heading-2 text-stellar-core">
-          {locale === 'ko' ? '24개 AI 패턴 카테고리' : '24 AI Pattern Categories'}
+          {locale === 'ko' ? '28개 AI 패턴 카테고리' : '28 AI Pattern Categories'}
         </h2>
         <p className="mx-auto max-w-2xl text-body text-stellar-dim">
           {locale === 'ko'
-            ? '6개 주요 카테고리에 걸쳐 24가지 AI 작성 패턴을 감지하고 변환합니다'
-            : 'Detect and transform 24 AI writing patterns across 6 major categories'}
+            ? '7개 주요 카테고리에 걸쳐 28가지 AI 작성 패턴을 감지하고 변환합니다'
+            : 'Detect and transform 28 AI writing patterns across 7 major categories'}
         </p>
       </motion.div>
 
       {/* Heatmap Grid */}
       <div className="mx-auto max-w-5xl">
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
           {patternCategories.map((category, index) => {
             const color = getColorByCount(category.count);
             const intensity = getIntensity(category.count);
@@ -275,7 +275,7 @@ export function PatternHeatmap({ locale }: PatternHeatmapProps) {
         <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
           <div className="text-center">
             <div className="mb-2 font-display text-3xl font-bold text-feature-humanize">
-              24
+              28
             </div>
             <div className="font-mono text-micro uppercase tracking-widest text-stellar-faint">
               {locale === 'ko' ? '총 패턴' : 'Total Patterns'}
@@ -283,7 +283,7 @@ export function PatternHeatmap({ locale }: PatternHeatmapProps) {
           </div>
           <div className="text-center">
             <div className="mb-2 font-display text-3xl font-bold text-feature-humanize">
-              6
+              7
             </div>
             <div className="font-mono text-micro uppercase tracking-widest text-stellar-faint">
               {locale === 'ko' ? '카테고리' : 'Categories'}

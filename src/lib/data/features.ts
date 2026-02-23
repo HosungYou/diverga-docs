@@ -175,8 +175,8 @@ export const features: FeatureItem[] = [
       ko: 'AI 텍스트를 자연스러운 학술 문체로 변환',
     },
     longDescription: {
-      en: 'Detect and transform 24 categories of AI writing patterns while preserving 100% of citations, statistics, and academic rigor. Three transformation modes: Conservative, Balanced, and Aggressive.',
-      ko: '인용, 통계, 학술적 엄밀성을 100% 보존하면서 24개 카테고리의 AI 작성 패턴을 감지하고 변환합니다. 세 가지 변환 모드: 보수적, 균형적, 적극적.',
+      en: 'Detect and transform 28 categories of AI writing patterns while preserving 100% of citations, statistics, and academic rigor. Four transformation layers: Conservative, Balanced, Aggressive, and Custom.',
+      ko: '인용, 통계, 학술적 엄밀성을 100% 보존하면서 28개 카테고리의 AI 작성 패턴을 감지하고 변환합니다. 4개 변환 레이어: 보수적, 균형적, 적극적, 맞춤형.',
     },
     icon: '✍️',
     color: '#ff8844',

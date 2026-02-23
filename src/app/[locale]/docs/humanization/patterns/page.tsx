@@ -1043,7 +1043,7 @@ export default function AIPatternsPage() {
                       <h4 className="text-xs font-semibold text-red-600 dark:text-red-400 mb-2">
                         {locale === 'en' ? '❌ Before' : '❌ 변환 전'}
                       </h4>
-                      <div className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-900 rounded p-3 text-sm">
+                      <div className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-900 rounded p-3 text-sm text-red-900 dark:text-red-200">
                         {pattern.before}
                       </div>
                     </div>
@@ -1051,7 +1051,7 @@ export default function AIPatternsPage() {
                       <h4 className="text-xs font-semibold text-green-600 dark:text-green-400 mb-2">
                         {locale === 'en' ? '✅ After' : '✅ 변환 후'}
                       </h4>
-                      <div className="bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-900 rounded p-3 text-sm">
+                      <div className="bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-900 rounded p-3 text-sm text-green-900 dark:text-green-200">
                         {pattern.after}
                       </div>
                     </div>
