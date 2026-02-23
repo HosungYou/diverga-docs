@@ -32,6 +32,7 @@ const navItems: NavItem[] = [
       { href: '/features/checkpoints', label: 'Human Checkpoints', labelKo: '휴먼 체크포인트', icon: '🛑' },
       { href: '/features/systematic-review', label: 'Systematic Review', labelKo: '체계적 문헌고찰', icon: '📚' },
       { href: '/features/humanization', label: 'Humanization', labelKo: '휴먼화', icon: '✍️' },
+      { href: '/features/journal-intelligence', label: 'Journal Intelligence', labelKo: '저널 인텔리전스', icon: '📊', isNew: true },
     ],
   },
   { href: '/getting-started', label: 'Getting Started', labelKo: '시작하기' },
