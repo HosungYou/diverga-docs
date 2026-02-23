@@ -169,7 +169,7 @@ export const docsNavigation: DocsSection[] = [
         title: { en: 'Humanization', ko: '휴먼화' },
         href: '/docs/humanization',
         icon: 'pen-tool',
-        badge: { text: 'v10.0', color: '#ff8844' },
+        badge: { text: 'v10.1', color: '#ff8844' },
         children: [
           {
             id: 'ai-patterns',

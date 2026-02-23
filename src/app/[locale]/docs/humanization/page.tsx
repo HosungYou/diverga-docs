@@ -24,7 +24,7 @@ const content = {
 
     // Overview
     overviewTitle: 'Overview',
-    overviewDescription: 'The Humanization Pipeline detects and transforms AI-generated writing patterns into natural, human-sounding academic prose. It analyzes 28 pattern categories across 4 transformation layers (vocabulary, phrase, structure, discourse) while maintaining 100% citation accuracy, statistical precision, and scholarly rigor. Powered by Humanizer MCP v3.0 with 13 quantitative stylometric metrics.',
+    overviewDescription: 'The Humanization Pipeline detects and transforms AI-generated writing patterns into natural, human-sounding academic prose. It analyzes 28 pattern categories across 4 transformation layers (vocabulary, phrase, structure, discourse) while maintaining 100% citation accuracy, statistical precision, and scholarly rigor. Powered by Humanizer MCP v3.0 with 13 quantitative stylometric metrics. Orchestrated by the /diverga:humanize skill with mandatory human checkpoints at every stage.',
 
     // 3-Agent Pipeline
     pipelineTitle: '3-Agent + MCP Pipeline',
@@ -259,7 +259,7 @@ const content = {
 
     // Overview
     overviewTitle: '개요',
-    overviewDescription: '휴먼화 파이프라인은 AI 생성 작성 패턴을 감지하고 자연스러운 인간적인 학술 문체로 변환합니다. 4개 변환 레이어(어휘, 구문, 구조, 담화)에 걸쳐 28개 패턴 카테고리를 분석하면서 100% 인용 정확도, 통계적 정밀성, 학술적 엄밀성을 유지합니다. 13개의 정량적 문체 측정 메트릭을 갖춘 Humanizer MCP v3.0으로 구동됩니다.',
+    overviewDescription: '휴먼화 파이프라인은 AI 생성 작성 패턴을 감지하고 자연스러운 인간적인 학술 문체로 변환합니다. 4개 변환 레이어(어휘, 구문, 구조, 담화)에 걸쳐 28개 패턴 카테고리를 분석하면서 100% 인용 정확도, 통계적 정밀성, 학술적 엄밀성을 유지합니다. 13개의 정량적 문체 측정 메트릭을 갖춘 Humanizer MCP v3.0으로 구동됩니다. /diverga:humanize 스킬에 의해 오케스트레이션되며, 모든 단계에서 필수 휴먼 체크포인트를 적용합니다.',
 
     // 3-Agent Pipeline
     pipelineTitle: '3-에이전트 + MCP 파이프라인',
