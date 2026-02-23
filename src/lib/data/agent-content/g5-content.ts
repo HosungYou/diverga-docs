@@ -4,15 +4,17 @@ export const g5Content: ExtendedAgentContent = {
   agentId: 'G5',
   quickSummary: {
     oneLiner: {
-      en: 'The AI Pattern Spotter: Detects AI writing patterns across 24 categories and assesses detection risk',
-      ko: 'AI 패턴 스파터: 24개 카테고리에서 AI 글쓰기 패턴을 탐지하고 탐지 위험 평가'
+      en: 'The AI Pattern Spotter: Detects AI writing patterns across 28 categories across 7 domains and assesses detection risk',
+      ko: 'AI 패턴 스파터: 7개 도메인에서 28개 카테고리의 AI 글쓰기 패턴을 탐지하고 탐지 위험 평가'
     },
     bestFor: [
       { en: 'Scanning manuscripts for telltale AI writing patterns', ko: '전형적인 AI 글쓰기 패턴에 대한 원고 스캔' },
       { en: 'Assessing AI detection risk before submission', ko: '제출 전 AI 탐지 위험 평가' },
       { en: 'Identifying specific phrases that need humanization', ko: '휴먼화가 필요한 특정 구문 식별' },
       { en: 'Preparing for journals with AI detection policies', ko: 'AI 탐지 정책이 있는 저널 준비' },
-      { en: 'Quality control for AI-assisted writing', ko: 'AI 지원 글쓰기 품질 관리' }
+      { en: 'Quality control for AI-assisted writing', ko: 'AI 지원 글쓰기 품질 관리' },
+      { en: 'Quantitative stylometric analysis via MCP metrics', ko: 'MCP 메트릭을 통한 정량적 문체 분석' },
+      { en: 'v3.0 composite scoring with 6-component formula', ko: 'v3.0 6개 구성요소 공식 복합 점수화' }
     ],
     notFor: [
       { en: 'Actually humanizing text (use G6-NaturalVoice for that)', ko: '실제로 텍스트 휴먼화 (이를 위해 G6-자연스러운목소리 사용)' },
@@ -74,8 +76,8 @@ export const g5Content: ExtendedAgentContent = {
       },
       {
         number: 2,
-        title: { en: 'Probability Scoring', ko: '확률 점수화' },
-        purpose: { en: 'Calculate AI-generation likelihood', ko: 'AI 생성 가능성 계산' }
+        title: { en: 'Quantitative Metrics + Scoring', ko: '정량적 메트릭 + 점수화' },
+        purpose: { en: 'Calculate AI-generation likelihood via Humanizer MCP v3.0', ko: 'Humanizer MCP v3.0을 통한 AI 생성 가능성 계산' }
       },
       {
         number: 3,

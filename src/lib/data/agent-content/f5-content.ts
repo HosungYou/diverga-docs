@@ -4,15 +4,17 @@ export const f5Content: ExtendedAgentContent = {
   agentId: 'F5',
   quickSummary: {
     oneLiner: {
-      en: 'The Verification Guard: Ensures citations, statistics, and meaning are preserved after AI humanization',
-      ko: '검증 보호자: AI 휴먼화 후 인용, 통계 및 의미가 보존되도록 보장'
+      en: 'The Verification Guard: Ensures citations, statistics, and meaning are preserved after AI humanization across 8 verification domains',
+      ko: '검증 보호자: AI 휴먼화 후 8개 검증 영역에서 인용, 통계 및 의미가 보존되도록 보장'
     },
     bestFor: [
       { en: 'Verifying accuracy after G6-NaturalVoice humanization', ko: 'G6-자연스러운목소리 휴먼화 후 정확성 확인' },
       { en: 'Ensuring citations remain intact', ko: '인용이 그대로 유지되는지 보장' },
       { en: 'Checking statistical values were not altered', ko: '통계 값이 변경되지 않았는지 확인' },
       { en: 'Confirming meaning was not distorted', ko: '의미가 왜곡되지 않았는지 확인' },
-      { en: 'Quality control for AI-assisted writing', ko: 'AI 지원 글쓰기 품질 관리' }
+      { en: 'Quality control for AI-assisted writing', ko: 'AI 지원 글쓰기 품질 관리' },
+      { en: 'Discourse naturalness verification', ko: '담화 자연스러움 검증' },
+      { en: 'v3.0 composite score regression checking', ko: 'v3.0 복합 점수 회귀 검사' }
     ],
     notFor: [
       { en: 'Initial humanization (use G6-NaturalVoice for that)', ko: '초기 휴먼화 (이를 위해 G6-자연스러운목소리 사용)' },
@@ -46,6 +48,7 @@ export const f5Content: ExtendedAgentContent = {
       { number: 1, title: { en: 'Citation Integrity', ko: '인용 무결성' }, purpose: { en: 'Verify citations preserved after humanization', ko: '휴먼화 후 인용 보존 확인' } },
       { number: 2, title: { en: 'Statistical Accuracy', ko: '통계적 정확성' }, purpose: { en: 'Verify numbers unchanged', ko: '숫자 변경 없음 확인' } },
       { number: 3, title: { en: 'Meaning Preservation', ko: '의미 보존' }, purpose: { en: 'Ensure meaning not distorted', ko: '의미가 왜곡되지 않았는지 확인' } },
+      { number: 4, title: { en: 'Discourse Naturalness', ko: '담화 자연스러움' }, purpose: { en: 'Verify discourse metrics meet naturalness targets', ko: '담화 메트릭이 자연스러움 목표를 충족하는지 확인' } },
     ],
   },
   inputRequirements: {

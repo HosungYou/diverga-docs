@@ -630,6 +630,20 @@ export const patternCategories: PatternCategory[] = [
     count: 6,
     patterns: ['citation_integration', 'argument_flow', 'evidence_presentation', 'critical_analysis', 'synthesis_quality', 'contribution_clarity'],
   },
+  {
+    id: 'structural',
+    name: {
+      en: 'Structural Patterns (S7-S10)',
+      ko: '구조 패턴 (S7-S10)',
+    },
+    count: 4,
+    patterns: [
+      'enumeration_as_prose',
+      'repetitive_paragraph_openers',
+      'formulaic_section_structure',
+      'hypothesis_checklist',
+    ],
+  },
 ];
 
 // PRISMA pipeline stages

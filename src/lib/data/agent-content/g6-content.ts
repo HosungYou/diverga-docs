@@ -4,15 +4,17 @@ export const g6Content: ExtendedAgentContent = {
   agentId: 'G6',
   quickSummary: {
     oneLiner: {
-      en: 'The Natural Voice: Transforms AI-generated academic writing into natural, human-sounding prose while preserving accuracy',
-      ko: '자연스러운 목소리: AI 생성 학술 글쓰기를 정확성을 보존하면서 자연스럽고 인간다운 문체로 변환'
+      en: 'The Natural Voice: Transforms AI-generated academic writing into natural, human-sounding prose with 4-layer transformation including discourse-level restructuring while preserving accuracy',
+      ko: '자연스러운 목소리: AI 생성 학술 글쓰기를 담화 수준 재구조화를 포함한 4단계 변환으로 정확성을 보존하면서 자연스럽고 인간다운 문체로 변환'
     },
     bestFor: [
       { en: 'Humanizing AI-assisted academic writing', ko: 'AI 지원 학술 글쓰기 휴먼화' },
       { en: 'Removing telltale AI patterns after G5-AIPatternSpotter flags them', ko: 'G5-AI패턴스파터가 표시한 후 전형적인 AI 패턴 제거' },
       { en: "Adapting to author's natural writing style", ko: '저자의 자연스러운 글쓰기 스타일에 적응' },
       { en: 'Preserving citations and statistical accuracy during transformation', ko: '변환 중 인용과 통계적 정확성 보존' },
-      { en: 'Preparing AI-assisted text for journal submission', ko: '저널 제출을 위한 AI 지원 텍스트 준비' }
+      { en: 'Preparing AI-assisted text for journal submission', ko: '저널 제출을 위한 AI 지원 텍스트 준비' },
+      { en: 'Discourse-level transformation (DT1-DT4 strategies)', ko: '담화 수준 변환 (DT1-DT4 전략)' },
+      { en: '4-layer pipeline: vocabulary → phrase → structure → discourse', ko: '4단계 파이프라인: 어휘 → 구문 → 구조 → 담화' }
     ],
     notFor: [
       { en: 'Detecting AI patterns (use G5-AIPatternSpotter first)', ko: 'AI 패턴 탐지 (먼저 G5-AI패턴스파터 사용)' },
@@ -81,6 +83,11 @@ export const g6Content: ExtendedAgentContent = {
         number: 3,
         title: { en: 'Transformation', ko: '변환' },
         purpose: { en: 'Transform AI patterns to natural prose', ko: 'AI 패턴을 자연스러운 문체로 변환' }
+      },
+      {
+        number: 3.5,
+        title: { en: 'Discourse Restructuring', ko: '담화 재구조화' },
+        purpose: { en: 'Apply DT1-DT4 strategies for discourse-level naturalness', ko: '담화 수준 자연스러움을 위한 DT1-DT4 전략 적용' }
       },
       {
         number: 4,

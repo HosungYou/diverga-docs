@@ -20,12 +20,12 @@ export default function HumanizationPage() {
           ko: 'AI 텍스트를 자연스러운 학술 문체로',
         }}
         subtitle={{
-          en: 'Humanization Pipeline',
-          ko: '휴먼화 파이프라인',
+          en: '4-Layer Humanization Pipeline',
+          ko: '4단계 휴먼화 파이프라인',
         }}
         description={{
-          en: 'Detect and transform 24 categories of AI writing patterns while preserving 100% of citations, statistics, and academic rigor.',
-          ko: '인용, 통계, 학술적 엄밀성을 100% 보존하면서 24개 카테고리의 AI 작성 패턴을 감지하고 변환합니다.',
+          en: 'Detect and transform 28 categories across 4 transformation layers of AI writing patterns while preserving 100% of citations, statistics, and academic rigor.',
+          ko: '인용, 통계, 학술적 엄밀성을 100% 보존하면서 4개 변환 레이어에 걸친 28개 카테고리의 AI 작성 패턴을 감지하고 변환합니다.',
         }}
         locale={locale}
         accentColor="#ff8844"
@@ -96,12 +96,12 @@ export default function HumanizationPage() {
             className="mb-12 text-center"
           >
             <h2 className="font-display text-heading-2 text-stellar-core">
-              {locale === 'ko' ? '24개 AI 패턴 카테고리' : '24 AI Pattern Categories'}
+              {locale === 'ko' ? '28개 AI 패턴 카테고리' : '28 AI Pattern Categories'}
             </h2>
             <p className="mt-4 text-body text-stellar-dim">
               {locale === 'ko'
-                ? '6개 주요 영역에서 감지되는 AI 작성 패턴'
-                : 'AI writing patterns detected across 6 major areas'}
+                ? '7개 주요 영역에서 감지되는 AI 작성 패턴'
+                : 'AI writing patterns detected across 7 major areas'}
             </p>
           </motion.div>
           <PatternHeatmap locale={locale} />
@@ -147,24 +147,24 @@ export default function HumanizationPage() {
                   step: '01',
                   title: { en: 'Pattern Detection', ko: '패턴 감지' },
                   description: {
-                    en: 'Analyze text for 24 AI writing patterns across 6 categories',
-                    ko: '6개 카테고리의 24개 AI 작성 패턴 분석',
+                    en: 'Analyze text for 28 AI writing patterns across 7 domains using G5-AIPatternSpotter',
+                    ko: 'G5-AI패턴스파터를 사용하여 7개 도메인의 28개 AI 작성 패턴 분석',
                   },
                 },
                 {
                   step: '02',
                   title: { en: 'Selective Transform', ko: '선택적 변환' },
                   description: {
-                    en: 'Apply transformations based on selected mode (Conservative/Balanced/Aggressive)',
-                    ko: '선택된 모드에 따라 변환 적용 (보수적/균형적/적극적)',
+                    en: 'Apply 4-layer transformation (vocabulary → phrase → structure → discourse) via G6-NaturalVoice based on selected mode',
+                    ko: 'G6-자연스러운목소리를 통해 선택된 모드에 따라 4단계 변환 적용 (어휘 → 구문 → 구조 → 담화)',
                   },
                 },
                 {
                   step: '03',
                   title: { en: 'Integrity Check', ko: '무결성 검사' },
                   description: {
-                    en: 'Verify all citations, statistics, and academic claims are preserved',
-                    ko: '모든 인용, 통계, 학술적 주장이 보존되었는지 확인',
+                    en: 'Verify all citations, statistics, and academic claims are preserved including discourse naturalness via F5-VerificationGuard',
+                    ko: 'F5-검증보호자를 통해 담화 자연스러움을 포함하여 모든 인용, 통계, 학술적 주장이 보존되었는지 확인',
                   },
                 },
               ].map((item, index) => (
@@ -205,8 +205,8 @@ export default function HumanizationPage() {
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-body-lg text-stellar-dim">
               {locale === 'ko'
-                ? 'Diverga의 G5-AcademicWriter 에이전트에 휴먼화 파이프라인이 내장되어 있습니다.'
-                : 'The Humanization Pipeline is built into Diverga\'s G5-AcademicWriter agent.'}
+                ? 'Diverga의 G5-AI패턴스파터, G6-자연스러운목소리, F5-검증보호자 에이전트로 구성된 완전한 휴먼화 파이프라인을 활용하세요.'
+                : 'The complete Humanization Pipeline is powered by Diverga\'s G5-AIPatternSpotter, G6-NaturalVoice, and F5-VerificationGuard agents working together.'}
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Link

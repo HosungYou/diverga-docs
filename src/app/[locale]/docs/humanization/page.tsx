@@ -24,10 +24,10 @@ const content = {
 
     // Overview
     overviewTitle: 'Overview',
-    overviewDescription: 'The Humanization Pipeline detects and transforms AI-generated writing patterns into natural, human-sounding academic prose. Based on Wikipedia\'s AI Cleanup initiative, it analyzes 24 pattern categories while maintaining 100% citation accuracy, statistical precision, and scholarly rigor.',
+    overviewDescription: 'The Humanization Pipeline detects and transforms AI-generated writing patterns into natural, human-sounding academic prose. It analyzes 28 pattern categories across 4 transformation layers (vocabulary, phrase, structure, discourse) while maintaining 100% citation accuracy, statistical precision, and scholarly rigor. Powered by Humanizer MCP v3.0 with 13 quantitative stylometric metrics.',
 
     // 3-Agent Pipeline
-    pipelineTitle: '3-Agent Pipeline',
+    pipelineTitle: '3-Agent + MCP Pipeline',
     agents: [
       {
         id: 'G5',
@@ -35,10 +35,12 @@ const content = {
         model: 'Sonnet',
         purpose: 'AI Pattern Detection',
         capabilities: [
-          'Detects 24 AI writing pattern categories',
+          'Detects 28 AI writing pattern categories across 7 domains',
           'AI probability scoring (0-100%)',
           'Risk classification (High/Medium/Low)',
           'Section-specific detection',
+          '13 quantitative stylometric metrics via Humanizer MCP',
+          'v3.0 composite scoring (6-component formula)',
         ],
       },
       {
@@ -51,6 +53,8 @@ const content = {
           '100% citation preservation',
           '100% statistical value preservation',
           'Three transformation modes',
+          '4-layer transformation (vocabulary \u2192 phrase \u2192 structure \u2192 discourse)',
+          'Discourse-level DT1-DT4 strategies',
         ],
       },
       {
@@ -63,13 +67,15 @@ const content = {
           'Statistical accuracy checking',
           'Meaning preservation validation',
           'AI pattern reduction measurement',
+          '8 verification domains including discourse naturalness',
+          'v3.0 composite score regression checking',
         ],
       },
     ],
 
     // Pattern Categories
-    patternsTitle: '24 AI Pattern Categories',
-    patternsDescription: 'Organized into 6 major domains for comprehensive detection',
+    patternsTitle: '28 AI Pattern Categories',
+    patternsDescription: 'Organized into 7 major domains for comprehensive detection',
     patternDomains: [
       {
         domain: 'Content Patterns (C1-C6)',
@@ -125,6 +131,16 @@ const content = {
           'A6: Implications Inflation - "profound implications for society"',
         ],
       },
+      {
+        domain: 'Structural Patterns (S7-S10)',
+        color: '#e74c3c',
+        examples: [
+          'S7: Enumeration as Prose - Lists hidden in paragraph form',
+          'S8: Repetitive Paragraph Openers - Same opening pattern across paragraphs',
+          'S9: Formulaic Section Structure - Predictable IMRaD layout',
+          'S10: Hypothesis Checklist - Systematic hypothesis-by-hypothesis reporting',
+        ],
+      },
     ],
 
     // Transformation Modes
@@ -138,6 +154,7 @@ const content = {
         textChange: '5-15%',
         bestFor: 'Journal submissions, formal publications',
         patterns: 'C1, C4, C5, L1-Tier1, S5, M1, M2, A1, A6',
+        layers: 'Layer 1-2 (vocabulary + phrase)',
       },
       {
         name: 'Balanced',
@@ -147,6 +164,7 @@ const content = {
         bestFor: 'Most academic writing (Recommended)',
         patterns: 'All HIGH + C2, C3, L2, L4, L6, S1, S3, H1, H2, A4, A5',
         recommended: true,
+        layers: 'Layer 1-3 (vocabulary + phrase + structure)',
       },
       {
         name: 'Aggressive',
@@ -154,21 +172,24 @@ const content = {
         reduction: '50-70%',
         textChange: '30-50%',
         bestFor: 'Blog posts, informal writing',
-        patterns: 'All 24 pattern categories',
+        patterns: 'All 28 pattern categories',
         warning: 'May affect scholarly tone',
+        layers: 'Layer 1-4 (vocabulary + phrase + structure + discourse)',
       },
     ],
 
     // Pipeline Flow
     flowTitle: 'Pipeline Flow',
     flowSteps: [
-      'Content Generation (G2/G3)',
-      'G5 Pattern Analysis',
-      '🟠 Checkpoint: Review Report',
-      'G6 Transformation',
-      'F5 Verification',
-      '🟡 Checkpoint: Approve/Revert',
-      'Export Final Content',
+      'G5 Pattern Analysis + MCP Metrics',
+      'Pass 1: Lexical (Layer 1-2)',
+      '🟠 CP_PASS1_REVIEW',
+      'Pass 2: Structural (Layer 3)',
+      '🟡 CP_PASS2_REVIEW',
+      'Pass 3: Discourse (Layer 4)',
+      '🟠 CP_PASS3_REVIEW',
+      'F5 Final Verification',
+      '🟢 CP_FINAL_REVIEW',
     ],
 
     // Preservation Rules
@@ -228,7 +249,7 @@ const content = {
 
     // CTA
     ctaTitle: 'Transform Your Academic Writing',
-    ctaDescription: 'The Humanization Pipeline is built into Diverga\'s G2-AcademicCommunicator and G3-PeerReviewStrategist agents.',
+    ctaDescription: 'The Humanization Pipeline is built into Diverga\'s G5-AcademicStyleAuditor, G6-AcademicStyleHumanizer, and F5-HumanizationVerifier agents.',
     ctaButton: 'Explore Agents',
   },
   ko: {
@@ -238,10 +259,10 @@ const content = {
 
     // Overview
     overviewTitle: '개요',
-    overviewDescription: '휴먼화 파이프라인은 AI 생성 작성 패턴을 감지하고 자연스러운 인간적인 학술 문체로 변환합니다. Wikipedia의 AI Cleanup 이니셔티브를 기반으로 24개 패턴 카테고리를 분석하면서 100% 인용 정확도, 통계적 정밀성, 학술적 엄밀성을 유지합니다.',
+    overviewDescription: '휴먼화 파이프라인은 AI 생성 작성 패턴을 감지하고 자연스러운 인간적인 학술 문체로 변환합니다. 4개 변환 레이어(어휘, 구문, 구조, 담화)에 걸쳐 28개 패턴 카테고리를 분석하면서 100% 인용 정확도, 통계적 정밀성, 학술적 엄밀성을 유지합니다. 13개의 정량적 문체 측정 메트릭을 갖춘 Humanizer MCP v3.0으로 구동됩니다.',
 
     // 3-Agent Pipeline
-    pipelineTitle: '3-에이전트 파이프라인',
+    pipelineTitle: '3-에이전트 + MCP 파이프라인',
     agents: [
       {
         id: 'G5',
@@ -249,10 +270,12 @@ const content = {
         model: 'Sonnet',
         purpose: 'AI 패턴 감지',
         capabilities: [
-          '24개 AI 작성 패턴 카테고리 감지',
+          '7개 도메인에서 28개 AI 작성 패턴 카테고리 감지',
           'AI 확률 점수화 (0-100%)',
           '위험 분류 (높음/중간/낮음)',
           '섹션별 감지',
+          'Humanizer MCP를 통한 13개 정량적 문체 측정 메트릭',
+          'v3.0 복합 점수화 (6개 구성요소 공식)',
         ],
       },
       {
@@ -265,6 +288,8 @@ const content = {
           '100% 인용 보존',
           '100% 통계 값 보존',
           '3가지 변환 모드',
+          '4단계 변환 (어휘 \u2192 구문 \u2192 구조 \u2192 담화)',
+          '담화 수준 DT1-DT4 전략',
         ],
       },
       {
@@ -277,13 +302,15 @@ const content = {
           '통계 정확도 확인',
           '의미 보존 검증',
           'AI 패턴 감소 측정',
+          '담화 자연스러움을 포함한 8개 검증 영역',
+          'v3.0 복합 점수 회귀 검사',
         ],
       },
     ],
 
     // Pattern Categories
-    patternsTitle: '24개 AI 패턴 카테고리',
-    patternsDescription: '포괄적 감지를 위해 6개 주요 영역으로 구성',
+    patternsTitle: '28개 AI 패턴 카테고리',
+    patternsDescription: '포괄적 감지를 위해 7개 주요 영역으로 구성',
     patternDomains: [
       {
         domain: '콘텐츠 패턴 (C1-C6)',
@@ -339,6 +366,16 @@ const content = {
           'A6: 함의 과장 - "사회에 대한 심오한 함의"',
         ],
       },
+      {
+        domain: '구조 패턴 (S7-S10)',
+        color: '#e74c3c',
+        examples: [
+          'S7: 산문 내 열거 - 문단 형태로 숨겨진 목록',
+          'S8: 반복적 문단 시작 - 문단 전체에 걸친 동일한 시작 패턴',
+          'S9: 공식적 섹션 구조 - 예측 가능한 IMRaD 레이아웃',
+          'S10: 가설 체크리스트 - 가설별 체계적 보고',
+        ],
+      },
     ],
 
     // Transformation Modes
@@ -352,6 +389,7 @@ const content = {
         textChange: '5-15%',
         bestFor: '저널 투고, 공식 출판물',
         patterns: 'C1, C4, C5, L1-Tier1, S5, M1, M2, A1, A6',
+        layers: 'Layer 1-2 (vocabulary + phrase)',
       },
       {
         name: '균형적',
@@ -361,6 +399,7 @@ const content = {
         bestFor: '대부분의 학술 글쓰기 (권장)',
         patterns: '모든 높음 + C2, C3, L2, L4, L6, S1, S3, H1, H2, A4, A5',
         recommended: true,
+        layers: 'Layer 1-3 (vocabulary + phrase + structure)',
       },
       {
         name: '적극적',
@@ -368,21 +407,24 @@ const content = {
         reduction: '50-70%',
         textChange: '30-50%',
         bestFor: '블로그 게시물, 비공식 글쓰기',
-        patterns: '24개 패턴 카테고리 모두',
+        patterns: '28개 패턴 카테고리 모두',
         warning: '학술적 어조에 영향을 줄 수 있음',
+        layers: 'Layer 1-4 (vocabulary + phrase + structure + discourse)',
       },
     ],
 
     // Pipeline Flow
     flowTitle: '파이프라인 흐름',
     flowSteps: [
-      '콘텐츠 생성 (G2/G3)',
-      'G5 패턴 분석',
-      '🟠 체크포인트: 보고서 검토',
-      'G6 변환',
-      'F5 검증',
-      '🟡 체크포인트: 승인/되돌리기',
-      '최종 콘텐츠 내보내기',
+      'G5 패턴 분석 + MCP 메트릭',
+      '패스 1: 어휘 (레이어 1-2)',
+      '🟠 CP_PASS1_REVIEW',
+      '패스 2: 구조 (레이어 3)',
+      '🟡 CP_PASS2_REVIEW',
+      '패스 3: 담화 (레이어 4)',
+      '🟠 CP_PASS3_REVIEW',
+      'F5 최종 검증',
+      '🟢 CP_FINAL_REVIEW',
     ],
 
     // Preservation Rules
@@ -442,7 +484,7 @@ const content = {
 
     // CTA
     ctaTitle: '학술 글쓰기 변환',
-    ctaDescription: '휴먼화 파이프라인은 Diverga의 G2-AcademicCommunicator 및 G3-PeerReviewStrategist 에이전트에 내장되어 있습니다.',
+    ctaDescription: '휴먼화 파이프라인은 Diverga의 G5-AcademicStyleAuditor, G6-AcademicStyleHumanizer, F5-HumanizationVerifier 에이전트에 내장되어 있습니다.',
     ctaButton: '에이전트 탐색',
   },
 };
@@ -495,7 +537,7 @@ export default function HumanizationPage() {
             <span className="font-mono text-xs uppercase tracking-widest text-stellar-faint">
               Humanization
             </span>
-            <span className="font-mono text-sm text-stellar-dim">v6.1</span>
+            <span className="font-mono text-sm text-stellar-dim">v10.0</span>
           </motion.div>
 
           <h1 className="void-heading-1 text-stellar-core mb-4">{t.title}</h1>
@@ -728,6 +770,12 @@ export default function HumanizationPage() {
                     <span className="text-stellar-faint">{locale === 'ko' ? '텍스트 변경' : 'Text Change'}:</span>
                     <span className="text-stellar-dim">{mode.textChange}</span>
                   </div>
+                  {mode.layers && (
+                    <div className="flex justify-between text-caption">
+                      <span className="text-stellar-faint">{locale === 'ko' ? '레이어' : 'Layers'}:</span>
+                      <span className="text-stellar-dim">{mode.layers}</span>
+                    </div>
+                  )}
                 </div>
                 <p className="text-caption text-stellar-dim mb-3">
                   <span className="font-semibold">{locale === 'ko' ? '적합' : 'Best for'}:</span> {mode.bestFor}
@@ -768,8 +816,8 @@ export default function HumanizationPage() {
                 <div
                   className="px-4 py-2 border bg-void-elevated text-center"
                   style={{
-                    borderColor: step.includes('🟠') || step.includes('🟡') ? 'rgba(155, 89, 182, 0.3)' : 'rgba(68, 68, 90, 0.3)',
-                    backgroundColor: step.includes('🟠') || step.includes('🟡') ? 'rgba(155, 89, 182, 0.05)' : undefined,
+                    borderColor: step.includes('🟢') ? 'rgba(68, 255, 170, 0.3)' : step.includes('🟠') || step.includes('🟡') ? 'rgba(155, 89, 182, 0.3)' : 'rgba(68, 68, 90, 0.3)',
+                    backgroundColor: step.includes('🟢') ? 'rgba(68, 255, 170, 0.05)' : step.includes('🟠') || step.includes('🟡') ? 'rgba(155, 89, 182, 0.05)' : undefined,
                   }}
                 >
                   <span className="text-caption text-stellar-core font-mono">{step}</span>

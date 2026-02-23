@@ -169,6 +169,7 @@ export const docsNavigation: DocsSection[] = [
         title: { en: 'Humanization', ko: '휴먼화' },
         href: '/docs/humanization',
         icon: 'pen-tool',
+        badge: { text: 'v10.0', color: '#ff8844' },
         children: [
           {
             id: 'ai-patterns',
@@ -179,6 +180,24 @@ export const docsNavigation: DocsSection[] = [
             id: 'transformation-modes',
             title: { en: 'Transformation Modes', ko: '변환 모드' },
             href: '/docs/humanization/modes',
+          },
+          {
+            id: 'metrics',
+            title: { en: 'Stylometric Metrics', ko: '문체 측정 메트릭' },
+            href: '/docs/humanization/metrics',
+            isNew: true,
+          },
+          {
+            id: 'discourse',
+            title: { en: 'Discourse Transformation', ko: '담화 변환' },
+            href: '/docs/humanization/discourse',
+            isNew: true,
+          },
+          {
+            id: 'pipeline',
+            title: { en: 'Multi-Pass Pipeline', ko: '다중 패스 파이프라인' },
+            href: '/docs/humanization/pipeline',
+            isNew: true,
           },
         ],
       },

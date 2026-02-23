@@ -55,6 +55,7 @@ const content = {
         color: '#22ccff',
         recommended: false,
         target: 'High-risk patterns only',
+        layers: 'Layer 1-2 (Vocabulary + Phrase)',
         reduction: '20-35%',
         textChange: '5-15%',
         bestFor: 'Journal submissions, formal publications, final polish',
@@ -75,6 +76,7 @@ const content = {
         color: '#44ffaa',
         recommended: true,
         target: 'High + medium-risk patterns',
+        layers: 'Layer 1-3 (Vocabulary + Phrase + Structure)',
         reduction: '35-50%',
         textChange: '15-30%',
         bestFor: 'Most academic writing, standard manuscripts',
@@ -94,13 +96,14 @@ const content = {
         icon: Rocket,
         color: '#ff8844',
         recommended: false,
-        target: 'All patterns (24 categories)',
+        target: 'All patterns (28 categories)',
+        layers: 'Layer 1-4 (Vocabulary + Phrase + Structure + Discourse)',
         reduction: '50-70%',
         textChange: '30-50%',
         bestFor: 'First drafts, AI-heavy text, blog posts',
         preserves: 'Only essential structure, citations, statistics',
         changes: 'All flagged patterns',
-        patterns: 'All 24 pattern categories (C1-C6, L1-L6, S1-S6, M1-M3, H1-H3, A1-A6)',
+        patterns: 'All 28 pattern categories (C1-C6, L1-L6, S1-S10, M1-M3, H1-H3, A1-A6)',
         whenToUse: [
           'Heavily AI-generated draft',
           'First-pass transformation',
@@ -188,7 +191,7 @@ const content = {
           dimension: 'Patterns Targeted',
           conservative: '9 HIGH-risk',
           balanced: '20 HIGH+MEDIUM',
-          aggressive: 'All 24 patterns',
+          aggressive: 'All 28 patterns',
         },
         {
           dimension: 'Processing Time',
@@ -313,6 +316,7 @@ const content = {
         color: '#22ccff',
         recommended: false,
         target: '높은 위험 패턴만',
+        layers: '레이어 1-2 (어휘 + 구문)',
         reduction: '20-35%',
         textChange: '5-15%',
         bestFor: '저널 투고, 공식 출판물, 최종 다듬기',
@@ -333,6 +337,7 @@ const content = {
         color: '#44ffaa',
         recommended: true,
         target: '높음 + 중간 위험 패턴',
+        layers: '레이어 1-3 (어휘 + 구문 + 구조)',
         reduction: '35-50%',
         textChange: '15-30%',
         bestFor: '대부분의 학술 글쓰기, 표준 원고',
@@ -352,13 +357,14 @@ const content = {
         icon: Rocket,
         color: '#ff8844',
         recommended: false,
-        target: '모든 패턴 (24개 카테고리)',
+        target: '모든 패턴 (28개 카테고리)',
+        layers: '레이어 1-4 (어휘 + 구문 + 구조 + 담화)',
         reduction: '50-70%',
         textChange: '30-50%',
         bestFor: '첫 초안, AI 위주 텍스트, 블로그 게시물',
         preserves: '필수 구조, 인용, 통계만',
         changes: '모든 표시된 패턴',
-        patterns: '24개 패턴 카테고리 모두 (C1-C6, L1-L6, S1-S6, M1-M3, H1-H3, A1-A6)',
+        patterns: '28개 패턴 카테고리 모두 (C1-C6, L1-L6, S1-S10, M1-M3, H1-H3, A1-A6)',
         whenToUse: [
           'AI로 대량 생성된 초안',
           '첫 번째 변환',
@@ -435,7 +441,7 @@ const content = {
           dimension: '목표 패턴',
           conservative: '9개 높은 위험',
           balanced: '20개 높음+중간',
-          aggressive: '24개 모든 패턴',
+          aggressive: '28개 모든 패턴',
         },
         {
           dimension: '처리 시간',
@@ -628,6 +634,7 @@ export default function TransformationModesPage() {
                     <div>
                       <h3 className="void-heading-3 text-stellar-core">{mode.name}</h3>
                       <p className="text-caption text-stellar-dim">{mode.target}</p>
+                      <p className="text-caption text-stellar-faint">{mode.layers}</p>
                     </div>
                   </div>
                   {mode.recommended && (
@@ -727,6 +734,87 @@ export default function TransformationModesPage() {
                 )}
               </motion.div>
             ))}
+          </div>
+        </motion.section>
+
+        {/* Section-Conditional Escalation */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-16"
+        >
+          <h2 className="void-heading-2 text-stellar-core mb-4">
+            {locale === 'ko' ? '섹션별 조건부 에스컬레이션' : 'Section-Conditional Escalation'}
+          </h2>
+          <p className="text-body text-stellar-dim mb-6">
+            {locale === 'ko'
+              ? '모드는 각 섹션의 AI 점수에 따라 자동으로 에스컬레이션됩니다. 이를 통해 섹션별 특성에 맞는 최적의 변환이 적용됩니다.'
+              : 'Modes auto-escalate per section based on AI score. This ensures optimal transformation tailored to each section\'s characteristics.'}
+          </p>
+          <div className="overflow-x-auto">
+            <table className="w-full border border-stellar-faint/10">
+              <thead>
+                <tr className="bg-void-surface">
+                  <th className="border border-stellar-faint/10 p-3 text-left text-caption font-semibold text-stellar-faint">
+                    {locale === 'ko' ? '섹션' : 'Section'}
+                  </th>
+                  <th className="border border-stellar-faint/10 p-3 text-center text-caption font-semibold text-stellar-faint">
+                    {locale === 'ko' ? '기본 모드' : 'Default Mode'}
+                  </th>
+                  <th className="border border-stellar-faint/10 p-3 text-center text-caption font-semibold text-stellar-faint">
+                    {locale === 'ko' ? '에스컬레이션' : 'Escalation'}
+                  </th>
+                  <th className="border border-stellar-faint/10 p-3 text-center text-caption font-semibold text-stellar-faint">
+                    {locale === 'ko' ? '조건' : 'Condition'}
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-t border-stellar-faint/10">
+                  <td className="border border-stellar-faint/10 p-3 text-body text-stellar-core font-semibold">
+                    Abstract
+                  </td>
+                  <td className="border border-stellar-faint/10 p-3 text-center text-body text-[#22ccff]">
+                    {locale === 'ko' ? '보수적' : 'Conservative'}
+                  </td>
+                  <td className="border border-stellar-faint/10 p-3 text-center text-body text-[#44ffaa]">
+                    {locale === 'ko' ? '균형적' : 'Balanced'}
+                  </td>
+                  <td className="border border-stellar-faint/10 p-3 text-center text-body text-stellar-dim">
+                    {locale === 'ko' ? '점수 > 50인 경우' : 'If score > 50'}
+                  </td>
+                </tr>
+                <tr className="border-t border-stellar-faint/10">
+                  <td className="border border-stellar-faint/10 p-3 text-body text-stellar-core font-semibold">
+                    Methods
+                  </td>
+                  <td className="border border-stellar-faint/10 p-3 text-center text-body text-[#22ccff]">
+                    {locale === 'ko' ? '보수적' : 'Conservative'}
+                  </td>
+                  <td className="border border-stellar-faint/10 p-3 text-center text-body text-stellar-faint">
+                    {locale === 'ko' ? '에스컬레이션 없음' : 'No escalation'}
+                  </td>
+                  <td className="border border-stellar-faint/10 p-3 text-center text-body text-stellar-dim">
+                    —
+                  </td>
+                </tr>
+                <tr className="border-t border-stellar-faint/10">
+                  <td className="border border-stellar-faint/10 p-3 text-body text-stellar-core font-semibold">
+                    Discussion
+                  </td>
+                  <td className="border border-stellar-faint/10 p-3 text-center text-body text-[#44ffaa]">
+                    {locale === 'ko' ? '균형적' : 'Balanced'}
+                  </td>
+                  <td className="border border-stellar-faint/10 p-3 text-center text-body text-[#ff8844]">
+                    {locale === 'ko' ? '적극적' : 'Aggressive'}
+                  </td>
+                  <td className="border border-stellar-faint/10 p-3 text-center text-body text-stellar-dim">
+                    {locale === 'ko' ? '점수 > 50인 경우' : 'If score > 50'}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </motion.section>
 
