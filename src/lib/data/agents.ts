@@ -799,24 +799,28 @@ export const agents: Agent[] = [
     slug: "journal-matcher",
     name: { en: "Journal Matcher", ko: "저널 매칭자" },
     category: "G",
-    icon: "📰",
+    icon: "📊",
     tier: "MEDIUM",
     model: "sonnet",
     vsLevel: "ENHANCED",
     description: {
-      en: "Recommends target journals based on scope, impact factor, and manuscript fit.",
-      ko: "범위, 영향력 지수 및 원고 적합성에 따라 대상 저널을 추천합니다."
+      en: "Real-time journal matching powered by OpenAlex API with interactive checkpoint-based pipeline.",
+      ko: "OpenAlex API 기반 실시간 저널 매칭, 인터랙티브 체크포인트 파이프라인."
     },
     purpose: {
-      en: "Match manuscripts with appropriate journals for publication.",
-      ko: "출판을 위해 원고를 적절한 저널과 매칭합니다."
+      en: "Match manuscripts with appropriate journals using live metrics from OpenAlex and Crossref.",
+      ko: "OpenAlex와 Crossref의 실시간 메트릭을 사용하여 원고를 적절한 저널과 매칭합니다."
     },
     triggers: {
-      en: "journal match, where to publish, target journal, impact factor",
-      ko: "저널 매칭, 투고처, 대상 저널, 영향력 지수"
+      en: "journal match, where to publish, target journal, impact factor, journal compare, journal trends",
+      ko: "저널 매칭, 투고처, 대상 저널, 영향력 지수, 저널 비교, 저널 트렌드"
     },
     relatedAgents: ["G2", "F2"],
-    paradigms: ["quantitative", "qualitative", "mixed"]
+    paradigms: ["quantitative", "qualitative", "mixed"],
+    checkpoint: {
+      id: "CP_JOURNAL_PRIORITIES",
+      level: "RECOMMENDED"
+    }
   },
   {
     id: "G2",

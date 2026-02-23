@@ -334,6 +334,36 @@ export const features: FeatureItem[] = [
     },
     keywords: ['mcp', 'architecture', 'server', 'sqlite', 'modular', 'backend', 'parallel'],
   },
+  {
+    id: 'journal-intelligence',
+    slug: 'journal-intelligence',
+    name: {
+      en: 'Journal Intelligence',
+      ko: '저널 인텔리전스',
+    },
+    shortName: {
+      en: 'Journal Intel',
+      ko: '저널 인텔',
+    },
+    description: {
+      en: 'Real-time journal matching powered by OpenAlex API',
+      ko: 'OpenAlex API 기반 실시간 저널 매칭',
+    },
+    longDescription: {
+      en: 'G1 Journal Matcher now connects to OpenAlex and Crossref APIs for live metrics including h-index, citation counts, publication trends, and OA status. Interactive checkpoints let you set priorities and select target journals with real data.',
+      ko: 'G1 저널 매칭이 OpenAlex와 Crossref API에 연결되어 h-index, 인용 수, 출판 트렌드, OA 현황 등 실시간 메트릭을 제공합니다. 인터랙티브 체크포인트로 우선순위를 설정하고 실제 데이터로 대상 저널을 선택할 수 있습니다.',
+    },
+    icon: '📊',
+    color: '#f59e0b',
+    bgColor: 'rgba(245, 158, 11, 0.1)',
+    accentColor: '#d97706',
+    isNew: true,
+    badge: {
+      en: 'NEW in v10.3',
+      ko: 'v10.3 신규',
+    },
+    keywords: ['journal', 'openalex', 'metrics', 'submission', 'impact-factor', 'matching'],
+  },
 ];
 
 // Memory System types data

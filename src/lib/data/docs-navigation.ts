@@ -202,6 +202,26 @@ export const docsNavigation: DocsSection[] = [
         ],
       },
       {
+        id: 'journal-intelligence',
+        title: { en: 'Journal Intelligence', ko: '저널 인텔리전스' },
+        href: '/docs/journal-intelligence',
+        icon: 'bar-chart-2',
+        isNew: true,
+        badge: { text: 'v10.3', color: '#f59e0b' },
+        children: [
+          {
+            id: 'journal-mcp',
+            title: { en: 'Journal MCP Server', ko: '저널 MCP 서버' },
+            href: '/docs/journal-intelligence/mcp-server',
+          },
+          {
+            id: 'journal-matching-pipeline',
+            title: { en: 'Matching Pipeline', ko: '매칭 파이프라인' },
+            href: '/docs/journal-intelligence/pipeline',
+          },
+        ],
+      },
+      {
         id: 'hud',
         title: { en: 'HUD Statusline', ko: 'HUD 상태표시줄' },
         href: '/docs/hud',
@@ -482,6 +502,13 @@ export const docsCategories: DocsCategory[] = [
         description: { en: 'Critical decisions stay in your hands', ko: '중요한 결정은 당신의 손에' },
         href: '/docs/checkpoints',
         icon: 'shield-check',
+      },
+      {
+        title: { en: 'Journal Intelligence', ko: '저널 인텔리전스' },
+        description: { en: 'Real-time journal matching with OpenAlex', ko: 'OpenAlex 기반 실시간 저널 매칭' },
+        href: '/docs/journal-intelligence',
+        icon: 'bar-chart-2',
+        isNew: true,
       },
     ],
   },

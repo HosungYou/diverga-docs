@@ -4,14 +4,14 @@ export const g1Content: ExtendedAgentContent = {
   agentId: 'G1',
   quickSummary: {
     oneLiner: {
-      en: 'The Journal Navigator: Matches your manuscript to the best-fit journals, not just high-IF ones',
-      ko: '저널 네비게이터: 단순히 고-IF 저널이 아니라 가장 적합한 저널에 원고를 매칭'
+      en: 'The Journal Navigator: Real-time journal matching with OpenAlex API — live metrics, not static data',
+      ko: '저널 네비게이터: OpenAlex API 기반 실시간 저널 매칭 — 정적 데이터가 아닌 라이브 메트릭'
     },
     bestFor: [
-      { en: 'Finding journals that match your research scope', ko: '연구 범위와 일치하는 저널 찾기' },
-      { en: 'Balancing impact factor with acceptance probability', ko: '영향 지수와 승인 확률의 균형 맞추기' },
-      { en: 'Considering open access and turnaround time', ko: '오픈 액세스 및 처리 시간 고려' },
-      { en: 'Identifying realistic submission targets', ko: '현실적인 제출 대상 식별' },
+      { en: 'Finding journals that match your research scope with live data', ko: '실시간 데이터로 연구 범위와 일치하는 저널 찾기' },
+      { en: 'Comparing journal metrics side by side (h-index, citations, OA)', ko: '저널 메트릭 나란히 비교 (h-index, 인용, OA)' },
+      { en: 'Analyzing publication trends over years', ko: '연도별 출판 트렌드 분석' },
+      { en: 'Identifying realistic submission targets with real acceptance data', ko: '실제 데이터로 현실적인 투고 대상 식별' },
       { en: 'Planning cascading submission strategies', ko: '단계적 제출 전략 계획' }
     ],
     notFor: [
@@ -19,13 +19,14 @@ export const g1Content: ExtendedAgentContent = {
       { en: 'Formatting references', ko: '참고 문헌 형식 지정' },
       { en: 'Statistical analysis consultation', ko: '통계 분석 상담' }
     ],
-    timeToResult: '15-25 minutes (for 5 journal recommendations)'
+    timeToResult: '15-25 minutes (for 5 journal recommendations with live metrics)'
   },
   decisionHelper: {
     useWhen: [
       { en: 'You have a complete manuscript ready for submission', ko: '제출 준비가 완료된 완성 원고가 있을 때' },
       { en: 'You need realistic journal targets beyond "top-tier only"', ko: '"최상위만" 추천하는 것 이상의 현실적인 저널 대상이 필요할 때' },
-      { en: 'You want to consider acceptance rates and review timelines', ko: '승인률과 리뷰 타임라인을 고려하고 싶을 때' },
+      { en: 'You want to compare journals with real-time metrics', ko: '실시간 메트릭으로 저널을 비교하고 싶을 때' },
+      { en: 'You want to see publication trends and OA status', ko: '출판 트렌드와 OA 현황을 보고 싶을 때' },
       { en: 'You are planning a multi-journal submission strategy', ko: '다중 저널 제출 전략을 계획할 때' }
     ],
     dontUseWhen: [
@@ -39,7 +40,23 @@ export const g1Content: ExtendedAgentContent = {
       { agentId: 'G3', condition: { en: 'For handling peer review feedback', ko: '동료 리뷰 피드백 처리를 위해' } }
     ]
   },
-  badges: [{ type: 'essential' }],
+  badges: [{ type: 'essential' }, { type: 'new' }],
+  checkpoints: [
+    {
+      id: 'CP_JOURNAL_PRIORITIES',
+      description: {
+        en: 'After API data collection, before ranking — confirms user priorities (IF, speed, OA, scope fit)',
+        ko: 'API 데이터 수집 후, 순위 배정 전 — 사용자 우선순위 확인 (IF, 속도, OA, 범위 적합성)'
+      }
+    },
+    {
+      id: 'CP_JOURNAL_SELECTION',
+      description: {
+        en: 'After comparison table presented — user selects target journal(s) from real-time data',
+        ko: '비교 테이블 제시 후 — 사용자가 실시간 데이터에서 대상 저널 선택'
+      }
+    }
+  ],
   successStories: [
     {
       researcher: {
@@ -51,15 +68,15 @@ export const g1Content: ExtendedAgentContent = {
         ko: '초기에는 최상위 저널만을 목표로 했지만 범위 불일치로 반복적인 거부에 직면'
       },
       solution: {
-        en: 'G1-JournalNavigator identified 5 mid-tier journals with better scope fit and 30-40% acceptance rates',
-        ko: 'G1-저널네비게이터가 더 나은 범위 적합성과 30-40% 승인률을 가진 5개 중간 저널을 식별'
+        en: 'G1 used OpenAlex live metrics to identify 5 mid-tier journals with better scope fit and verified 30-40% acceptance rates',
+        ko: 'G1이 OpenAlex 실시간 메트릭을 사용하여 더 나은 범위 적합성과 검증된 30-40% 승인률을 가진 5개 중간 저널을 식별'
       },
       outcome: {
         en: 'Accepted at second-choice journal with 8-week turnaround; paper now cited 23 times',
         ko: '8주 처리 기간으로 두 번째 선택 저널에 승인; 현재 논문 23회 인용'
       },
       metrics: [
-        { label: { en: 'Results', ko: '결과' }, value: '5 journals ranked, accepted on 2nd submission, 8-week review cycle' }
+        { label: { en: 'Results', ko: '결과' }, value: '5 journals ranked with live data, accepted on 2nd submission, 8-week review cycle' }
       ]
     }
   ],
@@ -69,17 +86,17 @@ export const g1Content: ExtendedAgentContent = {
       {
         number: 1,
         title: { en: 'High-IF Default Avoidance', ko: '고-IF 기본 회피' },
-        purpose: { en: 'Avoid only recommending top-tier journals', ko: '최고급 저널만 추천하는 것 회피' }
+        purpose: { en: 'Avoid only recommending top-tier journals; use real metrics from OpenAlex', ko: '최고급 저널만 추천하는 것 회피; OpenAlex 실시간 메트릭 활용' }
       },
       {
         number: 2,
-        title: { en: 'Fit Assessment', ko: '적합성 평가' },
-        purpose: { en: 'Match manuscript scope to journal aims', ko: '원고 범위를 저널 목표에 매칭' }
+        title: { en: 'Live Data Assessment', ko: '실시간 데이터 평가' },
+        purpose: { en: 'Match manuscript scope to journal aims using publication trends and citation data', ko: '출판 트렌드와 인용 데이터를 사용하여 원고 범위를 저널 목표에 매칭' }
       },
       {
         number: 3,
         title: { en: 'Strategic Recommendation', ko: '전략적 추천' },
-        purpose: { en: 'Consider turnaround time, OA, and acceptance rates', ko: '처리 시간, OA, 승인률 고려' }
+        purpose: { en: 'Consider turnaround time, OA status, h-index, and acceptance rates from live API', ko: 'API에서 처리 시간, OA 현황, h-index, 승인률 고려' }
       },
     ],
   },
@@ -90,13 +107,15 @@ export const g1Content: ExtendedAgentContent = {
     ],
     optional: [
       { name: 'timeline', description: { en: 'Publication deadline if any', ko: '출판 마감일(있는 경우)' } },
+      { name: 'priorities', description: { en: 'Ranking preference: IF, speed, OA, scope fit', ko: '순위 우선순위: IF, 속도, OA, 범위 적합성' } },
     ],
   },
   outputFormat: {
     sections: [
-      { title: 'Top Matches', content: { en: '5 journals ranked by fit', ko: '적합성별 상위 5개 저널' } },
-      { title: 'Impact Metrics', content: { en: 'IF, CiteScore, acceptance rate', ko: 'IF, CiteScore, 승인률' } },
-      { title: 'Strategy Notes', content: { en: 'Submission tips for each journal', ko: '각 저널의 투고 팁' } },
+      { title: 'Top Matches', content: { en: '5 journals ranked by fit with live OpenAlex metrics', ko: 'OpenAlex 실시간 메트릭으로 적합성별 상위 5개 저널' } },
+      { title: 'Real-Time Comparison', content: { en: 'Side-by-side table: h-index, citations, works count, OA status', ko: '나란히 비교 테이블: h-index, 인용 수, 논문 수, OA 현황' } },
+      { title: 'Publication Trends', content: { en: 'Year-over-year publication and citation trends', ko: '연도별 출판 및 인용 트렌드' } },
+      { title: 'Strategy Notes', content: { en: 'Submission tips and cover letter template for each journal', ko: '각 저널의 투고 팁과 커버 레터 템플릿' } },
     ],
   },
 };
