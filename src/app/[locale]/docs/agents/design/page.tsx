@@ -7,10 +7,7 @@ import {
   Cpu,
   MessageSquare,
   GitMerge,
-  Beaker,
   Network,
-  Shield,
-  AlertTriangle,
 } from 'lucide-react';
 
 export default function DesignAgentsPage() {
@@ -20,13 +17,13 @@ export default function DesignAgentsPage() {
     en: {
       title: 'Category C: Design Agents',
       description:
-        'Paradigm-specific design consultation and meta-analysis orchestration with multi-gate validation',
+        'Paradigm-specific design consultation and meta-analysis orchestration with multi-gate validation — 4 agents',
       paradigmCoverage: 'Paradigm Coverage',
       paradigmDesc:
-        'Paradigm-specific (C1 Quantitative, C2 Qualitative, C3 Mixed Methods), Experimental focus (C4), Meta-analysis focus (C5/C6/C7)',
-      metaSystemTitle: 'C5/C6/C7 Meta-Analysis System (v6.3)',
+        'Paradigm-specific (C1 Quantitative, C2 Qualitative, C3 Mixed Methods), Meta-analysis (C5 — now includes effect size extraction, data integrity, and error prevention)',
+      metaSystemTitle: 'C5 Meta-Analysis Master (v11.0)',
       metaSystemDesc:
-        'Based on V7 GenAI meta-analysis lessons learned: Three-agent architecture with decision authority, service provision, and advisory roles.',
+        'Based on V7 GenAI meta-analysis lessons learned: Consolidated single-agent architecture with decision authority, data integrity validation, and error prevention (formerly C5/C6/C7).',
       metaArchitecture: 'Meta-Analysis Architecture',
       metaGates: 'Multi-Gate Validation (C5)',
       metaGatesDesc: 'Four-gate validation workflow ensures data integrity:',
@@ -52,44 +49,47 @@ export default function DesignAgentsPage() {
       agents: [
         {
           id: 'C1',
-          name: 'Quantitative Design Consultant',
+          name: 'Quantitative Design & Sampling',
           icon: Cpu,
           tier: 'HIGH',
           model: 'Opus',
-          purpose: 'Creative quantitative design options avoiding obvious experimental designs',
+          purpose: 'Creative quantitative design options with sampling strategies and experimental materials development',
           capabilities: [
             'Enhanced VS 3-Phase methodology',
             'RCT and quasi-experimental designs',
             'Survey design (cross-sectional, longitudinal)',
             'Factorial designs (between, within, mixed)',
             'Power analysis and sample size calculation',
-            'Randomization strategies',
+            'Randomization and sampling strategies',
+            'Treatment protocol and control condition design (formerly C4)',
+            'Manipulation check design and fidelity monitoring (formerly C4)',
           ],
           triggers: {
-            en: '"experimental design", "RCT", "quasi-experimental", "survey design", "power analysis"',
-            ko: '"실험 설계", "RCT", "준실험", "조사 설계", "검정력 분석"',
+            en: '"experimental design", "RCT", "quasi-experimental", "survey design", "power analysis", "experimental materials", "treatment design"',
+            ko: '"실험 설계", "RCT", "준실험", "조사 설계", "검정력 분석", "실험 자료", "처치 설계"',
           },
           checkpoints: ['🔴 CP_METHODOLOGY_APPROVAL'],
           vsMode: 'Enhanced VS 3-Phase',
         },
         {
           id: 'C2',
-          name: 'Qualitative Design Consultant',
+          name: 'Qualitative Design',
           icon: MessageSquare,
           tier: 'HIGH',
           model: 'Opus',
-          purpose: 'Comprehensive qualitative research design across major traditions',
+          purpose: 'Comprehensive qualitative research design across major traditions, including ethnography and action research',
           capabilities: [
             'Enhanced VS 3-Phase methodology',
             'Phenomenology (descriptive, hermeneutic)',
             'Grounded theory (Straussian, Glaserian, Constructivist)',
             'Case study design (single, multiple, embedded)',
             'Narrative inquiry',
+            'Ethnography and participatory action research',
             'Sample size justification for qualitative',
           ],
           triggers: {
-            en: '"qualitative design", "phenomenology", "grounded theory", "case study"',
-            ko: '"질적 연구 설계", "현상학", "근거이론", "사례연구"',
+            en: '"qualitative design", "phenomenology", "grounded theory", "case study", "ethnography", "action research"',
+            ko: '"질적 연구 설계", "현상학", "근거이론", "사례연구", "문화기술지", "실행연구"',
           },
           checkpoints: ['🔴 CP_METHODOLOGY_APPROVAL'],
           vsMode: 'Enhanced VS 3-Phase',
@@ -117,46 +117,28 @@ export default function DesignAgentsPage() {
           vsMode: 'Standard',
         },
         {
-          id: 'C4',
-          name: 'Experimental Materials Developer',
-          icon: Beaker,
-          tier: 'MEDIUM',
-          model: 'Sonnet',
-          purpose: 'Treatment and control conditions with manipulation checks',
-          capabilities: [
-            'Treatment protocol design',
-            'Control condition specification',
-            'Manipulation check design',
-            'Fidelity monitoring protocols',
-            'Pilot testing recommendations',
-          ],
-          triggers: {
-            en: '"experimental materials", "treatment design", "manipulation check", "intervention"',
-            ko: '"실험 자료", "처치 설계", "조작 점검", "중재"',
-          },
-          checkpoints: [],
-          vsMode: 'Standard',
-        },
-        {
           id: 'C5',
           name: 'Meta-Analysis Master',
           icon: Network,
           tier: 'HIGH',
           model: 'Opus',
           purpose:
-            'Multi-gate validation workflow orchestration with decision authority',
+            'Multi-gate validation workflow orchestration with effect size extraction, data integrity, error prevention, and sensitivity analysis',
           capabilities: [
             'Multi-gate validation (4 gates)',
             'Phase-based orchestration (7 phases)',
             'ES hierarchy enforcement',
             'Pre-test exclusion protocol',
-            "Hedges' g pooling",
+            "Hedges' g pooling and effect size extraction (formerly B3)",
             'Heterogeneity analysis (I², τ², Q-statistic)',
             'Publication bias assessment',
+            "Data integrity validation and Hedges' g calculation with SD recovery (formerly C6)",
+            'Error prevention, anomaly detection, and pre-test pattern detection (formerly C7)',
+            'Sensitivity analysis and robustness checks',
           ],
           triggers: {
-            en: '"meta-analysis", "pooled effect", "heterogeneity", "effect size synthesis"',
-            ko: '"메타분석", "메타 분석", "통합 효과", "이질성"',
+            en: '"meta-analysis", "pooled effect", "heterogeneity", "effect size synthesis", "effect size", "data extraction", "error prevention"',
+            ko: '"메타분석", "메타 분석", "통합 효과", "이질성", "효과크기", "데이터 추출", "오류 방지"',
           },
           checkpoints: [
             '🔴 CP_META_GATE (any gate failure)',
@@ -166,64 +148,19 @@ export default function DesignAgentsPage() {
           ],
           vsMode: 'Full VS 5-Phase',
           authorityModel: 'Decision Authority',
-        },
-        {
-          id: 'C6',
-          name: 'Data Integrity Guard',
-          icon: Shield,
-          tier: 'MEDIUM',
-          model: 'Sonnet',
-          purpose:
-            'Data completeness validation, Hedges\' g calculation, SD recovery',
-          capabilities: [
-            "Hedges' g calculation with small-sample correction",
-            'SD recovery strategies (4-tier hierarchy)',
-            'Data completeness assessment',
-            'Version tracking and audit trail',
-            'Integration with C5 gate validation',
-          ],
-          triggers: {
-            en: '"data extraction", "Hedges g", "SD recovery", "effect size calculation"',
-            ko: '"데이터 추출", "헤지스 g", "표준편차 복원", "효과크기 계산"',
-          },
-          checkpoints: [],
-          vsMode: 'Standard',
-          authorityModel: 'Service Provider',
-        },
-        {
-          id: 'C7',
-          name: 'Error Prevention Engine',
-          icon: AlertTriangle,
-          tier: 'MEDIUM',
-          model: 'Sonnet',
-          purpose: 'Pattern detection, anomaly alerts, error prevention',
-          capabilities: [
-            'Pre-test pattern detection',
-            'Anomaly detection (|g| > 3.0)',
-            'Error taxonomy (5 categories)',
-            'Pre-extraction warnings',
-            'Data quality alerts',
-            'Advisory recommendations to C5',
-          ],
-          triggers: {
-            en: '"error prevention", "validation", "data check", "anomaly detection"',
-            ko: '"오류 방지", "검증", "데이터 확인", "이상 탐지"',
-          },
-          checkpoints: [],
-          vsMode: 'Standard',
-          authorityModel: 'Advisory',
+          relatedAgents: ['B1', 'B2'],
         },
       ],
     },
     ko: {
       title: 'Category C: 설계 에이전트',
-      description: '패러다임별 설계 컨설팅 및 다중 게이트 검증을 통한 메타분석 오케스트레이션',
+      description: '패러다임별 설계 컨설팅 및 다중 게이트 검증을 통한 메타분석 오케스트레이션 — 4개 에이전트',
       paradigmCoverage: '패러다임 범위',
       paradigmDesc:
-        '패러다임별 (C1 양적, C2 질적, C3 혼합방법), 실험 중심 (C4), 메타분석 중심 (C5/C6/C7)',
-      metaSystemTitle: 'C5/C6/C7 메타분석 시스템 (v6.3)',
+        '패러다임별 (C1 양적, C2 질적, C3 혼합방법), 메타분석 (C5 — 효과크기 추출, 데이터 무결성, 오류 방지 포함)',
+      metaSystemTitle: 'C5 메타분석 마스터 (v11.0)',
       metaSystemDesc:
-        'V7 GenAI 메타분석 교훈 기반: 의사결정 권한, 서비스 제공, 자문 역할을 가진 3-에이전트 아키텍처.',
+        'V7 GenAI 메타분석 교훈 기반: 의사결정 권한, 데이터 무결성 검증, 오류 방지를 통합한 단일 에이전트 아키텍처 (기존 C5/C6/C7).',
       metaArchitecture: '메타분석 아키텍처',
       metaGates: '다중 게이트 검증 (C5)',
       metaGatesDesc: '4단계 게이트 검증 워크플로우로 데이터 무결성 보장:',
@@ -237,44 +174,47 @@ export default function DesignAgentsPage() {
       agents: [
         {
           id: 'C1',
-          name: '양적 설계 컨설턴트',
+          name: '양적 설계 및 표집',
           icon: Cpu,
           tier: 'HIGH',
           model: 'Opus',
-          purpose: '명백한 실험 설계를 피하는 창의적인 양적 설계 옵션',
+          purpose: '표집 전략과 실험 자료 개발을 포함한 창의적인 양적 설계 옵션',
           capabilities: [
             'VS 3단계 강화 방법론',
             'RCT 및 준실험 설계',
             '조사 설계 (횡단, 종단)',
             '요인 설계 (피험자 간, 피험자 내, 혼합)',
             '검정력 분석 및 표본 크기 계산',
-            '무작위 배정 전략',
+            '무작위 배정 및 표집 전략',
+            '처치 프로토콜 및 통제 조건 설계 (기존 C4)',
+            '조작 점검 설계 및 충실도 모니터링 (기존 C4)',
           ],
           triggers: {
-            en: '"experimental design", "RCT", "quasi-experimental"',
-            ko: '"실험 설계", "RCT", "준실험", "조사 설계"',
+            en: '"experimental design", "RCT", "quasi-experimental", "survey design", "power analysis", "experimental materials", "treatment design"',
+            ko: '"실험 설계", "RCT", "준실험", "조사 설계", "검정력 분석", "실험 자료", "처치 설계"',
           },
           checkpoints: ['🔴 CP_METHODOLOGY_APPROVAL'],
           vsMode: 'VS 3단계 강화',
         },
         {
           id: 'C2',
-          name: '질적 설계 컨설턴트',
+          name: '질적 설계',
           icon: MessageSquare,
           tier: 'HIGH',
           model: 'Opus',
-          purpose: '주요 전통에 걸친 포괄적 질적 연구 설계',
+          purpose: '문화기술지 및 실행연구를 포함한 주요 전통에 걸친 포괄적 질적 연구 설계',
           capabilities: [
             'VS 3단계 강화 방법론',
             '현상학 (기술적, 해석학적)',
             '근거이론 (Straussian, Glaserian, 구성주의)',
             '사례연구 설계 (단일, 다중, 내장형)',
             '내러티브 탐구',
+            '문화기술지 및 참여적 실행연구',
             '질적 연구 표본 크기 정당화',
           ],
           triggers: {
-            en: '"qualitative design", "phenomenology", "grounded theory"',
-            ko: '"질적 연구 설계", "현상학", "근거이론"',
+            en: '"qualitative design", "phenomenology", "grounded theory", "case study", "ethnography", "action research"',
+            ko: '"질적 연구 설계", "현상학", "근거이론", "사례연구", "문화기술지", "실행연구"',
           },
           checkpoints: ['🔴 CP_METHODOLOGY_APPROVAL'],
           vsMode: 'VS 3단계 강화',
@@ -302,45 +242,27 @@ export default function DesignAgentsPage() {
           vsMode: '표준',
         },
         {
-          id: 'C4',
-          name: '실험 자료 개발자',
-          icon: Beaker,
-          tier: 'MEDIUM',
-          model: 'Sonnet',
-          purpose: '조작 점검을 포함한 처치 및 통제 조건',
-          capabilities: [
-            '처치 프로토콜 설계',
-            '통제 조건 명세',
-            '조작 점검 설계',
-            '충실도 모니터링 프로토콜',
-            '파일럿 테스트 권장사항',
-          ],
-          triggers: {
-            en: '"experimental materials", "treatment design"',
-            ko: '"실험 자료", "처치 설계", "조작 점검"',
-          },
-          checkpoints: [],
-          vsMode: '표준',
-        },
-        {
           id: 'C5',
           name: '메타분석 마스터',
           icon: Network,
           tier: 'HIGH',
           model: 'Opus',
-          purpose: '의사결정 권한을 가진 다중 게이트 검증 워크플로우 오케스트레이션',
+          purpose: '효과크기 추출, 데이터 무결성, 오류 방지, 민감도 분석을 포함한 다중 게이트 검증 워크플로우 오케스트레이션',
           capabilities: [
             '다중 게이트 검증 (4개 게이트)',
             '단계별 오케스트레이션 (7단계)',
             'ES 계층 구조 강제',
             '사전검사 제외 프로토콜',
-            "Hedges' g 통합",
+            "Hedges' g 통합 및 효과크기 추출 (기존 B3)",
             '이질성 분석 (I², τ², Q-통계)',
             '출판 편향 평가',
+            "데이터 무결성 검증 및 Hedges' g 계산과 SD 복원 (기존 C6)",
+            '오류 방지, 이상 탐지, 사전검사 패턴 탐지 (기존 C7)',
+            '민감도 분석 및 견고성 검증',
           ],
           triggers: {
-            en: '"meta-analysis", "pooled effect", "heterogeneity"',
-            ko: '"메타분석", "메타 분석", "통합 효과"',
+            en: '"meta-analysis", "pooled effect", "heterogeneity", "effect size synthesis", "effect size", "data extraction", "error prevention"',
+            ko: '"메타분석", "메타 분석", "통합 효과", "이질성", "효과크기", "데이터 추출", "오류 방지"',
           },
           checkpoints: [
             '🔴 CP_META_GATE (게이트 실패 시)',
@@ -350,51 +272,7 @@ export default function DesignAgentsPage() {
           ],
           vsMode: '전체 VS 5단계',
           authorityModel: '의사결정 권한',
-        },
-        {
-          id: 'C6',
-          name: '데이터 무결성 가드',
-          icon: Shield,
-          tier: 'MEDIUM',
-          model: 'Sonnet',
-          purpose: '데이터 완전성 검증, Hedges\' g 계산, SD 복원',
-          capabilities: [
-            "소표본 보정을 포함한 Hedges' g 계산",
-            'SD 복원 전략 (4단계 계층)',
-            '데이터 완전성 평가',
-            '버전 추적 및 감사 추적',
-            'C5 게이트 검증과의 통합',
-          ],
-          triggers: {
-            en: '"data extraction", "Hedges g", "SD recovery"',
-            ko: '"데이터 추출", "헤지스 g", "표준편차 복원"',
-          },
-          checkpoints: [],
-          vsMode: '표준',
-          authorityModel: '서비스 제공자',
-        },
-        {
-          id: 'C7',
-          name: '오류 방지 엔진',
-          icon: AlertTriangle,
-          tier: 'MEDIUM',
-          model: 'Sonnet',
-          purpose: '패턴 탐지, 이상 경고, 오류 방지',
-          capabilities: [
-            '사전검사 패턴 탐지',
-            '이상 탐지 (|g| > 3.0)',
-            '오류 분류체계 (5가지 범주)',
-            '추출 전 경고',
-            '데이터 품질 알림',
-            'C5에 대한 자문 권장사항',
-          ],
-          triggers: {
-            en: '"error prevention", "validation", "data check"',
-            ko: '"오류 방지", "검증", "데이터 확인"',
-          },
-          checkpoints: [],
-          vsMode: '표준',
-          authorityModel: '자문',
+          relatedAgents: ['B1', 'B2'],
         },
       ],
     },
@@ -480,20 +358,14 @@ export default function DesignAgentsPage() {
             <div className="text-stellar-faint mb-2">{t.metaArchitecture}</div>
             <div className="text-stellar-bright">
               <div className="mb-2">┌─────────────────────────────────────────────────┐</div>
-              <div className="mb-2">│ C5-MetaAnalysisMaster (Orchestrator)            │</div>
+              <div className="mb-2">│ C5-MetaAnalysisMaster (Consolidated v11.0)      │</div>
               <div className="mb-2">│   └─ Multi-gate validation (4 gates)            │</div>
               <div className="mb-2">│   └─ Phase-based orchestration (7 phases)       │</div>
               <div className="mb-2">│   └─ ES hierarchy enforcement                   │</div>
-              <div className="mb-2">│                                                 │</div>
-              <div className="mb-2">│ C6-DataIntegrityGuard (Service Provider)        │</div>
-              <div className="mb-2">│   └─ Hedges&apos; g calculation                       │</div>
-              <div className="mb-2">│   └─ SD recovery strategies (4 levels)          │</div>
-              <div className="mb-2">│   └─ Version tracking                           │</div>
-              <div className="mb-2">│                                                 │</div>
-              <div className="mb-2">│ C7-ErrorPreventionEngine (Advisory)             │</div>
-              <div className="mb-2">│   └─ Pattern detection (pre-test, anomaly)     │</div>
-              <div className="mb-2">│   └─ Error taxonomy (5 categories)              │</div>
-              <div className="mb-2">│   └─ Pre-extraction warnings                    │</div>
+              <div className="mb-2">│   └─ Effect size extraction (ex-B3)             │</div>
+              <div className="mb-2">│   └─ Hedges&apos; g calc + SD recovery (ex-C6)      │</div>
+              <div className="mb-2">│   └─ Error prevention + anomaly detect (ex-C7)  │</div>
+              <div className="mb-2">│   └─ Sensitivity analysis                       │</div>
               <div>└─────────────────────────────────────────────────┘</div>
             </div>
           </div>
@@ -677,8 +549,8 @@ export default function DesignAgentsPage() {
         >
           <p className="text-sm text-stellar-faint">
             {locale === 'en'
-              ? 'Category C agents use Enhanced VS 3-Phase methodology for paradigm-specific designs (C1/C2/C3) and Full VS 5-Phase for meta-analysis (C5). The C5/C6/C7 system implements a three-tier architecture: C5 as Decision Authority, C6 as Service Provider, and C7 as Advisory. All agents support auto-trigger via keyword detection in both English and Korean.'
-              : 'Category C 에이전트는 패러다임별 설계(C1/C2/C3)에 VS 3단계 강화 방법론을, 메타분석(C5)에 전체 VS 5단계를 사용합니다. C5/C6/C7 시스템은 3계층 아키텍처를 구현합니다: C5는 의사결정 권한, C6는 서비스 제공자, C7은 자문 역할. 모든 에이전트는 영어와 한국어 키워드 감지를 통한 자동 트리거를 지원합니다.'}
+              ? 'Category C agents (4 agents) use Enhanced VS 3-Phase methodology for paradigm-specific designs (C1/C2/C3) and Full VS 5-Phase for meta-analysis (C5). C5 now consolidates the former C5/C6/C7 three-tier architecture into a single agent with decision authority, data integrity validation, and error prevention. Experimental materials (formerly C4) are now part of C1.'
+              : 'Category C 에이전트(4개)는 패러다임별 설계(C1/C2/C3)에 VS 3단계 강화 방법론을, 메타분석(C5)에 전체 VS 5단계를 사용합니다. C5는 기존 C5/C6/C7 3계층 아키텍처를 의사결정 권한, 데이터 무결성 검증, 오류 방지를 갖춘 단일 에이전트로 통합했습니다. 실험 자료(기존 C4)는 이제 C1에 포함됩니다.'}
           </p>
         </motion.div>
       </div>

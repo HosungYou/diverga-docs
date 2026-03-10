@@ -5,9 +5,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import {
   ArrowLeft,
-  Users,
   MessageSquare,
-  Eye,
   ClipboardList,
   AlertCircle,
   CheckCircle2,
@@ -19,7 +17,7 @@ const content = {
     back: 'Back to Agents',
     title: 'Category D: Data Collection Agents',
     subtitle: 'Comprehensive data collection strategy and instrument development',
-    description: 'Data Collection agents provide structured guidance for sampling, interviews, observations, and measurement. They adapt protocols to your research paradigm while maintaining methodological rigor.',
+    description: 'Data Collection agents provide structured guidance for interviews, observations, and measurement. They adapt protocols to your research paradigm while maintaining methodological rigor. Sampling strategy is now handled directly by C1 (Research Design Strategist).',
 
     // Core principle
     principleTitle: 'Core Principle',
@@ -28,36 +26,8 @@ const content = {
     // Agents
     agents: [
       {
-        id: 'D1',
-        name: 'Sampling Strategy Advisor',
-        icon: 'users',
-        color: '#9b59b6',
-        model: 'Sonnet',
-        tier: 'MEDIUM',
-        checkpoint: 'None',
-        checkpointLevel: 'Advisory',
-        vsLevel: 'Light VS (Modal awareness)',
-        purpose: 'Design probability and non-probability sampling strategies with sample size justification',
-        triggers: {
-          en: ['sampling', 'sample size', 'participant recruitment', 'G*Power', 'power analysis'],
-          ko: ['표집', '표본 크기', '샘플링', '참가자 모집', '검정력'],
-        },
-        capabilities: [
-          'Probability sampling (simple random, stratified, cluster, systematic)',
-          'Non-probability sampling (convenience, purposive, snowball, quota)',
-          'Theoretical sampling for grounded theory',
-          'Sample size calculation (G*Power, saturation assessment)',
-          'Recruitment strategy design',
-        ],
-        vsProcess: 'Identifies modal sampling approaches, presents alternatives with rationale',
-        example: {
-          input: '"Need 200 participants for survey study"',
-          output: 'Direction A (T≈0.6): Stratified random sampling by institution type | Direction B (T≈0.4): Two-stage cluster sampling (schools → students) | Direction C (T<0.3): Adaptive sampling with network referrals',
-        },
-      },
-      {
         id: 'D2',
-        name: 'Interview & Focus Group Specialist',
+        name: 'Data Collection Specialist',
         icon: 'messageSquare',
         color: '#8e44ad',
         model: 'Sonnet',
@@ -65,10 +35,10 @@ const content = {
         checkpoint: 'None',
         checkpointLevel: 'Advisory',
         vsLevel: 'Light VS (Modal awareness)',
-        purpose: 'Develop interview protocols, probing strategies, and transcription guidance',
+        purpose: 'Develop interview protocols, focus group guides, observation protocols, field notes, and transcription guidance',
         triggers: {
-          en: ['interview', 'focus group', 'interview protocol', 'semi-structured', 'probing'],
-          ko: ['인터뷰', '면담', '포커스 그룹', '반구조화', '심층면담'],
+          en: ['interview', 'focus group', 'interview protocol', 'semi-structured', 'probing', 'observation', 'field notes', 'participant observation', 'video analysis', 'ethnography'],
+          ko: ['인터뷰', '면담', '포커스 그룹', '반구조화', '심층면담', '관찰', '현장노트', '참여관찰', '비디오 분석', '민족지'],
         },
         capabilities: [
           'Interview protocol development (structured, semi-structured, unstructured)',
@@ -76,39 +46,16 @@ const content = {
           'Probing and follow-up question strategies',
           'Transcription protocols (verbatim, intelligent verbatim)',
           'Member checking procedures',
-        ],
-        vsProcess: 'Suggests protocol variations based on paradigm (phenomenology, grounded theory, etc.)',
-        example: {
-          input: '"Interview protocol for teacher AI experiences"',
-          output: 'Opening: "Tell me about your first encounter with AI tools" | Main: "Describe a moment when AI changed your teaching practice" | Probing: "What did that feel like?" "What happened next?" | Closing: "What haven\'t I asked that you think is important?"',
-        },
-      },
-      {
-        id: 'D3',
-        name: 'Observation Protocol Designer',
-        icon: 'eye',
-        color: '#7d3c98',
-        model: 'Haiku',
-        tier: 'LOW',
-        checkpoint: 'None',
-        checkpointLevel: 'Advisory',
-        vsLevel: 'None',
-        purpose: 'Design structured observation protocols, field notes, and video analysis coding schemes',
-        triggers: {
-          en: ['observation', 'field notes', 'participant observation', 'video analysis', 'ethnography'],
-          ko: ['관찰', '현장노트', '참여관찰', '비디오 분석', '민족지'],
-        },
-        capabilities: [
           'Structured observation protocols with coding schemes',
           'Field note templates (descriptive, reflective, analytic)',
           'Video analysis frameworks (interaction analysis, conversation analysis)',
           'Observer training procedures',
           'Inter-rater reliability protocols',
         ],
-        vsProcess: 'Direct protocol generation based on research context',
+        vsProcess: 'Suggests protocol variations based on paradigm (phenomenology, grounded theory, etc.) and observation context',
         example: {
-          input: '"Observe classroom AI tool usage"',
-          output: 'Time sampling: 5-min intervals | Categories: Tool type, Task type, Student engagement, Teacher support | Field notes: Descriptive (what happened), Reflective (observer thoughts), Analytic (patterns, themes)',
+          input: '"Interview protocol for teacher AI experiences"',
+          output: 'Opening: "Tell me about your first encounter with AI tools" | Main: "Describe a moment when AI changed your teaching practice" | Probing: "What did that feel like?" "What happened next?" | Closing: "What haven\'t I asked that you think is important?"',
         },
       },
       {
@@ -143,13 +90,13 @@ const content = {
 
     // Additional sections
     paradigmCoverage: 'Paradigm Coverage',
-    paradigmText: 'Quantitative (D1, D4), Qualitative (D2, D3), Mixed (all agents adapt)',
+    paradigmText: 'Quantitative (D4), Qualitative (D2), Mixed (both agents adapt)',
 
     integrationTitle: 'Integration with Other Categories',
     integrationPoints: [
-      'Category C (Design): D1 informed by C1/C2/C3 research design',
+      'Category C (Design): C1 handles sampling strategy directly as part of research design',
       'Category E (Analysis): D4 validity evidence feeds E1 statistical analysis',
-      'Category F (Quality): D2/D3 protocols reviewed by F4 for trustworthiness',
+      'Category F (Quality): D2 protocols reviewed for trustworthiness',
       'Category A (Foundation): D4 instrument alignment with A2 theoretical framework',
     ],
 
@@ -158,18 +105,18 @@ const content = {
 
     bestPractices: 'Best Practices',
     practices: [
-      'Sample size justification: Always provide power analysis (quant) or saturation rationale (qual)',
+      'Sample size justification: Always provide power analysis (quant) or saturation rationale (qual) — coordinate with C1',
       'Protocol pilot testing: Test interview/observation protocols with 2-3 participants before full data collection',
       'Instrument validation: Minimum evidence = content validity + internal consistency',
-      'Ethical considerations: All protocols reviewed by D1-D4 must address informed consent, privacy, and data security',
+      'Ethical considerations: All protocols reviewed by D2/D4 must address informed consent, privacy, and data security',
     ],
 
     autoTrigger: 'Auto-Trigger Examples',
     autoTriggerExamples: [
       {
         userInput: '"I need to interview 20 teachers about AI adoption"',
-        detected: 'Keywords: "interview", "20 teachers" → Triggers D2 (Interview Specialist) + D1 (Sampling)',
-        execution: 'D2 develops semi-structured protocol → D1 suggests purposive sampling strategy',
+        detected: 'Keywords: "interview", "20 teachers" → Triggers D2 (Data Collection Specialist)',
+        execution: 'D2 develops semi-structured interview protocol with observation components if needed',
       },
       {
         userInput: '"Create a scale to measure student motivation in AI-assisted learning"',
@@ -182,43 +129,15 @@ const content = {
     back: '에이전트로 돌아가기',
     title: '카테고리 D: 자료 수집 에이전트',
     subtitle: '포괄적 자료 수집 전략 및 측정도구 개발',
-    description: '자료 수집 에이전트는 표집, 면담, 관찰, 측정에 대한 구조화된 가이드를 제공합니다. 방법론적 엄격성을 유지하면서 연구 패러다임에 맞게 프로토콜을 조정합니다.',
+    description: '자료 수집 에이전트는 면담, 관찰, 측정에 대한 구조화된 가이드를 제공합니다. 방법론적 엄격성을 유지하면서 연구 패러다임에 맞게 프로토콜을 조정합니다. 표집 전략은 이제 C1 (연구 설계 전략가)이 직접 처리합니다.',
 
     principleTitle: '핵심 원칙',
     principleText: '양적, 질적, 혼합 패러다임 전반에 걸친 구조화되고 적응적인 프로토콜',
 
     agents: [
       {
-        id: 'D1',
-        name: '표집 전략 자문',
-        icon: 'users',
-        color: '#9b59b6',
-        model: 'Sonnet',
-        tier: 'MEDIUM',
-        checkpoint: 'None',
-        checkpointLevel: 'Advisory',
-        vsLevel: 'Light VS (모달 인식)',
-        purpose: '표본 크기 정당화와 함께 확률 및 비확률 표집 전략 설계',
-        triggers: {
-          en: ['sampling', 'sample size', 'participant recruitment', 'G*Power', 'power analysis'],
-          ko: ['표집', '표본 크기', '샘플링', '참가자 모집', '검정력'],
-        },
-        capabilities: [
-          '확률 표집 (단순무선, 층화, 군집, 체계적)',
-          '비확률 표집 (편의, 목적적, 눈덩이, 할당)',
-          '근거이론을 위한 이론적 표집',
-          '표본 크기 계산 (G*Power, 포화도 평가)',
-          '모집 전략 설계',
-        ],
-        vsProcess: '모달 표집 접근법을 식별하고 근거와 함께 대안 제시',
-        example: {
-          input: '"설문 연구를 위해 200명의 참가자가 필요해요"',
-          output: '방향 A (T≈0.6): 기관 유형별 층화 무선 표집 | 방향 B (T≈0.4): 2단계 군집 표집 (학교 → 학생) | 방향 C (T<0.3): 네트워크 추천을 활용한 적응적 표집',
-        },
-      },
-      {
         id: 'D2',
-        name: '면담 및 포커스 그룹 전문가',
+        name: '데이터 수집 전문가',
         icon: 'messageSquare',
         color: '#8e44ad',
         model: 'Sonnet',
@@ -226,10 +145,10 @@ const content = {
         checkpoint: 'None',
         checkpointLevel: 'Advisory',
         vsLevel: 'Light VS (모달 인식)',
-        purpose: '면담 프로토콜, 심화 질문 전략, 전사 가이드 개발',
+        purpose: '면담 프로토콜, 포커스 그룹 가이드, 관찰 프로토콜, 현장노트, 전사 가이드 개발',
         triggers: {
-          en: ['interview', 'focus group', 'interview protocol', 'semi-structured', 'probing'],
-          ko: ['인터뷰', '면담', '포커스 그룹', '반구조화', '심층면담'],
+          en: ['interview', 'focus group', 'interview protocol', 'semi-structured', 'probing', 'observation', 'field notes', 'participant observation', 'video analysis', 'ethnography'],
+          ko: ['인터뷰', '면담', '포커스 그룹', '반구조화', '심층면담', '관찰', '현장노트', '참여관찰', '비디오 분석', '민족지'],
         },
         capabilities: [
           '면담 프로토콜 개발 (구조화, 반구조화, 비구조화)',
@@ -237,39 +156,16 @@ const content = {
           '심화 질문 및 후속 질문 전략',
           '전사 프로토콜 (축어적, 지능형 축어적)',
           '멤버 체킹 절차',
-        ],
-        vsProcess: '패러다임(현상학, 근거이론 등)에 따라 프로토콜 변형 제안',
-        example: {
-          input: '"교사의 AI 경험에 대한 면담 프로토콜"',
-          output: '도입: "AI 도구를 처음 접했을 때를 이야기해 주세요" | 본론: "AI가 수업 실천을 바꾼 순간을 설명해 주세요" | 심화: "그때 어떤 느낌이었나요?" "그 다음엔 무슨 일이?" | 마무리: "제가 묻지 않았지만 중요하다고 생각하는 것이 있나요?"',
-        },
-      },
-      {
-        id: 'D3',
-        name: '관찰 프로토콜 설계자',
-        icon: 'eye',
-        color: '#7d3c98',
-        model: 'Haiku',
-        tier: 'LOW',
-        checkpoint: 'None',
-        checkpointLevel: 'Advisory',
-        vsLevel: 'None',
-        purpose: '구조화된 관찰 프로토콜, 현장노트, 비디오 분석 코딩 체계 설계',
-        triggers: {
-          en: ['observation', 'field notes', 'participant observation', 'video analysis', 'ethnography'],
-          ko: ['관찰', '현장노트', '참여관찰', '비디오 분석', '민족지'],
-        },
-        capabilities: [
           '코딩 체계를 갖춘 구조화된 관찰 프로토콜',
           '현장노트 템플릿 (기술적, 성찰적, 분석적)',
           '비디오 분석 프레임워크 (상호작용 분석, 대화 분석)',
           '관찰자 훈련 절차',
           '평가자 간 신뢰도 프로토콜',
         ],
-        vsProcess: '연구 맥락에 기반한 직접 프로토콜 생성',
+        vsProcess: '패러다임(현상학, 근거이론 등) 및 관찰 맥락에 따라 프로토콜 변형 제안',
         example: {
-          input: '"교실에서 AI 도구 사용 관찰"',
-          output: '시간 표집: 5분 간격 | 범주: 도구 유형, 과제 유형, 학생 참여, 교사 지원 | 현장노트: 기술적(무슨 일이 일어났는지), 성찰적(관찰자 생각), 분석적(패턴, 주제)',
+          input: '"교사의 AI 경험에 대한 면담 프로토콜"',
+          output: '도입: "AI 도구를 처음 접했을 때를 이야기해 주세요" | 본론: "AI가 수업 실천을 바꾼 순간을 설명해 주세요" | 심화: "그때 어떤 느낌이었나요?" "그 다음엔 무슨 일이?" | 마무리: "제가 묻지 않았지만 중요하다고 생각하는 것이 있나요?"',
         },
       },
       {
@@ -303,13 +199,13 @@ const content = {
     ],
 
     paradigmCoverage: '패러다임 적용 범위',
-    paradigmText: '양적 (D1, D4), 질적 (D2, D3), 혼합 (모든 에이전트 적응)',
+    paradigmText: '양적 (D4), 질적 (D2), 혼합 (두 에이전트 모두 적응)',
 
     integrationTitle: '다른 카테고리와의 통합',
     integrationPoints: [
-      '카테고리 C (설계): D1은 C1/C2/C3 연구설계에 의해 정보 제공',
+      '카테고리 C (설계): C1이 연구 설계의 일환으로 표집 전략을 직접 처리',
       '카테고리 E (분석): D4 타당도 증거가 E1 통계 분석에 피드',
-      '카테고리 F (품질): D2/D3 프로토콜은 F4에 의해 신뢰성 검토',
+      '카테고리 F (품질): D2 프로토콜이 신뢰성을 위해 검토됨',
       '카테고리 A (기초): D4 도구가 A2 이론적 프레임워크와 정렬',
     ],
 
@@ -318,18 +214,18 @@ const content = {
 
     bestPractices: '모범 사례',
     practices: [
-      '표본 크기 정당화: 항상 검정력 분석(양적) 또는 포화 근거(질적) 제공',
+      '표본 크기 정당화: 항상 검정력 분석(양적) 또는 포화 근거(질적) 제공 — C1과 조율',
       '프로토콜 파일럿 테스트: 전체 자료 수집 전 2-3명 참가자와 면담/관찰 프로토콜 테스트',
       '도구 타당화: 최소 증거 = 내용 타당도 + 내적 일관성',
-      '윤리적 고려사항: D1-D4가 검토한 모든 프로토콜은 동의, 개인정보, 데이터 보안을 다뤄야 함',
+      '윤리적 고려사항: D2/D4가 검토한 모든 프로토콜은 동의, 개인정보, 데이터 보안을 다뤄야 함',
     ],
 
     autoTrigger: '자동 트리거 예시',
     autoTriggerExamples: [
       {
         userInput: '"AI 채택에 대해 20명의 교사를 면담해야 해요"',
-        detected: '키워드: "면담", "20명의 교사" → D2 (면담 전문가) + D1 (표집) 트리거',
-        execution: 'D2가 반구조화 프로토콜 개발 → D1이 목적적 표집 전략 제안',
+        detected: '키워드: "면담", "20명의 교사" → D2 (데이터 수집 전문가) 트리거',
+        execution: 'D2가 필요 시 관찰 구성요소와 함께 반구조화 면담 프로토콜 개발',
       },
       {
         userInput: '"AI 보조 학습에서 학생 동기를 측정하는 척도 만들기"',
@@ -341,9 +237,7 @@ const content = {
 };
 
 const iconMap = {
-  users: Users,
   messageSquare: MessageSquare,
-  eye: Eye,
   clipboardList: ClipboardList,
   alertCircle: AlertCircle,
   checkCircle2: CheckCircle2,

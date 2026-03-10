@@ -27,7 +27,7 @@ const content = {
     agents: [
       {
         id: 'I0',
-        name: 'Pipeline Orchestrator',
+        name: 'SR Pipeline Orchestrator',
         icon: 'workflow',
         color: '#00bcd4',
         model: 'Opus',
@@ -119,10 +119,10 @@ const content = {
         checkpoint: 'None',
         checkpointLevel: 'Recommended',
         vsLevel: 'None',
-        purpose: 'Construct vector databases from collected PDFs using local embeddings for zero-cost semantic search',
+        purpose: 'Construct vector databases from collected PDFs using local embeddings for zero-cost semantic search, with parallel document processing for large corpora (absorbed B5)',
         triggers: {
-          en: ['RAG', 'vector database', 'embeddings', 'ChromaDB', 'semantic search'],
-          ko: ['RAG', '벡터 데이터베이스', '임베딩', '크로마DB', '의미론적 검색'],
+          en: ['RAG', 'vector database', 'embeddings', 'ChromaDB', 'semantic search', 'parallel processing'],
+          ko: ['RAG', '벡터 데이터베이스', '임베딩', '크로마DB', '의미론적 검색', '병렬 처리'],
         },
         capabilities: [
           'PDF text extraction with PyMuPDF and OCR fallback',
@@ -130,11 +130,12 @@ const content = {
           'ChromaDB vector database construction',
           'Configurable chunk size and overlap settings',
           'Ingestion logging and quality validation',
+          'Parallel document processing for large-scale corpora (absorbed B5)',
         ],
         vsProcess: 'Direct execution — validates PDF collection completeness before building',
         example: {
           input: '"Build RAG system from 180 downloaded PDFs"',
-          output: 'Extract text from 180 PDFs → Generate embeddings (local, $0 cost) → Create ChromaDB index → 15,400 chunks indexed → Ready for semantic queries',
+          output: 'Extract text from 180 PDFs (parallel processing) → Generate embeddings (local, $0 cost) → Create ChromaDB index → 15,400 chunks indexed → Ready for semantic queries',
         },
       },
     ],
@@ -147,7 +148,7 @@ const content = {
       'Category A (Foundation): Research question from A1 drives search strategy',
       'Category B (Evidence): B1 literature review strategy informs query design',
       'Category C (Design): C5 meta-analysis protocol feeds Stage 3 configuration',
-      'Category F (Quality): F2 PRISMA checklist validates compliance at each stage',
+      'Category G (Communication): G2 Publication Specialist validates PRISMA checklist compliance at each stage',
     ],
 
     checkpointInfo: 'Checkpoint Information',
@@ -187,7 +188,7 @@ const content = {
     agents: [
       {
         id: 'I0',
-        name: '파이프라인 오케스트레이터',
+        name: 'SR 파이프라인 오케스트레이터',
         icon: 'workflow',
         color: '#00bcd4',
         model: 'Opus',
@@ -279,10 +280,10 @@ const content = {
         checkpoint: 'None',
         checkpointLevel: 'Recommended',
         vsLevel: 'None',
-        purpose: '무료 의미론적 검색을 위한 로컬 임베딩을 사용하여 수집된 PDF에서 벡터 데이터베이스 구축',
+        purpose: '무료 의미론적 검색을 위한 로컬 임베딩을 사용하여 수집된 PDF에서 벡터 데이터베이스 구축, 대규모 코퍼스를 위한 병렬 문서 처리 (B5 흡수)',
         triggers: {
-          en: ['RAG', 'vector database', 'embeddings', 'ChromaDB', 'semantic search'],
-          ko: ['RAG', '벡터 데이터베이스', '임베딩', '크로마DB', '의미론적 검색'],
+          en: ['RAG', 'vector database', 'embeddings', 'ChromaDB', 'semantic search', 'parallel processing'],
+          ko: ['RAG', '벡터 데이터베이스', '임베딩', '크로마DB', '의미론적 검색', '병렬 처리'],
         },
         capabilities: [
           'PyMuPDF 및 OCR 폴백을 사용한 PDF 텍스트 추출',
@@ -290,11 +291,12 @@ const content = {
           'ChromaDB 벡터 데이터베이스 구축',
           '구성 가능한 청크 크기 및 오버랩 설정',
           '수집 로깅 및 품질 검증',
+          '대규모 코퍼스를 위한 병렬 문서 처리 (B5 흡수)',
         ],
         vsProcess: '직접 실행 — 구축 전 PDF 수집 완전성 검증',
         example: {
           input: '"180개 다운로드된 PDF에서 RAG 시스템 구축"',
-          output: '180개 PDF에서 텍스트 추출 → 임베딩 생성 (로컬, $0 비용) → ChromaDB 인덱스 생성 → 15,400개 청크 인덱싱 → 의미론적 쿼리 준비 완료',
+          output: '180개 PDF에서 텍스트 추출 (병렬 처리) → 임베딩 생성 (로컬, $0 비용) → ChromaDB 인덱스 생성 → 15,400개 청크 인덱싱 → 의미론적 쿼리 준비 완료',
         },
       },
     ],
@@ -307,7 +309,7 @@ const content = {
       '카테고리 A (기초): A1의 연구 질문이 검색 전략을 주도',
       '카테고리 B (근거): B1 문헌 검토 전략이 쿼리 설계에 정보 제공',
       '카테고리 C (설계): C5 메타분석 프로토콜이 3단계 구성에 피드',
-      '카테고리 F (품질): F2 PRISMA 체크리스트가 각 단계에서 준수 검증',
+      '카테고리 G (커뮤니케이션): G2 출판 전문가가 각 단계에서 PRISMA 체크리스트 준수 검증',
     ],
 
     checkpointInfo: '체크포인트 정보',

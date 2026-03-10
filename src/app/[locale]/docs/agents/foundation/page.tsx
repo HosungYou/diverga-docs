@@ -7,8 +7,6 @@ import {
   ArrowLeft,
   Brain,
   Lightbulb,
-  ShieldAlert,
-  Scale,
   Compass,
   Network,
   AlertCircle,
@@ -20,12 +18,12 @@ const content = {
   en: {
     back: 'Back to Agents',
     title: 'Category A: Foundation Agents',
-    subtitle: 'Theoretical and ethical foundations for research excellence',
-    description: 'Foundation agents establish the theoretical, methodological, and ethical groundwork for your research. Using Verbalized Sampling (VS) methodology, they prevent mode collapse by presenting creative alternatives across the typicality spectrum.',
+    subtitle: '3 agents for theoretical foundations and research excellence',
+    description: 'Foundation agents establish the theoretical and methodological groundwork for your research. Using Verbalized Sampling (VS) methodology, they prevent mode collapse by presenting creative alternatives across the typicality spectrum.',
 
     // Core principle
     principleTitle: 'Core Principle',
-    principleText: 'Prevent mode collapse through creative theory selection and rigorous ethical review',
+    principleText: 'Prevent mode collapse through creative theory selection, built-in critique, and paradigm alignment',
 
     // Agents
     agents: [
@@ -59,7 +57,7 @@ const content = {
       },
       {
         id: 'A2',
-        name: 'Theoretical Framework Architect',
+        name: 'Theory & Critique Architect',
         icon: 'network',
         color: '#e74c3c',
         model: 'Opus',
@@ -67,10 +65,10 @@ const content = {
         checkpoint: 'CP_THEORY_SELECTION',
         checkpointLevel: 'REQUIRED',
         vsLevel: 'Full VS 5-Phase',
-        purpose: 'Design theoretical frameworks that avoid modal theories and explore long-tail alternatives',
+        purpose: 'Design theoretical frameworks, generate self-critique, and visualize conceptual models — combining theory construction, devil\'s advocacy, and framework visualization',
         triggers: {
-          en: ['theoretical framework', 'theory', 'conceptual model', 'theoretical foundation'],
-          ko: ['이론적 프레임워크', '이론적 틀', '이론', '개념적 모형'],
+          en: ['theoretical framework', 'theory', 'conceptual model', 'theoretical foundation', 'critique', 'visualize framework'],
+          ko: ['이론적 프레임워크', '이론적 틀', '이론', '개념적 모형', '비판', '프레임워크 시각화'],
         },
         capabilities: [
           'Modal theory identification (T > 0.8)',
@@ -78,68 +76,15 @@ const content = {
           'Theory integration and hybrid frameworks',
           'Cross-domain theory adaptation',
           'Hypothesis derivation from theory',
+          'Built-in self-critique and devil\'s advocacy (formerly A3)',
+          'Anticipate "Reviewer 2" criticisms and competing hypotheses',
+          'Conceptual framework visualization via Mermaid diagrams (formerly A6)',
+          'Variable relationship mapping and mediation/moderation models',
         ],
-        vsProcess: 'Stage 1: Identify modal theories (TAM, UTAUT, etc.) | Stage 2: Generate differentiated alternatives | Stage 3: Present 3 options with T-Scores | Stage 4: Human selection | Stage 5: Framework elaboration',
+        vsProcess: 'Stage 1: Identify modal theories (TAM, UTAUT, etc.) | Stage 2: Generate differentiated alternatives | Stage 3: Self-critique each option | Stage 4: Present 3 options with T-Scores | Stage 5: Human selection | Stage 6: Framework elaboration and visualization',
         example: {
           input: '"AI adoption in education"',
-          output: 'Modal (T=0.92): TAM | Direction A (T≈0.6): Self-Determination Theory × TAM integration | Direction B (T≈0.4): Cognitive Load Theory + Adaptive Ecosystem | Direction C (T<0.3): Neuroplasticity-based technology learning framework',
-        },
-      },
-      {
-        id: 'A3',
-        name: 'Devil\'s Advocate',
-        icon: 'shieldAlert',
-        color: '#c0392b',
-        model: 'Opus',
-        tier: 'HIGH',
-        checkpoint: 'None',
-        checkpointLevel: 'Advisory',
-        vsLevel: 'Full VS 5-Phase',
-        purpose: 'Generate original critiques and alternative explanations to stress-test research designs',
-        triggers: {
-          en: ['criticism', 'weakness', 'reviewer 2', 'critique', 'alternative explanation', 'rebuttal'],
-          ko: ['비판', '약점', '반론', '대안 설명', '리뷰어', '반박'],
-        },
-        capabilities: [
-          'Anticipate "Reviewer 2" criticisms',
-          'Generate creative alternative explanations',
-          'Identify logical fallacies and assumptions',
-          'Propose competing hypotheses',
-          'Simulate peer review scenarios',
-        ],
-        vsProcess: 'Avoid predictable criticisms, generate creative challenges across typicality spectrum, prioritize novel counterarguments',
-        example: {
-          input: '"AI chatbots improve learning outcomes"',
-          output: 'Critique A: Novelty effect (T≈0.7) | Critique B: Measurement artifact - chatbots enforce structured practice, not AI quality (T≈0.4) | Critique C: Self-selection bias - tech-savvy learners use chatbots more (T≈0.2)',
-        },
-      },
-      {
-        id: 'A4',
-        name: 'Research Ethics Advisor',
-        icon: 'scale',
-        color: '#d35400',
-        model: 'Sonnet',
-        tier: 'MEDIUM',
-        checkpoint: 'CP_METHODOLOGY_APPROVAL',
-        checkpointLevel: 'REQUIRED',
-        vsLevel: 'Enhanced VS 3-Phase',
-        purpose: 'Context-adaptive ethical analysis avoiding generic checklists',
-        triggers: {
-          en: ['ethics', 'IRB', 'consent', 'informed consent', 'privacy', 'vulnerable populations'],
-          ko: ['연구 윤리', 'IRB', '동의서', '개인정보', '취약 집단'],
-        },
-        capabilities: [
-          'IRB protocol development',
-          'Informed consent design',
-          'Privacy and confidentiality protection',
-          'Vulnerable population safeguards',
-          'Data security and anonymization',
-          'Ethical risk assessment',
-        ],
-        vsProcess: 'Phase 1: Context analysis | Phase 2: Research-specific ethical considerations | Phase 3: Tailored recommendations (not generic checklists)',
-        example: {
-          input: '"Interview K-12 students about AI use"',
-          output: 'Parental consent + child assent required | Privacy: Anonymize school/location | Risk: Minimize peer identification | Data security: Encrypted storage, limited access | Withdrawal: Emphasize right to stop anytime',
+          output: 'Modal (T=0.92): TAM | Direction A (T≈0.6): Self-Determination Theory x TAM integration | Direction B (T≈0.4): Cognitive Load Theory + Adaptive Ecosystem | Direction C (T<0.3): Neuroplasticity-based technology learning framework | Self-critique: Direction A risks superficial integration...',
         },
       },
       {
@@ -170,34 +115,6 @@ const content = {
           output: 'First clarify: What is the nature of reality you\'re studying? (Ontology) | How can knowledge about it be acquired? (Epistemology) | Then recommend: Positivist → Quant, Interpretivist → Qual, Pragmatic → Mixed',
         },
       },
-      {
-        id: 'A6',
-        name: 'Conceptual Framework Visualizer',
-        icon: 'network',
-        color: '#e67e22',
-        model: 'Sonnet',
-        tier: 'MEDIUM',
-        checkpoint: 'CP_VISUALIZATION_PREFERENCE',
-        checkpointLevel: 'OPTIONAL',
-        vsLevel: 'Enhanced VS 3-Phase',
-        purpose: 'Generate differentiated academic visualizations avoiding generic diagrams',
-        triggers: {
-          en: ['conceptual framework', 'visualize framework', 'framework diagram', 'visual model'],
-          ko: ['개념적 프레임워크', '프레임워크 시각화', '모형 다이어그램'],
-        },
-        capabilities: [
-          'Mermaid diagram generation',
-          'Variable relationship mapping',
-          'Mediation/moderation models',
-          'Process flow diagrams',
-          'Theory-to-hypothesis visual translation',
-        ],
-        vsProcess: 'Phase 1: Understand framework complexity | Phase 2: Generate layout alternatives | Phase 3: Present differentiated visual options',
-        example: {
-          input: '"AI chatbots → metacognition → learning outcomes"',
-          output: 'Mermaid flowchart with: AI Chatbot Features → Metacognitive Strategies (mediator) → Learning Outcomes | Include moderators: Prior Knowledge, Self-Efficacy',
-        },
-      },
     ],
 
     // Checkpoint integration
@@ -205,10 +122,8 @@ const content = {
     checkpointDescription: 'Foundation agents enforce critical decision points:',
     checkpoints: [
       { id: 'CP_RESEARCH_DIRECTION', level: 'REQUIRED', agent: 'A1', description: 'Research question finalized, VS alternatives presented' },
-      { id: 'CP_THEORY_SELECTION', level: 'REQUIRED', agent: 'A2', description: 'Theoretical framework chosen from VS options' },
+      { id: 'CP_THEORY_SELECTION', level: 'REQUIRED', agent: 'A2', description: 'Theoretical framework chosen from VS options (includes critique and visualization)' },
       { id: 'CP_PARADIGM_SELECTION', level: 'REQUIRED', agent: 'A5', description: 'Paradigm confirmed (Quant/Qual/Mixed)' },
-      { id: 'CP_METHODOLOGY_APPROVAL', level: 'REQUIRED', agent: 'A4', description: 'Ethical review complete, IRB-ready' },
-      { id: 'CP_VISUALIZATION_PREFERENCE', level: 'OPTIONAL', agent: 'A6', description: 'Visual format selected' },
     ],
 
     // VS methodology
@@ -227,9 +142,7 @@ const content = {
     workflowSteps: [
       { agent: 'A1', action: 'Refine research question', checkpoint: 'CP_RESEARCH_DIRECTION', parallel: false },
       { agent: 'A5', action: 'Select paradigm', checkpoint: 'CP_PARADIGM_SELECTION', parallel: false },
-      { agent: 'A2 + A3', action: 'Develop theory + critique', checkpoint: 'CP_THEORY_SELECTION', parallel: true },
-      { agent: 'A6', action: 'Visualize framework', checkpoint: 'CP_VISUALIZATION_PREFERENCE', parallel: false },
-      { agent: 'A4', action: 'Ethical review', checkpoint: 'CP_METHODOLOGY_APPROVAL', parallel: false },
+      { agent: 'A2', action: 'Develop theory, self-critique, and visualize framework', checkpoint: 'CP_THEORY_SELECTION', parallel: false },
     ],
 
     // CTA
@@ -240,11 +153,11 @@ const content = {
   ko: {
     back: '에이전트로 돌아가기',
     title: '카테고리 A: 기초 에이전트',
-    subtitle: '연구 우수성을 위한 이론적 및 윤리적 기초',
-    description: '기초 에이전트는 연구의 이론적, 방법론적, 윤리적 토대를 확립합니다. Verbalized Sampling (VS) 방법론을 사용하여 전형성 스펙트럼에 걸쳐 창의적 대안을 제시함으로써 모드 붕괴를 방지합니다.',
+    subtitle: '연구 우수성을 위한 이론적 기초 — 3개 에이전트',
+    description: '기초 에이전트는 연구의 이론적, 방법론적 토대를 확립합니다. Verbalized Sampling (VS) 방법론을 사용하여 전형성 스펙트럼에 걸쳐 창의적 대안을 제시함으로써 모드 붕괴를 방지합니다.',
 
     principleTitle: '핵심 원칙',
-    principleText: '창의적 이론 선택과 엄격한 윤리 검토를 통한 모드 붕괴 방지',
+    principleText: '창의적 이론 선택, 내장된 비판, 패러다임 정렬을 통한 모드 붕괴 방지',
 
     agents: [
       {
@@ -277,7 +190,7 @@ const content = {
       },
       {
         id: 'A2',
-        name: '이론적 프레임워크 설계자',
+        name: '이론 및 비판 설계자',
         icon: 'network',
         color: '#e74c3c',
         model: 'Opus',
@@ -285,10 +198,10 @@ const content = {
         checkpoint: 'CP_THEORY_SELECTION',
         checkpointLevel: 'REQUIRED',
         vsLevel: '전체 VS 5단계',
-        purpose: '모달 이론을 피하고 롱테일 대안을 탐색하는 이론적 프레임워크 설계',
+        purpose: '이론적 프레임워크 설계, 자기 비판 생성, 개념적 모델 시각화 — 이론 구축, 반대논변, 프레임워크 시각화를 통합',
         triggers: {
-          en: ['theoretical framework', 'theory', 'conceptual model', 'theoretical foundation'],
-          ko: ['이론적 프레임워크', '이론적 틀', '이론', '개념적 모형'],
+          en: ['theoretical framework', 'theory', 'conceptual model', 'theoretical foundation', 'critique', 'visualize framework'],
+          ko: ['이론적 프레임워크', '이론적 틀', '이론', '개념적 모형', '비판', '프레임워크 시각화'],
         },
         capabilities: [
           '모달 이론 식별 (T > 0.8)',
@@ -296,68 +209,15 @@ const content = {
           '이론 통합 및 하이브리드 프레임워크',
           '도메인 간 이론 적응',
           '이론으로부터 가설 도출',
+          '내장된 자기 비판 및 반대논변 (기존 A3)',
+          '"리뷰어 2" 비판 예측 및 경쟁 가설 제안',
+          'Mermaid 다이어그램을 통한 개념적 프레임워크 시각화 (기존 A6)',
+          '변수 관계 매핑 및 매개/조절 모델',
         ],
-        vsProcess: '1단계: 모달 이론 식별(TAM, UTAUT 등) | 2단계: 차별화된 대안 생성 | 3단계: T-점수와 함께 3가지 옵션 제시 | 4단계: 인간 선택 | 5단계: 프레임워크 정교화',
+        vsProcess: '1단계: 모달 이론 식별(TAM, UTAUT 등) | 2단계: 차별화된 대안 생성 | 3단계: 각 옵션 자기 비판 | 4단계: T-점수와 함께 3가지 옵션 제시 | 5단계: 인간 선택 | 6단계: 프레임워크 정교화 및 시각화',
         example: {
           input: '"교육에서 AI 채택"',
-          output: '모달 (T=0.92): TAM | 방향 A (T≈0.6): 자기결정이론 × TAM 통합 | 방향 B (T≈0.4): 인지부하이론 + 적응형 생태계 | 방향 C (T<0.3): 신경가소성 기반 기술 학습 프레임워크',
-        },
-      },
-      {
-        id: 'A3',
-        name: '반대논변자',
-        icon: 'shieldAlert',
-        color: '#c0392b',
-        model: 'Opus',
-        tier: 'HIGH',
-        checkpoint: '없음',
-        checkpointLevel: '자문',
-        vsLevel: '전체 VS 5단계',
-        purpose: '연구 설계를 스트레스 테스트하기 위한 독창적 비판과 대안 설명 생성',
-        triggers: {
-          en: ['criticism', 'weakness', 'reviewer 2', 'critique', 'alternative explanation', 'rebuttal'],
-          ko: ['비판', '약점', '반론', '대안 설명', '리뷰어', '반박'],
-        },
-        capabilities: [
-          '"리뷰어 2" 비판 예측',
-          '창의적 대안 설명 생성',
-          '논리적 오류 및 가정 식별',
-          '경쟁 가설 제안',
-          '동료 심사 시나리오 시뮬레이션',
-        ],
-        vsProcess: '예측 가능한 비판 회피, 전형성 스펙트럼에 걸쳐 창의적 도전 생성, 새로운 반론 우선순위 지정',
-        example: {
-          input: '"AI 챗봇이 학습 성과를 향상시킨다"',
-          output: '비판 A: 신기함 효과 (T≈0.7) | 비판 B: 측정 인공물 - 챗봇이 구조화된 연습을 강제함, AI 품질이 아님 (T≈0.4) | 비판 C: 자기선택 편향 - 기술에 능숙한 학습자가 챗봇을 더 많이 사용 (T≈0.2)',
-        },
-      },
-      {
-        id: 'A4',
-        name: '연구윤리 조언자',
-        icon: 'scale',
-        color: '#d35400',
-        model: 'Sonnet',
-        tier: 'MEDIUM',
-        checkpoint: 'CP_METHODOLOGY_APPROVAL',
-        checkpointLevel: 'REQUIRED',
-        vsLevel: '향상된 VS 3단계',
-        purpose: '일반적인 체크리스트를 피하는 맥락 적응형 윤리 분석',
-        triggers: {
-          en: ['ethics', 'IRB', 'consent', 'informed consent', 'privacy', 'vulnerable populations'],
-          ko: ['연구 윤리', 'IRB', '동의서', '개인정보', '취약 집단'],
-        },
-        capabilities: [
-          'IRB 프로토콜 개발',
-          '사전 동의서 설계',
-          '개인정보 및 기밀성 보호',
-          '취약 집단 보호 장치',
-          '데이터 보안 및 익명화',
-          '윤리적 위험 평가',
-        ],
-        vsProcess: '1단계: 맥락 분석 | 2단계: 연구별 윤리적 고려사항 | 3단계: 맞춤형 권장사항 (일반 체크리스트 아님)',
-        example: {
-          input: '"AI 사용에 대해 K-12 학생 인터뷰"',
-          output: '부모 동의 + 아동 동의 필요 | 개인정보: 학교/위치 익명화 | 위험: 또래 식별 최소화 | 데이터 보안: 암호화된 저장, 제한된 접근 | 철회: 언제든지 중단할 권리 강조',
+          output: '모달 (T=0.92): TAM | 방향 A (T≈0.6): 자기결정이론 x TAM 통합 | 방향 B (T≈0.4): 인지부하이론 + 적응형 생태계 | 방향 C (T<0.3): 신경가소성 기반 기술 학습 프레임워크 | 자기 비판: 방향 A는 피상적 통합 위험...',
         },
       },
       {
@@ -388,44 +248,14 @@ const content = {
           output: '먼저 명확히: 연구하는 현실의 본질은 무엇인가요? (존재론) | 그것에 대한 지식은 어떻게 획득될 수 있나요? (인식론) | 그런 다음 권장: 실증주의 → 양적, 해석주의 → 질적, 실용주의 → 혼합',
         },
       },
-      {
-        id: 'A6',
-        name: '개념적 프레임워크 시각화자',
-        icon: 'network',
-        color: '#e67e22',
-        model: 'Sonnet',
-        tier: 'MEDIUM',
-        checkpoint: 'CP_VISUALIZATION_PREFERENCE',
-        checkpointLevel: 'OPTIONAL',
-        vsLevel: '향상된 VS 3단계',
-        purpose: '일반적인 다이어그램을 피하는 차별화된 학술 시각화 생성',
-        triggers: {
-          en: ['conceptual framework', 'visualize framework', 'framework diagram', 'visual model'],
-          ko: ['개념적 프레임워크', '프레임워크 시각화', '모형 다이어그램'],
-        },
-        capabilities: [
-          'Mermaid 다이어그램 생성',
-          '변수 관계 매핑',
-          '매개/조절 모델',
-          '프로세스 흐름도',
-          '이론-가설 시각적 변환',
-        ],
-        vsProcess: '1단계: 프레임워크 복잡성 이해 | 2단계: 레이아웃 대안 생성 | 3단계: 차별화된 시각적 옵션 제시',
-        example: {
-          input: '"AI 챗봇 → 메타인지 → 학습 성과"',
-          output: 'Mermaid 순서도: AI 챗봇 기능 → 메타인지 전략(매개자) → 학습 성과 | 조절 변수 포함: 사전 지식, 자기효능감',
-        },
-      },
     ],
 
     checkpointTitle: '체크포인트 통합',
     checkpointDescription: '기초 에이전트는 중요한 결정 지점을 강제합니다:',
     checkpoints: [
       { id: 'CP_RESEARCH_DIRECTION', level: 'REQUIRED', agent: 'A1', description: '연구 질문 확정, VS 대안 제시됨' },
-      { id: 'CP_THEORY_SELECTION', level: 'REQUIRED', agent: 'A2', description: 'VS 옵션에서 이론적 프레임워크 선택됨' },
+      { id: 'CP_THEORY_SELECTION', level: 'REQUIRED', agent: 'A2', description: 'VS 옵션에서 이론적 프레임워크 선택됨 (비판 및 시각화 포함)' },
       { id: 'CP_PARADIGM_SELECTION', level: 'REQUIRED', agent: 'A5', description: '패러다임 확인됨 (양적/질적/혼합)' },
-      { id: 'CP_METHODOLOGY_APPROVAL', level: 'REQUIRED', agent: 'A4', description: '윤리 검토 완료, IRB 준비됨' },
-      { id: 'CP_VISUALIZATION_PREFERENCE', level: 'OPTIONAL', agent: 'A6', description: '시각적 형식 선택됨' },
     ],
 
     vsTitle: '작동 중인 Verbalized Sampling (VS)',
@@ -442,9 +272,7 @@ const content = {
     workflowSteps: [
       { agent: 'A1', action: '연구 질문 정제', checkpoint: 'CP_RESEARCH_DIRECTION', parallel: false },
       { agent: 'A5', action: '패러다임 선택', checkpoint: 'CP_PARADIGM_SELECTION', parallel: false },
-      { agent: 'A2 + A3', action: '이론 개발 + 비판', checkpoint: 'CP_THEORY_SELECTION', parallel: true },
-      { agent: 'A6', action: '프레임워크 시각화', checkpoint: 'CP_VISUALIZATION_PREFERENCE', parallel: false },
-      { agent: 'A4', action: '윤리 검토', checkpoint: 'CP_METHODOLOGY_APPROVAL', parallel: false },
+      { agent: 'A2', action: '이론 개발, 자기 비판, 프레임워크 시각화', checkpoint: 'CP_THEORY_SELECTION', parallel: false },
     ],
 
     ctaTitle: '강력한 연구 기초 구축',
@@ -457,8 +285,6 @@ const content = {
 const agentIcons: Record<string, React.ReactNode> = {
   lightbulb: <Lightbulb className="h-6 w-6" />,
   network: <Network className="h-6 w-6" />,
-  shieldAlert: <ShieldAlert className="h-6 w-6" />,
-  scale: <Scale className="h-6 w-6" />,
   compass: <Compass className="h-6 w-6" />,
 };
 

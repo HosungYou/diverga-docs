@@ -6,14 +6,13 @@ import { motion } from 'framer-motion';
 import {
   ArrowLeft,
   BarChart3,
-  Code2,
   FileText,
   GitMerge,
-  Shield,
   Activity,
   AlertCircle,
   CheckCircle2,
   Clock,
+  Code2,
 } from 'lucide-react';
 
 const content = {
@@ -31,7 +30,7 @@ const content = {
     agents: [
       {
         id: 'E1',
-        name: 'Quantitative Analysis Guide',
+        name: 'Quantitative Analysis & Code Gen',
         icon: 'barChart3',
         color: '#1abc9c',
         model: 'Opus',
@@ -39,10 +38,10 @@ const content = {
         checkpoint: 'CP_ANALYSIS_PLAN',
         checkpointLevel: 'RECOMMENDED',
         vsLevel: 'Enhanced VS 3-Phase',
-        purpose: 'Guide statistical analysis selection, assumption checking, and interpretation for quantitative research',
+        purpose: 'Guide statistical analysis selection, assumption checking, interpretation, code generation (R, Python, SPSS, Stata, Mplus), and sensitivity analysis',
         triggers: {
-          en: ['statistical analysis', 'ANOVA', 'regression', 'SEM', 't-test', 'chi-square', 'multilevel modeling'],
-          ko: ['통계 분석', '회귀', '분산분석', '구조방정식', 't검정', '카이제곱', '다층모형'],
+          en: ['statistical analysis', 'ANOVA', 'regression', 'SEM', 't-test', 'chi-square', 'multilevel modeling', 'R code', 'Python code', 'SPSS syntax', 'Stata code', 'Mplus', 'analysis script', 'code generation', 'sensitivity analysis', 'robustness check', 'specification curve'],
+          ko: ['통계 분석', '회귀', '분산분석', '구조방정식', 't검정', '카이제곱', '다층모형', 'R 코드', 'Python 코드', 'SPSS', 'Stata', '분석 코드', '코드 생성', '민감도 분석', '강건성 검증'],
         },
         capabilities: [
           'Descriptive statistics and exploratory data analysis',
@@ -51,11 +50,15 @@ const content = {
           'Effect size calculation and interpretation',
           'Multilevel and longitudinal modeling',
           'Meta-analysis techniques',
+          'Code generation: R (tidyverse, lavaan, lme4, psych), Python (pandas, statsmodels, scipy, scikit-learn)',
+          'Code generation: SPSS syntax, Stata commands, Mplus syntax, NVivo/ATLAS.ti queries',
+          'Sensitivity analysis: outlier influence, model specification alternatives, multiverse/specification curve',
+          'Robustness checks: assumption relaxation, subgroup analysis, meta-analysis sensitivity',
         ],
-        vsProcess: 'Phase 1: Understand research design and data structure | Phase 2: Modal analysis awareness (e.g., t-test/ANOVA dominance) | Phase 3: Present differentiated analytical strategies with rationale',
+        vsProcess: 'Phase 1: Understand research design and data structure | Phase 2: Modal analysis awareness (e.g., t-test/ANOVA dominance) | Phase 3: Present differentiated analytical strategies with executable code and sensitivity checks',
         example: {
           input: '"Compare learning outcomes across 3 groups with pre-post measures"',
-          output: 'Modal (T≈0.8): Repeated measures ANOVA | Direction A (T≈0.5): ANCOVA with pretest covariate | Direction B (T≈0.3): Growth curve modeling with group × time interaction | Recommended: ANCOVA controls for baseline differences, SEM for mediation paths',
+          output: 'Modal (T≈0.8): Repeated measures ANOVA | Direction A (T≈0.5): ANCOVA with pretest covariate | Direction B (T≈0.3): Growth curve modeling with group × time interaction | Recommended: ANCOVA controls for baseline differences, SEM for mediation paths | Code: R/SPSS/Stata generated | Sensitivity: specification curve across model variants',
         },
       },
       {
@@ -116,64 +119,6 @@ const content = {
           output: 'Strategy A (T≈0.6): Joint display comparing themes to scale scores | Strategy B (T≈0.4): Quantitize themes → cluster analysis → qual explanation of clusters | Strategy C (T≈0.2): Configurational analysis (QCA) blending both strands | Meta-inference: How do lived experiences explain statistical patterns?',
         },
       },
-      {
-        id: 'E4',
-        name: 'Analysis Code Generator',
-        icon: 'code2',
-        color: '#0d9488',
-        model: 'Haiku',
-        tier: 'LOW',
-        checkpoint: 'None',
-        checkpointLevel: 'None',
-        vsLevel: 'Light VS Applied',
-        purpose: 'Generate executable analysis code in R, Python, SPSS, Stata, Mplus, and CAQDAS software',
-        triggers: {
-          en: ['R code', 'Python code', 'SPSS syntax', 'Stata code', 'Mplus', 'analysis script', 'code generation'],
-          ko: ['R 코드', 'Python 코드', 'SPSS', 'Stata', '분석 코드', '코드 생성'],
-        },
-        capabilities: [
-          'R syntax (tidyverse, lavaan, lme4, psych)',
-          'Python code (pandas, statsmodels, scipy, scikit-learn)',
-          'SPSS syntax (GLM, MIXED, PROCESS macro)',
-          'Stata commands (reg, xtmixed, sem)',
-          'Mplus syntax (SEM, LCA, multilevel)',
-          'NVivo/ATLAS.ti query generation',
-        ],
-        vsProcess: 'Modal code pattern awareness (e.g., basic lm() in R) → Present alternative implementations with best practices',
-        example: {
-          input: '"Generate R code for ANCOVA with group and pretest covariate"',
-          output: 'library(car)\nmodel <- lm(posttest ~ group + pretest, data = df)\nAnova(model, type = 3)\nsummary(model)\n# Assumptions\nshapiro.test(residuals(model))\nleveneTest(posttest ~ group, data = df)\n# Effect size\nlibrary(effectsize)\neta_squared(model)',
-        },
-      },
-      {
-        id: 'E5',
-        name: 'Sensitivity Analysis Designer',
-        icon: 'shield',
-        color: '#0c8c7f',
-        model: 'Sonnet',
-        tier: 'MEDIUM',
-        checkpoint: 'None',
-        checkpointLevel: 'Advisory',
-        vsLevel: 'Light VS Applied',
-        purpose: 'Design robustness checks and sensitivity analyses to validate findings across analytical decisions',
-        triggers: {
-          en: ['sensitivity analysis', 'robustness check', 'specification curve', 'analytical decisions', 'multiverse analysis'],
-          ko: ['민감도 분석', '강건성 검증', '분석 결정', '다중우주 분석'],
-        },
-        capabilities: [
-          'Outlier influence analysis',
-          'Model specification alternatives',
-          'Assumption relaxation strategies',
-          'Multiverse/specification curve analysis',
-          'Subgroup analysis planning',
-          'Meta-analysis sensitivity (leave-one-out, trim-and-fill)',
-        ],
-        vsProcess: 'Modal sensitivity awareness (e.g., simple outlier removal) → Extended analysis strategy presentation',
-        example: {
-          input: '"Check if regression results hold under different specifications"',
-          output: 'Sensitivity Tests:\n1. Outlier influence: Cook\'s D, DFBETAS\n2. Model variations: Linear, quadratic, log-transformed DV\n3. Covariate robustness: +/- control variables\n4. Subgroup analysis: By gender, experience level\n5. Specification curve: Test all reasonable models, plot β distribution\nResult interpretation: Findings robust if effect direction/significance consistent across 80%+ specs',
-        },
-      },
     ],
 
     // Checkpoint integration
@@ -187,9 +132,7 @@ const content = {
     // Typical workflow
     workflowTitle: 'Typical Analysis Workflow',
     workflowSteps: [
-      { agent: 'E1 / E2', action: 'Select analysis approach (paradigm-specific)', checkpoint: 'CP_ANALYSIS_PLAN', parallel: false },
-      { agent: 'E4', action: 'Generate executable code', checkpoint: 'None', parallel: false },
-      { agent: 'E5', action: 'Design sensitivity analysis', checkpoint: 'None', parallel: false },
+      { agent: 'E1 / E2', action: 'Select analysis approach, generate code, and design sensitivity checks (paradigm-specific)', checkpoint: 'CP_ANALYSIS_PLAN', parallel: false },
       { agent: 'E3', action: 'Integration strategy (if mixed methods)', checkpoint: 'CP_INTEGRATION_STRATEGY', parallel: false },
     ],
 
@@ -197,14 +140,14 @@ const content = {
     paradigmTitle: 'Paradigm Coverage',
     paradigmDescription: 'Analysis agents adapt to your research paradigm:',
     paradigms: [
-      { name: 'Quantitative', agents: ['E1', 'E4', 'E5'], description: 'Statistical analysis, code generation, robustness checks' },
-      { name: 'Qualitative', agents: ['E2', 'E4', 'E5'], description: 'Coding strategies, CAQDAS support, trustworthiness' },
-      { name: 'Mixed Methods', agents: ['E1', 'E2', 'E3', 'E4', 'E5'], description: 'Full pipeline with integration strategies' },
+      { name: 'Quantitative', agents: ['E1'], description: 'Statistical analysis, code generation, sensitivity/robustness checks' },
+      { name: 'Qualitative', agents: ['E2'], description: 'Coding strategies, CAQDAS support, trustworthiness' },
+      { name: 'Mixed Methods', agents: ['E1', 'E2', 'E3'], description: 'Full pipeline with integration strategies' },
     ],
 
     // Code generation examples
     codeTitle: 'Multi-Language Code Generation',
-    codeDescription: 'E4 generates production-ready code across platforms:',
+    codeDescription: 'E1 generates production-ready code across platforms:',
     codeExamples: [
       { language: 'R', framework: 'tidyverse, lavaan, lme4', description: 'Statistical modeling and visualization' },
       { language: 'Python', framework: 'pandas, statsmodels, scipy', description: 'Data analysis and machine learning' },
@@ -231,7 +174,7 @@ const content = {
     agents: [
       {
         id: 'E1',
-        name: '양적 분석 가이드',
+        name: '양적 분석 및 코드 생성',
         icon: 'barChart3',
         color: '#1abc9c',
         model: 'Opus',
@@ -239,10 +182,10 @@ const content = {
         checkpoint: 'CP_ANALYSIS_PLAN',
         checkpointLevel: 'RECOMMENDED',
         vsLevel: '향상된 VS 3단계',
-        purpose: '양적 연구를 위한 통계 분석 선택, 가정 검증, 해석 안내',
+        purpose: '통계 분석 선택, 가정 검증, 해석, 코드 생성 (R, Python, SPSS, Stata, Mplus), 민감도 분석 안내',
         triggers: {
-          en: ['statistical analysis', 'ANOVA', 'regression', 'SEM', 't-test', 'chi-square', 'multilevel modeling'],
-          ko: ['통계 분석', '회귀', '분산분석', '구조방정식', 't검정', '카이제곱', '다층모형'],
+          en: ['statistical analysis', 'ANOVA', 'regression', 'SEM', 't-test', 'chi-square', 'multilevel modeling', 'R code', 'Python code', 'SPSS syntax', 'Stata code', 'Mplus', 'analysis script', 'code generation', 'sensitivity analysis', 'robustness check', 'specification curve'],
+          ko: ['통계 분석', '회귀', '분산분석', '구조방정식', 't검정', '카이제곱', '다층모형', 'R 코드', 'Python 코드', 'SPSS', 'Stata', '분석 코드', '코드 생성', '민감도 분석', '강건성 검증'],
         },
         capabilities: [
           '기술통계 및 탐색적 데이터 분석',
@@ -251,11 +194,15 @@ const content = {
           '효과크기 계산 및 해석',
           '다층 및 종단 모델링',
           '메타분석 기법',
+          '코드 생성: R (tidyverse, lavaan, lme4, psych), Python (pandas, statsmodels, scipy, scikit-learn)',
+          '코드 생성: SPSS 구문, Stata 명령, Mplus 구문, NVivo/ATLAS.ti 쿼리',
+          '민감도 분석: 이상치 영향, 모델 명세 대안, 다중우주/명세 곡선',
+          '강건성 검사: 가정 완화, 하위그룹 분석, 메타분석 민감도',
         ],
-        vsProcess: '1단계: 연구 설계 및 데이터 구조 이해 | 2단계: 모달 분석 인식 (예: t검정/ANOVA 우세) | 3단계: 근거와 함께 차별화된 분석 전략 제시',
+        vsProcess: '1단계: 연구 설계 및 데이터 구조 이해 | 2단계: 모달 분석 인식 (예: t검정/ANOVA 우세) | 3단계: 실행 가능한 코드 및 민감도 검사와 함께 차별화된 분석 전략 제시',
         example: {
           input: '"사전-사후 측정이 있는 3개 그룹의 학습 성과 비교"',
-          output: '모달 (T≈0.8): 반복측정 ANOVA | 방향 A (T≈0.5): 사전검사 공변량을 사용한 ANCOVA | 방향 B (T≈0.3): 그룹 × 시간 상호작용을 가진 성장곡선 모델링 | 권장사항: ANCOVA는 기저선 차이를 통제, SEM으로 매개경로 분석',
+          output: '모달 (T≈0.8): 반복측정 ANOVA | 방향 A (T≈0.5): 사전검사 공변량을 사용한 ANCOVA | 방향 B (T≈0.3): 그룹 × 시간 상호작용을 가진 성장곡선 모델링 | 권장사항: ANCOVA는 기저선 차이를 통제, SEM으로 매개경로 분석 | 코드: R/SPSS/Stata 생성 | 민감도: 모델 변형에 걸친 명세 곡선',
         },
       },
       {
@@ -316,64 +263,6 @@ const content = {
           output: '전략 A (T≈0.6): 주제를 척도 점수와 비교하는 공동 디스플레이 | 전략 B (T≈0.4): 주제 양적화 → 군집 분석 → 군집의 질적 설명 | 전략 C (T≈0.2): 두 가닥을 혼합하는 구성적 분석(QCA) | 메타추론: 체험이 통계적 패턴을 어떻게 설명하는가?',
         },
       },
-      {
-        id: 'E4',
-        name: '분석 코드 생성기',
-        icon: 'code2',
-        color: '#0d9488',
-        model: 'Haiku',
-        tier: 'LOW',
-        checkpoint: '없음',
-        checkpointLevel: '없음',
-        vsLevel: '경량 VS 적용',
-        purpose: 'R, Python, SPSS, Stata, Mplus 및 CAQDAS 소프트웨어에서 실행 가능한 분석 코드 생성',
-        triggers: {
-          en: ['R code', 'Python code', 'SPSS syntax', 'Stata code', 'Mplus', 'analysis script', 'code generation'],
-          ko: ['R 코드', 'Python 코드', 'SPSS', 'Stata', '분석 코드', '코드 생성'],
-        },
-        capabilities: [
-          'R 구문 (tidyverse, lavaan, lme4, psych)',
-          'Python 코드 (pandas, statsmodels, scipy, scikit-learn)',
-          'SPSS 구문 (GLM, MIXED, PROCESS 매크로)',
-          'Stata 명령 (reg, xtmixed, sem)',
-          'Mplus 구문 (SEM, LCA, 다층)',
-          'NVivo/ATLAS.ti 쿼리 생성',
-        ],
-        vsProcess: '모달 코드 패턴 인식 (예: R의 기본 lm()) → 모범 사례와 함께 대안 구현 제시',
-        example: {
-          input: '"그룹과 사전검사 공변량을 사용한 ANCOVA R 코드 생성"',
-          output: 'library(car)\nmodel <- lm(posttest ~ group + pretest, data = df)\nAnova(model, type = 3)\nsummary(model)\n# 가정 검증\nshapiro.test(residuals(model))\nleveneTest(posttest ~ group, data = df)\n# 효과크기\nlibrary(effectsize)\neta_squared(model)',
-        },
-      },
-      {
-        id: 'E5',
-        name: '민감도 분석 설계자',
-        icon: 'shield',
-        color: '#0c8c7f',
-        model: 'Sonnet',
-        tier: 'MEDIUM',
-        checkpoint: '없음',
-        checkpointLevel: '자문',
-        vsLevel: '경량 VS 적용',
-        purpose: '분석 결정 전반에 걸쳐 발견사항을 검증하기 위한 강건성 검사 및 민감도 분석 설계',
-        triggers: {
-          en: ['sensitivity analysis', 'robustness check', 'specification curve', 'analytical decisions', 'multiverse analysis'],
-          ko: ['민감도 분석', '강건성 검증', '분석 결정', '다중우주 분석'],
-        },
-        capabilities: [
-          '이상치 영향 분석',
-          '모델 명세 대안',
-          '가정 완화 전략',
-          '다중우주/명세 곡선 분석',
-          '하위그룹 분석 계획',
-          '메타분석 민감도 (leave-one-out, trim-and-fill)',
-        ],
-        vsProcess: '모달 민감도 인식 (예: 단순 이상치 제거) → 확장된 분석 전략 제시',
-        example: {
-          input: '"회귀 결과가 다른 명세에서 유지되는지 확인"',
-          output: '민감도 테스트:\n1. 이상치 영향: Cook\'s D, DFBETAS\n2. 모델 변형: 선형, 이차, 로그 변환 DV\n3. 공변량 강건성: +/- 통제 변수\n4. 하위그룹 분석: 성별, 경험 수준별\n5. 명세 곡선: 모든 합리적 모델 테스트, β 분포 플롯\n결과 해석: 효과 방향/유의성이 80%+ 명세에서 일관되면 발견사항 강건함',
-        },
-      },
     ],
 
     checkpointTitle: '체크포인트 통합',
@@ -385,22 +274,20 @@ const content = {
 
     workflowTitle: '일반적인 분석 워크플로',
     workflowSteps: [
-      { agent: 'E1 / E2', action: '분석 접근법 선택 (패러다임별)', checkpoint: 'CP_ANALYSIS_PLAN', parallel: false },
-      { agent: 'E4', action: '실행 가능한 코드 생성', checkpoint: '없음', parallel: false },
-      { agent: 'E5', action: '민감도 분석 설계', checkpoint: '없음', parallel: false },
+      { agent: 'E1 / E2', action: '분석 접근법 선택, 코드 생성, 민감도 검사 설계 (패러다임별)', checkpoint: 'CP_ANALYSIS_PLAN', parallel: false },
       { agent: 'E3', action: '통합 전략 (혼합방법인 경우)', checkpoint: 'CP_INTEGRATION_STRATEGY', parallel: false },
     ],
 
     paradigmTitle: '패러다임 커버리지',
     paradigmDescription: '분석 에이전트는 연구 패러다임에 적응합니다:',
     paradigms: [
-      { name: '양적', agents: ['E1', 'E4', 'E5'], description: '통계 분석, 코드 생성, 강건성 검사' },
-      { name: '질적', agents: ['E2', 'E4', 'E5'], description: '코딩 전략, CAQDAS 지원, 신뢰성' },
-      { name: '혼합방법', agents: ['E1', 'E2', 'E3', 'E4', 'E5'], description: '통합 전략을 가진 전체 파이프라인' },
+      { name: '양적', agents: ['E1'], description: '통계 분석, 코드 생성, 민감도/강건성 검사' },
+      { name: '질적', agents: ['E2'], description: '코딩 전략, CAQDAS 지원, 신뢰성' },
+      { name: '혼합방법', agents: ['E1', 'E2', 'E3'], description: '통합 전략을 가진 전체 파이프라인' },
     ],
 
     codeTitle: '다중 언어 코드 생성',
-    codeDescription: 'E4는 플랫폼 전반에 걸쳐 프로덕션 준비 코드를 생성합니다:',
+    codeDescription: 'E1은 플랫폼 전반에 걸쳐 프로덕션 준비 코드를 생성합니다:',
     codeExamples: [
       { language: 'R', framework: 'tidyverse, lavaan, lme4', description: '통계 모델링 및 시각화' },
       { language: 'Python', framework: 'pandas, statsmodels, scipy', description: '데이터 분석 및 머신러닝' },
@@ -421,8 +308,6 @@ const agentIcons: Record<string, React.ReactNode> = {
   barChart3: <BarChart3 className="h-6 w-6" />,
   fileText: <FileText className="h-6 w-6" />,
   gitMerge: <GitMerge className="h-6 w-6" />,
-  code2: <Code2 className="h-6 w-6" />,
-  shield: <Shield className="h-6 w-6" />,
 };
 
 const checkpointIcons: Record<string, React.ReactNode> = {

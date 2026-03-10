@@ -7,8 +7,6 @@ import {
   ArrowLeft,
   MessageSquare,
   FileText,
-  Users,
-  ClipboardCheck,
   Scan,
   Wand2,
   AlertCircle,
@@ -22,7 +20,7 @@ const content = {
     back: 'Back to Agents',
     title: 'Category G: Communication Agents',
     subtitle: 'Academic writing, dissemination, and humanization pipeline',
-    description: 'Communication agents handle the entire publication lifecycle from journal selection to peer review response, with advanced humanization capabilities to transform AI-generated text into natural academic prose while preserving scholarly integrity.',
+    description: 'Communication agents handle the entire publication lifecycle from journal selection through peer review response and preregistration, with advanced humanization capabilities to transform AI-generated text into natural academic prose while preserving scholarly integrity. 4 agents cover journal matching, publication management, and academic style optimization.',
 
     // Core principle
     principleTitle: 'Core Principle',
@@ -60,86 +58,34 @@ const content = {
       },
       {
         id: 'G2',
-        name: 'Academic Communicator',
+        name: 'Publication Specialist',
         icon: 'messageSquare',
         color: '#2980b9',
         model: 'Sonnet',
         tier: 'MEDIUM',
         checkpoint: 'None',
         checkpointLevel: 'Advisory',
-        vsLevel: 'Standard',
-        purpose: 'Adapt research findings for different audiences (abstracts, plain language, presentations)',
+        vsLevel: 'Enhanced VS 3-Phase',
+        purpose: 'Comprehensive publication management — from manuscript writing and audience adaptation to peer review response, preregistration, consistency checking, reporting checklists, and reproducibility auditing',
         triggers: {
-          en: ['abstract', 'plain language', 'presentation', 'write paper', 'manuscript'],
-          ko: ['초록', '쉬운 언어', '발표', '논문 작성', '원고'],
+          en: ['abstract', 'plain language', 'presentation', 'write paper', 'manuscript', 'peer review', 'reviewer', 'revision', 'response letter', 'rebuttal', 'preregistration', 'pre-register', 'OSF', 'AsPredicted', 'registered report', 'consistency', 'reporting checklist', 'reproducibility'],
+          ko: ['초록', '쉬운 언어', '발표', '논문 작성', '원고', '동료 심사', '리뷰어', '수정', '응답서', '반박', '사전등록', 'OSF', '등록보고서', '일관성', '보고 체크리스트', '재현성'],
         },
         capabilities: [
           'Abstract writing (structured, unstructured)',
           'Plain language summaries for non-specialists',
           'Conference presentation design',
           'Research poster layout',
-          'Infographic generation for key findings',
+          'Peer review response strategy and rebuttal drafting (absorbed G3)',
+          'Preregistration template completion — OSF, AsPredicted, Registered Reports (absorbed G4)',
+          'Manuscript consistency checking across sections',
+          'Reporting checklists (CONSORT, STROBE, COREQ, etc.)',
+          'Reproducibility auditing and documentation',
         ],
-        vsProcess: 'Tailor communication style to audience, balance technical precision with accessibility',
+        vsProcess: 'Phase 1: Analyze communication needs and audience | Phase 2: Draft content with consistency checks | Phase 3: Validate against reporting guidelines and reproducibility standards',
         example: {
           input: '"Write plain language summary of my RCT on AI chatbots"',
           output: 'Technical abstract (250 words) for journal | Plain language summary (150 words) for general public: "AI chatbots helped students improve speaking skills by 23%. Students practiced more often because chatbots were available 24/7 and didn\'t judge mistakes." | Key visual: Before/after speaking proficiency chart',
-        },
-      },
-      {
-        id: 'G3',
-        name: 'Peer Review Strategist',
-        icon: 'users',
-        color: '#1f618d',
-        model: 'Opus',
-        tier: 'HIGH',
-        checkpoint: 'CP_RESPONSE_APPROVAL',
-        checkpointLevel: 'RECOMMENDED',
-        vsLevel: 'Enhanced VS 3-Phase',
-        purpose: 'Strategic response to peer review comments, revision planning, rebuttal drafting',
-        triggers: {
-          en: ['peer review', 'reviewer', 'revision', 'response letter', 'rebuttal'],
-          ko: ['동료 심사', '리뷰어', '수정', '응답서', '반박'],
-        },
-        capabilities: [
-          'Reviewer comment categorization (substantive vs. minor)',
-          'Response strategy (concede, defend, clarify)',
-          'Rebuttal letter drafting',
-          'Revision tracking and documentation',
-          'Disagreement handling with diplomatic language',
-        ],
-        vsProcess: 'Phase 1: Analyze reviewer intent | Phase 2: Prioritize changes | Phase 3: Draft strategic responses balancing revision effort and editorial satisfaction',
-        example: {
-          input: '"Reviewer 2 says my sample size is too small and theory is weak"',
-          output: 'Sample size: CONCEDE - Acknowledge limitation, add power analysis post-hoc, discuss in limitations section | Theory: DEFEND - Provide additional citations, clarify theoretical contribution, add conceptual framework diagram | Strategy: Address sample size fully, strengthen theory section modestly, show responsiveness without major overhaul',
-        },
-      },
-      {
-        id: 'G4',
-        name: 'Preregistration Composer',
-        icon: 'clipboardCheck',
-        color: '#2c3e50',
-        model: 'Sonnet',
-        tier: 'MEDIUM',
-        checkpoint: 'CP_PREREGISTRATION_APPROVAL',
-        checkpointLevel: 'RECOMMENDED',
-        vsLevel: 'Standard',
-        purpose: 'Structured preregistration templates for OSF, AsPredicted, and registered reports',
-        triggers: {
-          en: ['preregistration', 'pre-register', 'OSF', 'AsPredicted', 'registered report'],
-          ko: ['사전등록', 'OSF', '등록보고서'],
-        },
-        capabilities: [
-          'OSF Preregistration template completion',
-          'AsPredicted 9-question format',
-          'Registered Report Stage 1 protocol',
-          'Analysis plan specification (prevent HARKing)',
-          'Version control and timestamp documentation',
-        ],
-        vsProcess: 'Guide through template sections, ensure specificity to prevent post-hoc flexibility, document analysis decisions',
-        example: {
-          input: '"I want to preregister my RCT on AI tutoring"',
-          output: 'Template: OSF Preregistration (most comprehensive) | Key sections: (1) Hypotheses: H1 (AI > control, d≥0.5), H2 (moderated by prior knowledge) | (2) Analysis plan: ANCOVA with baseline covariate, α=.05, Bonferroni correction | (3) Sample size: N=120 (G*Power, 80% power) | (4) Stopping rule: Fixed N, no interim analysis | Timestamp: Lock before data collection',
         },
       },
       {
@@ -228,8 +174,6 @@ const content = {
     checkpointTitle: 'Checkpoint Integration',
     checkpointDescription: 'Communication agents enforce publication readiness:',
     checkpoints: [
-      { id: 'CP_RESPONSE_APPROVAL', level: 'RECOMMENDED', agent: 'G3', description: 'Peer review response strategy confirmed' },
-      { id: 'CP_PREREGISTRATION_APPROVAL', level: 'RECOMMENDED', agent: 'G4', description: 'Preregistration template complete and locked' },
       { id: 'CP_HUMANIZATION_REVIEW', level: 'RECOMMENDED', agent: 'G5', description: 'AI pattern audit complete' },
       { id: 'CP_HUMANIZATION_VERIFY', level: 'OPTIONAL', agent: 'G6', description: 'Transformation verified for integrity' },
     ],
@@ -238,10 +182,9 @@ const content = {
     workflowTitle: 'Typical Publication Workflow',
     workflowSteps: [
       { agent: 'G1', action: 'Select target journal', checkpoint: 'None', parallel: false },
-      { agent: 'G2', action: 'Write abstract and manuscript', checkpoint: 'None', parallel: false },
+      { agent: 'G2', action: 'Write manuscript, preregister, and prepare reporting checklists', checkpoint: 'None', parallel: false },
       { agent: 'G5 → G6', action: 'Audit and humanize draft', checkpoint: 'CP_HUMANIZATION_REVIEW', parallel: false },
-      { agent: 'G4', action: 'Preregister if applicable', checkpoint: 'CP_PREREGISTRATION_APPROVAL', parallel: false },
-      { agent: 'G3', action: 'Respond to peer review', checkpoint: 'CP_RESPONSE_APPROVAL', parallel: false },
+      { agent: 'G2', action: 'Respond to peer review and verify reproducibility', checkpoint: 'None', parallel: false },
     ],
 
     // Ethics note
@@ -251,13 +194,13 @@ const content = {
     // CTA
     ctaTitle: 'Master Research Communication',
     ctaDescription: 'Use Category G agents for publication success and natural academic writing.',
-    ctaButton: 'Explore Category H: Specialized',
+    ctaButton: 'Explore Category X: Cross-Cutting',
   },
   ko: {
     back: '에이전트로 돌아가기',
     title: '카테고리 G: 커뮤니케이션 에이전트',
     subtitle: '학술 글쓰기, 보급, 및 휴먼화 파이프라인',
-    description: '커뮤니케이션 에이전트는 저널 선택부터 동료 심사 응답까지 전체 출판 생애주기를 처리하며, AI 생성 텍스트를 학술적 무결성을 유지하면서 자연스러운 학술 문장으로 변환하는 고급 휴먼화 기능을 제공합니다.',
+    description: '커뮤니케이션 에이전트는 저널 선택부터 동료 심사 응답 및 사전등록까지 전체 출판 생애주기를 처리하며, AI 생성 텍스트를 학술적 무결성을 유지하면서 자연스러운 학술 문장으로 변환하는 고급 휴먼화 기능을 제공합니다. 4개 에이전트가 저널 매칭, 출판 관리, 학술 스타일 최적화를 담당합니다.',
 
     principleTitle: '핵심 원칙',
     principleText: '명확한 커뮤니케이션, 전략적 출판, 자연스러운 학술 글쓰기',
@@ -293,86 +236,34 @@ const content = {
       },
       {
         id: 'G2',
-        name: '학술 커뮤니케이터',
+        name: '출판 전문가',
         icon: 'messageSquare',
         color: '#2980b9',
         model: 'Sonnet',
         tier: 'MEDIUM',
         checkpoint: '없음',
         checkpointLevel: 'Advisory',
-        vsLevel: '표준',
-        purpose: '다양한 청중을 위한 연구 결과 적응 (초록, 쉬운 언어, 발표)',
+        vsLevel: '향상된 VS 3단계',
+        purpose: '종합적 출판 관리 — 원고 작성 및 청중 적응부터 동료 심사 응답, 사전등록, 일관성 검사, 보고 체크리스트, 재현성 감사까지',
         triggers: {
-          en: ['abstract', 'plain language', 'presentation', 'write paper', 'manuscript'],
-          ko: ['초록', '쉬운 언어', '발표', '논문 작성', '원고'],
+          en: ['abstract', 'plain language', 'presentation', 'write paper', 'manuscript', 'peer review', 'reviewer', 'revision', 'response letter', 'rebuttal', 'preregistration', 'pre-register', 'OSF', 'AsPredicted', 'registered report', 'consistency', 'reporting checklist', 'reproducibility'],
+          ko: ['초록', '쉬운 언어', '발표', '논문 작성', '원고', '동료 심사', '리뷰어', '수정', '응답서', '반박', '사전등록', 'OSF', '등록보고서', '일관성', '보고 체크리스트', '재현성'],
         },
         capabilities: [
           '초록 작성 (구조화, 비구조화)',
           '비전문가를 위한 쉬운 언어 요약',
           '학회 발표 디자인',
           '연구 포스터 레이아웃',
-          '주요 발견을 위한 인포그래픽 생성',
+          '동료 심사 응답 전략 및 반박서 초안 작성 (G3 흡수)',
+          '사전등록 템플릿 완성 — OSF, AsPredicted, 등록 보고서 (G4 흡수)',
+          '섹션 간 원고 일관성 검사',
+          '보고 체크리스트 (CONSORT, STROBE, COREQ 등)',
+          '재현성 감사 및 문서화',
         ],
-        vsProcess: '청중에 맞게 커뮤니케이션 스타일 조정, 기술적 정확성과 접근성 균형',
+        vsProcess: '1단계: 커뮤니케이션 요구사항 및 청중 분석 | 2단계: 일관성 검사와 함께 콘텐츠 초안 작성 | 3단계: 보고 지침 및 재현성 기준에 대한 검증',
         example: {
           input: '"AI 챗봇에 대한 내 RCT의 쉬운 언어 요약 작성"',
           output: '저널용 기술 초록 (250단어) | 일반 대중용 쉬운 언어 요약 (150단어): "AI 챗봇이 학생들의 말하기 기술을 23% 향상시켰습니다. 챗봇이 24/7 사용 가능하고 실수를 판단하지 않아 학생들이 더 자주 연습했습니다." | 주요 시각: 말하기 능숙도 전후 차트',
-        },
-      },
-      {
-        id: 'G3',
-        name: '동료 심사 전략가',
-        icon: 'users',
-        color: '#1f618d',
-        model: 'Opus',
-        tier: 'HIGH',
-        checkpoint: 'CP_RESPONSE_APPROVAL',
-        checkpointLevel: 'RECOMMENDED',
-        vsLevel: '향상된 VS 3단계',
-        purpose: '동료 심사 의견에 대한 전략적 응답, 수정 계획, 반박 초안',
-        triggers: {
-          en: ['peer review', 'reviewer', 'revision', 'response letter', 'rebuttal'],
-          ko: ['동료 심사', '리뷰어', '수정', '응답서', '반박'],
-        },
-        capabilities: [
-          '리뷰어 의견 분류 (실질적 vs. 사소한)',
-          '응답 전략 (수용, 방어, 명확화)',
-          '반박서 초안 작성',
-          '수정 추적 및 문서화',
-          '외교적 언어로 불일치 처리',
-        ],
-        vsProcess: '1단계: 리뷰어 의도 분석 | 2단계: 변경 우선순위 지정 | 3단계: 수정 노력과 편집 만족도 균형을 맞춘 전략적 응답 초안',
-        example: {
-          input: '"리뷰어 2가 내 표본 크기가 너무 작고 이론이 약하다고 합니다"',
-          output: '표본 크기: 수용 - 한계 인정, 사후 검정력 분석 추가, 한계 섹션에서 논의 | 이론: 방어 - 추가 인용 제공, 이론적 기여 명확화, 개념적 프레임워크 다이어그램 추가 | 전략: 표본 크기 완전히 해결, 이론 섹션 적당히 강화, 대대적 개편 없이 반응성 보여주기',
-        },
-      },
-      {
-        id: 'G4',
-        name: '사전등록 작성자',
-        icon: 'clipboardCheck',
-        color: '#2c3e50',
-        model: 'Sonnet',
-        tier: 'MEDIUM',
-        checkpoint: 'CP_PREREGISTRATION_APPROVAL',
-        checkpointLevel: 'RECOMMENDED',
-        vsLevel: '표준',
-        purpose: 'OSF, AsPredicted, 및 등록 보고서를 위한 구조화된 사전등록 템플릿',
-        triggers: {
-          en: ['preregistration', 'pre-register', 'OSF', 'AsPredicted', 'registered report'],
-          ko: ['사전등록', 'OSF', '등록보고서'],
-        },
-        capabilities: [
-          'OSF 사전등록 템플릿 완성',
-          'AsPredicted 9질문 형식',
-          '등록 보고서 1단계 프로토콜',
-          '분석 계획 명세 (HARKing 방지)',
-          '버전 제어 및 타임스탬프 문서화',
-        ],
-        vsProcess: '템플릿 섹션을 통해 안내, 사후 유연성 방지를 위한 구체성 보장, 분석 결정 문서화',
-        example: {
-          input: '"AI 튜터링에 대한 내 RCT를 사전등록하고 싶어요"',
-          output: '템플릿: OSF 사전등록 (가장 포괄적) | 주요 섹션: (1) 가설: H1 (AI > 통제, d≥0.5), H2 (사전 지식에 의해 조절됨) | (2) 분석 계획: 기준선 공변량이 있는 ANCOVA, α=.05, Bonferroni 보정 | (3) 표본 크기: N=120 (G*Power, 80% 검정력) | (4) 중단 규칙: 고정 N, 중간 분석 없음 | 타임스탬프: 데이터 수집 전 잠금',
         },
       },
       {
@@ -459,8 +350,6 @@ const content = {
     checkpointTitle: '체크포인트 통합',
     checkpointDescription: '커뮤니케이션 에이전트는 출판 준비 상태를 강제합니다:',
     checkpoints: [
-      { id: 'CP_RESPONSE_APPROVAL', level: 'RECOMMENDED', agent: 'G3', description: '동료 심사 응답 전략 확인됨' },
-      { id: 'CP_PREREGISTRATION_APPROVAL', level: 'RECOMMENDED', agent: 'G4', description: '사전등록 템플릿 완료 및 잠금' },
       { id: 'CP_HUMANIZATION_REVIEW', level: 'RECOMMENDED', agent: 'G5', description: 'AI 패턴 감사 완료' },
       { id: 'CP_HUMANIZATION_VERIFY', level: 'OPTIONAL', agent: 'G6', description: '무결성을 위한 변환 검증됨' },
     ],
@@ -468,10 +357,9 @@ const content = {
     workflowTitle: '일반적인 출판 워크플로',
     workflowSteps: [
       { agent: 'G1', action: '목표 저널 선택', checkpoint: '없음', parallel: false },
-      { agent: 'G2', action: '초록 및 원고 작성', checkpoint: '없음', parallel: false },
+      { agent: 'G2', action: '원고 작성, 사전등록, 보고 체크리스트 준비', checkpoint: '없음', parallel: false },
       { agent: 'G5 → G6', action: '초안 감사 및 휴먼화', checkpoint: 'CP_HUMANIZATION_REVIEW', parallel: false },
-      { agent: 'G4', action: '해당 시 사전등록', checkpoint: 'CP_PREREGISTRATION_APPROVAL', parallel: false },
-      { agent: 'G3', action: '동료 심사 응답', checkpoint: 'CP_RESPONSE_APPROVAL', parallel: false },
+      { agent: 'G2', action: '동료 심사 응답 및 재현성 검증', checkpoint: '없음', parallel: false },
     ],
 
     ethicsTitle: '윤리 참고사항: 책임 있는 AI 사용',
@@ -479,7 +367,7 @@ const content = {
 
     ctaTitle: '연구 커뮤니케이션 마스터하기',
     ctaDescription: '출판 성공과 자연스러운 학술 글쓰기를 위해 카테고리 G 에이전트를 사용하세요.',
-    ctaButton: '카테고리 H 탐색: 전문화',
+    ctaButton: '카테고리 X 탐색: 범분야',
   },
 };
 
@@ -487,8 +375,6 @@ const content = {
 const agentIcons: Record<string, React.ReactNode> = {
   fileText: <FileText className="h-6 w-6" />,
   messageSquare: <MessageSquare className="h-6 w-6" />,
-  users: <Users className="h-6 w-6" />,
-  clipboardCheck: <ClipboardCheck className="h-6 w-6" />,
   scan: <Scan className="h-6 w-6" />,
   wand2: <Wand2 className="h-6 w-6" />,
 };
@@ -1023,7 +909,7 @@ export default function CommunicationAgentsPage() {
             <h2 className="void-heading-2 text-stellar-core mb-2">{t.ctaTitle}</h2>
             <p className="text-body text-stellar-dim mb-6">{t.ctaDescription}</p>
             <Link
-              href={`/${locale}/docs/agents/specialized`}
+              href={`/${locale}/docs/agents/cross-cutting`}
               className="void-btn void-btn-accent inline-flex items-center gap-2"
             >
               {t.ctaButton}

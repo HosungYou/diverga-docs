@@ -3,7 +3,7 @@
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { DocsBreadcrumb } from '@/components/docs';
-import { FileSearch, ShieldCheck, Calculator, Radar, FileScan } from 'lucide-react';
+import { FileSearch, ShieldCheck } from 'lucide-react';
 
 export default function EvidenceAgentsPage() {
   const locale = useLocale() as 'en' | 'ko';
@@ -11,13 +11,13 @@ export default function EvidenceAgentsPage() {
   const content = {
     en: {
       title: 'Category B: Evidence Agents',
-      description: 'Systematic evidence gathering, synthesis, quality appraisal, and parallel document processing',
+      description: 'Systematic evidence gathering, synthesis, and quality appraisal — 2 agents',
       paradigmCoverage: 'Paradigm Coverage',
-      paradigmDesc: 'Quantitative (B3), Qualitative (B1 meta-synthesis), Mixed (all), Document Processing (B5)',
+      paradigmDesc: 'Qualitative (B1 meta-synthesis), Quantitative (B2 quality assessment). Effect size extraction is now handled by C5 (Meta-Analysis Master). Document processing is now handled by I3 (RAG Builder).',
       agents: [
         {
           id: 'B1',
-          name: 'Literature Review Strategist',
+          name: 'Literature Scout',
           icon: FileSearch,
           tier: 'MEDIUM',
           model: 'Sonnet',
@@ -56,80 +56,17 @@ export default function EvidenceAgentsPage() {
           checkpoints: [],
           vsMode: 'Enhanced VS 3-Phase',
         },
-        {
-          id: 'B3',
-          name: 'Effect Size Extractor',
-          icon: Calculator,
-          tier: 'LOW',
-          model: 'Haiku',
-          purpose: 'Calculate/convert effect sizes',
-          capabilities: [
-            'Enhanced VS 3-Phase for optimal effect size strategy',
-            "Cohen's d calculation and conversion",
-            "Hedges' g standardization",
-            'Correlation coefficient extraction',
-            'Effect size conversion algorithms',
-          ],
-          triggers: {
-            en: '"effect size", "Cohen\'s d", "Hedges\' g", "효과크기"',
-            ko: '"효과크기", "효과 크기 추출"',
-          },
-          checkpoints: [],
-          vsMode: 'Enhanced VS 3-Phase',
-        },
-        {
-          id: 'B4',
-          name: 'Research Radar',
-          icon: Radar,
-          tier: 'LOW',
-          model: 'Haiku',
-          purpose: 'Monitor new publications, trend alerts',
-          capabilities: [
-            'Enhanced VS 3-Phase for differentiated trend analysis',
-            'Strategic research monitoring',
-            'Publication alerts and notifications',
-            'Emerging topic detection',
-            'Research trend forecasting',
-          ],
-          triggers: {
-            en: '"latest research", "trends", "new publications", "research developments"',
-            ko: '"연구 동향", "트렌드", "최신 연구"',
-          },
-          checkpoints: [],
-          vsMode: 'Enhanced VS 3-Phase',
-        },
-        {
-          id: 'B5',
-          name: 'Parallel Document Processor',
-          icon: FileScan,
-          tier: 'HIGH',
-          model: 'Opus',
-          purpose: 'High-throughput PDF/document reading with distributed workload',
-          capabilities: [
-            'Batch PDF processing with parallel workers',
-            'Distributed workload handling',
-            'Prevents memory/context overflow errors',
-            'Systematic review data extraction',
-            'Large document collection management',
-          ],
-          triggers: {
-            en: '"batch PDF", "parallel reading", "multiple documents", "large files"',
-            ko: '"PDF 일괄 처리", "병렬 처리", "대량 문서"',
-          },
-          checkpoints: [],
-          isNew: true,
-        },
       ],
     },
     ko: {
       title: 'Category B: 근거 에이전트',
-      description: '체계적 근거 수집, 종합, 품질 평가 및 병렬 문서 처리',
+      description: '체계적 근거 수집, 종합, 품질 평가 — 2개 에이전트',
       paradigmCoverage: '패러다임 범위',
-      paradigmDesc: '양적 (B3), 질적 (B1 메타통합), 혼합 (전체), 문서 처리 (B5)',
+      paradigmDesc: '질적 (B1 메타통합), 양적 (B2 품질 평가). 효과크기 추출은 이제 C5 (메타분석 마스터)에서 처리합니다. 문서 처리는 이제 I3 (RAG 빌더)에서 처리합니다.',
       agents: [
         {
           id: 'B1',
-          name: '문헌고찰 전략가',
+          name: '문헌 탐색자',
           icon: FileSearch,
           tier: 'MEDIUM',
           model: 'Sonnet',
@@ -167,69 +104,6 @@ export default function EvidenceAgentsPage() {
           },
           checkpoints: [],
           vsMode: 'VS 3단계 강화',
-        },
-        {
-          id: 'B3',
-          name: '효과크기 추출기',
-          icon: Calculator,
-          tier: 'LOW',
-          model: 'Haiku',
-          purpose: '효과크기 계산/변환',
-          capabilities: [
-            '최적 효과크기 전략을 위한 VS 3단계 강화',
-            "Cohen's d 계산 및 변환",
-            "Hedges' g 표준화",
-            '상관계수 추출',
-            '효과크기 변환 알고리즘',
-          ],
-          triggers: {
-            en: '"effect size", "Cohen\'s d", "Hedges\' g"',
-            ko: '"효과크기", "효과 크기 추출"',
-          },
-          checkpoints: [],
-          vsMode: 'VS 3단계 강화',
-        },
-        {
-          id: 'B4',
-          name: '연구 레이더',
-          icon: Radar,
-          tier: 'LOW',
-          model: 'Haiku',
-          purpose: '신규 출판물 모니터링, 동향 알림',
-          capabilities: [
-            '차별화된 트렌드 분석을 위한 VS 3단계 강화',
-            '전략적 연구 모니터링',
-            '출판 알림 및 통지',
-            '신흥 주제 탐지',
-            '연구 동향 예측',
-          ],
-          triggers: {
-            en: '"latest research", "trends", "new publications"',
-            ko: '"연구 동향", "트렌드", "최신 연구"',
-          },
-          checkpoints: [],
-          vsMode: 'VS 3단계 강화',
-        },
-        {
-          id: 'B5',
-          name: '병렬 문서 처리기',
-          icon: FileScan,
-          tier: 'HIGH',
-          model: 'Opus',
-          purpose: '분산 워크로드를 통한 고처리량 PDF/문서 읽기',
-          capabilities: [
-            '병렬 워커를 통한 배치 PDF 처리',
-            '분산 워크로드 처리',
-            '메모리/컨텍스트 오버플로 오류 방지',
-            '체계적 문헌고찰 데이터 추출',
-            '대용량 문서 컬렉션 관리',
-          ],
-          triggers: {
-            en: '"batch PDF", "parallel reading", "multiple documents"',
-            ko: '"PDF 일괄 처리", "병렬 처리", "대량 문서"',
-          },
-          checkpoints: [],
-          isNew: true,
         },
       ],
     },
@@ -312,7 +186,7 @@ export default function EvidenceAgentsPage() {
                       <h3 className="text-xl font-semibold text-stellar-core">
                         {agent.id} - {agent.name}
                       </h3>
-                      {agent.isNew && (
+                      {'isNew' in agent && (agent as any).isNew && (
                         <span className="px-2 py-0.5 text-xs font-mono uppercase bg-[#44ffaa]/20 text-[#44ffaa] border border-[#44ffaa]/30">
                           NEW
                         </span>
@@ -421,8 +295,8 @@ export default function EvidenceAgentsPage() {
         >
           <p className="text-sm text-stellar-faint">
             {locale === 'en'
-              ? 'Category B agents use Enhanced VS 3-Phase methodology to avoid automatic tool application and deliver research-specific evaluation strategies. All agents support auto-trigger via keyword detection in both English and Korean.'
-              : 'Category B 에이전트는 VS 3단계 강화 방법론을 사용하여 자동 도구 적용을 피하고 연구별 평가 전략을 제공합니다. 모든 에이전트는 영어와 한국어 키워드 감지를 통한 자동 트리거를 지원합니다.'}
+              ? 'Category B agents (2 agents) use Enhanced VS 3-Phase methodology to avoid automatic tool application and deliver research-specific evaluation strategies. Effect size extraction (formerly B3) is now in C5 (Meta-Analysis Master). Document processing (formerly B5) is now in I3 (RAG Builder). Research monitoring (formerly B4) has been removed.'
+              : 'Category B 에이전트(2개)는 VS 3단계 강화 방법론을 사용하여 자동 도구 적용을 피하고 연구별 평가 전략을 제공합니다. 효과크기 추출(기존 B3)은 이제 C5(메타분석 마스터)에, 문서 처리(기존 B5)는 I3(RAG 빌더)에 통합되었습니다. 연구 모니터링(기존 B4)은 삭제되었습니다.'}
           </p>
         </motion.div>
       </div>
