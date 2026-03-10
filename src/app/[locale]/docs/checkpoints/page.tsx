@@ -174,7 +174,7 @@ const content = {
     ctaTitle: 'Ready to Experience Human Checkpoints?',
     ctaDescription: 'Start your research journey with full control over every critical decision.',
     ctaButtons: {
-      agents: 'Browse 40 Agents',
+      agents: 'Browse 24 Agents',
       workflows: 'View Workflows',
       start: 'Get Started',
     },
@@ -333,7 +333,7 @@ const content = {
     ctaTitle: '인간 체크포인트를 체험할 준비가 되셨나요?',
     ctaDescription: '모든 중요한 결정에 대한 완전한 통제권으로 연구 여정을 시작하세요.',
     ctaButtons: {
-      agents: '40개 에이전트 보기',
+      agents: '24개 에이전트 보기',
       workflows: '워크플로우 보기',
       start: '시작하기',
     },

@@ -14,12 +14,12 @@ export function generateStaticParams() {
 
 export const metadata: Metadata = {
   title: "Diverga - Beyond Modal Research AI",
-  description: "40 specialized AI agents for the complete research lifecycle. Break free from mode collapse with VS methodology.",
+  description: "24 specialized AI agents for the complete research lifecycle. Break free from mode collapse with VS methodology.",
   keywords: ["research AI", "meta-analysis", "systematic review", "Claude Code", "VS methodology"],
   authors: [{ name: "Hosung You" }],
   openGraph: {
     title: "Diverga - Beyond Modal Research AI",
-    description: "40 specialized AI agents for the complete research lifecycle",
+    description: "24 specialized AI agents for the complete research lifecycle",
     url: "https://diverga.vercel.app",
     siteName: "Diverga",
     type: "website",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Diverga - Beyond Modal Research AI",
-    description: "40 specialized AI agents for the complete research lifecycle",
+    description: "24 specialized AI agents for the complete research lifecycle",
   },
 };
 

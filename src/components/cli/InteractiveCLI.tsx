@@ -65,7 +65,7 @@ const DEMO_COMMANDS: Record<string, { en: string; ko: string }> = {
 DIVERGA CLI v9.0 - Available Commands
 
   help                    Show this help message
-  agents                  List all 44 available agents
+  agents                  List all 24 available agents
   run <agent_id>          Execute specific agent with AI (e.g., run a2)
   ask <question>          Ask a research question to Diverga AI
   clear                   Clear terminal
@@ -80,7 +80,7 @@ For more info: https://diverga.dev/docs
 DIVERGA CLI v9.0 - 사용 가능한 명령어
 
   help                    도움말 표시
-  agents                  44개 에이전트 목록 표시
+  agents                  24개 에이전트 목록 표시
   run <agent_id>          AI로 특정 에이전트 실행 (예: run a2)
   ask <질문>              Diverga AI에게 연구 질문하기
   clear                   터미널 지우기
@@ -95,7 +95,7 @@ DIVERGA CLI v9.0 - 사용 가능한 명령어
   'agents': {
     en: `
 ┌────────────────────────────────────────────────────────────────────┐
-│                     DIVERGA AGENT REGISTRY (44)                     │
+│                     DIVERGA AGENT REGISTRY (24)                     │
 ├──────────┬───────────────────────────────────┬─────────┬───────────┤
 │ Category │ Agents                            │ Count   │ Focus     │
 ├──────────┼───────────────────────────────────┼─────────┼───────────┤
@@ -115,7 +115,7 @@ Powered by Groq LLM (llama-3.3-70b-versatile)
 `,
     ko: `
 ┌────────────────────────────────────────────────────────────────────┐
-│                   DIVERGA 에이전트 레지스트리 (44)                   │
+│                   DIVERGA 에이전트 레지스트리 (24)                   │
 ├──────────┬───────────────────────────────────┬─────────┬───────────┤
 │ 카테고리  │ 에이전트                           │ 개수    │ 초점       │
 ├──────────┼───────────────────────────────────┼─────────┼───────────┤

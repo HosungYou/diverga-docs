@@ -51,7 +51,7 @@ const content = {
       {
         command: '/diverga-research-orchestrator',
         alias: null,
-        description: 'Full research orchestrator with 44 agents',
+        description: 'Full research orchestrator with 24 agents',
         category: 'Orchestration',
         color: '#9b59b6',
         example: '/diverga-research-orchestrator',
@@ -401,7 +401,7 @@ const content = {
       {
         command: '/diverga-research-orchestrator',
         alias: null,
-        description: '44개 에이전트를 갖춘 전체 연구 오케스트레이터',
+        description: '24개 에이전트를 갖춘 전체 연구 오케스트레이터',
         category: '오케스트레이션',
         color: '#9b59b6',
         example: '/diverga-research-orchestrator',

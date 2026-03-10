@@ -102,7 +102,7 @@ export function CTASection() {
               className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4"
             >
               {[
-                { icon: BookOpen, label: '40 Agents', sublabel: 'Full research lifecycle', bgColor: 'bg-violet-50', iconColor: 'text-violet-600' },
+                { icon: BookOpen, label: '24 Agents', sublabel: 'Full research lifecycle', bgColor: 'bg-violet-50', iconColor: 'text-violet-600' },
                 { icon: Terminal, label: 'CLI Ready', sublabel: 'Claude Code compatible', bgColor: 'bg-indigo-50', iconColor: 'text-indigo-600' },
                 { icon: Zap, label: 'VS Methodology', sublabel: 'Break mode collapse', bgColor: 'bg-teal-50', iconColor: 'text-teal-600' },
               ].map((feature) => (

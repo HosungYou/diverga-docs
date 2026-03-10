@@ -368,12 +368,10 @@ export const docsNavigation: DocsSection[] = [
         badge: { text: 'v8.2', color: '#44ffaa' },
       },
       {
-        id: 'cross-platform',
-        title: { en: 'Cross-Platform Support', ko: '크로스 플랫폼 지원' },
-        href: '/docs/reference/cross-platform',
+        id: 'plugin-architecture',
+        title: { en: 'Plugin Architecture', ko: '플러그인 아키텍처' },
+        href: '/docs/reference/plugin-architecture',
         icon: 'monitor',
-        isNew: true,
-        badge: { text: 'v8.3', color: '#44ffaa' },
       },
       {
         id: 'mcp-architecture',
@@ -516,15 +514,15 @@ export const docsCategories: DocsCategory[] = [
     id: 'agents',
     title: { en: 'Research Agents', ko: '연구 에이전트' },
     description: {
-      en: '44 specialized agents for the complete research lifecycle',
-      ko: '연구 전 과정을 위한 44개 전문 에이전트'
+      en: '24 specialized agents for the complete research lifecycle',
+      ko: '연구 전 과정을 위한 24개 전문 에이전트'
     },
     icon: 'users',
     color: '#ff8844',
     items: [
       {
         title: { en: 'Agent Catalog', ko: '에이전트 카탈로그' },
-        description: { en: 'Browse all 44 agents', ko: '44개 에이전트 모두 보기' },
+        description: { en: 'Browse all 24 agents', ko: '24개 에이전트 모두 보기' },
         href: '/agents',
         icon: 'grid',
       },
@@ -572,11 +570,10 @@ export const docsCategories: DocsCategory[] = [
         isNew: true,
       },
       {
-        title: { en: 'Cross-Platform', ko: '크로스 플랫폼' },
-        description: { en: 'Claude Code, Codex CLI, OpenCode', ko: 'Claude Code, Codex CLI, OpenCode' },
-        href: '/docs/reference/cross-platform',
+        title: { en: 'Plugin Architecture', ko: '플러그인 아키텍처' },
+        description: { en: 'Claude Code plugin system', ko: 'Claude Code 플러그인 시스템' },
+        href: '/docs/reference/plugin-architecture',
         icon: 'monitor',
-        isNew: true,
       },
       {
         title: { en: 'Agent Teams', ko: '에이전트 팀' },

@@ -121,7 +121,7 @@ export function AgentCategoryGrid() {
             href={`/${locale}/agents`}
             className="group inline-flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-xl font-semibold hover:bg-gray-800 transition-all duration-300 shadow-md hover:shadow-lg"
           >
-            View all 40 agents
+            View all 24 agents
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Link>
         </motion.div>

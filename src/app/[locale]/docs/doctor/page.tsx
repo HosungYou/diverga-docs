@@ -37,7 +37,7 @@ const content = {
         name: 'Skill Sync',
         icon: 'zap',
         color: '#22ccff',
-        checks: ['All 44 agent skills registered', 'Skill trigger patterns valid', 'No duplicate skill names', 'Skill-to-agent mapping correct'],
+        checks: ['All 24 agent skills registered', 'Skill trigger patterns valid', 'No duplicate skill names', 'Skill-to-agent mapping correct'],
       },
       {
         name: 'Config Validity',
@@ -76,7 +76,7 @@ const content = {
     outputExample: `[CHECK] Plugin Health
   ✅ Plugin files present
   ✅ Version v8.0.2 compatible
-  ✅ 44 skills registered
+  ✅ 24 skills registered
   ⚠️ AGENTS.md last updated 14 days ago
 
 [CHECK] API Keys
@@ -114,7 +114,7 @@ const content = {
         name: '스킬 동기화',
         icon: 'zap',
         color: '#22ccff',
-        checks: ['44개 에이전트 스킬 모두 등록됨', '스킬 트리거 패턴 유효', '중복 스킬 이름 없음', '스킬-에이전트 매핑 올바름'],
+        checks: ['24개 에이전트 스킬 모두 등록됨', '스킬 트리거 패턴 유효', '중복 스킬 이름 없음', '스킬-에이전트 매핑 올바름'],
       },
       {
         name: '설정 유효성',
@@ -153,7 +153,7 @@ const content = {
     outputExample: `[검사] 플러그인 건강
   ✅ 플러그인 파일 존재
   ✅ 버전 v8.0.2 호환
-  ✅ 44개 스킬 등록됨
+  ✅ 24개 스킬 등록됨
   ⚠️ AGENTS.md 마지막 업데이트 14일 전
 
 [검사] API 키

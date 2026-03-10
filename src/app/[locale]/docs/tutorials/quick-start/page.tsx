@@ -173,7 +173,7 @@ Your responses:
           items: [
             'Explore the Memory System for context persistence',
             'Learn about VS Methodology and T-Scores',
-            'Browse all 44 agent categories',
+            'Browse all 24 agent categories',
           ],
           links: [
             { href: '/docs/memory-system', label: 'Memory System' },
@@ -306,7 +306,7 @@ C: 방법론 및 분석 (7개 에이전트)
           items: [
             '맥락 지속성을 위한 메모리 시스템 탐색',
             'VS 방법론과 T-Score에 대해 학습',
-            '44개 에이전트 카테고리 전체 탐색',
+            '24개 에이전트 카테고리 전체 탐색',
           ],
           links: [
             { href: '/docs/memory-system', label: '메모리 시스템' },
@@ -489,8 +489,8 @@ C: 방법론 및 분석 (7개 에이전트)
               </h3>
               <p className="text-stellar-dim mb-4">
                 {locale === 'ko'
-                  ? 'Diverga의 첫 번째 에이전트를 성공적으로 실행했습니다. 이제 44개의 전문 연구 에이전트와 VS 방법론의 모든 기능을 활용할 준비가 되었습니다.'
-                  : "You've successfully run your first Diverga agent. You're now ready to leverage all 44 specialized research agents and the full power of the VS methodology."}
+                  ? 'Diverga의 첫 번째 에이전트를 성공적으로 실행했습니다. 이제 24개의 전문 연구 에이전트와 VS 방법론의 모든 기능을 활용할 준비가 되었습니다.'
+                  : "You've successfully run your first Diverga agent. You're now ready to leverage all 24 specialized research agents and the full power of the VS methodology."}
               </p>
               <div className="flex flex-wrap gap-3">
                 <Link

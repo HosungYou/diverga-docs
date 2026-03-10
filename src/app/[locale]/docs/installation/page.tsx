@@ -41,7 +41,7 @@ export default function InstallationPage() {
       prerequisites: 'Prerequisites',
       prereqItems: [
         'Node.js 18+ or Python 3.9+',
-        'Claude Code, Codex CLI, or OpenCode installed',
+        'Claude Code installed',
         'Anthropic API key (for Claude Code)',
       ],
       step1Title: 'Step 1: Install the Plugin',
@@ -59,7 +59,7 @@ export default function InstallationPage() {
       prerequisites: '사전 요구사항',
       prereqItems: [
         'Node.js 18+ 또는 Python 3.9+',
-        'Claude Code, Codex CLI, 또는 OpenCode 설치됨',
+        'Claude Code 설치됨',
         'Anthropic API 키 (Claude Code용)',
       ],
       step1Title: '1단계: 플러그인 설치',
@@ -127,27 +127,6 @@ export default function InstallationPage() {
               </pre>
             </div>
 
-            {/* Codex CLI */}
-            <div className="bg-void-elevated border border-stellar-faint/10 overflow-hidden">
-              <div className="flex items-center justify-between px-4 py-2 bg-void-surface border-b border-stellar-faint/10">
-                <span className="font-mono text-sm text-stellar-faint">Codex CLI</span>
-                <CopyButton text="codex install diverga" />
-              </div>
-              <pre className="p-4 font-mono text-sm text-stellar-bright overflow-x-auto">
-                <code>codex install diverga</code>
-              </pre>
-            </div>
-
-            {/* OpenCode */}
-            <div className="bg-void-elevated border border-stellar-faint/10 overflow-hidden">
-              <div className="flex items-center justify-between px-4 py-2 bg-void-surface border-b border-stellar-faint/10">
-                <span className="font-mono text-sm text-stellar-faint">OpenCode</span>
-                <CopyButton text="opencode ext install diverga" />
-              </div>
-              <pre className="p-4 font-mono text-sm text-stellar-bright overflow-x-auto">
-                <code>opencode ext install diverga</code>
-              </pre>
-            </div>
           </div>
         </section>
 
@@ -219,7 +198,7 @@ export default function InstallationPage() {
                   {locale === 'ko' ? '에이전트 탐색' : 'Explore Agents'}
                 </h3>
                 <p className="text-xs text-stellar-faint">
-                  {locale === 'ko' ? '40개 전문 에이전트 보기' : 'Browse 40 specialized agents'}
+                  {locale === 'ko' ? '24개 전문 에이전트 보기' : 'Browse 24 specialized agents'}
                 </p>
               </div>
               <ArrowRight className="h-4 w-4 text-stellar-faint group-hover:text-[#22ccff] transition-colors" />

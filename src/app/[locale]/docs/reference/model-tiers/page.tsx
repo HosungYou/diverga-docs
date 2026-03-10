@@ -21,12 +21,12 @@ const content = {
       {
         level: 'HIGH',
         model: 'Opus',
-        count: 17,
+        count: 13,
         color: '#9b59b6',
         cost: 'Highest',
         speed: 'Slowest',
         useFor: 'Complex analysis, critical decisions, orchestration',
-        agents: ['A1', 'A2', 'A3', 'A5', 'B5', 'C1', 'C2', 'C3', 'C5', 'D4', 'E1', 'E2', 'E3', 'G3', 'G6', 'H1', 'H2', 'I0'],
+        agents: ['A1', 'A2', 'A5', 'C1', 'C2', 'C3', 'C5', 'D4', 'E1', 'E2', 'E3', 'G6', 'I0'],
         checkpoints: 'Usually REQUIRED',
         examples: [
           'Theory selection with VS methodology',
@@ -38,12 +38,12 @@ const content = {
       {
         level: 'MEDIUM',
         model: 'Sonnet',
-        count: 18,
+        count: 9,
         color: '#45b7d1',
         cost: 'Moderate',
         speed: 'Balanced',
         useFor: 'Standard tasks, balanced quality',
-        agents: ['A4', 'A6', 'B1', 'B2', 'C4', 'C6', 'C7', 'D1', 'D2', 'E5', 'F3', 'F4', 'G1', 'G2', 'G4', 'G5', 'I1', 'I2'],
+        agents: ['B1', 'B2', 'D2', 'G1', 'G2', 'G5', 'I1', 'I2', 'X1'],
         checkpoints: 'Usually RECOMMENDED',
         examples: [
           'Literature search & screening',
@@ -55,17 +55,15 @@ const content = {
       {
         level: 'LOW',
         model: 'Haiku',
-        count: 9,
+        count: 2,
         color: '#44ffaa',
         cost: 'Lowest',
         speed: 'Fastest',
-        useFor: 'Quick lookups, simple transformations',
-        agents: ['B3', 'B4', 'D3', 'E4', 'F1', 'F2', 'F5', 'I3'],
+        useFor: 'Quick validation, RAG building',
+        agents: ['F5', 'I3'],
         checkpoints: 'Usually OPTIONAL',
         examples: [
-          'Effect size extraction',
-          'Code generation',
-          'Checklist verification',
+          'Humanization verification',
           'Vector database construction',
         ],
       },
@@ -89,12 +87,12 @@ const content = {
     costStrategies: [
       {
         title: 'Exploration → Implementation → Validation',
-        description: 'Start with LOW tier agents for exploration (B3, B4), escalate to MEDIUM for implementation (B1, B2), reserve HIGH for validation (A1, A2)',
+        description: 'Start with LOW tier agents for exploration (F5, I3), escalate to MEDIUM for implementation (B1, B2), reserve HIGH for validation (A1, A2)',
         savings: '~60-70% cost reduction vs. all-HIGH',
       },
       {
         title: 'Parallel LOW-tier Processing',
-        description: 'Use LOW-tier agents for batch tasks (F1, F2, E4) that can run in parallel without checkpoints',
+        description: 'Use LOW-tier agents for batch tasks (F5, I3) that can run in parallel without checkpoints',
         savings: '~80% cost reduction vs. sequential HIGH-tier',
       },
       {
@@ -106,7 +104,7 @@ const content = {
 
     // Complete Agent Matrix
     agentMatrixTitle: 'Complete Agent-Tier Matrix',
-    agentMatrixDescription: 'All 44 agents organized by tier and category:',
+    agentMatrixDescription: 'All 24 agents organized by tier and category:',
 
     // Temperature Settings
     temperatureTitle: 'Temperature Settings by Category',
@@ -119,8 +117,8 @@ const content = {
       { category: 'E (Analysis)', range: '0.1-0.3', rationale: 'Analytical precision required' },
       { category: 'F (Quality)', range: '0.1', rationale: 'Maximum consistency for validation' },
       { category: 'G (Communication)', range: '0.5-0.7', rationale: 'Creative communication' },
-      { category: 'H (Specialized)', range: '0.7-0.9', rationale: 'High contextual sensitivity' },
       { category: 'I (Systematic Review)', range: '0.1-0.3', rationale: 'PRISMA compliance precision' },
+      { category: 'X (Cross-Cutting)', range: '0.3-0.5', rationale: 'Balanced integrity oversight' },
     ],
 
     // Manual Override
@@ -134,7 +132,7 @@ Task(subagent_type="diverga:a4", model="opus", prompt="...")
     // Next Steps
     nextStepsTitle: 'Related Documentation',
     nextSteps: [
-      { title: 'Agent Overview', href: '/docs/agents', description: 'Complete list of 44 specialized agents' },
+      { title: 'Agent Overview', href: '/docs/agents', description: 'Complete list of 24 specialized agents' },
       { title: 'Checkpoints', href: '/docs/core-concepts/checkpoints', description: 'Human checkpoint system' },
       { title: 'VS Methodology', href: '/docs/core-concepts/vs-methodology', description: 'Beyond modal recommendations' },
     ],
@@ -152,12 +150,12 @@ Task(subagent_type="diverga:a4", model="opus", prompt="...")
       {
         level: 'HIGH',
         model: 'Opus',
-        count: 17,
+        count: 13,
         color: '#9b59b6',
         cost: '최고',
         speed: '가장 느림',
         useFor: '복잡한 분석, 중요한 결정, 오케스트레이션',
-        agents: ['A1', 'A2', 'A3', 'A5', 'B5', 'C1', 'C2', 'C3', 'C5', 'D4', 'E1', 'E2', 'E3', 'G3', 'G6', 'H1', 'H2', 'I0'],
+        agents: ['A1', 'A2', 'A5', 'C1', 'C2', 'C3', 'C5', 'D4', 'E1', 'E2', 'E3', 'G6', 'I0'],
         checkpoints: '일반적으로 필수',
         examples: [
           'VS 방법론을 사용한 이론 선택',
@@ -169,12 +167,12 @@ Task(subagent_type="diverga:a4", model="opus", prompt="...")
       {
         level: 'MEDIUM',
         model: 'Sonnet',
-        count: 18,
+        count: 9,
         color: '#45b7d1',
         cost: '보통',
         speed: '균형적',
         useFor: '표준 작업, 균형잡힌 품질',
-        agents: ['A4', 'A6', 'B1', 'B2', 'C4', 'C6', 'C7', 'D1', 'D2', 'E5', 'F3', 'F4', 'G1', 'G2', 'G4', 'G5', 'I1', 'I2'],
+        agents: ['B1', 'B2', 'D2', 'G1', 'G2', 'G5', 'I1', 'I2', 'X1'],
         checkpoints: '일반적으로 권장',
         examples: [
           '문헌 검색 및 스크리닝',
@@ -186,17 +184,15 @@ Task(subagent_type="diverga:a4", model="opus", prompt="...")
       {
         level: 'LOW',
         model: 'Haiku',
-        count: 9,
+        count: 2,
         color: '#44ffaa',
         cost: '최저',
         speed: '가장 빠름',
-        useFor: '빠른 조회, 간단한 변환',
-        agents: ['B3', 'B4', 'D3', 'E4', 'F1', 'F2', 'F5', 'I3'],
+        useFor: '빠른 검증, RAG 빌딩',
+        agents: ['F5', 'I3'],
         checkpoints: '일반적으로 선택적',
         examples: [
-          '효과크기 추출',
-          '코드 생성',
-          '체크리스트 검증',
+          '휴먼화 검증',
           '벡터 데이터베이스 구축',
         ],
       },
@@ -218,12 +214,12 @@ Task(subagent_type="diverga:a4", model="opus", prompt="...")
     costStrategies: [
       {
         title: '탐색 → 구현 → 검증',
-        description: '탐색에는 LOW 티어 에이전트(B3, B4)로 시작, 구현에는 MEDIUM으로 상향(B1, B2), 검증에는 HIGH 예약(A1, A2)',
+        description: '탐색에는 LOW 티어 에이전트(F5, I3)로 시작, 구현에는 MEDIUM으로 상향(B1, B2), 검증에는 HIGH 예약(A1, A2)',
         savings: '전체 HIGH 대비 ~60-70% 비용 절감',
       },
       {
         title: '병렬 LOW-티어 처리',
-        description: '체크포인트 없이 병렬로 실행 가능한 배치 작업에 LOW-티어 에이전트 사용(F1, F2, E4)',
+        description: '체크포인트 없이 병렬로 실행 가능한 배치 작업에 LOW-티어 에이전트 사용(F5, I3)',
         savings: '순차 HIGH-티어 대비 ~80% 비용 절감',
       },
       {
@@ -234,7 +230,7 @@ Task(subagent_type="diverga:a4", model="opus", prompt="...")
     ],
 
     agentMatrixTitle: '완전한 에이전트-티어 매트릭스',
-    agentMatrixDescription: '티어와 카테고리별로 정리된 44개 에이전트:',
+    agentMatrixDescription: '티어와 카테고리별로 정리된 24개 에이전트:',
 
     temperatureTitle: '카테고리별 Temperature 설정',
     temperatureDescription: 'Temperature는 창의성과 일관성을 제어합니다:',
@@ -246,8 +242,8 @@ Task(subagent_type="diverga:a4", model="opus", prompt="...")
       { category: 'E (Analysis)', range: '0.1-0.3', rationale: '분석 정밀성 필요' },
       { category: 'F (Quality)', range: '0.1', rationale: '검증을 위한 최대 일관성' },
       { category: 'G (Communication)', range: '0.5-0.7', rationale: '창의적 커뮤니케이션' },
-      { category: 'H (Specialized)', range: '0.7-0.9', rationale: '높은 맥락 민감성' },
       { category: 'I (Systematic Review)', range: '0.1-0.3', rationale: 'PRISMA 준수 정밀성' },
+      { category: 'X (Cross-Cutting)', range: '0.3-0.5', rationale: '균형잡힌 무결성 감독' },
     ],
 
     overrideTitle: '수동 모델 오버라이드',
@@ -259,7 +255,7 @@ Task(subagent_type="diverga:a4", model="opus", prompt="...")
 
     nextStepsTitle: '관련 문서',
     nextSteps: [
-      { title: '에이전트 개요', href: '/docs/agents', description: '44개 전문 에이전트 전체 목록' },
+      { title: '에이전트 개요', href: '/docs/agents', description: '24개 전문 에이전트 전체 목록' },
       { title: '체크포인트', href: '/docs/core-concepts/checkpoints', description: '인간 체크포인트 시스템' },
       { title: 'VS 방법론', href: '/docs/core-concepts/vs-methodology', description: '모달을 넘어선 추천' },
     ],
@@ -270,51 +266,31 @@ Task(subagent_type="diverga:a4", model="opus", prompt="...")
 const agentsByTier = {
   HIGH: [
     { id: 'A1', name: 'ResearchQuestionRefiner', category: 'A', purpose: 'FINER/PICO/SPIDER formulation', checkpoint: '🔴 CP_RESEARCH_DIRECTION' },
-    { id: 'A2', name: 'TheoreticalFrameworkArchitect', category: 'A', purpose: 'Theory selection with VS', checkpoint: '🔴 CP_THEORY_SELECTION' },
-    { id: 'A3', name: 'DevilsAdvocate', category: 'A', purpose: 'Critical review, Reviewer 2', checkpoint: '-' },
+    { id: 'A2', name: 'TheoryCritiqueArchitect', category: 'A', purpose: 'Theory selection with VS', checkpoint: '🔴 CP_THEORY_SELECTION' },
     { id: 'A5', name: 'ParadigmWorldviewAdvisor', category: 'A', purpose: 'Paradigm guidance', checkpoint: '🔴 CP_PARADIGM_SELECTION' },
-    { id: 'B5', name: 'ParallelDocumentProcessor', category: 'B', purpose: 'Batch PDF processing', checkpoint: '-' },
-    { id: 'C1', name: 'QuantitativeDesignConsultant', category: 'C', purpose: 'RCTs, quasi-experimental', checkpoint: '🔴 CP_METHODOLOGY_APPROVAL' },
-    { id: 'C2', name: 'QualitativeDesignConsultant', category: 'C', purpose: 'Phenomenology, GT', checkpoint: '🔴 CP_METHODOLOGY_APPROVAL' },
-    { id: 'C3', name: 'MixedMethodsDesignConsultant', category: 'C', purpose: 'Sequential, convergent', checkpoint: '🔴 CP_METHODOLOGY_APPROVAL' },
+    { id: 'C1', name: 'QuantitativeDesignSampling', category: 'C', purpose: 'RCTs, quasi-experimental', checkpoint: '🔴 CP_METHODOLOGY_APPROVAL' },
+    { id: 'C2', name: 'QualitativeDesign', category: 'C', purpose: 'Phenomenology, GT', checkpoint: '🔴 CP_METHODOLOGY_APPROVAL' },
+    { id: 'C3', name: 'MixedMethodsDesign', category: 'C', purpose: 'Sequential, convergent', checkpoint: '🔴 CP_METHODOLOGY_APPROVAL' },
     { id: 'C5', name: 'MetaAnalysisMaster', category: 'C', purpose: 'Multi-gate orchestration', checkpoint: '🔴 CP_META_GATE' },
     { id: 'D4', name: 'MeasurementInstrumentDeveloper', category: 'D', purpose: 'Scale construction', checkpoint: '🔴 CP_METHODOLOGY_APPROVAL' },
-    { id: 'E1', name: 'QuantitativeAnalysisGuide', category: 'E', purpose: 'Statistical analysis', checkpoint: '🟠 CP_ANALYSIS_PLAN' },
+    { id: 'E1', name: 'QuantitativeAnalysisCodeGen', category: 'E', purpose: 'Statistical analysis', checkpoint: '🟠 CP_ANALYSIS_PLAN' },
     { id: 'E2', name: 'QualitativeCodingSpecialist', category: 'E', purpose: 'Thematic, GT coding', checkpoint: '-' },
     { id: 'E3', name: 'MixedMethodsIntegration', category: 'E', purpose: 'Joint displays', checkpoint: '🟠 CP_INTEGRATION_STRATEGY' },
-    { id: 'G3', name: 'PeerReviewStrategist', category: 'G', purpose: 'Reviewer response', checkpoint: '🟠 CP_RESPONSE_APPROVAL' },
     { id: 'G6', name: 'AcademicStyleHumanizer', category: 'G', purpose: 'Transform AI patterns', checkpoint: '🟡 CP_HUMANIZATION_VERIFY' },
-    { id: 'H1', name: 'EthnographicResearchAdvisor', category: 'H', purpose: 'Fieldwork, thick description', checkpoint: '🔴 CP_METHODOLOGY_APPROVAL' },
-    { id: 'H2', name: 'ActionResearchFacilitator', category: 'H', purpose: 'PAR, CBPR', checkpoint: '🔴 CP_METHODOLOGY_APPROVAL' },
-    { id: 'I0', name: 'ScholarAgentOrchestrator', category: 'I', purpose: 'PRISMA pipeline coordination', checkpoint: '🔴 SCH_* checkpoints' },
+    { id: 'I0', name: 'SRPipelineOrchestrator', category: 'I', purpose: 'PRISMA pipeline coordination', checkpoint: '🔴 SCH_* checkpoints' },
   ],
   MEDIUM: [
-    { id: 'A4', name: 'ResearchEthicsAdvisor', category: 'A', purpose: 'IRB protocols', checkpoint: '🔴 CP_METHODOLOGY_APPROVAL' },
-    { id: 'A6', name: 'ConceptualFrameworkVisualizer', category: 'A', purpose: 'Visual framework design', checkpoint: '🟡 CP_VISUALIZATION_PREFERENCE' },
-    { id: 'B1', name: 'SystematicLiteratureScout', category: 'B', purpose: 'PRISMA workflows', checkpoint: '-' },
+    { id: 'B1', name: 'LiteratureScout', category: 'B', purpose: 'PRISMA workflows', checkpoint: '-' },
     { id: 'B2', name: 'EvidenceQualityAppraiser', category: 'B', purpose: 'RoB, GRADE', checkpoint: '-' },
-    { id: 'C4', name: 'ExperimentalMaterialsDeveloper', category: 'C', purpose: 'Treatment protocols', checkpoint: '-' },
-    { id: 'C6', name: 'DataIntegrityGuard', category: 'C', purpose: 'Hedges g calculation', checkpoint: '-' },
-    { id: 'C7', name: 'ErrorPreventionEngine', category: 'C', purpose: 'Pattern detection', checkpoint: '-' },
-    { id: 'D1', name: 'SamplingStrategyAdvisor', category: 'D', purpose: 'Probability sampling', checkpoint: '-' },
-    { id: 'D2', name: 'InterviewFocusGroupSpecialist', category: 'D', purpose: 'Interview protocols', checkpoint: '-' },
-    { id: 'E5', name: 'SensitivityAnalysisDesigner', category: 'E', purpose: 'Robustness checks', checkpoint: '-' },
-    { id: 'F3', name: 'ReproducibilityAuditor', category: 'F', purpose: 'OSF integration', checkpoint: '-' },
-    { id: 'F4', name: 'BiasTrustworthinessDetector', category: 'F', purpose: 'Bias detection', checkpoint: '-' },
+    { id: 'D2', name: 'DataCollectionSpecialist', category: 'D', purpose: 'Interview protocols', checkpoint: '-' },
     { id: 'G1', name: 'JournalMatcher', category: 'G', purpose: 'Target journal selection', checkpoint: '-' },
-    { id: 'G2', name: 'AcademicCommunicator', category: 'G', purpose: 'Plain language', checkpoint: '-' },
-    { id: 'G4', name: 'PreregistrationComposer', category: 'G', purpose: 'OSF registration', checkpoint: '🟠 CP_PREREGISTRATION_APPROVAL' },
+    { id: 'G2', name: 'PublicationSpecialist', category: 'G', purpose: 'Academic writing', checkpoint: '-' },
     { id: 'G5', name: 'AcademicStyleAuditor', category: 'G', purpose: 'AI pattern detection', checkpoint: '🟠 CP_HUMANIZATION_REVIEW' },
     { id: 'I1', name: 'PaperRetrievalAgent', category: 'I', purpose: 'Multi-database fetching', checkpoint: '🔴 SCH_DATABASE_SELECTION' },
     { id: 'I2', name: 'ScreeningAssistant', category: 'I', purpose: 'AI-PRISMA screening', checkpoint: '🔴 SCH_SCREENING_CRITERIA' },
+    { id: 'X1', name: 'ResearchGuardian', category: 'X', purpose: 'Research integrity, ethics', checkpoint: '-' },
   ],
   LOW: [
-    { id: 'B3', name: 'EffectSizeExtractor', category: 'B', purpose: 'Calculate effect sizes', checkpoint: '-' },
-    { id: 'B4', name: 'ResearchRadar', category: 'B', purpose: 'Monitor publications', checkpoint: '-' },
-    { id: 'D3', name: 'ObservationProtocolDesigner', category: 'D', purpose: 'Field notes', checkpoint: '-' },
-    { id: 'E4', name: 'AnalysisCodeGenerator', category: 'E', purpose: 'R, Python scripts', checkpoint: '-' },
-    { id: 'F1', name: 'InternalConsistencyChecker', category: 'F', purpose: 'Logic verification', checkpoint: '-' },
-    { id: 'F2', name: 'ChecklistManager', category: 'F', purpose: 'PRISMA, CONSORT', checkpoint: '-' },
     { id: 'F5', name: 'HumanizationVerifier', category: 'F', purpose: 'Verify transformation', checkpoint: '-' },
     { id: 'I3', name: 'RAGBuilder', category: 'I', purpose: 'Vector database', checkpoint: '🟠 SCH_RAG_READINESS' },
   ],

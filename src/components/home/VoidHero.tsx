@@ -275,8 +275,8 @@ export function VoidHero() {
           className="mt-2 text-center text-body text-stellar-faint"
         >
           {locale === 'ko'
-            ? '40개의 연구 에이전트가 VS 방법론으로 모드 붕괴를 방지합니다.'
-            : '40 research agents preventing mode collapse through VS methodology.'
+            ? '24개의 연구 에이전트가 VS 방법론으로 모드 붕괴를 방지합니다.'
+            : '24 research agents preventing mode collapse through VS methodology.'
           }
         </motion.p>
 
@@ -319,10 +319,10 @@ export function VoidHero() {
           className="mt-16 flex flex-wrap justify-center gap-6"
         >
           {[
-            { label: '40 Agents', value: 'Specialized Research' },
+            { label: '24 Agents', value: 'Specialized Research' },
             { label: 'VS Methodology', value: 'Beyond Mode Collapse' },
             { label: 'T-Score', value: 'Typicality-Aware' },
-            { label: 'Cross-Platform', value: 'Claude · Codex · OpenCode' },
+            { label: 'Claude Code', value: 'Exclusive Platform' },
           ].map((feature, i) => (
             <div key={i} className="flex items-center gap-3 text-stellar-faint">
               <div className="h-1.5 w-1.5 rounded-full bg-tscore-creative" />

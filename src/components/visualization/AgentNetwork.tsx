@@ -332,7 +332,7 @@ export function AgentNetwork({
       {/* Title */}
       <div className="absolute left-4 top-4">
         <span className="font-mono text-micro uppercase tracking-widest text-stellar-faint">
-          {locale === 'ko' ? '40 에이전트 네트워크' : '40 Agent Network'}
+          {locale === 'ko' ? '24 에이전트 네트워크' : '24 Agent Network'}
         </span>
       </div>
     </div>

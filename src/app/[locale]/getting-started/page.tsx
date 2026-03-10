@@ -57,7 +57,7 @@ export default function GettingStartedPage() {
 
       {/* Steps Section */}
       <section className="mx-auto max-w-4xl px-6 lg:px-8 py-12 sm:py-16">
-        {/* Cross-Platform Banner */}
+        {/* Claude Code Exclusive Banner */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -67,13 +67,13 @@ export default function GettingStartedPage() {
             <div className="flex items-center gap-3">
               <Sparkles className="h-5 w-5 text-tscore-creative" />
               <span className="font-mono text-caption font-bold text-tscore-creative uppercase tracking-wider">
-                {locale === 'ko' ? '크로스-플랫폼 지원' : 'Cross-Platform Support'}
+                {locale === 'ko' ? 'Claude Code 전용' : 'Claude Code Exclusive'}
               </span>
             </div>
             <p className="text-body text-stellar-dim text-center sm:text-left">
               {locale === 'ko'
-                ? 'Diverga는 Claude Code, Codex CLI, OpenCode 모두에서 작동합니다. 원하는 플랫폼을 선택하세요.'
-                : 'Diverga works with Claude Code, Codex CLI, and OpenCode. Choose your preferred platform.'}
+                ? 'Diverga v11.0은 Claude Code에서 실행됩니다. 아래 안내에 따라 설치하세요.'
+                : 'Diverga v11.0 runs on Claude Code. Follow the steps below to get started.'}
             </p>
           </div>
         </motion.div>
@@ -376,7 +376,7 @@ export default function GettingStartedPage() {
               href={`/${locale}/agents`}
               className="void-btn void-btn-accent"
             >
-              {locale === 'ko' ? '40개 에이전트 탐색' : 'Explore 40 Agents'}
+              {locale === 'ko' ? '24개 에이전트 탐색' : 'Explore 24 Agents'}
               <ChevronRight className="h-5 w-5" />
             </a>
             <a

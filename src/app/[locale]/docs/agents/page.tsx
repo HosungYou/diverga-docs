@@ -22,7 +22,7 @@ import {
 const content = {
   en: {
     back: 'Back to Docs',
-    title: '44 Specialized Research Agents',
+    title: '24 Specialized Research Agents',
     subtitle: 'AI Research Assistant for the Complete Research Lifecycle',
     philosophy: '"Beyond Modal: Creative alternatives, not obvious choices"',
 
@@ -42,74 +42,65 @@ const content = {
       {
         id: 'A',
         name: 'Foundation',
-        count: 6,
+        count: 3,
         color: '#ff6b6b',
-        description: 'Theory, ethics, paradigm foundations',
+        description: 'Research questions, theory, paradigm foundations',
         icon: 'brain',
-        agents: ['A1-ResearchQuestionRefiner', 'A2-TheoreticalFrameworkArchitect', 'A3-DevilsAdvocate', 'A4-ResearchEthicsAdvisor', 'A5-ParadigmWorldviewAdvisor', 'A6-ConceptualFrameworkVisualizer'],
+        agents: ['A1-ResearchQuestionRefiner', 'A2-TheoryCritiqueArchitect', 'A5-ParadigmWorldviewAdvisor'],
       },
       {
         id: 'B',
-        name: 'Evidence',
-        count: 5,
+        name: 'Literature & Evidence',
+        count: 2,
         color: '#4ecdc4',
-        description: 'Literature search, quality appraisal, synthesis',
+        description: 'Literature search, quality appraisal',
         icon: 'bookOpen',
-        agents: ['B1-SystematicLiteratureScout', 'B2-EvidenceQualityAppraiser', 'B3-EffectSizeExtractor', 'B4-ResearchRadar', 'B5-ParallelDocumentProcessor'],
+        agents: ['B1-LiteratureScout', 'B2-EvidenceQualityAppraiser'],
       },
       {
         id: 'C',
-        name: 'Design & Meta-Analysis',
-        count: 7,
+        name: 'Study Design',
+        count: 4,
         color: '#45b7d1',
         description: 'Research design, meta-analysis orchestration',
         icon: 'beaker',
-        agents: ['C1-QuantitativeDesignConsultant', 'C2-QualitativeDesignConsultant', 'C3-MixedMethodsDesignConsultant', 'C4-ExperimentalMaterialsDeveloper', 'C5-MetaAnalysisMaster', 'C6-DataIntegrityGuard', 'C7-ErrorPreventionEngine'],
+        agents: ['C1-QuantitativeDesignSampling', 'C2-QualitativeDesign', 'C3-MixedMethodsDesign', 'C5-MetaAnalysisMaster'],
       },
       {
         id: 'D',
         name: 'Data Collection',
-        count: 4,
+        count: 2,
         color: '#96ceb4',
-        description: 'Sampling, instruments, protocols',
+        description: 'Instruments, interview protocols',
         icon: 'database',
-        agents: ['D1-SamplingStrategyAdvisor', 'D2-InterviewFocusGroupSpecialist', 'D3-ObservationProtocolDesigner', 'D4-MeasurementInstrumentDeveloper'],
+        agents: ['D2-DataCollectionSpecialist', 'D4-MeasurementInstrumentDeveloper'],
       },
       {
         id: 'E',
         name: 'Analysis',
-        count: 5,
+        count: 3,
         color: '#dda0dd',
         description: 'Statistical, qualitative, mixed methods analysis',
         icon: 'barChart',
-        agents: ['E1-QuantitativeAnalysisGuide', 'E2-QualitativeCodingSpecialist', 'E3-MixedMethodsIntegration', 'E4-AnalysisCodeGenerator', 'E5-SensitivityAnalysisDesigner'],
+        agents: ['E1-QuantitativeAnalysisCodeGen', 'E2-QualitativeCodingSpecialist', 'E3-MixedMethodsIntegration'],
       },
       {
         id: 'F',
-        name: 'Quality',
-        count: 5,
+        name: 'Quality & Validation',
+        count: 1,
         color: '#f0e68c',
-        description: 'Validation, reproducibility, bias detection',
+        description: 'Humanization verification',
         icon: 'shield',
-        agents: ['F1-InternalConsistencyChecker', 'F2-ChecklistManager', 'F3-ReproducibilityAuditor', 'F4-BiasTrustworthinessDetector', 'F5-HumanizationVerifier'],
+        agents: ['F5-HumanizationVerifier'],
       },
       {
         id: 'G',
-        name: 'Communication',
-        count: 6,
+        name: 'Publication & Communication',
+        count: 4,
         color: '#87ceeb',
-        description: 'Publication, humanization, peer review',
+        description: 'Publication, humanization, journal matching',
         icon: 'fileText',
-        agents: ['G1-JournalMatcher', 'G2-AcademicCommunicator', 'G3-PeerReviewStrategist', 'G4-PreregistrationComposer', 'G5-AcademicStyleAuditor', 'G6-AcademicStyleHumanizer'],
-      },
-      {
-        id: 'H',
-        name: 'Specialized',
-        count: 2,
-        color: '#ffa07a',
-        description: 'Ethnography, action research',
-        icon: 'users',
-        agents: ['H1-EthnographicResearchAdvisor', 'H2-ActionResearchFacilitator'],
+        agents: ['G1-JournalMatcher', 'G2-PublicationSpecialist', 'G5-AcademicStyleAuditor', 'G6-AcademicStyleHumanizer'],
       },
       {
         id: 'I',
@@ -118,7 +109,16 @@ const content = {
         color: '#9b59b6',
         description: 'PRISMA automation, RAG pipelines',
         icon: 'sparkles',
-        agents: ['I0-ScholarAgentOrchestrator', 'I1-PaperRetrievalAgent', 'I2-ScreeningAssistant', 'I3-RAGBuilder'],
+        agents: ['I0-SRPipelineOrchestrator', 'I1-PaperRetrievalAgent', 'I2-ScreeningAssistant', 'I3-RAGBuilder'],
+      },
+      {
+        id: 'X',
+        name: 'Cross-Cutting',
+        count: 1,
+        color: '#ffa07a',
+        description: 'Research integrity, ethics oversight',
+        icon: 'users',
+        agents: ['X1-ResearchGuardian'],
       },
     ],
 
@@ -126,9 +126,9 @@ const content = {
     routingTitle: 'Model Routing by Complexity',
     routingDescription: 'Agents use appropriate models based on task complexity:',
     tiers: [
-      { level: 'HIGH', model: 'Opus', count: 17, color: '#9b59b6', description: 'Complex decisions, theory, orchestration' },
-      { level: 'MEDIUM', model: 'Sonnet', count: 18, color: '#45b7d1', description: 'Standard research tasks, screening' },
-      { level: 'LOW', model: 'Haiku', count: 9, color: '#44ffaa', description: 'Quick lookups, code generation' },
+      { level: 'HIGH', model: 'Opus', count: 13, color: '#9b59b6', description: 'Complex decisions, theory, orchestration' },
+      { level: 'MEDIUM', model: 'Sonnet', count: 9, color: '#45b7d1', description: 'Standard research tasks, screening' },
+      { level: 'LOW', model: 'Haiku', count: 2, color: '#44ffaa', description: 'Quick validation, RAG building' },
     ],
 
     // Section 5: Invocation Pattern
@@ -145,9 +145,9 @@ const content = {
     parallelDescription: 'Multiple agents can run simultaneously when tasks are independent:',
     parallelGroups: [
       { name: 'Research Design', agents: 'A1 + A2 + A5', description: 'Question, theory, paradigm' },
-      { name: 'Literature & Evidence', agents: 'B1 + B2 + B3', description: 'Search, appraisal, extraction' },
-      { name: 'Quality Assurance', agents: 'F1 + F3 + F4', description: 'Consistency, reproducibility, bias' },
+      { name: 'Literature & Evidence', agents: 'B1 + B2', description: 'Search, appraisal' },
       { name: 'Publication Prep', agents: 'G1 + G2 + G5', description: 'Journal match, writing, AI audit' },
+      { name: 'SR Pipeline', agents: 'I0 + I1 + I2 + I3', description: 'Orchestration, retrieval, screening, RAG' },
     ],
 
     // Section 7: Quick Links
@@ -156,7 +156,7 @@ const content = {
 
     // Section 8: CTA
     ctaTitle: 'Ready to Use Specialized Agents?',
-    ctaDescription: 'Start your research with 44 agents covering the complete research lifecycle.',
+    ctaDescription: 'Start your research with 24 agents covering the complete research lifecycle.',
     ctaButtons: {
       checkpoints: 'View Checkpoints',
       vs: 'Learn VS Methodology',
@@ -165,7 +165,7 @@ const content = {
   },
   ko: {
     back: '문서로 돌아가기',
-    title: '44개 전문 연구 에이전트',
+    title: '24개 전문 연구 에이전트',
     subtitle: '전체 연구 생애주기를 위한 AI 연구 어시스턴트',
     philosophy: '"모달을 넘어서: 창의적 대안, 명백한 선택이 아닌"',
 
@@ -185,74 +185,65 @@ const content = {
       {
         id: 'A',
         name: '기초',
-        count: 6,
+        count: 3,
         color: '#ff6b6b',
-        description: '이론, 윤리, 패러다임 기초',
+        description: '연구 질문, 이론, 패러다임 기초',
         icon: 'brain',
-        agents: ['A1-연구질문정제사', 'A2-이론적프레임워크설계자', 'A3-반대논변자', 'A4-연구윤리조언자', 'A5-패러다임세계관조언자', 'A6-개념적프레임워크시각화자'],
+        agents: ['A1-연구질문정제사', 'A2-이론비판설계자', 'A5-패러다임세계관조언자'],
       },
       {
         id: 'B',
-        name: '증거',
-        count: 5,
+        name: '문헌 및 증거',
+        count: 2,
         color: '#4ecdc4',
-        description: '문헌 검색, 품질 평가, 종합',
+        description: '문헌 검색, 품질 평가',
         icon: 'bookOpen',
-        agents: ['B1-체계적문헌정찰자', 'B2-증거품질평가자', 'B3-효과크기추출자', 'B4-연구레이더', 'B5-병렬문서처리자'],
+        agents: ['B1-문헌탐색자', 'B2-증거품질평가자'],
       },
       {
         id: 'C',
-        name: '설계 및 메타분석',
-        count: 7,
+        name: '연구 설계',
+        count: 4,
         color: '#45b7d1',
         description: '연구 설계, 메타분석 오케스트레이션',
         icon: 'beaker',
-        agents: ['C1-양적설계컨설턴트', 'C2-질적설계컨설턴트', 'C3-혼합방법설계컨설턴트', 'C4-실험자료개발자', 'C5-메타분석마스터', 'C6-데이터무결성가드', 'C7-오류예방엔진'],
+        agents: ['C1-양적설계표집', 'C2-질적설계', 'C3-혼합방법설계', 'C5-메타분석마스터'],
       },
       {
         id: 'D',
         name: '데이터 수집',
-        count: 4,
+        count: 2,
         color: '#96ceb4',
-        description: '표집, 도구, 프로토콜',
+        description: '도구, 인터뷰 프로토콜',
         icon: 'database',
-        agents: ['D1-표집전략조언자', 'D2-인터뷰포커스그룹전문가', 'D3-관찰프로토콜설계자', 'D4-측정도구개발자'],
+        agents: ['D2-데이터수집전문가', 'D4-측정도구개발자'],
       },
       {
         id: 'E',
         name: '분석',
-        count: 5,
+        count: 3,
         color: '#dda0dd',
         description: '통계, 질적, 혼합방법 분석',
         icon: 'barChart',
-        agents: ['E1-양적분석가이드', 'E2-질적코딩전문가', 'E3-혼합방법통합자', 'E4-분석코드생성자', 'E5-민감도분석설계자'],
+        agents: ['E1-양적분석코드생성', 'E2-질적코딩전문가', 'E3-혼합방법통합자'],
       },
       {
         id: 'F',
-        name: '품질',
-        count: 5,
+        name: '품질 및 검증',
+        count: 1,
         color: '#f0e68c',
-        description: '검증, 재현성, 편향 탐지',
+        description: '휴먼화 검증',
         icon: 'shield',
-        agents: ['F1-내적일관성검토자', 'F2-체크리스트관리자', 'F3-재현성감사자', 'F4-편향신뢰성탐지자', 'F5-휴먼화검증자'],
+        agents: ['F5-휴먼화검증자'],
       },
       {
         id: 'G',
-        name: '커뮤니케이션',
-        count: 6,
+        name: '출판 및 커뮤니케이션',
+        count: 4,
         color: '#87ceeb',
-        description: '출판, 휴먼화, 동료 심사',
+        description: '출판, 휴먼화, 저널 매칭',
         icon: 'fileText',
-        agents: ['G1-저널매처', 'G2-학술커뮤니케이터', 'G3-동료심사전략가', 'G4-사전등록작성자', 'G5-학술스타일감사자', 'G6-학술스타일휴먼화자'],
-      },
-      {
-        id: 'H',
-        name: '특수',
-        count: 2,
-        color: '#ffa07a',
-        description: '민족지학, 실행연구',
-        icon: 'users',
-        agents: ['H1-민족지연구조언자', 'H2-실행연구촉진자'],
+        agents: ['G1-저널매처', 'G2-출판전문가', 'G5-학술스타일감사자', 'G6-학술스타일휴먼화자'],
       },
       {
         id: 'I',
@@ -261,7 +252,16 @@ const content = {
         color: '#9b59b6',
         description: 'PRISMA 자동화, RAG 파이프라인',
         icon: 'sparkles',
-        agents: ['I0-스콜라에이전트오케스트레이터', 'I1-논문수집에이전트', 'I2-스크리닝어시스턴트', 'I3-RAG빌더'],
+        agents: ['I0-SR파이프라인오케스트레이터', 'I1-논문수집에이전트', 'I2-스크리닝어시스턴트', 'I3-RAG빌더'],
+      },
+      {
+        id: 'X',
+        name: '범분야',
+        count: 1,
+        color: '#ffa07a',
+        description: '연구 무결성, 윤리 감독',
+        icon: 'users',
+        agents: ['X1-연구수호자'],
       },
     ],
 
@@ -269,9 +269,9 @@ const content = {
     routingTitle: '복잡도별 모델 라우팅',
     routingDescription: '에이전트는 작업 복잡도에 따라 적절한 모델을 사용합니다:',
     tiers: [
-      { level: 'HIGH', model: 'Opus', count: 17, color: '#9b59b6', description: '복잡한 결정, 이론, 오케스트레이션' },
-      { level: 'MEDIUM', model: 'Sonnet', count: 18, color: '#45b7d1', description: '표준 연구 작업, 스크리닝' },
-      { level: 'LOW', model: 'Haiku', count: 9, color: '#44ffaa', description: '빠른 조회, 코드 생성' },
+      { level: 'HIGH', model: 'Opus', count: 13, color: '#9b59b6', description: '복잡한 결정, 이론, 오케스트레이션' },
+      { level: 'MEDIUM', model: 'Sonnet', count: 9, color: '#45b7d1', description: '표준 연구 작업, 스크리닝' },
+      { level: 'LOW', model: 'Haiku', count: 2, color: '#44ffaa', description: '빠른 검증, RAG 빌딩' },
     ],
 
     // Section 5: Invocation Pattern
@@ -288,9 +288,9 @@ const content = {
     parallelDescription: '작업이 독립적일 때 여러 에이전트가 동시에 실행될 수 있습니다:',
     parallelGroups: [
       { name: '연구 설계', agents: 'A1 + A2 + A5', description: '질문, 이론, 패러다임' },
-      { name: '문헌 및 증거', agents: 'B1 + B2 + B3', description: '검색, 평가, 추출' },
-      { name: '품질 보증', agents: 'F1 + F3 + F4', description: '일관성, 재현성, 편향' },
+      { name: '문헌 및 증거', agents: 'B1 + B2', description: '검색, 평가' },
       { name: '출판 준비', agents: 'G1 + G2 + G5', description: '저널 매칭, 글쓰기, AI 감사' },
+      { name: 'SR 파이프라인', agents: 'I0 + I1 + I2 + I3', description: '조율, 검색, 스크리닝, RAG' },
     ],
 
     // Section 7: Quick Links
@@ -299,7 +299,7 @@ const content = {
 
     // Section 8: CTA
     ctaTitle: '전문 에이전트를 사용할 준비가 되셨나요?',
-    ctaDescription: '전체 연구 생애주기를 다루는 44개 에이전트로 연구를 시작하세요.',
+    ctaDescription: '전체 연구 생애주기를 다루는 24개 에이전트로 연구를 시작하세요.',
     ctaButtons: {
       checkpoints: '체크포인트 보기',
       vs: 'VS 방법론 알아보기',
@@ -664,7 +664,7 @@ export default function AgentsOverviewPage() {
                     category.id.toLowerCase() === 'e' ? 'analysis' :
                     category.id.toLowerCase() === 'f' ? 'quality' :
                     category.id.toLowerCase() === 'g' ? 'communication' :
-                    category.id.toLowerCase() === 'h' ? 'specialized' :
+                    category.id.toLowerCase() === 'x' ? 'cross-cutting' :
                     'systematic-review'}`}
                   className="block p-4 bg-void-elevated border border-stellar-faint/10 hover:border-stellar-faint/30 transition-all group"
                 >

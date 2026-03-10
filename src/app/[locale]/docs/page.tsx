@@ -64,8 +64,8 @@ export default function DocsHomePage() {
 
         <p className="text-lg text-stellar-dim max-w-2xl mb-8">
           {locale === 'ko'
-            ? 'Diverga를 시작하고 40개 전문 에이전트로 연구를 혁신하는 방법을 알아보세요. VS 방법론으로 모드 붕괴에서 벗어나세요.'
-            : 'Learn how to get started with Diverga and transform your research with 40 specialized agents. Break free from mode collapse with VS methodology.'}
+            ? 'Diverga를 시작하고 24개 전문 에이전트로 연구를 혁신하는 방법을 알아보세요. VS 방법론으로 모드 붕괴에서 벗어나세요.'
+            : 'Learn how to get started with Diverga and transform your research with 24 specialized agents. Break free from mode collapse with VS methodology.'}
         </p>
 
         {/* Quick action buttons */}
@@ -186,7 +186,7 @@ export default function DocsHomePage() {
             },
             {
               icon: Users,
-              title: { en: '40 Agents', ko: '40개 에이전트' },
+              title: { en: '24 Agents', ko: '24개 에이전트' },
               description: {
                 en: 'Complete research lifecycle',
                 ko: '연구 전 과정 지원',
@@ -311,8 +311,8 @@ export default function DocsHomePage() {
       >
         <p className="text-xs text-stellar-faint font-mono uppercase tracking-wider">
           {locale === 'ko'
-            ? '40개 에이전트 · 8개 카테고리 · VS 방법론'
-            : '40 Agents · 8 Categories · VS Methodology'}
+            ? '24개 에이전트 · 9개 카테고리 · VS 방법론'
+            : '24 Agents · 9 Categories · VS Methodology'}
         </p>
       </motion.div>
     </div>
