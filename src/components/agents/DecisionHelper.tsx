@@ -60,7 +60,7 @@ export function DecisionHelperComponent({ decisionHelper, locale, agents }: Deci
                   className="flex items-start gap-3 p-3 rounded-lg bg-void-surface/50 hover:bg-void-surface transition-colors group/item"
                 >
                   <div className="flex-shrink-0 w-6 h-6 rounded-full bg-tscore-creative/20 flex items-center justify-center mt-0.5">
-                    <div className="w-2 h-2 rounded-full bg-tscore-creative group-hover/item:animate-glow-pulse" />
+                    <div className="w-2 h-2 rounded-full bg-tscore-creative" />
                   </div>
                   <p className="text-sm text-stellar-dim leading-relaxed flex-1">
                     {condition[locale]}

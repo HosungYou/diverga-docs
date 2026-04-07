@@ -272,8 +272,6 @@ export default function MemorySystemPage() {
               <div className="grid gap-4 sm:grid-cols-3">
                 {[
                   { name: 'Claude Code', status: 'Full Support' },
-                  { name: 'Codex CLI', status: 'Full Support' },
-                  { name: 'OpenCode', status: 'Experimental' },
                 ].map((platform) => (
                   <div
                     key={platform.name}

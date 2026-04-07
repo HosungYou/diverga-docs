@@ -1,19 +1,16 @@
 {
   "metadata": {
     "title": "Diverga - 모달을 넘어선 연구 AI",
-    "description": "9개 카테고리의 44개 전문 AI 에이전트로 연구 전 과정을 지원합니다. VS 방법론으로 모드 붕괴에서 벗어나세요."
+    "description": "9개 카테고리의 24개 전문 AI 에이전트로 연구 전 과정을 지원합니다. VS 방법론으로 모드 붕괴에서 벗어나세요."
   },
   "nav": {
     "home": "홈",
     "agents": "에이전트",
-    "features": "기능",
-    "gettingStarted": "시작하기",
-    "workflows": "워크플로우",
-    "docs": "문서",
-    "playground": "체험하기"
+    "howItWorks": "작동 원리",
+    "docs": "문서"
   },
   "hero": {
-    "badge": "44개 연구 에이전트 · v9.0",
+    "badge": "24개 연구 에이전트 · v12.0.1",
     "title": "뻔한 답을 넘어서",
     "titleHighlight": "창의적인 연구 AI",
     "description": "Diverga는 AI 모드 붕괴에서 벗어납니다. 매번 같은 뻔한 추천이 아닌, 창의적이고 방어 가능한 연구 선택을 제공합니다.",
@@ -46,7 +43,7 @@
     }
   },
   "categories": {
-    "title": "9개 카테고리, 44개 에이전트",
+    "title": "9개 카테고리, 24개 에이전트",
     "description": "연구의 모든 단계에 전문적인 지원",
     "a": {
       "name": "기초",
@@ -73,16 +70,16 @@
       "description": "일관성, 체크리스트, 재현성, 편향"
     },
     "g": {
-      "name": "커뮤니케이션",
-      "description": "저널 선택, 작성, 동료 심사, 사전등록"
-    },
-    "h": {
-      "name": "전문",
-      "description": "민족지학, 실행연구"
+      "name": "출판 커뮤니케이션",
+      "description": "저널 매칭, 작성, 휴먼화, 감사"
     },
     "i": {
       "name": "체계적 문헌고찰",
       "description": "PRISMA 파이프라인, 논문 검색, 스크리닝, RAG"
+    },
+    "x": {
+      "name": "범분야",
+      "description": "연구 무결성, 윤리, 편향 감지"
     }
   },
   "cta": {
@@ -92,7 +89,7 @@
   },
   "agents": {
     "title": "에이전트 카탈로그",
-    "description": "9개 연구 카테고리에 걸친 44개 전문 에이전트",
+    "description": "9개 연구 카테고리에 걸친 24개 전문 에이전트",
     "search": "에이전트 검색...",
     "filter": {
       "all": "전체",
@@ -189,14 +186,14 @@
         "subtitle": "모든 플랫폼에서 일관된 체크포인트 적용"
       }
     },
-    "crossPlatform": {
-      "name": "크로스 플랫폼 지원",
-      "shortName": "크로스 플랫폼",
-      "description": "Claude Code, Codex CLI, OpenCode에서 동작",
-      "badge": "v8.3 신규",
+    "claudeCodeExclusive": {
+      "name": "Claude Code 전용",
+      "shortName": "Claude Code",
+      "description": "전체 도구 지원으로 Claude Code에 최적화",
+      "badge": "v11.0 이후",
       "hero": {
-        "title": "하나의 프레임워크, 모든 플랫폼",
-        "subtitle": "Claude Code, Codex CLI, OpenCode에서 동일한 44개 에이전트 경험"
+        "title": "Claude Code를 위해 만들어졌습니다",
+        "subtitle": "Task 도구, AskUserQuestion, 병렬 실행을 통한 완전한 에이전트 기능"
       }
     },
     "dualDirectory": {

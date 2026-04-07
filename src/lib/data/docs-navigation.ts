@@ -1,5 +1,5 @@
 // Documentation navigation structure for Diverga
-// Follows Claude docs pattern with hierarchical sidebar navigation
+// Updated for v12.0.1 — 4 sections, 24 agents, 9 categories
 
 export interface DocsNavItem {
   id: string;
@@ -18,11 +18,11 @@ export interface DocsSection {
   items: DocsNavItem[];
 }
 
-// Main documentation navigation structure
+// Main documentation navigation structure (4 sections)
 export const docsNavigation: DocsSection[] = [
   {
-    id: 'getting-started',
-    title: { en: 'Getting Started', ko: '시작하기' },
+    id: 'get-started',
+    title: { en: 'Get Started', ko: '시작하기' },
     items: [
       {
         id: 'overview',
@@ -51,58 +51,9 @@ export const docsNavigation: DocsSection[] = [
     ],
   },
   {
-    id: 'tutorials',
-    title: { en: 'Tutorials', ko: '튜토리얼' },
-    items: [
-      {
-        id: 'tutorials-overview',
-        title: { en: 'All Tutorials', ko: '모든 튜토리얼' },
-        href: '/docs/tutorials',
-        icon: 'graduation-cap',
-      },
-      {
-        id: 'quick-start-tutorial',
-        title: { en: 'Quick Start', ko: '빠른 시작' },
-        href: '/docs/tutorials/quick-start',
-        icon: 'rocket',
-        badge: { text: 'Beginner', color: '#44ffaa' },
-      },
-      {
-        id: 'meta-analysis-tutorial',
-        title: { en: 'Meta-Analysis Pipeline', ko: '메타분석 파이프라인' },
-        href: '/docs/tutorials/meta-analysis',
-        icon: 'database',
-        badge: { text: 'Advanced', color: '#f39c12' },
-      },
-    ],
-  },
-  {
     id: 'core-features',
     title: { en: 'Core Features', ko: '핵심 기능' },
     items: [
-      {
-        id: 'memory-system',
-        title: { en: 'Memory System', ko: '메모리 시스템' },
-        href: '/docs/memory-system',
-        icon: 'brain',
-        children: [
-          {
-            id: 'memory-types',
-            title: { en: 'Memory Types', ko: '메모리 타입' },
-            href: '/docs/memory-system/types',
-          },
-          {
-            id: 'memory-commands',
-            title: { en: 'CLI Commands', ko: 'CLI 명령어' },
-            href: '/docs/memory-system/commands',
-          },
-          {
-            id: 'memory-api',
-            title: { en: 'API Reference', ko: 'API 레퍼런스' },
-            href: '/docs/memory-system/api',
-          },
-        ],
-      },
       {
         id: 'vs-methodology',
         title: { en: 'VS Methodology', ko: 'VS 방법론' },
@@ -145,6 +96,38 @@ export const docsNavigation: DocsSection[] = [
         ],
       },
       {
+        id: 'humanization',
+        title: { en: 'Humanization Pipeline', ko: '휴먼화 파이프라인' },
+        href: '/docs/humanization',
+        icon: 'pen-tool',
+        badge: { text: 'v12', color: '#ff8844' },
+        children: [
+          {
+            id: 'ai-patterns',
+            title: { en: 'AI Pattern Detection', ko: 'AI 패턴 감지' },
+            href: '/docs/humanization/patterns',
+          },
+          {
+            id: 'transformation-modes',
+            title: { en: 'Transformation Modes', ko: '변환 모드' },
+            href: '/docs/humanization/modes',
+          },
+          {
+            id: 'pipeline',
+            title: { en: 'Multi-Pass Pipeline', ko: '다중 패스 파이프라인' },
+            href: '/docs/humanization/pipeline',
+          },
+        ],
+      },
+      {
+        id: 'vs-arena',
+        title: { en: 'VS Arena', ko: 'VS 아레나' },
+        href: '/docs/vs-arena',
+        icon: 'swords',
+        isNew: true,
+        badge: { text: 'v12', color: '#44ffaa' },
+      },
+      {
         id: 'systematic-review',
         title: { en: 'Systematic Review', ko: '체계적 문헌고찰' },
         href: '/docs/systematic-review',
@@ -162,96 +145,6 @@ export const docsNavigation: DocsSection[] = [
           },
         ],
       },
-      {
-        id: 'humanization',
-        title: { en: 'Humanization', ko: '휴먼화' },
-        href: '/docs/humanization',
-        icon: 'pen-tool',
-        children: [
-          {
-            id: 'ai-patterns',
-            title: { en: 'AI Pattern Detection', ko: 'AI 패턴 감지' },
-            href: '/docs/humanization/patterns',
-          },
-          {
-            id: 'transformation-modes',
-            title: { en: 'Transformation Modes', ko: '변환 모드' },
-            href: '/docs/humanization/modes',
-          },
-          {
-            id: 'metrics',
-            title: { en: 'Stylometric Metrics', ko: '문체 측정 메트릭' },
-            href: '/docs/humanization/metrics',
-            isNew: true,
-          },
-          {
-            id: 'discourse',
-            title: { en: 'Discourse Transformation', ko: '담화 변환' },
-            href: '/docs/humanization/discourse',
-            isNew: true,
-          },
-          {
-            id: 'pipeline',
-            title: { en: 'Multi-Pass Pipeline', ko: '다중 패스 파이프라인' },
-            href: '/docs/humanization/pipeline',
-            isNew: true,
-          },
-        ],
-      },
-      {
-        id: 'journal-intelligence',
-        title: { en: 'Journal Intelligence', ko: '저널 인텔리전스' },
-        href: '/docs/journal-intelligence',
-        icon: 'bar-chart-2',
-        children: [
-          {
-            id: 'journal-mcp',
-            title: { en: 'Journal MCP Server', ko: '저널 MCP 서버' },
-            href: '/docs/journal-intelligence/mcp-server',
-          },
-          {
-            id: 'journal-matching-pipeline',
-            title: { en: 'Matching Pipeline', ko: '매칭 파이프라인' },
-            href: '/docs/journal-intelligence/pipeline',
-          },
-        ],
-      },
-      {
-        id: 'hud',
-        title: { en: 'HUD Statusline', ko: 'HUD 상태표시줄' },
-        href: '/docs/hud',
-        icon: 'monitor',
-      },
-      {
-        id: 'doctor',
-        title: { en: 'Diagnostics', ko: '진단' },
-        href: '/docs/doctor',
-        icon: 'stethoscope',
-      },
-      {
-        id: 'project-init',
-        title: { en: 'Project Init', ko: '프로젝트 초기화' },
-        href: '/docs/project-init',
-        icon: 'wand',
-      },
-    ],
-  },
-  {
-    id: 'orchestration',
-    title: { en: 'Orchestration', ko: '오케스트레이션' },
-    items: [
-      {
-        id: 'orchestrator',
-        title: { en: 'Orchestrator', ko: '오케스트레이터' },
-        href: '/docs/orchestrator',
-        icon: 'workflow',
-      },
-      {
-        id: 'agent-teams',
-        title: { en: 'Agent Teams', ko: '에이전트 팀' },
-        href: '/docs/agent-teams',
-        icon: 'users',
-      },
     ],
   },
   {
@@ -266,66 +159,66 @@ export const docsNavigation: DocsSection[] = [
       },
       {
         id: 'category-a',
-        title: { en: 'A: Foundation', ko: 'A: 기초' },
+        title: { en: 'A: Foundation (3)', ko: 'A: 기초 (3)' },
         href: '/docs/agents/foundation',
         icon: 'layout',
         badge: { text: '3', color: '#ff6b6b' },
       },
       {
         id: 'category-b',
-        title: { en: 'B: Evidence', ko: 'B: 근거' },
+        title: { en: 'B: Evidence (2)', ko: 'B: 근거 (2)' },
         href: '/docs/agents/evidence',
         icon: 'search',
         badge: { text: '2', color: '#4ecdc4' },
       },
       {
         id: 'category-c',
-        title: { en: 'C: Design', ko: 'C: 설계' },
+        title: { en: 'C: Design (4)', ko: 'C: 설계 (4)' },
         href: '/docs/agents/design',
         icon: 'compass',
         badge: { text: '4', color: '#45b7d1' },
       },
       {
         id: 'category-d',
-        title: { en: 'D: Collection', ko: 'D: 수집' },
+        title: { en: 'D: Collection (2)', ko: 'D: 수집 (2)' },
         href: '/docs/agents/collection',
         icon: 'database',
         badge: { text: '2', color: '#96ceb4' },
       },
       {
         id: 'category-e',
-        title: { en: 'E: Analysis', ko: 'E: 분석' },
+        title: { en: 'E: Analysis (3)', ko: 'E: 분석 (3)' },
         href: '/docs/agents/analysis',
         icon: 'bar-chart',
         badge: { text: '3', color: '#dda0dd' },
       },
       {
         id: 'category-f',
-        title: { en: 'F: Quality', ko: 'F: 품질' },
+        title: { en: 'F: Quality (1)', ko: 'F: 품질 (1)' },
         href: '/docs/agents/quality',
         icon: 'check-circle',
         badge: { text: '1', color: '#f0e68c' },
       },
       {
         id: 'category-g',
-        title: { en: 'G: Communication', ko: 'G: 커뮤니케이션' },
+        title: { en: 'G: Communication (4)', ko: 'G: 커뮤니케이션 (4)' },
         href: '/docs/agents/communication',
         icon: 'message-circle',
         badge: { text: '4', color: '#87ceeb' },
       },
       {
         id: 'category-i',
-        title: { en: 'I: Systematic Review', ko: 'I: 체계적 문헌고찰' },
+        title: { en: 'I: Systematic Review (4)', ko: 'I: 체계적 문헌고찰 (4)' },
         href: '/docs/agents/systematic-review',
         icon: 'book-open',
         badge: { text: '4', color: '#00bcd4' },
       },
       {
         id: 'category-x',
-        title: { en: 'X: Cross-Cutting', ko: 'X: 범분야' },
+        title: { en: 'X: Cross-Cutting (1)', ko: 'X: 범분야 (1)' },
         href: '/docs/agents/cross-cutting',
-        icon: 'shield',
-        badge: { text: '1', color: '#a78bfa' },
+        icon: 'star',
+        badge: { text: '1', color: '#ffa07a' },
       },
     ],
   },
@@ -340,10 +233,12 @@ export const docsNavigation: DocsSection[] = [
         icon: 'terminal',
       },
       {
-        id: 'configuration-ref',
-        title: { en: 'Configuration', ko: '설정 레퍼런스' },
-        href: '/docs/reference/configuration',
-        icon: 'sliders',
+        id: 'mcp-server',
+        title: { en: 'MCP Server (7 tools)', ko: 'MCP 서버 (7 도구)' },
+        href: '/docs/reference/mcp-server',
+        icon: 'server',
+        isNew: true,
+        badge: { text: 'v12', color: '#44ffaa' },
       },
       {
         id: 'model-tiers',
@@ -351,24 +246,14 @@ export const docsNavigation: DocsSection[] = [
         href: '/docs/reference/model-tiers',
         icon: 'layers',
       },
-    ],
-  },
-  {
-    id: 'developer',
-    title: { en: 'Developer', ko: '개발자' },
-    items: [
       {
-        id: 'dev-mode',
-        title: { en: 'Dev Mode and Deploy', ko: '개발 모드 및 배포' },
-        href: '/docs/developer/dev-mode',
-        icon: 'code',
+        id: 'agent-teams',
+        title: { en: 'Agent Teams', ko: '에이전트 팀' },
+        href: '/docs/advanced/agent-teams',
+        icon: 'users',
+        isNew: true,
+        badge: { text: 'v12', color: '#44ffaa' },
       },
-    ],
-  },
-  {
-    id: 'resources',
-    title: { en: 'Resources', ko: '리소스' },
-    items: [
       {
         id: 'changelog',
         title: { en: 'Changelog', ko: '변경 로그' },
@@ -380,13 +265,6 @@ export const docsNavigation: DocsSection[] = [
         title: { en: 'GitHub', ko: 'GitHub' },
         href: 'https://github.com/HosungYou/Diverga',
         icon: 'github',
-        isExternal: true,
-      },
-      {
-        id: 'community',
-        title: { en: 'Community', ko: '커뮤니티' },
-        href: 'https://github.com/HosungYou/Diverga/discussions',
-        icon: 'users',
         isExternal: true,
       },
     ],
@@ -412,29 +290,29 @@ export interface DocsCategory {
 export const docsCategories: DocsCategory[] = [
   {
     id: 'getting-started',
-    title: { en: 'Getting Started', ko: '시작하기' },
+    title: { en: 'Get Started', ko: '시작하기' },
     description: {
-      en: 'Install Diverga and start your first research project',
-      ko: 'Diverga를 설치하고 첫 번째 연구 프로젝트 시작하기'
+      en: 'Install Diverga and run your first research agent',
+      ko: 'Diverga를 설치하고 첫 번째 연구 에이전트 실행하기',
     },
     icon: 'rocket',
     color: '#44ffaa',
     items: [
       {
         title: { en: 'Installation', ko: '설치' },
-        description: { en: 'Set up Diverga on your platform', ko: '플랫폼에 Diverga 설치하기' },
+        description: { en: 'Claude Code plugin setup', ko: 'Claude Code 플러그인 설치' },
         href: '/docs/installation',
         icon: 'download',
       },
       {
         title: { en: 'Quick Start', ko: '빠른 시작' },
-        description: { en: 'Your first agent in 5 minutes', ko: '5분 안에 첫 번째 에이전트 실행' },
+        description: { en: '3 commands to first agent', ko: '3개 명령어로 첫 에이전트' },
         href: '/docs/quick-start',
         icon: 'zap',
       },
       {
         title: { en: 'Configuration', ko: '설정' },
-        description: { en: 'Customize your research environment', ko: '연구 환경 맞춤 설정' },
+        description: { en: 'Researcher profile & settings', ko: '연구자 프로필 및 설정' },
         href: '/docs/configuration',
         icon: 'settings',
       },
@@ -444,36 +322,35 @@ export const docsCategories: DocsCategory[] = [
     id: 'core-features',
     title: { en: 'Core Features', ko: '핵심 기능' },
     description: {
-      en: 'Memory, VS methodology, checkpoints, journal intelligence',
-      ko: 'Diverga를 특별하게 만드는 강력한 기능 탐색'
+      en: 'The ideas that make Diverga different from other AI tools',
+      ko: 'Diverga를 다른 AI 도구와 차별화하는 핵심 개념들',
     },
     icon: 'sparkles',
     color: '#22ccff',
     items: [
       {
-        title: { en: 'Memory System', ko: '메모리 시스템' },
-        description: { en: 'Context persistence across sessions', ko: '세션 간 맥락 지속성' },
-        href: '/docs/memory-system',
-        icon: 'brain',
-        isNew: true,
-      },
-      {
         title: { en: 'VS Methodology', ko: 'VS 방법론' },
-        description: { en: 'Reduce mode collapse with typicality-aware sampling', ko: '모드 붕괴에서 벗어나기' },
+        description: { en: 'Break free from mode collapse', ko: '모드 붕괴에서 벗어나기' },
         href: '/docs/vs-methodology',
         icon: 'sparkles',
       },
       {
         title: { en: 'Human Checkpoints', ko: '휴먼 체크포인트' },
-        description: { en: 'Five required gates before downstream agents run', ko: '중요한 결정은 당신의 손에' },
+        description: { en: 'Critical decisions stay with you', ko: '중요한 결정은 당신의 손에' },
         href: '/docs/checkpoints',
         icon: 'shield-check',
       },
       {
-        title: { en: 'Journal Intelligence', ko: '저널 인텔리전스' },
-        description: { en: 'Real-time journal matching with OpenAlex', ko: 'OpenAlex 기반 실시간 저널 매칭' },
-        href: '/docs/journal-intelligence',
-        icon: 'bar-chart-2',
+        title: { en: 'Humanization Pipeline', ko: '휴먼화 파이프라인' },
+        description: { en: 'G5 → G6 → F5 natural writing', ko: 'G5 → G6 → F5 자연스러운 문체' },
+        href: '/docs/humanization',
+        icon: 'pen-tool',
+      },
+      {
+        title: { en: 'VS Arena', ko: 'VS 아레나' },
+        description: { en: '5-persona methodology debate', ko: '5개 페르소나 방법론 토론' },
+        href: '/docs/vs-arena',
+        icon: 'swords',
         isNew: true,
       },
     ],
@@ -482,8 +359,8 @@ export const docsCategories: DocsCategory[] = [
     id: 'agents',
     title: { en: 'Research Agents', ko: '연구 에이전트' },
     description: {
-      en: '24 specialized agents for the complete research lifecycle',
-      ko: '연구 전 과정을 위한 24개 전문 에이전트'
+      en: '24 specialized agents across 9 categories for the complete research lifecycle',
+      ko: '연구 전 과정을 위한 9개 카테고리 24개 전문 에이전트',
     },
     icon: 'users',
     color: '#ff8844',
@@ -496,13 +373,13 @@ export const docsCategories: DocsCategory[] = [
       },
       {
         title: { en: 'Agent Reference', ko: '에이전트 레퍼런스' },
-        description: { en: 'Detailed documentation', ko: '상세 문서' },
+        description: { en: 'Detailed docs by category', ko: '카테고리별 상세 문서' },
         href: '/docs/agents',
         icon: 'book',
       },
       {
         title: { en: 'Model Tiers', ko: '모델 티어' },
-        description: { en: 'Haiku, Sonnet, Opus routing', ko: 'Haiku, Sonnet, Opus 라우팅' },
+        description: { en: 'Haiku · Sonnet · Opus routing', ko: 'Haiku · Sonnet · Opus 라우팅' },
         href: '/docs/reference/model-tiers',
         icon: 'layers',
       },
@@ -510,43 +387,33 @@ export const docsCategories: DocsCategory[] = [
   },
   {
     id: 'advanced',
-    title: { en: 'Advanced Topics', ko: '고급 주제' },
+    title: { en: 'Advanced', ko: '고급' },
     description: {
-      en: 'Systematic reviews, humanization, orchestration, dev workflow',
-      ko: '체계적 문헌고찰, 휴먼화, 플랫폼 통합 심층 분석'
+      en: 'Systematic reviews, Agent Teams, MCP server, and plugin architecture',
+      ko: '체계적 문헌고찰, 에이전트 팀, MCP 서버, 플러그인 아키텍처',
     },
     icon: 'graduation-cap',
     color: '#9b59b6',
     items: [
       {
         title: { en: 'Systematic Review', ko: '체계적 문헌고찰' },
-        description: { en: 'PRISMA 2020 pipeline (I0-I3)', ko: 'PRISMA 2020 자동화' },
+        description: { en: 'PRISMA 2020 automation', ko: 'PRISMA 2020 자동화' },
         href: '/docs/systematic-review',
         icon: 'book-open',
       },
       {
-        title: { en: 'Humanization', ko: '휴먼화' },
-        description: { en: 'G5/G6/F5 transformation pipeline', ko: '자연스러운 학술 문체' },
-        href: '/docs/humanization',
-        icon: 'pen-tool',
-      },
-      {
-        title: { en: 'Orchestrator', ko: '오케스트레이터' },
-        description: { en: 'Unified Agent Teams and VS Arena dispatch', ko: '통합 디스패치' },
-        href: '/docs/orchestrator',
-        icon: 'workflow',
+        title: { en: 'MCP Server', ko: 'MCP 서버' },
+        description: { en: '7 runtime checkpoint tools', ko: '7개 런타임 체크포인트 도구' },
+        href: '/docs/reference/mcp-server',
+        icon: 'server',
+        isNew: true,
       },
       {
         title: { en: 'Agent Teams', ko: '에이전트 팀' },
-        description: { en: 'Parallel agent dispatch and Team Dispatch Bypass', ko: '병렬 에이전트 조율' },
-        href: '/docs/agent-teams',
+        description: { en: 'Parallel agent coordination', ko: '병렬 에이전트 조율' },
+        href: '/docs/advanced/agent-teams',
         icon: 'users',
-      },
-      {
-        title: { en: 'Dev Mode and Deploy', ko: '개발 모드 및 배포' },
-        description: { en: 'Symlink dev mode and deploy pipeline', ko: '심볼릭 dev 모드와 배포 파이프라인' },
-        href: '/docs/developer/dev-mode',
-        icon: 'code',
+        isNew: true,
       },
     ],
   },

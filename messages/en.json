@@ -1,19 +1,16 @@
 {
   "metadata": {
     "title": "Diverga - Beyond Modal Research AI",
-    "description": "44 specialized AI agents across 9 categories for the complete research lifecycle. Break free from mode collapse with VS methodology."
+    "description": "24 specialized AI agents across 9 categories for the complete research lifecycle. Break free from mode collapse with VS methodology."
   },
   "nav": {
     "home": "Home",
     "agents": "Agents",
-    "features": "Features",
-    "gettingStarted": "Getting Started",
-    "workflows": "Workflows",
-    "docs": "Docs",
-    "playground": "Playground"
+    "howItWorks": "How It Works",
+    "docs": "Docs"
   },
   "hero": {
-    "badge": "44 Research Agents · v9.0",
+    "badge": "24 Research Agents · v12.0.1",
     "title": "Beyond Modal Answers",
     "titleHighlight": "Creative Research AI",
     "description": "Diverga reduces AI mode collapse. Get creative, defensible research choices instead of the same predictable recommendation every time.",
@@ -46,7 +43,7 @@
     }
   },
   "categories": {
-    "title": "9 Categories, 44 Agents",
+    "title": "9 Categories, 24 Agents",
     "description": "Specialized support for every stage of your research",
     "a": {
       "name": "Foundation",
@@ -69,20 +66,20 @@
       "description": "Statistical analysis, qualitative coding, integration"
     },
     "f": {
-      "name": "Quality",
-      "description": "Consistency, checklists, reproducibility, bias"
+      "name": "Quality & Validation",
+      "description": "Humanization verification"
     },
     "g": {
-      "name": "Communication",
-      "description": "Journal selection, writing, peer review, preregistration"
-    },
-    "h": {
-      "name": "Specialized",
-      "description": "Ethnography, action research"
+      "name": "Publication",
+      "description": "Journal matching, writing, humanization, audit"
     },
     "i": {
       "name": "Systematic Review",
       "description": "PRISMA pipeline, paper retrieval, screening, RAG"
+    },
+    "x": {
+      "name": "Cross-Cutting",
+      "description": "Research integrity, ethics, bias detection"
     }
   },
   "cta": {
@@ -92,7 +89,7 @@
   },
   "agents": {
     "title": "Agent Catalog",
-    "description": "44 specialized agents organized across 9 research categories",
+    "description": "24 specialized agents organized across 9 research categories",
     "search": "Search agents...",
     "filter": {
       "all": "All",
@@ -189,14 +186,14 @@
         "subtitle": "Consistent checkpoint enforcement across all platforms"
       }
     },
-    "crossPlatform": {
-      "name": "Cross-Platform Support",
-      "shortName": "Cross-Platform",
-      "description": "Works with Claude Code, Codex CLI, and OpenCode",
-      "badge": "NEW in v8.3",
+    "claudeCodeExclusive": {
+      "name": "Claude Code Exclusive",
+      "shortName": "Claude Code",
+      "description": "Optimized exclusively for Claude Code with full tool support",
+      "badge": "Since v11.0",
       "hero": {
-        "title": "One Framework, Any Platform",
-        "subtitle": "Same 44-agent experience on Claude Code, Codex CLI, or OpenCode"
+        "title": "Built for Claude Code",
+        "subtitle": "Full agent capabilities via Task tool, AskUserQuestion, and parallel execution"
       }
     },
     "dualDirectory": {

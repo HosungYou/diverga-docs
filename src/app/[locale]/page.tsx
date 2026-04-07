@@ -4,260 +4,265 @@ import { useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { VoidHero } from '@/components/home/VoidHero';
-import { TScoreSpectrum, DivergenceAnimation, AgentNetwork } from '@/components/visualization';
-import { InteractiveCLI } from '@/components/cli';
 import Link from 'next/link';
 
-export default function HomePage() {
-  const locale = useLocale();
+const content = {
+  en: {
+    problem: {
+      label: 'The Problem',
+      title: 'Mode Collapse',
+      body: 'Every AI research assistant gives the same answer — "TAM framework", "mixed methods", "N=300 sample". T-Score: 0.92. Defensible but indistinguishable from everyone else.',
+    },
+    solution: {
+      label: 'The Solution',
+      title: 'VS Methodology',
+      body: 'Diverga surfaces what AI would never suggest first. Five alternatives across the typicality spectrum. T-Score 0.35: still defensible, completely your own.',
+    },
+    concepts: {
+      label: 'Core Concepts',
+      title: 'Three ideas that change how you research',
+      items: [
+        {
+          icon: '🎯',
+          title: 'VS Methodology',
+          description: 'Every query produces multiple alternatives across the T-Score spectrum. You choose — AI never decides alone.',
+          href: '/features/vs-methodology',
+          color: '#44ffaa',
+          isNew: false,
+        },
+        {
+          icon: '🛑',
+          title: 'Human Checkpoints',
+          description: 'Critical decisions stop and wait for your explicit approval. Impossible to bypass. Research integrity guaranteed.',
+          href: '/features/checkpoints',
+          color: '#ff3366',
+          isNew: false,
+        },
+        {
+          icon: '⚔️',
+          title: 'VS Arena',
+          description: 'Five debate personas argue methodology choices from different epistemological positions. Orchestrator-dispatched synthesis, not a guess.',
+          href: '/docs/vs-arena',
+          color: '#22ccff',
+          isNew: true,
+        },
+      ],
+    },
+    quickstart: {
+      label: 'Quick Start',
+      title: 'Up and running in 3 commands',
+      steps: [
+        '/plugin marketplace add https://github.com/HosungYou/Diverga',
+        '/plugin install diverga',
+        '/diverga:setup',
+      ],
+      cta: 'Full Installation Guide',
+      ctaHref: '/docs/installation',
+      secondary: 'Browse Agents',
+      secondaryHref: '/agents',
+      tagline: 'Diverga v12.0.1 · Claude Code Exclusive · 24 Agents · 9 Categories',
+    },
+  },
+  ko: {
+    problem: {
+      label: '문제',
+      title: 'Mode Collapse',
+      body: '모든 AI 연구 도우미는 같은 답을 줍니다 — "TAM 프레임워크", "혼합 방법론", "N=300 표본". T-Score: 0.92. 방어 가능하지만 모두와 구별되지 않습니다.',
+    },
+    solution: {
+      label: '해결책',
+      title: 'VS 방법론',
+      body: 'Diverga는 AI가 절대 먼저 제안하지 않을 것들을 표면화합니다. T-Score 스펙트럼에 걸친 다섯 가지 대안. T-Score 0.35: 여전히 방어 가능하고, 완전히 당신만의 것.',
+    },
+    concepts: {
+      label: '핵심 개념',
+      title: '연구 방식을 바꾸는 세 가지 아이디어',
+      items: [
+        {
+          icon: '🎯',
+          title: 'VS 방법론',
+          description: '모든 질문에 T-Score 스펙트럼에 걸친 다양한 대안을 제시합니다. 선택은 당신이 — AI는 혼자 결정하지 않습니다.',
+          href: '/features/vs-methodology',
+          color: '#44ffaa',
+          isNew: false,
+        },
+        {
+          icon: '🛑',
+          title: '휴먼 체크포인트',
+          description: '중요한 결정은 명시적 승인 전까지 완전히 중단됩니다. 우회 불가능. 연구 무결성 보장.',
+          href: '/features/checkpoints',
+          color: '#ff3366',
+          isNew: false,
+        },
+        {
+          icon: '⚔️',
+          title: 'VS 아레나',
+          description: '5개의 토론 페르소나가 서로 다른 인식론적 관점에서 방법론 선택을 논쟁합니다. 오케스트레이터가 합성을 제공합니다.',
+          href: '/docs/vs-arena',
+          color: '#22ccff',
+          isNew: true,
+        },
+      ],
+    },
+    quickstart: {
+      label: '빠른 시작',
+      title: '3개 명령어로 시작하기',
+      steps: [
+        '/plugin marketplace add https://github.com/HosungYou/Diverga',
+        '/plugin install diverga',
+        '/diverga:setup',
+      ],
+      cta: '전체 설치 가이드',
+      ctaHref: '/docs/installation',
+      secondary: '에이전트 탐색',
+      secondaryHref: '/agents',
+      tagline: 'Diverga v12.0.1 · Claude Code 전용 · 24 에이전트 · 9 카테고리',
+    },
+  },
+};
 
-  // Scroll to top on page load to ensure VoidHero is visible first
+export default function HomePage() {
+  const locale = useLocale() as 'en' | 'ko';
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const content = {
-    en: {
-      tscore: {
-        title: 'The T-Score Spectrum',
-        subtitle: 'Most AI outputs cluster at T-Score 0.8 and above. Diverga surfaces the long tail.',
-      },
-      divergence: {
-        title: 'VS Methodology in Action',
-        subtitle: 'One query, five directions. The researcher picks which to pursue.',
-      },
-      network: {
-        title: 'Agent Collaboration Network',
-        subtitle: '24 agents across 9 research lifecycle categories.',
-      },
-      cli: {
-        title: 'Interactive Terminal',
-        subtitle: 'Try the Diverga CLI with human checkpoints.',
-      },
-      cta: {
-        title: 'Get started',
-        subtitle: 'Diverga runs as a Claude Code plugin.',
-        button: 'Get started',
-        secondary: 'Read the docs',
-      },
-    },
-    ko: {
-      tscore: {
-        title: 'T-Score 스펙트럼',
-        subtitle: '대부분의 AI 출력은 T-Score 0.8+ (모달)에 집중됩니다. Diverga는 창의적인 Long-tail을 탐험하도록 도와줍니다.',
-      },
-      divergence: {
-        title: 'VS 방법론 실행',
-        subtitle: '하나의 질문, 다섯 가지 방향. 인간이 어떤 경로를 탐색할지 결정합니다.',
-      },
-      network: {
-        title: '에이전트 협업 네트워크',
-        subtitle: '24개의 전문 에이전트가 9개의 연구 생애주기 카테고리에서 함께 작동합니다.',
-      },
-      cli: {
-        title: '인터랙티브 터미널',
-        subtitle: '인간 체크포인트가 포함된 Diverga CLI를 체험해 보세요.',
-      },
-      cta: {
-        title: 'Mode Collapse를 탈출할 준비가 되셨나요?',
-        subtitle: '방법론의 Long-tail을 탐험하는 연구자들과 함께하세요.',
-        button: '연구 여정 시작',
-        secondary: '문서 읽기',
-      },
-    },
-  };
-
-  const t = content[locale as 'en' | 'ko'];
+  const t = content[locale];
 
   return (
     <div className="flex flex-col bg-void-deep">
-      {/* Hero Section */}
+      {/* Section 1: Hero */}
       <VoidHero />
 
-      {/* T-Score Philosophy Section */}
-      <section className="relative py-24 md:py-32">
-        <div className="mx-auto max-w-7xl px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
-          >
-            <span className="font-mono text-micro uppercase tracking-widest text-tscore-creative">
-              T-Score System
-            </span>
-            <h2 className="mt-4 font-display void-heading-1 text-stellar-core">
-              {t.tscore.title}
-            </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-body-lg text-stellar-dim">
-              {t.tscore.subtitle}
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-            className="mt-16"
-          >
-            <TScoreSpectrum locale={locale} height="md" />
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Divergence Animation Section */}
-      <section className="relative border-t border-stellar-faint/10 py-24 md:py-32">
-        <div className="mx-auto max-w-7xl px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
-          >
-            <span className="font-mono text-micro uppercase tracking-widest text-tscore-divergent">
-              VS Methodology
-            </span>
-            <h2 className="mt-4 font-display void-heading-1 text-stellar-core">
-              {t.divergence.title}
-            </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-body-lg text-stellar-dim">
-              {t.divergence.subtitle}
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="mt-12 flex justify-center"
-          >
-            <DivergenceAnimation locale={locale} size="lg" />
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Agent Network Section */}
-      <section className="relative border-t border-stellar-faint/10 py-24 md:py-32">
-        <div className="mx-auto max-w-7xl px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
-          >
-            <span className="font-mono text-micro uppercase tracking-widest text-category-c">
-              24 Agents
-            </span>
-            <h2 className="mt-4 font-display void-heading-1 text-stellar-core">
-              {t.network.title}
-            </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-body-lg text-stellar-dim">
-              {t.network.subtitle}
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="mt-12 overflow-hidden border border-stellar-faint/10"
-          >
-            <AgentNetwork locale={locale} height={500} />
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Interactive CLI Section */}
-      <section className="relative border-t border-stellar-faint/10 py-24 md:py-32">
+      {/* Section 2: Problem + Solution */}
+      <section className="relative border-t border-stellar-faint/10 py-16 md:py-20">
         <div className="mx-auto max-w-5xl px-6">
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
+            transition={{ duration: 0.5 }}
+            className="grid gap-5 md:grid-cols-2"
           >
-            <span className="font-mono text-micro uppercase tracking-widest text-tscore-balanced">
-              Try It Now
-            </span>
-            <h2 className="mt-4 font-display void-heading-1 text-stellar-core">
-              {t.cli.title}
-            </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-body-lg text-stellar-dim">
-              {t.cli.subtitle}
-            </p>
+            {/* Problem */}
+            <div className="rounded-xl bg-void-elevated border border-stellar-faint/20 p-6">
+              <span className="font-mono text-micro uppercase tracking-widest text-tscore-modal">
+                {t.problem.label}
+              </span>
+              <h2 className="mt-3 font-display text-2xl text-stellar-core">{t.problem.title}</h2>
+              <p className="mt-3 text-sm text-stellar-dim leading-relaxed">{t.problem.body}</p>
+            </div>
+            {/* Solution */}
+            <div className="rounded-xl bg-void-elevated border border-tscore-creative/30 p-6">
+              <span className="font-mono text-micro uppercase tracking-widest text-tscore-creative">
+                {t.solution.label}
+              </span>
+              <h2 className="mt-3 font-display text-2xl text-stellar-core">{t.solution.title}</h2>
+              <p className="mt-3 text-sm text-stellar-dim leading-relaxed">{t.solution.body}</p>
+            </div>
           </motion.div>
+        </div>
+      </section>
 
+      {/* Section 3: 3 Core Concepts */}
+      <section className="relative border-t border-stellar-faint/10 py-16 md:py-20">
+        <div className="mx-auto max-w-5xl px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="mt-12"
+            transition={{ duration: 0.5 }}
+            className="mb-10 text-center"
           >
-            <InteractiveCLI height={420} />
+            <span className="font-mono text-micro uppercase tracking-widest text-stellar-faint">
+              {t.concepts.label}
+            </span>
+            <h2 className="mt-4 font-display text-3xl text-stellar-core">{t.concepts.title}</h2>
           </motion.div>
+          <div className="grid gap-5 md:grid-cols-3">
+            {t.concepts.items.map((item, i) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1, duration: 0.5 }}
+              >
+                <Link href={`/${locale}${item.href}`}>
+                  <div
+                    className="group h-full rounded-xl bg-void-elevated border border-stellar-faint/20 p-6
+                                transition-all hover:border-stellar-faint/40"
+                  >
+                    <div className="mb-3 flex items-center justify-between">
+                      <span className="text-3xl">{item.icon}</span>
+                      {item.isNew && (
+                        <span className="border border-tscore-creative/30 bg-tscore-creative/10 px-2 py-0.5 font-mono text-micro text-tscore-creative">
+                          NEW
+                        </span>
+                      )}
+                    </div>
+                    <h3
+                      className="mb-2 font-display text-lg transition-colors group-hover:brightness-110"
+                      style={{ color: item.color }}
+                    >
+                      {item.title}
+                    </h3>
+                    <p className="text-sm text-stellar-dim leading-relaxed">{item.description}</p>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="relative border-t border-stellar-faint/10 py-24 md:py-32">
-        <div className="mx-auto max-w-4xl px-6 text-center">
+      {/* Section 4: Quick Start + CTA */}
+      <section className="relative border-t border-stellar-faint/10 py-16 md:py-20">
+        <div className="mx-auto max-w-3xl px-6">
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
+            className="text-center"
           >
-            <h2 className="font-display void-heading-1 text-stellar-core">
-              {t.cta.title}
-            </h2>
-            <p className="mx-auto mt-4 max-w-xl text-body-lg text-stellar-dim">
-              {t.cta.subtitle}
-            </p>
+            <span className="font-mono text-micro uppercase tracking-widest text-tscore-balanced">
+              {t.quickstart.label}
+            </span>
+            <h2 className="mt-4 font-display text-3xl text-stellar-core">{t.quickstart.title}</h2>
 
-            <div className="mt-10 flex flex-wrap justify-center gap-4">
-              <Link
-                href={`/${locale}/getting-started`}
-                className="void-btn void-btn-accent"
-              >
-                {t.cta.button}
-                <svg
-                  className="h-4 w-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
+            {/* Terminal block */}
+            <div className="mt-8 rounded-xl border border-stellar-faint/20 bg-void-elevated p-6 text-left">
+              {t.quickstart.steps.map((cmd, i) => (
+                <div key={i} className="mb-3 flex items-start gap-3 last:mb-0">
+                  <span className="w-4 shrink-0 font-mono text-micro text-stellar-faint">{i + 1}</span>
+                  <code className="font-mono text-sm text-tscore-creative">{cmd}</code>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
+              <Link href={`/${locale}${t.quickstart.ctaHref}`} className="void-btn void-btn-accent">
+                {t.quickstart.cta}
               </Link>
-              <Link
-                href={`/${locale}/docs`}
-                className="void-btn void-btn-ghost"
-              >
-                {t.cta.secondary}
+              <Link href={`/${locale}${t.quickstart.secondaryHref}`} className="void-btn void-btn-ghost">
+                {t.quickstart.secondary}
               </Link>
             </div>
-          </motion.div>
 
-          {/* T-Score badge */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="mt-16 inline-flex items-center gap-2 border border-stellar-faint/10 bg-void-surface/50 px-4 py-2 backdrop-blur-sm"
-          >
-            <div className="h-2 w-2 bg-tscore-creative" />
-            <span className="font-mono text-micro text-stellar-faint">
-              This documentation: T-Score 0.42 (Creative Range)
-            </span>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+              className="mt-12 inline-flex items-center gap-2 border border-stellar-faint/10 bg-void-surface/50 px-4 py-2 backdrop-blur-sm"
+            >
+              <div className="h-2 w-2 bg-tscore-creative" />
+              <span className="font-mono text-micro text-stellar-faint">
+                {t.quickstart.tagline}
+              </span>
+            </motion.div>
           </motion.div>
         </div>
       </section>

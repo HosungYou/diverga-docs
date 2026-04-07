@@ -9,11 +9,9 @@ import { TScoreBadge } from './TScoreBadge';
 import { CheckpointBadge } from './CheckpointBadge';
 import { AgentDetailSections } from './AgentDetailSections';
 import { QuickSummaryCard } from './QuickSummaryCard';
-import { PersonaCard } from './PersonaCard';
 import { PromptStarters } from './PromptStarters';
 import { DecisionHelperComponent } from './DecisionHelper';
 import { UseCaseGallery } from './UseCaseGallery';
-import { JourneyNarrativeSection } from './JourneyNarrativeSection';
 import { cn } from '@/lib/utils/cn';
 
 interface AgentDetailProps {
@@ -53,7 +51,8 @@ export function AgentDetail({ agent, category, relatedAgents, extendedContent }:
     E: '#9b59b6',
     F: '#e17055',
     G: '#00cec9',
-    H: '#fd79a8',
+    I: '#00bcd4',
+    X: '#ffa07a',
   };
 
   return (
@@ -206,21 +205,6 @@ export function AgentDetail({ agent, category, relatedAgents, extendedContent }:
             </div>
           </motion.div>
 
-          {/* Persona Card - After Paradigms */}
-          {extendedContent?.persona && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.25 }}
-              className="sm:col-span-2"
-            >
-              <PersonaCard
-                persona={extendedContent.persona}
-                locale={locale}
-                themeColor={categoryColors[agent.category]}
-              />
-            </motion.div>
-          )}
         </div>
 
         {/* Triggers */}
@@ -245,18 +229,6 @@ export function AgentDetail({ agent, category, relatedAgents, extendedContent }:
             ))}
           </div>
         </motion.div>
-
-        {/* Journey Narrative Section - Mid-page storytelling */}
-        {extendedContent?.journey && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.35 }}
-            className="mb-8"
-          >
-            <JourneyNarrativeSection journey={extendedContent.journey} locale={locale} />
-          </motion.div>
-        )}
 
         {/* Use Case Gallery - Real-world examples */}
         {extendedContent?.useCases && extendedContent.useCases.length > 0 && (
