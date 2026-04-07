@@ -201,7 +201,7 @@ export function UseCaseGallery({ useCases, locale }: UseCaseGalleryProps) {
                               <div className="flex-1">
                                 <div className="flex items-center gap-2 mb-2">
                                   <div
-                                    className="w-2 h-2 rounded-full animate-glow-pulse"
+                                    className="w-2 h-2 rounded-full"
                                     style={{ backgroundColor: complexity.color }}
                                   />
                                   <span className="text-xs font-mono font-bold" style={{ color: complexity.color }}>

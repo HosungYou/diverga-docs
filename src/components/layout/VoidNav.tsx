@@ -23,20 +23,17 @@ const navItems: NavItem[] = [
   { href: '/agents', label: 'Agents', labelKo: '에이전트' },
   {
     href: '/features',
-    label: 'Features',
-    labelKo: '기능',
+    label: 'How It Works',
+    labelKo: '작동 원리',
     hasDropdown: true,
     dropdownItems: [
-      { href: '/features/memory-system', label: 'Memory System', labelKo: '메모리 시스템', icon: '🧠', isNew: true },
       { href: '/features/vs-methodology', label: 'VS Methodology', labelKo: 'VS 방법론', icon: '🎯' },
       { href: '/features/checkpoints', label: 'Human Checkpoints', labelKo: '휴먼 체크포인트', icon: '🛑' },
+      { href: '/features/humanization', label: 'Humanization Pipeline', labelKo: '휴먼화 파이프라인', icon: '✍️' },
+      { href: '/docs/vs-arena', label: 'VS Arena', labelKo: 'VS 아레나', icon: '⚔️', isNew: true },
       { href: '/features/systematic-review', label: 'Systematic Review', labelKo: '체계적 문헌고찰', icon: '📚' },
-      { href: '/features/humanization', label: 'Humanization', labelKo: '휴먼화', icon: '✍️' },
-      { href: '/features/journal-intelligence', label: 'Journal Intelligence', labelKo: '저널 인텔리전스', icon: '📊', isNew: true },
     ],
   },
-  { href: '/getting-started', label: 'Getting Started', labelKo: '시작하기' },
-  { href: '/workflows', label: 'Workflows', labelKo: '워크플로우' },
   { href: '/docs', label: 'Docs', labelKo: '문서' },
 ];
 
@@ -165,7 +162,7 @@ export function VoidNav() {
                             href={item.href}
                             className="flex items-center justify-between font-mono text-micro text-stellar-faint transition-colors hover:text-stellar-core"
                           >
-                            <span>{locale === 'ko' ? '모두 보기' : 'View All Features'}</span>
+                            <span>{locale === 'ko' ? '모두 보기' : 'View All'}</span>
                             <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                             </svg>
@@ -223,7 +220,7 @@ export function VoidNav() {
 
           {/* CTA Button */}
           <Link
-            href="/getting-started"
+            href="/docs/installation"
             className="void-btn void-btn-primary ml-2"
           >
             Get Started

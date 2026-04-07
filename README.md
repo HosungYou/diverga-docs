@@ -2,15 +2,15 @@
 
 <div align="center">
 
-[![Version](https://img.shields.io/badge/version-1.2.0-7c3aed?style=flat-square)](https://github.com/HosungYou/diverga-docs)
-[![Diverga](https://img.shields.io/badge/Diverga-v6.6.3-violet?style=flat-square)](https://github.com/HosungYou/Diverga)
+[![Version](https://img.shields.io/badge/version-3.0.0-7c3aed?style=flat-square)](https://github.com/HosungYou/diverga-docs)
+[![Diverga](https://img.shields.io/badge/Diverga-v12.0.1-violet?style=flat-square)](https://github.com/HosungYou/Diverga)
 [![Live](https://img.shields.io/badge/live-diverga--docs.vercel.app-0969da?style=flat-square)](https://diverga-docs.vercel.app)
 
 **"Beyond Modal Answers"** | **"뻔한 답을 넘어서"**
 
-Documentation website for [Diverga](https://github.com/HosungYou/Diverga) - 40 specialized research methodology agents.
+Documentation website for [Diverga](https://github.com/HosungYou/Diverga) — 24 specialized research methodology agents.
 
-**Cross-Platform Support**: Claude Code (Recommended) · Codex CLI · OpenCode
+**Claude Code Exclusive** — Requires [Claude Code](https://claude.ai/code) from Anthropic.
 
 [Live Site](https://diverga-docs.vercel.app) · [한국어](https://diverga-docs.vercel.app/ko)
 
@@ -20,37 +20,28 @@ Documentation website for [Diverga](https://github.com/HosungYou/Diverga) - 40 s
 
 ## Overview
 
-Diverga는 연구자를 위한 40개 전문 에이전트 플러그인입니다. Claude Code, Codex CLI, OpenCode 등 다양한 AI 코딩 어시스턴트에서 사용할 수 있습니다.
+Diverga는 연구자를 위한 24개 전문 에이전트 Claude Code 플러그인입니다. VS(Verbalized Sampling) 방법론을 통해 AI 모드 붕괴를 방지하고 창의적이고 방어 가능한 연구 선택을 안내합니다.
 
 ### Features
 
-- **40 Research Agents** - 8개 카테고리, 양적/질적/혼합 연구 지원
-- **Cross-Platform** - Claude Code, Codex CLI, OpenCode 지원
+- **24 Research Agents** - 9개 카테고리, 양적/질적/혼합 연구 전 과정 지원
+- **VS Methodology** - T-Score 기반 모드 붕괴 방지
+- **Human Checkpoints** - 중요 결정은 항상 인간이 승인
+- **VS Arena** - 5개 페르소나 방법론 토론 오케스트레이터
+- **Humanization Pipeline** - G5 → G6 → F5 자연스러운 학술 문체
+- **Systematic Review** - PRISMA 2020 자동화 파이프라인
 - **Bilingual** - 영어/한국어 완벽 지원
-- **Interactive Catalog** - 검색, 필터링, 상세 정보
-- **Getting Started Guide** - 플랫폼별 설치 가이드
-- **Research Workflows** - 연구 패러다임별 에이전트 조합
-- **Demo Playground** - 실제 에이전트 출력 예시
 
 ---
 
-## Supported Platforms
+## Installation (Claude Code)
 
-| Platform | Provider | Install Guide |
-|----------|----------|---------------|
-| **Claude Code** | Anthropic | `/plugin install diverga` |
-| **Codex CLI** | OpenAI | `git clone` + setup script |
-| **OpenCode** | Community | Plugin directory copy |
-
-### Model Mapping
-
-Diverga automatically maps agent tiers to the best available models:
-
-| Tier | Claude Code | Codex CLI | OpenCode |
-|------|-------------|-----------|----------|
-| HIGH | claude-opus-4-5 | gpt-5.2-codex | o4-max |
-| MEDIUM | claude-sonnet-4 | gpt-4.5-turbo | o4-mini |
-| LOW | claude-haiku-3 | gpt-4o-mini | o3-mini |
+```bash
+# Inside Claude Code
+/plugin marketplace add https://github.com/HosungYou/Diverga
+/plugin install diverga
+/diverga:setup
+```
 
 ---
 
@@ -58,14 +49,15 @@ Diverga automatically maps agent tiers to the best available models:
 
 | Category | Name | Agents | Description |
 |----------|------|--------|-------------|
-| **A** | Foundation | 6 | Research question, theory, ethics |
-| **B** | Evidence | 5 | Literature review, quality appraisal |
-| **C** | Design & Meta-Analysis | 7 | Quantitative, qualitative, mixed methods, meta-analysis |
-| **D** | Data Collection | 4 | Sampling, measurement, observation |
-| **E** | Analysis | 5 | Statistical, qualitative coding, mixed integration |
-| **F** | Quality | 5 | Checklists, bias detection, reproducibility |
-| **G** | Communication | 6 | Writing, journal matching, visualization |
-| **H** | Specialized | 2 | Ethnography, action research |
+| **A** | Foundation | 3 | Research question, theory, paradigm |
+| **B** | Literature & Evidence | 2 | Literature review, quality appraisal |
+| **C** | Study Design | 4 | Quantitative, qualitative, mixed methods, meta-analysis |
+| **D** | Data Collection | 2 | Interviews, observation, measurement instruments |
+| **E** | Analysis | 3 | Statistical, qualitative coding, mixed integration |
+| **F** | Quality & Validation | 1 | Humanization verification |
+| **G** | Publication | 4 | Journal matching, writing, humanization, audit |
+| **I** | Systematic Review | 4 | PRISMA pipeline: retrieval, screening, RAG |
+| **X** | Cross-Cutting | 1 | Research integrity, ethics, bias detection |
 
 ---
 
@@ -83,7 +75,7 @@ Diverga automatically maps agent tiers to the best available models:
 
 ---
 
-## Quick Start
+## Quick Start (docs site dev)
 
 ```bash
 # Clone
@@ -110,33 +102,15 @@ Open [http://localhost:3000](http://localhost:3000)
 src/
 ├── app/[locale]/          # Pages (i18n routing)
 │   ├── agents/            # Agent catalog & detail
-│   ├── getting-started/   # Installation guide
-│   ├── workflows/         # Research workflows
-│   └── playground/        # Demo examples
+│   ├── docs/              # Documentation pages
+│   └── features/          # Feature pages
 ├── components/            # React components
-├── lib/data/              # 40 agents + 8 categories
+├── lib/data/              # 24 agents + 9 categories
 └── i18n/                  # Locale config
 messages/
 ├── en.json                # English
 └── ko.json                # Korean
-docs/
-├── PRD.md                 # Product requirements
-├── SPEC.md                # Technical specification
-├── DESIGN.md              # Design system
-└── CONTRIBUTING.md        # Contribution guide
 ```
-
----
-
-## Documentation
-
-| Document | Description |
-|----------|-------------|
-| [PRD](docs/PRD.md) | Product Requirements Document |
-| [SPEC](docs/SPEC.md) | Technical Specification |
-| [DESIGN](docs/DESIGN.md) | Design System (OKLCH colors, typography) |
-| [CONTRIBUTING](docs/CONTRIBUTING.md) | How to contribute |
-| [ROADMAP](ROADMAP.md) | Completed & planned features |
 
 ---
 
@@ -150,8 +124,7 @@ Automatically deployed to Vercel on push to `main` branch.
 
 ## Related Projects
 
-- [Diverga](https://github.com/HosungYou/Diverga) - The main plugin repository
-- [oh-my-claudecode](https://github.com/anthropics/claude-code) - Claude Code CLI
+- [Diverga](https://github.com/HosungYou/Diverga) - The main plugin repository (v12.0.1)
 
 ---
 
