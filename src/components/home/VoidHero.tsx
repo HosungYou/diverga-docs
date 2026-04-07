@@ -239,7 +239,7 @@ export function VoidHero() {
           <TScoreIndicator
             score={0.42}
             label="Anti-modal yet feasible"
-            description="Where creative research escapes mode collapse"
+            description="Where research moves off the modal cluster"
             descriptionKo="창의적 연구가 모드 붕괴를 탈출하는 지점"
             locale={locale}
           />
@@ -292,7 +292,7 @@ export function VoidHero() {
             className="void-btn void-btn-primary group"
           >
             <span className="relative z-10">
-              {locale === 'ko' ? '연구 여정 시작' : 'Begin Journey'}
+              {locale === 'ko' ? '연구 여정 시작' : 'Get started'}
             </span>
             <svg
               className="relative z-10 h-4 w-4 transition-transform group-hover:translate-x-1"
@@ -319,10 +319,10 @@ export function VoidHero() {
           className="mt-16 flex flex-wrap justify-center gap-6"
         >
           {[
-            { label: '24 Agents', value: 'Specialized Research' },
-            { label: 'VS Methodology', value: 'Beyond Mode Collapse' },
-            { label: 'T-Score', value: 'Typicality-Aware' },
-            { label: 'Claude Code', value: 'Exclusive Platform' },
+            { label: '24 Agents', value: 'Across 9 categories' },
+            { label: 'VS Methodology', value: 'Anti mode-collapse' },
+            { label: 'T-Score', value: 'Typicality-aware' },
+            { label: 'Claude Code', value: 'Plugin' },
           ].map((feature, i) => (
             <div key={i} className="flex items-center gap-3 text-stellar-faint">
               <div className="h-1.5 w-1.5 rounded-full bg-tscore-creative" />

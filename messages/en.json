@@ -16,8 +16,8 @@
     "badge": "44 Research Agents · v9.0",
     "title": "Beyond Modal Answers",
     "titleHighlight": "Creative Research AI",
-    "description": "Diverga breaks free from AI mode collapse. Get creative, defensible research choices—not the same predictable recommendations every time.",
-    "cta": "Start Your Research Journey",
+    "description": "Diverga reduces AI mode collapse. Get creative, defensible research choices instead of the same predictable recommendation every time.",
+    "cta": "Get started",
     "ctaSecondary": "Explore Agents"
   },
   "problem": {
@@ -86,9 +86,9 @@
     }
   },
   "cta": {
-    "title": "Ready to Transform Your Research?",
-    "description": "Install Diverga in under 2 minutes and get started with your first agent.",
-    "button": "Get Started Now"
+    "title": "Get started",
+    "description": "Install Diverga and run your first agent.",
+    "button": "Get started"
   },
   "agents": {
     "title": "Agent Catalog",
@@ -139,17 +139,17 @@
       "description": "Research context that persists across sessions",
       "badge": "Since v6.8",
       "hero": {
-        "title": "Research Memory, Finally Solved",
-        "subtitle": "No more re-explaining your research context every session"
+        "title": "Persistent Research Memory",
+        "subtitle": "Project decisions and methodology choices persist across sessions"
       }
     },
     "vs": {
       "name": "VS Methodology",
       "shortName": "VS Method",
-      "description": "Break free from AI mode collapse with creative alternatives",
+      "description": "Surfaces alternatives across the typicality spectrum",
       "hero": {
-        "title": "Break Free from Mode Collapse",
-        "subtitle": "Get creative options across the typicality spectrum"
+        "title": "Reduce Mode Collapse",
+        "subtitle": "Options across the typicality spectrum, modal to divergent"
       }
     },
     "checkpoints": {
@@ -173,10 +173,10 @@
     "humanization": {
       "name": "Humanization Pipeline",
       "shortName": "Humanize",
-      "description": "Transform AI text into natural academic writing",
+      "description": "Rewrites AI patterns into academic prose",
       "hero": {
-        "title": "AI Text to Natural Academic Writing",
-        "subtitle": "Detect and transform AI writing patterns"
+        "title": "AI Text to Academic Prose",
+        "subtitle": "Detects and rewrites 28 AI writing pattern categories"
       }
     },
     "mcpCheckpoints": {
@@ -262,9 +262,9 @@
       "description": "Diverga automatically maps agent tiers to the best available models on each platform"
     },
     "checkpoint": {
-      "title": "Experience Your First Checkpoint",
+      "title": "Your First Checkpoint",
       "subtitle": "Every critical decision is yours",
-      "description": "Unlike other AI tools that make decisions for you, Diverga pauses at critical moments and asks for your approval. You stay in control.",
+      "description": "Diverga pauses at defined decision points and asks for explicit approval via AskUserQuestion before downstream agents run.",
       "exampleTitle": "Here's what a checkpoint looks like:",
       "prompt": "🔴 CP_THEORY_SELECTION",
       "promptSubtitle": "Choose your theoretical framework",

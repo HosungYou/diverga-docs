@@ -169,7 +169,6 @@ export const docsNavigation: DocsSection[] = [
         title: { en: 'Humanization', ko: '휴먼화' },
         href: '/docs/humanization',
         icon: 'pen-tool',
-        badge: { text: 'v10.1', color: '#ff8844' },
         children: [
           {
             id: 'ai-patterns',
@@ -206,8 +205,6 @@ export const docsNavigation: DocsSection[] = [
         title: { en: 'Journal Intelligence', ko: '저널 인텔리전스' },
         href: '/docs/journal-intelligence',
         icon: 'bar-chart-2',
-        isNew: true,
-        badge: { text: 'v10.3', color: '#f59e0b' },
         children: [
           {
             id: 'journal-mcp',
@@ -332,8 +329,6 @@ export const docsNavigation: DocsSection[] = [
         title: { en: 'Migration Guide (v6→v8)', ko: '마이그레이션 가이드 (v6→v8)' },
         href: '/docs/guides/migration',
         icon: 'arrow-up-circle',
-        isNew: true,
-        badge: { text: 'v8.4', color: '#44ffaa' },
       },
     ],
   },
@@ -364,8 +359,6 @@ export const docsNavigation: DocsSection[] = [
         title: { en: 'MCP Server', ko: 'MCP 서버' },
         href: '/docs/reference/mcp-server',
         icon: 'server',
-        isNew: true,
-        badge: { text: 'v8.2', color: '#44ffaa' },
       },
       {
         id: 'plugin-architecture',
@@ -378,8 +371,6 @@ export const docsNavigation: DocsSection[] = [
         title: { en: 'MCP Architecture', ko: 'MCP 아키텍처' },
         href: '/docs/reference/mcp-architecture',
         icon: 'box',
-        isNew: true,
-        badge: { text: 'v9.0', color: '#44ffaa' },
       },
     ],
   },
@@ -392,8 +383,6 @@ export const docsNavigation: DocsSection[] = [
         title: { en: 'Agent Teams', ko: '에이전트 팀' },
         href: '/docs/advanced/agent-teams',
         icon: 'users',
-        isNew: true,
-        badge: { text: 'v8.5', color: '#44ffaa' },
       },
     ],
   },

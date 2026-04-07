@@ -20,25 +20,25 @@ export default function HomePage() {
     en: {
       tscore: {
         title: 'The T-Score Spectrum',
-        subtitle: 'Most AI outputs cluster at T-Score 0.8+ (modal). Diverga helps you explore the creative long tail.',
+        subtitle: 'Most AI outputs cluster at T-Score 0.8 and above. Diverga surfaces the long tail.',
       },
       divergence: {
         title: 'VS Methodology in Action',
-        subtitle: 'One query, five directions. Human decides which path to explore.',
+        subtitle: 'One query, five directions. The researcher picks which to pursue.',
       },
       network: {
         title: 'Agent Collaboration Network',
-        subtitle: '24 specialized agents work together across 9 research lifecycle categories.',
+        subtitle: '24 agents across 9 research lifecycle categories.',
       },
       cli: {
         title: 'Interactive Terminal',
-        subtitle: 'Experience Diverga CLI with human checkpoints.',
+        subtitle: 'Try the Diverga CLI with human checkpoints.',
       },
       cta: {
-        title: 'Ready to Escape Mode Collapse?',
-        subtitle: 'Join researchers who are exploring the long tail of methodology.',
-        button: 'Start Your Journey',
-        secondary: 'Read Documentation',
+        title: 'Get started',
+        subtitle: 'Diverga runs as a Claude Code plugin.',
+        button: 'Get started',
+        secondary: 'Read the docs',
       },
     },
     ko: {

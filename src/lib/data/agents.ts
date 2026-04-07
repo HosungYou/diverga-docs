@@ -93,7 +93,7 @@ export const agents: Agent[] = [
       ko: "여러 데이터베이스에서 PRISMA를 준수하는 체계적 문헌 검색을 수행합니다."
     },
     purpose: {
-      en: "Design comprehensive search strategies and manage systematic review workflows.",
+      en: "Design search strategies and manage systematic review workflows.",
       ko: "포괄적인 검색 전략을 설계하고 체계적 검토 워크플로우를 관리합니다."
     },
     triggers: {
@@ -218,7 +218,7 @@ export const agents: Agent[] = [
       ko: "다중 게이트 검증, 효과크기 추출(Cohen's d, Hedges' g, r, OR), 데이터 무결성 검사, 오류 방지, 민감도 분석을 통해 메타분석 워크플로우를 조율합니다."
     },
     purpose: {
-      en: "Lead comprehensive meta-analysis projects with rigorous validation.",
+      en: "Run meta-analysis projects with multi-gate validation.",
       ko: "엄격한 검증과 함께 포괄적인 메타분석 프로젝트를 이끕니다."
     },
     triggers: {

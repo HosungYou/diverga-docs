@@ -70,7 +70,7 @@ export const features: FeatureItem[] = [
       ko: '세션을 넘어 지속되는 연구 맥락',
     },
     longDescription: {
-      en: 'Never re-explain your research context again. Diverga remembers your project decisions, theoretical frameworks, and methodology choices across sessions.',
+      en: 'Persists project decisions, theoretical frameworks, and methodology choices across sessions. Reads on session start, writes when decisions are made.',
       ko: '다시는 연구 맥락을 재설명할 필요가 없습니다. Diverga는 세션을 넘어 프로젝트 결정, 이론적 프레임워크, 방법론 선택을 기억합니다.',
     },
     icon: '🧠',
@@ -96,11 +96,11 @@ export const features: FeatureItem[] = [
       ko: 'VS 방법론',
     },
     description: {
-      en: 'Break free from AI mode collapse with creative alternatives',
+      en: 'Surfaces alternatives across the typicality spectrum',
       ko: 'AI 모드 붕괴를 벗어나 창의적 대안을 제시',
     },
     longDescription: {
-      en: 'VS (Variable Sampling) methodology forces AI to present diverse options across the typicality spectrum, from modal (T=1.0) to divergent (T=0.0) choices.',
+      en: 'Verbalized Sampling presents options across the typicality spectrum, from modal (T=1.0) to divergent (T=0.0). Reduces mode collapse in research framing, theory selection, and methodology choices.',
       ko: 'VS (Variable Sampling) 방법론은 AI가 모달(T=1.0)부터 발산적(T=0.0) 선택까지 전형성 스펙트럼에 걸친 다양한 옵션을 제시하도록 강제합니다.',
     },
     icon: '🎯',
@@ -125,7 +125,7 @@ export const features: FeatureItem[] = [
       ko: '중요한 결정은 인간의 손에',
     },
     longDescription: {
-      en: 'Unlike autonomous AI systems, Diverga stops at critical research junctures and asks for your explicit approval. You maintain control over paradigm selection, theoretical frameworks, and methodological choices.',
+      en: 'Stops at defined decision points (research direction, paradigm, theory, methodology) and requires explicit approval via AskUserQuestion. Five REQUIRED checkpoints gate downstream agent execution.',
       ko: '자율 AI 시스템과 달리, Diverga는 중요한 연구 분기점에서 멈추고 명시적 승인을 요청합니다. 패러다임 선택, 이론적 프레임워크, 방법론적 선택에 대한 통제권을 유지합니다.',
     },
     icon: '🛑',
@@ -150,7 +150,7 @@ export const features: FeatureItem[] = [
       ko: 'PRISMA 2020 준수 문헌고찰 파이프라인',
     },
     longDescription: {
-      en: 'The I-category pipeline provides automated paper retrieval from Semantic Scholar, OpenAlex, and arXiv. AI-assisted screening, deduplication, and RAG-powered synthesis following PRISMA 2020 guidelines.',
+      en: 'Category I pipeline (I0-I3): paper retrieval from Semantic Scholar, OpenAlex, and arXiv; AI-assisted screening; deduplication; RAG synthesis. Follows PRISMA 2020.',
       ko: 'I-카테고리 파이프라인으로 Semantic Scholar, OpenAlex, arXiv에서 자동 논문 검색을 제공합니다. PRISMA 2020 가이드라인을 따르는 AI 지원 스크리닝, 중복 제거, RAG 기반 종합을 수행합니다.',
     },
     icon: '📚',
@@ -171,11 +171,11 @@ export const features: FeatureItem[] = [
       ko: '휴먼화',
     },
     description: {
-      en: 'Transform AI text into natural academic writing',
+      en: 'Rewrites AI patterns into academic prose',
       ko: 'AI 텍스트를 자연스러운 학술 문체로 변환',
     },
     longDescription: {
-      en: 'Detect and transform 28 categories of AI writing patterns while preserving 100% of citations, statistics, and academic rigor. Four transformation layers: Conservative, Balanced, Aggressive, and Custom.',
+      en: 'Detects 28 AI writing patterns and rewrites them while preserving citations, statistics, and quoted content. Four modes: Conservative, Balanced, Aggressive, Custom.',
       ko: '인용, 통계, 학술적 엄밀성을 100% 보존하면서 28개 카테고리의 AI 작성 패턴을 감지하고 변환합니다. 4개 변환 레이어: 보수적, 균형적, 적극적, 맞춤형.',
     },
     icon: '✍️',
@@ -200,18 +200,13 @@ export const features: FeatureItem[] = [
       ko: 'MCP 서버 프로토콜을 통한 실시간 체크포인트 검증',
     },
     longDescription: {
-      en: 'Checkpoints are now enforced at the MCP runtime level, providing consistent validation across all supported platforms. The SCH_* checkpoint system ensures PRISMA compliance at every pipeline stage.',
+      en: 'Checkpoints run at the MCP runtime level. The SCH_* checkpoint set covers each PRISMA pipeline stage; PreToolUse hooks intercept agent dispatches and check prerequisites.',
       ko: '체크포인트가 MCP 런타임 수준에서 적용되어 모든 지원 플랫폼에서 일관된 검증을 제공합니다. SCH_* 체크포인트 시스템이 모든 파이프라인 단계에서 PRISMA 준수를 보장합니다.',
     },
     icon: '🔌',
     color: '#3b82f6',
     bgColor: 'rgba(59, 130, 246, 0.1)',
     accentColor: '#2563eb',
-    isNew: true,
-    badge: {
-      en: 'NEW in v8.2',
-      ko: 'v8.2 신규',
-    },
     keywords: ['mcp', 'checkpoint', 'runtime', 'validation', 'protocol'],
   },
   {
@@ -226,11 +221,11 @@ export const features: FeatureItem[] = [
       ko: 'Claude Code',
     },
     description: {
-      en: 'Purpose-built for Claude Code with full tool-level enforcement',
+      en: 'Built for Claude Code with tool-level enforcement',
       ko: '도구 수준 강제를 갖춘 Claude Code 전용 설계',
     },
     longDescription: {
-      en: 'Diverga v11.0 is designed exclusively for Claude Code, leveraging Task tool for 24 specialized agent routing, AskUserQuestion for interactive checkpoints, and PreToolUse hooks for prerequisite enforcement.',
+      en: 'Built for Claude Code. Uses the Task tool for agent routing, AskUserQuestion for checkpoints, and PreToolUse hooks for prerequisite enforcement.',
       ko: 'Diverga v11.0은 Claude Code 전용으로 설계되었습니다. 24개 전문 에이전트 라우팅을 위한 Task 도구, 인터랙티브 체크포인트를 위한 AskUserQuestion, 전제조건 강제를 위한 PreToolUse 훅을 활용합니다.',
     },
     icon: '🌐',
@@ -255,18 +250,13 @@ export const features: FeatureItem[] = [
       ko: '설정과 출력을 위한 .research/ 및 research/ 디렉토리 분리',
     },
     longDescription: {
-      en: 'The new dual directory structure separates configuration (.research/) from research outputs (research/). This keeps your git-tracked configs clean while research data lives alongside your project.',
+      en: 'Configuration in .research/ (git-tracked), research outputs in research/ (project data). Separation keeps the git tree clean.',
       ko: '새로운 이중 디렉토리 구조는 설정(.research/)과 연구 출력(research/)을 분리합니다. git 추적 설정을 깔끔하게 유지하면서 연구 데이터는 프로젝트와 함께 저장됩니다.',
     },
     icon: '📂',
     color: '#059669',
     bgColor: 'rgba(5, 150, 105, 0.1)',
     accentColor: '#047857',
-    isNew: true,
-    badge: {
-      en: 'NEW in v8.4',
-      ko: 'v8.4 신규',
-    },
     keywords: ['directory', 'structure', 'dual', 'config', 'output', 'organization'],
   },
   {
@@ -281,22 +271,17 @@ export const features: FeatureItem[] = [
       ko: '팀',
     },
     description: {
-      en: 'Parallel multi-agent coordination for complex research tasks',
+      en: 'Parallel agent dispatch via /diverga:orchestrator',
       ko: '복잡한 연구 작업을 위한 병렬 다중 에이전트 조율',
     },
     longDescription: {
-      en: 'Agent Teams enables parallel coordination of multiple specialized agents working on different aspects of a research task simultaneously, dramatically reducing time for complex workflows.',
+      en: 'Runs multiple agents in parallel through the unified orchestrator. Activated by CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1; falls back to subagent dispatch when unavailable.',
       ko: '에이전트 팀은 여러 전문 에이전트가 연구 작업의 다양한 측면을 동시에 작업하도록 병렬 조율을 가능하게 하여 복잡한 워크플로우의 소요 시간을 대폭 줄입니다.',
     },
     icon: '👥',
     color: '#d946ef',
     bgColor: 'rgba(217, 70, 239, 0.1)',
     accentColor: '#c026d3',
-    isNew: true,
-    badge: {
-      en: 'NEW in v8.5',
-      ko: 'v8.5 신규',
-    },
     keywords: ['agent-teams', 'parallel', 'coordination', 'multi-agent', 'collaboration'],
   },
   {
@@ -311,21 +296,17 @@ export const features: FeatureItem[] = [
       ko: 'MCP 아키텍처',
     },
     description: {
-      en: 'Unified SQLite WAL backend with 3 MCP servers (diverga, humanizer, journal) and 22 specialized tools',
+      en: 'SQLite WAL backend, 3 MCP servers, 22 tools',
       ko: '3개 MCP 서버(diverga, humanizer, journal)와 22개 전문 도구를 갖춘 통합 SQLite WAL 백엔드',
     },
     longDescription: {
-      en: 'Diverga v11.0 features a unified SQLite WAL backend with 3 MCP servers (diverga, humanizer, journal) and 22 specialized tools. ACID-safe parallel agent coordination ensures reliable multi-agent research workflows.',
+      en: 'Three MCP servers: diverga (checkpoint/memory/comm, 16 tools), journal (OpenAlex + Crossref, 6 tools), humanizer (stylometric metrics). SQLite WAL backend supports concurrent reads.',
       ko: 'Diverga v11.0은 3개 MCP 서버(diverga, humanizer, journal)와 22개 전문 도구를 갖춘 통합 SQLite WAL 백엔드를 제공합니다. ACID 안전 병렬 에이전트 조율로 안정적인 다중 에이전트 연구 워크플로우를 보장합니다.',
     },
     icon: '🏗️',
     color: '#06b6d4',
     bgColor: 'rgba(6, 182, 212, 0.1)',
     accentColor: '#0891b2',
-    badge: {
-      en: 'v11.0',
-      ko: 'v11.0',
-    },
     keywords: ['mcp', 'architecture', 'server', 'sqlite', 'modular', 'backend', 'parallel'],
   },
   {
@@ -340,22 +321,17 @@ export const features: FeatureItem[] = [
       ko: '저널 인텔',
     },
     description: {
-      en: 'Real-time journal matching powered by OpenAlex API',
+      en: 'Live journal data from OpenAlex and Crossref',
       ko: 'OpenAlex API 기반 실시간 저널 매칭',
     },
     longDescription: {
-      en: 'G1 Journal Matcher now connects to OpenAlex and Crossref APIs for live metrics including h-index, citation counts, publication trends, and OA status. Interactive checkpoints let you set priorities and select target journals with real data.',
+      en: 'G1 (Journal Matcher) queries OpenAlex and Crossref for h-index, citation counts, publication trends, and open-access status. Two checkpoints (CP_JOURNAL_PRIORITIES, CP_JOURNAL_SELECTION) hand the final decision back to the researcher.',
       ko: 'G1 저널 매칭이 OpenAlex와 Crossref API에 연결되어 h-index, 인용 수, 출판 트렌드, OA 현황 등 실시간 메트릭을 제공합니다. 인터랙티브 체크포인트로 우선순위를 설정하고 실제 데이터로 대상 저널을 선택할 수 있습니다.',
     },
     icon: '📊',
     color: '#f59e0b',
     bgColor: 'rgba(245, 158, 11, 0.1)',
     accentColor: '#d97706',
-    isNew: true,
-    badge: {
-      en: 'NEW in v10.3',
-      ko: 'v10.3 신규',
-    },
     keywords: ['journal', 'openalex', 'metrics', 'submission', 'impact-factor', 'matching'],
   },
 ];
