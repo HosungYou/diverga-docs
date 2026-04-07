@@ -2,6 +2,48 @@
 
 All notable changes to Diverga Docs will be documented in this file.
 
+## [3.0.0] - 2026-04-07
+
+Catches the docs site up with Diverga core v11.1 through v12.0.1, with a parallel pass to remove zombie content and tone down marketing copy.
+
+### BREAKING CHANGES
+
+- `/diverga:research-orchestrator` and `/diverga:vs-arena` removed from CLI documentation. Use `/diverga:orchestrator` instead. The unified orchestrator handles Agent Teams dispatch, VS Arena debate, and subagent fallback.
+
+### Added
+
+- `/docs/orchestrator` page documenting the unified `/diverga:orchestrator` skill
+- `/docs/agent-teams` page covering `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`, dispatch flow, and Team Dispatch Bypass (`DIVERGA_TEAM_DISPATCH=1`)
+- `/docs/developer/dev-mode` page covering selective symlink dev mode (`scripts/dev.js`) and the one-command deploy pipeline (`scripts/deploy.js`)
+- Combined v12.0.1 entry covering v11.1 through v12.0.1
+- Researcher profile setup (2-step interview) documented in configuration page
+- BYPASSED checkpoint level (Rule 7) documented in checkpoints page
+- New `Orchestration` and `Developer` sections in docs navigation
+- New `X: Cross-Cutting` agent category in nav (X1 Research Guardian)
+
+### Changed
+
+- CLI page rewritten end-to-end (1255 lines to ~150 lines). Lists 10 coordination skills, 24 agent skills, and 2 environment variables. Documents v12 unification.
+- `features.ts` longDescriptions rewritten to drop marketing copy. Phrases like "Never re-explain", "dramatically reducing", "exclusively designed", and "ACID-safe parallel reliable" removed.
+- Home page (`page.tsx`) and `VoidHero.tsx` CTAs reduced to direct copy ("Get started" instead of "Begin Journey", "Read the docs" instead of "Read Documentation").
+- `messages/en.json` strings rewritten to remove "journey", "transform", "experience" (as a verb), and similar marketing vocabulary.
+- Agent metadata for G1 (Journal Matcher), G2 (Publication Specialist), G5 (Academic Style Auditor), and A2 (Theory and Critique Architect) updated to reflect v11.1+ capabilities (live OpenAlex/Crossref pipeline, latex2omml integration, 28-category audit, A3/A6 absorption).
+- Category badges in docs navigation updated from a 44-agent count to the actual 24 agents (A=3, B=2, C=4, D=2, E=3, F=1, G=4, I=4, X=1).
+
+### Removed
+
+- 21 zombie agent-content files (`a3`, `a4`, `a6`, `b3`, `b4`, `b5`, `c4`, `c6`, `c7`, `d1`, `d3`, `e4`, `e5`, `f1`, `f2`, `f3`, `f4`, `g3`, `g4`, `h1`, `h2`). These referenced agents that were absorbed into other agents in earlier consolidations but their content files were never deleted.
+- Dead version badges from `features.ts` and `docs-navigation.ts`: `NEW in v8.2`, `NEW in v8.4`, `NEW in v8.5`, `v10.1`, `v10.3`, `v11.0`.
+- Dead nav entries pointing to non-existent pages: `/docs/guides/migration`, `/docs/reference/mcp-server`, `/docs/reference/mcp-architecture`, `/docs/reference/plugin-architecture`, `/docs/advanced/agent-teams`.
+- `H: Specialized` category nav entry (the H category was absorbed into C2 in v11.0; the page remains as a historical note).
+
+### Notes
+
+- English locale only. Korean strings (`messages/ko.json` and ko fields in data files) are unchanged and tracked as a follow-up.
+- v12.0.0 architecture changes (slimmed `CLAUDE.md`, slimmed `research-coordinator`, deleted `routing.yaml`) and the `execution-context-architecture` spec are intentionally not given dedicated pages, in line with the cleanup goal of reducing low-value content.
+
+---
+
 ## [2.2.1] - 2026-02-03
 
 ### Added

@@ -17,6 +17,59 @@ interface VersionRelease {
 
 const releases: VersionRelease[] = [
   {
+    version: '12.0.1',
+    date: '2026-04-07',
+    title: {
+      en: 'v12 Update + Content Cleanup',
+      ko: 'v12 업데이트 + 콘텐츠 정리',
+    },
+    type: 'major',
+    breaking: {
+      en: [
+        '/diverga:research-orchestrator and /diverga:vs-arena removed. Use /diverga:orchestrator instead.',
+      ],
+      ko: [
+        '/diverga:research-orchestrator와 /diverga:vs-arena 제거. /diverga:orchestrator 사용.',
+      ],
+    },
+    highlights: {
+      en: [
+        'Unified /diverga:orchestrator skill (replaces research-orchestrator and vs-arena)',
+        'Agent Teams dispatch via CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1',
+        'Team Dispatch Bypass via DIVERGA_TEAM_DISPATCH=1 (Checkpoint Rule 7)',
+        'Researcher profile setup wizard (2-step interview)',
+        'latex2omml integration in G2 for native Word equations',
+        '28-category audit + LaTeX validation patterns (X1-X6) in G5',
+        'Selective symlink dev mode and one-command deploy pipeline',
+      ],
+      ko: [
+        '통합 /diverga:orchestrator 스킬 (research-orchestrator와 vs-arena 대체)',
+        'CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1로 Agent Teams 디스패치',
+        'DIVERGA_TEAM_DISPATCH=1로 Team Dispatch Bypass (Checkpoint Rule 7)',
+        '연구자 프로필 setup wizard (2단계 인터뷰)',
+        'G2에 latex2omml 통합으로 Word native 수식 지원',
+        'G5에 28개 카테고리 감사 + LaTeX 검증 패턴 (X1-X6)',
+        '선택적 심볼릭 dev 모드 및 원커맨드 배포 파이프라인',
+      ],
+    },
+    features: {
+      en: [
+        'New /docs/orchestrator, /docs/agent-teams, /docs/developer/dev-mode pages',
+        'CLI page rewritten end-to-end (1255 lines to ~150 lines)',
+        '21 zombie agent-content files deleted',
+        'Marketing tone reduced across features.ts, home page, and EN messages',
+        'Category badges corrected from 44-agent count to actual 24',
+      ],
+      ko: [
+        '새 페이지: /docs/orchestrator, /docs/agent-teams, /docs/developer/dev-mode',
+        'CLI 페이지 전면 재작성 (1255줄 → 약 150줄)',
+        '21개 zombie agent-content 파일 삭제',
+        'features.ts, 홈, EN 메시지에서 마케팅 톤 정제',
+        '카테고리 뱃지를 44 → 실제 24 에이전트로 수정',
+      ],
+    },
+  },
+  {
     version: '9.0.0',
     date: '2026-02-16',
     title: {

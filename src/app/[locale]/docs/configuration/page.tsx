@@ -167,7 +167,7 @@ Important papers: Smith (2023), Lee (2024) - both use similar frameworks`,
         {
           step: '1. Run setup wizard',
           command: '/diverga:setup',
-          desc: 'Interactive configuration for checkpoints, HUD, and language',
+          desc: 'Two-step researcher profile interview: discipline + experience level, then stats software + database access. Agents adapt their behavior based on this profile.',
         },
         {
           step: '2. Set API keys',

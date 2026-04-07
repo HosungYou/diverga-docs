@@ -37,7 +37,7 @@ export const agents: Agent[] = [
     model: "opus",
     vsLevel: "FULL",
     description: {
-      en: "Designs theoretical frameworks using VS methodology with built-in self-critique mode (Reviewer 2 simulation) and conceptual framework visualization capabilities.",
+      en: "Designs theoretical frameworks with VS methodology. Includes self-critique mode (absorbed from A3) and conceptual framework visualization (absorbed from A6).",
       ko: "VS 방법론을 사용하여 이론적 프레임워크를 설계하고, 내장된 자기 비판 모드(리뷰어 2 시뮬레이션)와 개념적 프레임워크 시각화 기능을 제공합니다."
     },
     purpose: {
@@ -394,15 +394,15 @@ export const agents: Agent[] = [
     model: "sonnet",
     vsLevel: "LIGHT",
     description: {
-      en: "Recommends target journals based on scope, impact factor, and manuscript fit.",
+      en: "Real-time journal matching pipeline using OpenAlex and Crossref. Three stages with two checkpoints (CP_JOURNAL_PRIORITIES, CP_JOURNAL_SELECTION) hand the final decision back to the researcher.",
       ko: "범위, 영향력 지수 및 원고 적합성에 따라 대상 저널을 추천합니다."
     },
     purpose: {
-      en: "Match manuscripts with appropriate journals for publication.",
+      en: "Match manuscripts with target journals using live metrics, not static lists.",
       ko: "출판을 위해 원고를 적절한 저널과 매칭합니다."
     },
     triggers: {
-      en: "journal match, where to publish, target journal, impact factor",
+      en: "journal, submission, impact factor, academic journal, publication, submit",
       ko: "저널 매칭, 투고처, 대상 저널, 영향력 지수"
     },
     relatedAgents: ["G2"],
@@ -418,15 +418,15 @@ export const agents: Agent[] = [
     model: "sonnet",
     vsLevel: "ENHANCED",
     description: {
-      en: "Writes abstracts, plain language summaries. Handles peer review strategy, response letters, preregistration (OSF/AsPredicted), reporting checklists (PRISMA/CONSORT/STROBE), and reproducibility auditing.",
+      en: "Writes abstracts and plain language summaries. Handles peer review responses, preregistration (OSF, AsPredicted), reporting checklists (PRISMA, CONSORT, STROBE), and reproducibility audits. Generates Word documents with native equations via the latex2omml converter.",
       ko: "초록, 쉬운 언어 요약을 작성합니다. 동료 심사 전략, 응답 서신, 사전등록(OSF/AsPredicted), 보고 체크리스트(PRISMA/CONSORT/STROBE), 재현성 감사를 수행합니다."
     },
     purpose: {
-      en: "Communicate research findings clearly to various audiences.",
+      en: "Produce publication-ready outputs from manuscript drafts.",
       ko: "다양한 청중에게 연구 결과를 명확하게 전달합니다."
     },
     triggers: {
-      en: "academic writing, manuscript, abstract, peer review, reviewer response, preregistration, OSF, checklist, CONSORT, reproducibility",
+      en: "abstract, plain language, press release, summary, peer review, revision, pre-registration, OSF, PRISMA, CONSORT, reproducibility, word document, latex equation",
       ko: "학술 글쓰기, 원고, 초록, 동료 심사, 리뷰어 응답, 사전등록, 체크리스트, 재현성"
     },
     relatedAgents: ["G1", "G5"],
@@ -442,7 +442,7 @@ export const agents: Agent[] = [
     model: "sonnet",
     vsLevel: "LIGHT",
     description: {
-      en: "Detects AI writing patterns across 24 categories, provides probability scoring and risk classification.",
+      en: "Detects AI writing patterns across 28 categories. Includes a LaTeX syntax validation pass (X1-X6) for math-heavy manuscripts. Provides probability scoring and risk classification.",
       ko: "24개 카테고리에서 AI 글쓰기 패턴을 탐지하고 확률 점수화 및 위험 분류를 제공합니다."
     },
     purpose: {
@@ -450,7 +450,7 @@ export const agents: Agent[] = [
       ko: "휴먼화 전 AI 생성 텍스트 패턴을 식별합니다."
     },
     triggers: {
-      en: "AI pattern, check AI writing, style audit, AI detection",
+      en: "writing quality, style audit, pattern check, writing review, academic style check, latex validation",
       ko: "AI 패턴, AI 글쓰기 검토, 스타일 감사, AI 탐지"
     },
     relatedAgents: ["G6", "F5"],

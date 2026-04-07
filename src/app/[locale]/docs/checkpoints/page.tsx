@@ -63,6 +63,14 @@ const content = {
         canSkip: 'Yes',
         color: 'yellow',
       },
+      {
+        level: 'BYPASSED (v12.0.1)',
+        icon: '🔵',
+        behavior: 'Skipped during team dispatch',
+        description: 'When the orchestrator dispatches an Agent Team, individual agent prerequisite checks are bypassed via DIVERGA_TEAM_DISPATCH=1. The dispatch approval acts as the checkpoint. Only applies to orchestrator-driven team dispatch, not direct agent calls.',
+        canSkip: 'Auto',
+        color: 'blue',
+      },
     ],
 
     // Section 4: When You Will See Checkpoints
@@ -368,6 +376,12 @@ const levelColors: Record<string, { bg: string; border: string; text: string; gl
     border: 'rgba(255, 204, 34, 0.3)',
     text: '#ffcc22',
     glow: 'rgba(255, 204, 34, 0.2)',
+  },
+  blue: {
+    bg: 'rgba(34, 204, 255, 0.1)',
+    border: 'rgba(34, 204, 255, 0.3)',
+    text: '#22ccff',
+    glow: 'rgba(34, 204, 255, 0.2)',
   },
 };
 
